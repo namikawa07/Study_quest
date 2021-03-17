@@ -29,4 +29,8 @@ RPGゲームのように主人公が毎日自分の決めた課題を取り組�
 ## 画面遷移図
 https://xd.adobe.com/view/32512a57-4036-4356-94ef-aa34a9e1d552-6702/
 
+## ER図
+https://drive.google.com/file/d/1cBd3F05dgtk3CXOrZmcywasDac0TIn5c/view?usp=sharing
+
+
 
