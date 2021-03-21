@@ -1,0 +1,60 @@
+# This file overrides https://github.com/bbatsov/rubocop/blob/master/config/default.yml
+
+AllCops:
+  Exclude:
+    - "vendor/**/*"
+    - "db/**/*"
+    - "bin/**/*"
+    - "lib/**/*"
+    - "spec/**/*"
+    - "config/**/*"
+    - "app/validators/attachment_validator.rb"
+    - "node_modules/**/*"
+    - "Gemfile"
+  DisplayCopNames: true
+
+Rails:
+  Enabled: true
+
+Metrics/AbcSize:
+  Max: 30
+
+Metrics/ClassLength:
+  CountComments: false
+  Max: 300
+
+Metrics/CyclomaticComplexity:
+  Max: 30
+
+Metrics/LineLength:
+  Enabled: false
+
+Metrics/MethodLength:
+  CountComments: false
+  Max: 30
+
+Naming/AccessorMethodName:
+  Exclude:
+    - "app/controllers/**/*"
+
+Style/AsciiComments:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Style/WhileUntilModifier:
+  Enabled: false
+
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+
