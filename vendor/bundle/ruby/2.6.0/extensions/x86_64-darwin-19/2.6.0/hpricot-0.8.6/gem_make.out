@@ -1,0 +1,327 @@
+current directory: /Users/nami/Desktop/Study_quest/名称未設定フォルダ/Study_quest/vendor/bundle/ruby/2.6.0/gems/hpricot-0.8.6/ext/hpricot_scan
+/Users/nami/.rbenv/versions/2.6.4/bin/ruby -I /Users/nami/.rbenv/versions/2.6.4/lib/ruby/2.6.0 -r ./siteconf20210321-1637-an3ayc.rb extconf.rb
+checking for main() in -lc... yes
+creating Makefile
+
+current directory: /Users/nami/Desktop/Study_quest/名称未設定フォルダ/Study_quest/vendor/bundle/ruby/2.6.0/gems/hpricot-0.8.6/ext/hpricot_scan
+make "DESTDIR=" clean
+
+current directory: /Users/nami/Desktop/Study_quest/名称未設定フォルダ/Study_quest/vendor/bundle/ruby/2.6.0/gems/hpricot-0.8.6/ext/hpricot_scan
+make "DESTDIR="
+compiling hpricot_css.c
+hpricot_css.rl:87:14: warning: field precision should have type 'int', but argument has type 'long' [-Wformat]
+        {te = p+1;{ FILTERAUTO(); }}
+                    ^~~~~~~~~~~~
+hpricot_css.rl:15:20: note: expanded from macro 'FILTERAUTO'
+  sprintf(filt, "%.*s", te - ts, ts); \
+                 ~~^~   ~~~~~~~
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/secure/_stdio.h:47:56: note: expanded from macro 'sprintf'
+  __builtin___sprintf_chk (str, 0, __darwin_obsz(str), __VA_ARGS__)
+                                                       ^~~~~~~~~~~
+hpricot_css.c:3407:9: warning: comparison between pointer and integer ('char *' and 'int') [-Wpointer-integer-compare]
+        if ( p == eof )
+             ~ ^  ~~~
+hpricot_css.c:3407:12: warning: variable 'eof' is uninitialized when used here [-Wuninitialized]
+        if ( p == eof )
+                  ^~~
+hpricot_css.rl:96:19: note: initialize the variable 'eof' to silence this warning
+  int cs, act, eof;
+                  ^
+                   = 0
+hpricot_css.c:32:18: warning: unused variable 'hpricot_css_error' [-Wunused-const-variable]
+static const int hpricot_css_error = 0;
+                 ^
+hpricot_css.c:34:18: warning: unused variable 'hpricot_css_en_main' [-Wunused-const-variable]
+static const int hpricot_css_en_main = 87;
+                 ^
+5 warnings generated.
+compiling hpricot_scan.c
+hpricot_scan.rl:562:29: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+         tokstart_diff = ts - buf;
+                       ~ ~~~^~~~~
+hpricot_scan.rl:563:27: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+         tokend_diff = te - buf;
+                     ~ ~~~^~~~~
+hpricot_scan.rl:564:35: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+         mark_tag_diff = mark_tag - buf;
+                       ~ ~~~~~~~~~^~~~~
+hpricot_scan.rl:565:37: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+         mark_akey_diff = mark_akey - buf;
+                        ~ ~~~~~~~~~~^~~~~
+hpricot_scan.rl:566:37: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+         mark_aval_diff = mark_aval - buf;
+                        ~ ~~~~~~~~~~^~~~~
+hpricot_scan.rl:582:13: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+      len = RSTRING_LEN(str);
+          ~ ^~~~~~~~~~~~~~~~
+/Users/nami/.rbenv/versions/2.6.4/include/ruby-2.6.0/ruby/ruby.h:1000:6: note: expanded from macro 'RSTRING_LEN'
+     RSTRING_EMBED_LEN(str) : \
+     ^~~~~~~~~~~~~~~~~~~~~~
+/Users/nami/.rbenv/versions/2.6.4/include/ruby-2.6.0/ruby/ruby.h:996:6: note: expanded from macro 'RSTRING_EMBED_LEN'
+     (long)((RBASIC(str)->flags >> RSTRING_EMBED_LEN_SHIFT) & \
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+hpricot_scan.rl:582:13: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+      len = RSTRING_LEN(str);
+          ~ ^~~~~~~~~~~~~~~~
+/Users/nami/.rbenv/versions/2.6.4/include/ruby-2.6.0/ruby/ruby.h:1001:28: note: expanded from macro 'RSTRING_LEN'
+     RSTRING(str)->as.heap.len)
+     ~~~~~~~~~~~~~~~~~~~~~~^~~
+hpricot_scan.rl:588:31: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+      len = RSTRING_LEN(port) + 1;
+          ~ ~~~~~~~~~~~~~~~~~~^~~
+hpricot_common.rl:66:14: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+        {te = p+1;{ ELE(doctype); }}
+                    ^~~~~~~~~~~~
+hpricot_scan.rl:68:29: note: expanded from macro 'ELE'
+      raw = ts; rawlen = te - ts;                                       \
+                       ~ ~~~^~~~
+hpricot_common.rl:66:14: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+        {te = p+1;{ ELE(doctype); }}
+                    ^~~~~~~~~~~~
+hpricot_scan.rl:68:29: note: expanded from macro 'ELE'
+      raw = ts; rawlen = te - ts;                                       \
+                       ~ ~~~^~~~
+NONE:3:19: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+        {{p = ((te))-1;} ELE(doctype); }
+                         ^~~~~~~~~~~~
+hpricot_scan.rl:68:29: note: expanded from macro 'ELE'
+      raw = ts; rawlen = te - ts;                                       \
+                       ~ ~~~^~~~
+NONE:6:19: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+        {{p = ((te))-1;} ELE(stag); }
+                         ^~~~~~~~~
+hpricot_scan.rl:68:29: note: expanded from macro 'ELE'
+      raw = ts; rawlen = te - ts;                                       \
+                       ~ ~~~^~~~
+NONE:9:19: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+        {{p = ((te))-1;} ELE(emptytag); }
+                         ^~~~~~~~~~~~~
+hpricot_scan.rl:68:29: note: expanded from macro 'ELE'
+      raw = ts; rawlen = te - ts;                                       \
+                       ~ ~~~^~~~
+hpricot_common.rl:69:14: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+        {te = p+1;{ ELE(etag); }}
+                    ^~~~~~~~~
+hpricot_scan.rl:68:29: note: expanded from macro 'ELE'
+      raw = ts; rawlen = te - ts;                                       \
+                       ~ ~~~^~~~
+hpricot_common.rl:69:14: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+        {te = p+1;{ ELE(etag); }}
+                    ^~~~~~~~~
+hpricot_scan.rl:68:29: note: expanded from macro 'ELE'
+      raw = ts; rawlen = te - ts;                                       \
+                       ~ ~~~^~~~
+hpricot_common.rl:68:14: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+        {te = p+1;{ ELE(stag); }}
+                    ^~~~~~~~~
+hpricot_scan.rl:68:29: note: expanded from macro 'ELE'
+      raw = ts; rawlen = te - ts;                                       \
+                       ~ ~~~^~~~
+hpricot_common.rl:68:14: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+        {te = p+1;{ ELE(stag); }}
+                    ^~~~~~~~~
+hpricot_scan.rl:68:29: note: expanded from macro 'ELE'
+      raw = ts; rawlen = te - ts;                                       \
+                       ~ ~~~^~~~
+hpricot_common.rl:68:14: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+        {te = p+1;{ ELE(stag); }}
+                    ^~~~~~~~~
+hpricot_scan.rl:68:29: note: expanded from macro 'ELE'
+      raw = ts; rawlen = te - ts;                                       \
+                       ~ ~~~^~~~
+hpricot_common.rl:68:14: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+        {te = p+1;{ ELE(stag); }}
+                    ^~~~~~~~~
+hpricot_scan.rl:68:29: note: expanded from macro 'ELE'
+      raw = ts; rawlen = te - ts;                                       \
+                       ~ ~~~^~~~
+hpricot_common.rl:70:14: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+        {te = p+1;{ ELE(emptytag); }}
+                    ^~~~~~~~~~~~~
+hpricot_scan.rl:68:29: note: expanded from macro 'ELE'
+      raw = ts; rawlen = te - ts;                                       \
+                       ~ ~~~^~~~
+hpricot_common.rl:68:14: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+        {te = p+1;{ ELE(stag); }}
+                    ^~~~~~~~~
+hpricot_scan.rl:68:29: note: expanded from macro 'ELE'
+      raw = ts; rawlen = te - ts;                                       \
+                       ~ ~~~^~~~
+hpricot_common.rl:68:14: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+        {te = p+1;{ ELE(stag); }}
+                    ^~~~~~~~~
+hpricot_scan.rl:68:29: note: expanded from macro 'ELE'
+      raw = ts; rawlen = te - ts;                                       \
+                       ~ ~~~^~~~
+hpricot_common.rl:68:14: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+        {te = p+1;{ ELE(stag); }}
+                    ^~~~~~~~~
+hpricot_scan.rl:68:29: note: expanded from macro 'ELE'
+      raw = ts; rawlen = te - ts;                                       \
+                       ~ ~~~^~~~
+hpricot_common.rl:65:14: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+        {te = p+1;{ ELE(xmldecl); }}
+                    ^~~~~~~~~~~~
+hpricot_scan.rl:68:29: note: expanded from macro 'ELE'
+      raw = ts; rawlen = te - ts;                                       \
+                       ~ ~~~^~~~
+hpricot_common.rl:66:16: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+        {te = p;p--;{ ELE(doctype); }}
+                      ^~~~~~~~~~~~
+hpricot_scan.rl:68:29: note: expanded from macro 'ELE'
+      raw = ts; rawlen = te - ts;                                       \
+                       ~ ~~~^~~~
+hpricot_scan.rl:124:7: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+      ELE(text);
+      ^~~~~~~~~
+hpricot_scan.rl:68:29: note: expanded from macro 'ELE'
+      raw = ts; rawlen = te - ts;                                       \
+                       ~ ~~~^~~~
+hpricot_common.rl:50:4: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+        { EBLK(comment, 3); {goto st198;} }
+          ^~~~~~~~~~~~~~~~
+hpricot_scan.rl:116:41: note: expanded from macro 'EBLK'
+#define EBLK(N, T) CAT(tag, p - T + 1); ELE(N);
+                                        ^~~~~~
+hpricot_scan.rl:68:29: note: expanded from macro 'ELE'
+      raw = ts; rawlen = te - ts;                                       \
+                       ~ ~~~^~~~
+hpricot_common.rl:55:4: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+        { EBLK(cdata, 3); {goto st198;} }
+          ^~~~~~~~~~~~~~
+hpricot_scan.rl:116:41: note: expanded from macro 'EBLK'
+#define EBLK(N, T) CAT(tag, p - T + 1); ELE(N);
+                                        ^~~~~~
+hpricot_scan.rl:68:29: note: expanded from macro 'ELE'
+      raw = ts; rawlen = te - ts;                                       \
+                       ~ ~~~^~~~
+hpricot_common.rl:60:4: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+        { EBLK(procins, 2); {goto st198;} }
+          ^~~~~~~~~~~~~~~~
+hpricot_scan.rl:116:41: note: expanded from macro 'EBLK'
+#define EBLK(N, T) CAT(tag, p - T + 1); ELE(N);
+                                        ^~~~~~
+hpricot_scan.rl:68:29: note: expanded from macro 'ELE'
+      raw = ts; rawlen = te - ts;                                       \
+                       ~ ~~~^~~~
+hpricot_scan.rl:637:13: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+            ELE(text);
+            ^~~~~~~~~
+hpricot_scan.rl:68:29: note: expanded from macro 'ELE'
+      raw = ts; rawlen = te - ts;                                       \
+                       ~ ~~~^~~~
+hpricot_scan.rl:652:17: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+      have = pe - ts;
+           ~ ~~~^~~~
+hpricot_scan.rl:803:13: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+  int len = RARRAY_LEN(members);
+      ~~~   ^~~~~~~~~~~~~~~~~~~
+/Users/nami/.rbenv/versions/2.6.4/include/ruby-2.6.0/ruby/ruby.h:1058:23: note: expanded from macro 'RARRAY_LEN'
+#define RARRAY_LEN(a) rb_array_len(a)
+                      ^~~~~~~~~~~~~~~
+hpricot_scan.rl:809:15: warning: implicit conversion loses integer precision: 'unsigned long' to 'int' [-Wshorten-64-to-32]
+    int len = strlen(name);
+        ~~~   ^~~~~~~~~~~~
+hpricot_scan.c:129:18: warning: unused variable 'hpricot_scan_en_html_comment' [-Wunused-const-variable]
+static const int hpricot_scan_en_html_comment = 208;
+                 ^
+hpricot_scan.c:130:18: warning: unused variable 'hpricot_scan_en_html_cdata' [-Wunused-const-variable]
+static const int hpricot_scan_en_html_cdata = 210;
+                 ^
+hpricot_scan.c:131:18: warning: unused variable 'hpricot_scan_en_html_procins' [-Wunused-const-variable]
+static const int hpricot_scan_en_html_procins = 212;
+                 ^
+hpricot_scan.c:132:18: warning: unused variable 'hpricot_scan_en_main' [-Wunused-const-variable]
+static const int hpricot_scan_en_main = 198;
+                 ^
+hpricot_scan.rl:255:1: warning: unused function 'hpricot_ele_set_raw' [-Wunused-function]
+H_PROP(raw, H_ELE_RAW);
+^
+hpricot_scan.rl:233:16: note: expanded from macro 'H_PROP'
+  static VALUE hpricot_ele_set_##prop(VALUE self, VALUE x) { \
+               ^
+<scratch space>:85:1: note: expanded from here
+hpricot_ele_set_raw
+^
+hpricot_scan.rl:255:1: warning: unused function 'hpricot_ele_get_raw' [-Wunused-function]
+hpricot_scan.rl:241:16: note: expanded from macro 'H_PROP'
+  static VALUE hpricot_ele_get_##prop(VALUE self) { \
+               ^
+<scratch space>:87:1: note: expanded from here
+hpricot_ele_get_raw
+^
+hpricot_scan.rl:256:1: warning: unused function 'hpricot_ele_set_parent' [-Wunused-function]
+H_PROP(parent, H_ELE_PARENT);
+^
+hpricot_scan.rl:233:16: note: expanded from macro 'H_PROP'
+  static VALUE hpricot_ele_set_##prop(VALUE self, VALUE x) { \
+               ^
+<scratch space>:88:1: note: expanded from here
+hpricot_ele_set_parent
+^
+hpricot_scan.rl:256:1: warning: unused function 'hpricot_ele_clear_parent' [-Wunused-function]
+hpricot_scan.rl:237:16: note: expanded from macro 'H_PROP'
+  static VALUE hpricot_ele_clear_##prop(VALUE self) { \
+               ^
+<scratch space>:89:1: note: expanded from here
+hpricot_ele_clear_parent
+^
+hpricot_scan.rl:256:1: warning: unused function 'hpricot_ele_get_parent' [-Wunused-function]
+hpricot_scan.rl:241:16: note: expanded from macro 'H_PROP'
+  static VALUE hpricot_ele_get_##prop(VALUE self) { \
+               ^
+<scratch space>:90:1: note: expanded from here
+hpricot_ele_get_parent
+^
+hpricot_scan.rl:258:1: warning: unused function 'hpricot_ele_set_etag' [-Wunused-function]
+H_PROP(etag, H_ELE_ETAG);
+^
+hpricot_scan.rl:233:16: note: expanded from macro 'H_PROP'
+  static VALUE hpricot_ele_set_##prop(VALUE self, VALUE x) { \
+               ^
+<scratch space>:94:1: note: expanded from here
+hpricot_ele_set_etag
+^
+hpricot_scan.rl:258:1: warning: unused function 'hpricot_ele_clear_etag' [-Wunused-function]
+hpricot_scan.rl:237:16: note: expanded from macro 'H_PROP'
+  static VALUE hpricot_ele_clear_##prop(VALUE self) { \
+               ^
+<scratch space>:95:1: note: expanded from here
+hpricot_ele_clear_etag
+^
+hpricot_scan.rl:258:1: warning: unused function 'hpricot_ele_get_etag' [-Wunused-function]
+hpricot_scan.rl:241:16: note: expanded from macro 'H_PROP'
+  static VALUE hpricot_ele_get_##prop(VALUE self) { \
+               ^
+<scratch space>:96:1: note: expanded from here
+hpricot_ele_get_etag
+^
+hpricot_scan.rl:259:1: warning: unused function 'hpricot_ele_set_children' [-Wunused-function]
+H_PROP(children, H_ELE_CHILDREN);
+^
+hpricot_scan.rl:233:16: note: expanded from macro 'H_PROP'
+  static VALUE hpricot_ele_set_##prop(VALUE self, VALUE x) { \
+               ^
+<scratch space>:97:1: note: expanded from here
+hpricot_ele_set_children
+^
+hpricot_scan.rl:259:1: warning: unused function 'hpricot_ele_clear_children' [-Wunused-function]
+hpricot_scan.rl:237:16: note: expanded from macro 'H_PROP'
+  static VALUE hpricot_ele_clear_##prop(VALUE self) { \
+               ^
+<scratch space>:98:1: note: expanded from here
+hpricot_ele_clear_children
+^
+hpricot_scan.rl:259:1: warning: unused function 'hpricot_ele_get_children' [-Wunused-function]
+hpricot_scan.rl:241:16: note: expanded from macro 'H_PROP'
+  static VALUE hpricot_ele_get_##prop(VALUE self) { \
+               ^
+<scratch space>:99:1: note: expanded from here
+hpricot_ele_get_children
+^
+48 warnings generated.
+linking shared-object hpricot_scan.bundle
+
+current directory: /Users/nami/Desktop/Study_quest/名称未設定フォルダ/Study_quest/vendor/bundle/ruby/2.6.0/gems/hpricot-0.8.6/ext/hpricot_scan
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 hpricot_scan.bundle ./.gem.20210321-1637-6mt6pz
