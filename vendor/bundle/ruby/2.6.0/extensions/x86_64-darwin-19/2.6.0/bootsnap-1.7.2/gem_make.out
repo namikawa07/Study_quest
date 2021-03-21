@@ -1,0 +1,15 @@
+current directory: /Users/nami/Desktop/Study_quest/名称未設定フォルダ/Study_quest/vendor/bundle/ruby/2.6.0/gems/bootsnap-1.7.2/ext/bootsnap
+/Users/nami/.rbenv/versions/2.6.4/bin/ruby -I /Users/nami/.rbenv/versions/2.6.4/lib/ruby/2.6.0 -r ./siteconf20210321-18724-1ykxk5y.rb extconf.rb
+creating Makefile
+
+current directory: /Users/nami/Desktop/Study_quest/名称未設定フォルダ/Study_quest/vendor/bundle/ruby/2.6.0/gems/bootsnap-1.7.2/ext/bootsnap
+make "DESTDIR=" clean
+
+current directory: /Users/nami/Desktop/Study_quest/名称未設定フォルダ/Study_quest/vendor/bundle/ruby/2.6.0/gems/bootsnap-1.7.2/ext/bootsnap
+make "DESTDIR="
+compiling bootsnap.c
+linking shared-object bootsnap/bootsnap.bundle
+
+current directory: /Users/nami/Desktop/Study_quest/名称未設定フォルダ/Study_quest/vendor/bundle/ruby/2.6.0/gems/bootsnap-1.7.2/ext/bootsnap
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 bootsnap.bundle ./.gem.20210321-18724-1e5utfs/bootsnap

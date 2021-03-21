@@ -1,0 +1,34 @@
+current directory: /Users/nami/Desktop/Study_quest/名称未設定フォルダ/Study_quest/vendor/bundle/ruby/2.6.0/gems/puma-3.12.6/ext/puma_http11
+/Users/nami/.rbenv/versions/2.6.4/bin/ruby -I /Users/nami/.rbenv/versions/2.6.4/lib/ruby/2.6.0 -r ./siteconf20210321-18724-10r6o72.rb extconf.rb --with-cflags\=-Wno-error\=implicit-function-declaration
+checking for BIO_read() in -lcrypto... yes
+checking for SSL_CTX_new() in -lssl... yes
+checking for openssl/bio.h... yes
+creating Makefile
+
+current directory: /Users/nami/Desktop/Study_quest/名称未設定フォルダ/Study_quest/vendor/bundle/ruby/2.6.0/gems/puma-3.12.6/ext/puma_http11
+make "DESTDIR=" clean
+
+current directory: /Users/nami/Desktop/Study_quest/名称未設定フォルダ/Study_quest/vendor/bundle/ruby/2.6.0/gems/puma-3.12.6/ext/puma_http11
+make "DESTDIR="
+compiling http11_parser.c
+compiling io_buffer.c
+compiling mini_ssl.c
+mini_ssl.c:220:27: warning: 'DTLSv1_method' is deprecated [-Wdeprecated-declarations]
+  conn->ctx = SSL_CTX_new(DTLSv1_method());
+                          ^
+/Users/nami/.rbenv/versions/2.6.4/openssl/include/openssl/ssl.h:1895:1: note: 'DTLSv1_method' has been explicitly marked deprecated here
+DEPRECATEDIN_1_1_0(__owur const SSL_METHOD *DTLSv1_method(void)) /* DTLSv1.0 */
+^
+/Users/nami/.rbenv/versions/2.6.4/openssl/include/openssl/opensslconf.h:158:34: note: expanded from macro 'DEPRECATEDIN_1_1_0'
+# define DEPRECATEDIN_1_1_0(f)   DECLARE_DEPRECATED(f)
+                                 ^
+/Users/nami/.rbenv/versions/2.6.4/openssl/include/openssl/opensslconf.h:121:55: note: expanded from macro 'DECLARE_DEPRECATED'
+#   define DECLARE_DEPRECATED(f)    f __attribute__ ((deprecated));
+                                                      ^
+1 warning generated.
+compiling puma_http11.c
+linking shared-object puma/puma_http11.bundle
+
+current directory: /Users/nami/Desktop/Study_quest/名称未設定フォルダ/Study_quest/vendor/bundle/ruby/2.6.0/gems/puma-3.12.6/ext/puma_http11
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 puma_http11.bundle ./.gem.20210321-18724-1jmf0w4/puma
