@@ -1,0 +1,20 @@
+div
+h1
+  | 新規登録
+        
+.box.box-primary
+  = form_with model: @user, local: true do |f|
+    .box-body
+      = f.label :name, '名前'
+      = f.text_field :name
+    .box-body
+      = f.label :email, 'メールアドレス'
+      = f.text_field :email
+    .box-body
+      = f.label :password, 'パスワード'
+      = f.password_field :password
+    .box-body
+      = f.label :password_confirmation, 'パスワード確認'
+      = f.password_field :password_confirmation
+    .box-footer
+      = f.submit '登録', class: %w[btn btn-primary]

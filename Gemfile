@@ -60,3 +60,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'rubocop', require:false
 gem 'rubocop-rails', require:false
 gem 'webpacker'
+gem 'sorcery'
+gem 'bootstrap', '~> 4.1.1'
+gem 'jquery-rails'
+gem 'font-awesome-sass'
+gem 'slim-rails'
+gem 'html2slim'

@@ -1,0 +1,17 @@
+div
+h1
+  | ログイン
+        
+.box.box-primary
+  = form_with url: login_path, local: true do |f|
+    .box-body
+      = f.label :email, 'メールアドレス'
+      = f.text_field :email
+    .box-body
+      = f.label :password, 'パスワード'
+      = f.password_field :password
+    .box-body
+      = f.label :password, 'パスワード確認'
+      = f.password_field :password_confirmation
+    .box-footer
+      = f.submit "ログイン", class: %w[btn btn-primary]
