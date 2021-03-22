@@ -1,0 +1,7 @@
+h1
+  | Users#show
+p
+  | Find me in app/views/users/show.html.erb
+= @user.name
+= @user.email
+= link_to('Logout', logout_path, method: :delete)
