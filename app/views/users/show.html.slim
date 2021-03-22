@@ -1,7 +1,29 @@
 h1
-  | Users#show
+  | #{@user.name}さんの詳細画面です
 p
   | Find me in app/views/users/show.html.erb
-= @user.name
-= @user.email
-= link_to('Logout', logout_path, method: :delete)
+- if @user.icon.attached?
+  = image_tag @user.icon
+div
+  = @user.name
+div
+  = @user.email
+div
+  = link_to('Logout', logout_path, method: :delete)
+
+
+h1
+  | #{@user.name}さんのユーザー編集画面です
+  
+= form_with model: @user, url: user_path(current_user),local: true, method: :patch do |f|
+  div.form-group
+    = f.file_field :icon
+  div.form-group
+    = f.label :name, '名前'
+    = f.text_field :name
+  div.form-group
+    = f.label :email, 'メールアドレス'
+    = f.text_field :email
+  div.form-group
+    = f.submit "送信"
+
