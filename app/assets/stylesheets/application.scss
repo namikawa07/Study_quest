@@ -16,3 +16,28 @@
  @import "bootstrap";
  @import "font-awesome-sprockets";
  @import "font-awesome";
+ @font-face {
+   font-family: 'SoukouMincho';
+   src: font-url('/assets/SonkouMincho.ttf');
+ }
+ @font-face {
+  font-family: 'ferrum';
+  src: font-url('/assets/ferrum.otf');
+}
+
+body {
+  background-color: #505050;
+  color: #dedede;
+}
+
+.page-title{
+  font-family: 'ferrum';
+};
+
+.page-title-sub{
+  font-family: 'SoukouMincho';
+};
+
+.form-field{
+  font-family: 'ferrum';
+};

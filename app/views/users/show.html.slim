@@ -11,13 +11,13 @@ div
 div
   = link_to('Logout', logout_path, method: :delete)
 div
-= button_to "アカウント削除", user_path(@user), id: "button-delete-#{@user.id}", method: :delete, data: {confirm: "削除しますか？"}
+= button_to "アカウント削除", users_path, id: "button-delete-#{@user.id}", method: :delete, data: {confirm: "削除しますか？"}
     
 div.container
     div.row
     div.col-md-10.offset-md-1.col-lg-8.offset-lg-2
       h1 プロフィール編集
-      = form_with model: @user, url: user_path(current_user),local: true, method: :patch do |f|
+      = form_with model: @user, url: users_path, local: true, method: :patch do |f|
         = render 'layouts/error_messages', model: f.object
         div.form-group
           = f.file_field :icon
@@ -34,3 +34,14 @@ div.container
           = f.label :password_confirmation, 'Password confirmation'
           = f.password_field :password_confirmation, class: 'form-control', id: 'user_password_confirmation'
         = f.submit '変更', class: %w[btn btn-primary]
+
+h1 ミッション一覧
+
+- @missions.each do |mission|
+  li = mission.title
+  li = mission.status
+  li = mission.start_date
+  li = mission.end_date
+
+
+

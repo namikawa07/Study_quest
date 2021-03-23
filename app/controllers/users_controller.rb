@@ -19,6 +19,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(current_user.id)
+    @missions = @user.missions
   end
 
   def update
@@ -28,7 +29,7 @@ class UsersController < ApplicationController
     else
       flash[:danger] = t('users.update.Not_success')
     end
-    redirect_to user_path(current_user)
+    redirect_to users_path
   end
   
   def destroy
