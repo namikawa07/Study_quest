@@ -25,11 +25,16 @@ class UsersController < ApplicationController
     @user = User.find(current_user.id)
     if @user.update(user_params)
       flash[:success] = t('users.update.Success')
-      redirect_to user_path(current_user)
     else
-      flash.now[:danger] = t('users.update.Not_success')
-      render :show
+      flash[:danger] = t('users.update.Not_success')
     end
+    redirect_to user_path(current_user)
+  end
+  
+  def destroy
+    current_user.destroy!
+    flash[:success] = t('users.destroy.Success')
+    redirect_to root_path
   end
   
   private

@@ -10,20 +10,27 @@ div
   = @user.email
 div
   = link_to('Logout', logout_path, method: :delete)
-
-
-h1
-  | #{@user.name}さんのユーザー編集画面です
-  
-= form_with model: @user, url: user_path(current_user),local: true, method: :patch do |f|
-  div.form-group
-    = f.file_field :icon
-  div.form-group
-    = f.label :name, '名前'
-    = f.text_field :name
-  div.form-group
-    = f.label :email, 'メールアドレス'
-    = f.text_field :email
-  div.form-group
-    = f.submit "送信"
-
+div
+= button_to "アカウント削除", user_path(@user), id: "button-delete-#{@user.id}", method: :delete, data: {confirm: "削除しますか？"}
+    
+div.container
+    div.row
+    div.col-md-10.offset-md-1.col-lg-8.offset-lg-2
+      h1 プロフィール編集
+      = form_with model: @user, url: user_path(current_user),local: true, method: :patch do |f|
+        = render 'layouts/error_messages', model: f.object
+        div.form-group
+          = f.file_field :icon
+        div.form-group
+          = f.label :name, 'User name'
+          = f.text_field :name, class: 'form-control', id: 'user_name'
+        div.form-group
+          = f.label :email, 'Email'
+          = f.text_field :email, class: 'form-control', id: 'user_email'
+        div.form-group
+          = f.label :password, 'Password'
+          = f.password_field :password, class: 'form-control', id: 'user_password'
+        div.form-group
+          = f.label :password_confirmation, 'Password confirmation'
+          = f.password_field :password_confirmation, class: 'form-control', id: 'user_password_confirmation'
+        = f.submit '変更', class: %w[btn btn-primary]

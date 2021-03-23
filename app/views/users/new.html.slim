@@ -1,20 +1,19 @@
-div
-h1
-  | Signin
-
-
-= form_with model: @user, local: true do |f|
-  = render 'layouts/error_messages', model: f.object
-  div.form-group
-    = f.label :name
-    = f.text_field :name
-  div.form-group
-    = f.label :email
-    = f.text_field :email
-  div.form-group
-    = f.label :password
-    = f.password_field :password
-  div.form-group
-    = f.label :password_confirmation
-    = f.password_field :password_confirmation
-  = f.submit t('users.new.signin'), class: %w[btn btn-primary]
+div.container
+    div.row
+    div.col-md-10.offset-md-1.col-lg-8.offset-lg-2
+      h1 SIGNUP -#{t('users.new.signup')}-
+      = form_with model: @user, local: true do |f|
+        = render 'layouts/error_messages', model: f.object
+        div.form-group
+          = f.label :name, 'User name'
+          = f.text_field :name, class: 'form-control', id: 'user_name'
+        div.form-group
+          = f.label :email, 'Email'
+          = f.text_field :email, class: 'form-control', id: 'user_email'
+        div.form-group
+          = f.label :password, 'Password'
+          = f.password_field :password, class: 'form-control', id: 'user_password'
+        div.form-group
+          = f.label :password_confirmation, 'Password confirmation'
+          = f.password_field :password_confirmation, class: 'form-control', id: 'user_password_confirmation'
+        = f.submit 'SIGNUP', class: %w[btn btn-primary]

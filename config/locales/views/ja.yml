@@ -1,5 +1,11 @@
 ja:
   users:
     new:
-      signin: "登録"
+      signup: "新規登録"
+  sessions:
+    new:
+      email: "メールアドレス"
+      password: "パスワード"
+      password_confirmation: "パスワード確認"
+      Login: "ログイン"
       

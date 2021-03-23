@@ -1,4 +1,7 @@
 ja:
+  application:
+    not_authenticated:
+      require_login: "ログインを行ってください"
   users:
     create:
       Success: "新規登録が完了しました"
@@ -6,6 +9,8 @@ ja:
     update:
       Success: "ユーザー情報を更新しました"
       Not_success: "ユーザー情報を更新できませんでした"
+    destroy:
+      Success: "アカウントを削除しました"
   sessions:
     create:
       Success: "ログインしました"

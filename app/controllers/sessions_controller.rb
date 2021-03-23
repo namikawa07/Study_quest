@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = login(params[:email], params[:password], params[:password_confirmation])
+    @user = login(params[:email], params[:password])
     if @user
       flash[:success] = t('sessions.create.Success')
       redirect_to @user
