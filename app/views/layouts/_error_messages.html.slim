@@ -1,0 +1,6 @@
+- if model.errors.any?
+  div.alert.alert-warning
+    ul
+      - model.errors.full_messages.each do |message|
+        li = message
+ 
