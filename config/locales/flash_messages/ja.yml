@@ -15,3 +15,9 @@ ja:
     create:
       Success: "ログインしました"
       Not_success: "ログインに失敗しました"
+  missions:
+    create:
+      Success_publish: "ミッションを作成しました"
+      Not_success_publish: "ミッションを作成できませんでした"
+      Success_draft: "ミッションの下書きを作成しました"
+      Not_success_draft: "ミッションの下書きを作成できませんでした"
