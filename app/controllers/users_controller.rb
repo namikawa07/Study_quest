@@ -7,10 +7,12 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    binding.pry
     if @user.save
+      auto_login(@user)
+      flash[:success] = t('users.create.Success')
       redirect_to @user
     else
+      flash.now[:danger] = t('users.create.Not_success')
       render :new
     end
   end
@@ -22,10 +24,10 @@ class UsersController < ApplicationController
   def update
     @user = User.find(current_user.id)
     if @user.update(user_params)
-    #ここに成功のフラッシュメッセージ
+      flash[:success] = t('users.update.Success')
       redirect_to user_path(current_user)
     else
-    #ここに失敗のフラッシュメッセージ
+      flash.now[:danger] = t('users.update.Not_success')
       render :show
     end
   end

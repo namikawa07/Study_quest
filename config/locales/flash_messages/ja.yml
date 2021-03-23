@@ -1,0 +1,12 @@
+ja:
+  users:
+    create:
+      Success: "新規登録が完了しました"
+      Not_success: "新規登録できませんでした"
+    update:
+      Success: "ユーザー情報を更新しました"
+      Not_success: "ユーザー情報を更新できませんでした"
+  sessions:
+    create:
+      Success: "ログインしました"
+      Not_success: "ログインに失敗しました"

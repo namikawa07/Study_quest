@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  skip_before_action :require_login
+  skip_before_action :require_login, only: %i[new create]
 
   def new
     @user = User.new
@@ -8,8 +8,10 @@ class SessionsController < ApplicationController
   def create
     @user = login(params[:email], params[:password], params[:password_confirmation])
     if @user
+      flash[:success] = t('sessions.create.Success')
       redirect_to @user
     else
+      flash.now[:danger] = t('sessions.create.Not_success')
       render :new
     end
   end
