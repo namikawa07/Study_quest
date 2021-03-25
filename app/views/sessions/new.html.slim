@@ -1,12 +1,16 @@
-div.container
-    div.row
+div.container-fluid.mb-3
+  div.d-flex.mt-5.border-b
+    h1.page-title.float-left.ml-5 LOGIN
+    p.ml-3.d-flex.align-items-center.mt-2.page-title-sub.head-border ログイン
+div.container.w-75
+  div.row
     div.col-md-10.offset-md-1.col-lg-8.offset-lg-2
-      h1 Login -#{t('sessions.new.Login')}-
       = form_with url: login_path, local: true do |f|
         div.form-group
-          = f.label :email, 'Email'
-          = f.text_field :email, class: 'form-control', id: 'email'
+          = f.label :email, 'Email', {class: 'form-field'}
+          = f.text_field :email, class: 'form-style', id: 'email', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
         div.form-group
-          = f.label :password, 'Password'
-          = f.password_field :password, class: 'form-control', id: 'password'
-        = f.submit 'LOGIN', class: %w[btn btn-primary]
+          = f.label :password, 'Password', {class: 'form-field'}
+          = f.password_field :password, class: 'form-style', id: 'password', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+        div.form-group.text-center.form-group-height
+          = f.submit 'LOGIN', class: 'btn-style-lg'

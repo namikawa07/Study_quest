@@ -9,4 +9,12 @@ class User < ApplicationRecord
 
   has_many :missions, dependent: :destroy
   has_one_attached :icon
+  
+  def avatar
+    if !icon.attached? || icon.metadata.blank?
+      return '/images/runteq_man.jpg'
+    else
+      return icon.variant(resize:'100x100').processed
+    end
+  end
 end

@@ -29,6 +29,10 @@ GEM
       globalid (>= 0.3.6)
     activemodel (5.2.4.5)
       activesupport (= 5.2.4.5)
+    activemodel-serializers-xml (1.0.2)
+      activemodel (> 5.x)
+      activesupport (> 5.x)
+      builder (~> 3.1)
     activerecord (5.2.4.5)
       activemodel (= 5.2.4.5)
       activesupport (= 5.2.4.5)
@@ -85,6 +89,12 @@ GEM
     crass (1.0.6)
     debug_inspector (1.0.0)
     diff-lcs (1.4.4)
+    draper (4.0.1)
+      actionpack (>= 5.0)
+      activemodel (>= 5.0)
+      activemodel-serializers-xml (>= 1.0)
+      activesupport (>= 5.0)
+      request_store (>= 1.0)
     erubi (1.10.0)
     execjs (2.7.0)
     factory_bot (6.1.0)
@@ -127,6 +137,7 @@ GEM
       mimemagic (~> 0.3.2)
     method_source (1.0.0)
     mimemagic (0.3.5)
+    mini_magick (4.11.0)
     mini_mime (1.0.2)
     minitest (5.14.4)
     msgpack (1.4.2)
@@ -194,6 +205,8 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     regexp_parser (2.1.1)
+    request_store (1.5.0)
+      rack (>= 1.4)
     rexml (3.2.4)
     rspec-core (3.10.1)
       rspec-support (~> 3.10.0)
@@ -313,12 +326,14 @@ DEPENDENCIES
   byebug
   capybara
   coffee-rails (~> 4.2)
+  draper
   factory_bot_rails
   font-awesome-sass
   html2slim
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
+  mini_magick (~> 4.8)
   mysql2 (>= 0.4.4, < 0.6.0)
   pry-rails
   puma (~> 3.11)

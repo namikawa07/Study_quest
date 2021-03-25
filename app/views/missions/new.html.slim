@@ -1,14 +1,17 @@
+div.container-fluid.mb-3
+  div.d-flex.mt-5.border-b
+    h1.page-title.float-left.ml-5 New mission
+    p.ml-3.d-flex.align-items-center.mt-2.page-title-sub.head-border ミッション作成
 div.container
   div.row
     div.col-md-10.offset-md-1.col-lg-8.offset-lg-2
-      div.d-flex
-        h1.page-title.float-left New mission
-        p.ml-3.d-flex.align-items-center.mt-2.page-title-sub -ミッション作成-
       = form_with model: @mission, local: true do |f|
         = render 'layouts/error_messages', model: f.object
-        div.form-group
-          = f.label :title, 'Mission title', {class: 'form-field'}
-          = f.text_field :title, class: 'form-control', id: 'mission_title'
+        div.form-group.form-group-style2
+          = f.label :title, 'Mission title', {class: 'form-field2 label'}
+          div.text-right
+            = f.text_field :title, class: 'form-style2', id: 'mission_title', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+          div.border-line
         div.form-group
           = f.label :start_date, 'Start date', {class: 'form-field'}
           = f.date_field :start_date, class: 'form-control', id: 'mission_start_date'
