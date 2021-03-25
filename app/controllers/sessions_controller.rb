@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     @user = login(params[:email], params[:password])
     if @user
       flash[:success] = t('sessions.create.Success')
-      redirect_to @user
+      redirect_to users_path
     else
       flash.now[:danger] = t('sessions.create.Not_success')
       render :new

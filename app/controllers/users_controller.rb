@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     if @user.save
       auto_login(@user)
       flash[:success] = t('users.create.Success')
-      redirect_to @user
+      redirect_to users_path
     else
       flash.now[:danger] = t('users.create.Not_success')
       render :new
