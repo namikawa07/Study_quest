@@ -23,28 +23,22 @@ div.container-fluid.mb-3
         button.js-modal-open.btn-style-white.w-100 href="" data-target="modal02" アカウント削除
         
 div.container-fluid.mb-3
-  div.d-flex.mt-5.border-b
+  div.d-flex.mt-5.border-b.mb-4
     h1.page-title.float-left.ml-5 Missions
     p.ml-3.d-flex.align-items-center.mt-2.page-title-sub.head-border ミッション
+  div.text-center
+    p.page-title-sub ミッション数　#{@missions.count}
+  div.d-flex.text-center
+    p.page-title-sub.w-25 実行中のミッション　#{@missions.publish.count}
+    p.page-title-sub.w-25 完了済のミッション　#{@missions.complete.count}
+    p.page-title-sub.w-25 未完了のミッション　#{@missions.incomplete.count}
+    p.page-title-sub.w-25 下書き　#{@missions.draft.count}
   div
-    p ミッション数　#{@missions.count}
-  div.d-flex
-    p 実行中のミッション　#{@missions.publish.count}
-    p 完了済のミッション　#{@missions.complete.count}
-    p 未完了のミッション　#{@missions.incomplete.count}
-    p 下書き　#{@missions.draft.count}
-  div
-    = button_to 'ミッションを作成', new_mission_path, class: "btn-style-white w-100"
-  div.container
+    = link_to 'ミッションを作成', new_mission_path, class: "btn-style-white-width w-100"
+  div.container.px-0
     div.row
-      div.col-12
-        = render @missions
+      = render @missions
     
-  
-
-div.content
-  a.js-modal-open href="" data-target="modal01" クリックでモーダル1を表示
-  a.js-modal-open href="" data-target="modal03" クリックでモーダル3を表示
 div#modal01.modal.js-modal
   div.modal__bg.js-modal-close
   div.modal__content
