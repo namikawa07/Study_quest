@@ -25,6 +25,14 @@
   src: font-url('/assets/ferrum.otf');
 }
 
+.font-ferrum{
+  font-family: 'ferrum';
+}
+
+.font-SoukouMincho{
+  font-family: 'SoukouMincho';
+}
+
 body {
   background-color: #505050;
   color: #cbcbcb;
@@ -44,6 +52,13 @@ body {
 .page-title-mini{
   font-family: 'ferrum';
   font-size: 22px;
+}
+
+.page-title-card{
+  font-family: 'SoukouMincho';
+  font-size: 16px;
+  letter-spacing: 10px;
+  color:#dedede
 }
 
 .page-title-modal{
@@ -270,7 +285,7 @@ input[type="file"] {
 }
 
 .btn-style-white{
-  font-family: 'ferrum';
+  font-family: 'SoukouMincho';
   border-radius: none;
   font-size: 10px;
   color: #464646;
@@ -286,6 +301,25 @@ input[type="file"] {
     outline: none;
   }
 }
+
+.btn-style-white-width{
+  font-family: 'SoukouMincho';
+  border-radius: none;
+  font-size: 13px;
+  color: #464646;
+  background-color: #d3d3d3;
+  border:none;
+  cursor: pointer;
+  padding: 5px 25px;
+
+  &:focus {
+    background-color: #999999;
+    color: #222222;
+    font-family: 'ferrum';
+    outline: none;
+  }
+}
+
 
 .no-file{
   font-size: 10px;
@@ -338,3 +372,20 @@ input[type="file"] {
     outline: none;
   }
 }
+
+.card-style{
+  border-color: #989898;
+}
+
+.card-header-footer{
+  background-color: #989898;
+  border:none;
+}
+
+
+.card-body{
+  background-color: #505050;
+  border-radius: 0;
+  height:200px;
+}
+

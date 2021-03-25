@@ -21,3 +21,6 @@ ja:
       Not_success_publish: "ミッションを作成できませんでした"
       Success_draft: "ミッションの下書きを作成しました"
       Not_success_draft: "ミッションの下書きを作成できませんでした"
+    update:
+      Success: "ミッションを編集しました"
+      Not_success: "ミッションを編集できませんでした"

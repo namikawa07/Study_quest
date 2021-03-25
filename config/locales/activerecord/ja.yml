@@ -9,3 +9,7 @@ ja:
         password: "パスワード"
         password_confirmation: "確認用パスワード"
         icon: "アイコン"
+  time:
+    formats:
+      default: "%Y/%m/%d"
+      short: "%m/%d"

@@ -1,11 +1,50 @@
-div.col-sm-12.col-lg-4.mb-3
-  div.card
-    div.card-body
-      ul.list-inline
-        li.list-inline-item
-          i.far.fa-user
-            = mission.title
-        li.list-inline-item
-          i.far fa-calendar
-            = mission.start_date
-            = mission.end_date
+div.col-md-3.mt-5.px-4
+  div.card.card-style
+    div.card-header.py-0.card-header-footer.py-2
+      - if mission.publish?
+          p.mb-0.page-title-card.text-center 実行中
+      - elsif mission.complete?
+          p 完了済
+      - elsif mission.incomplete?
+          p 未完了
+      - else
+          p 下書き
+    div.card-body.px-0.py-0
+      = link_to 'My mission'
+      div.d-flex.align-items-end
+        div.row.px-3.d-flex.align-items-end
+          p.card-title.col-md-8 #{mission.title}
+          a.js-modal-open.col-md-2 href="" data-target="modal_mission_trash_#{mission.id}"
+            i.fas.fa-trash
+          a.js-modal-open.col-md-2 href="" data-target="modal_mission_edit_#{mission.id}"
+            i.fas.fa-pen.col-md-2
+    div.card-footer.card-header-footer.text-center.py-2
+      p.mb-0.font-ferrum #{l mission.start_date, format: :short}~#{l mission.end_date, format: :short}
+      
+div.modal.js-modal id="modal_mission_edit_#{mission.id}"
+  div.modal__bg.js-modal-close
+  div.modal__content
+    div.container-fluid.mb-3.mt-3
+      h1.page-title-modal.w-100.text-center　ミッション編集 #{mission.title}
+    div.container
+      div.row
+        div.container.w-75
+          = form_with model: mission, url: mission_path(mission.id), local: true, method: :patch do |f|
+            = render 'layouts/error_messages', model: f.object
+            div.form-group.mb-1
+              = f.label :title, 'Mission title', {class: 'form-field-modal mb-2'}
+              = f.text_field :title, class: 'form-style-modal font-weight-lighter', id: 'mission_title', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+            div.form-group.mb-1
+              = f.label :start_date, 'Start date', {class: 'form-field-modal mb-2'}
+              = f.date_field :start_date, class: 'form-style-modal', id: 'mission_start_date', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+            div.form-group.mb-1
+              = f.label :end_date, 'End date', {class: 'form-field-modal mb-2'}
+              = f.date_field :end_date, class: 'form-style-modal', id: 'mission_end_date', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+            div.form-group.mb-1
+              = f.label :memo, 'Memo', {class: 'form-field-modal mb-2'}
+              = f.text_field :memo, class: 'form-style-modal', id: 'mission_memo', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+            div.text-center.mt-3
+              button.js-modal-close.btn-style-modal 戻る
+              = f.submit '変更', class: "btn-style-modal"
+
+
