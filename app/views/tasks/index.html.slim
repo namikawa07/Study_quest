@@ -1,0 +1,52 @@
+div.container-fluid.mb-3
+  div.d-flex.my-5.border-b
+    h1.page-title.float-left.ml-5 Task play
+    p.ml-3.d-flex.align-items-center.mt-2.page-title-sub.head-border タスクプレイ
+  div.bass-image
+    = image_tag "/images/chara.jpeg", class: "w-100"
+    div.z-in-1.new-task-position.w-20.mx-auto
+      p.text-center.task-border.mx-2.mb-0
+        small.font-SoukouMincho タスク作成
+      div
+        = form_with model: @task, url: mission_tasks_path(@mission.id),class:"w-75 mx-auto", local: true do |f|
+          = render 'layouts/error_messages', model: f.object
+          div.form-group.mb-0
+            = f.label :title, 'タスク名', {class: 'task-form-field'}
+            = f.text_field :title, class: 'task-form-style', id: 'task_title', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+          div.form-group.mb-0
+            = f.label :detail, '詳細', {class: 'task-form-field'}
+            = f.text_area :detail, class: 'task-form-style', id: 'task_detail', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+          div.form-group.mb-0.d-flex
+            div
+              button.js-modal-close.task-new-btn 戻る
+            div
+              = f.submit '作成', class: 'task-new-btn'
+      
+div.container-fluid.mb-3
+  div.d-flex.mt-5.border-b
+    h1.page-title.float-left.ml-5 Today's task
+    p.ml-3.d-flex.align-items-center.mt-2.page-title-sub.head-border 今日のタスク
+  div.container.px-0
+    div.row
+      = render @tasks
+      - (5 - @tasks.count).times do
+        = render partial: "no_task"
+  div.mt-4
+    = link_to '今日の作業を終了する', new_mission_path, class: "btn-style-white-width w-100"
+div.container-fluid.mb-3
+  div.d-flex.mt-5.border-b
+    h1.page-title.float-left.ml-5 Past task
+    p.ml-3.d-flex.align-items-center.mt-2.page-title-sub.head-border 過去のタスク
+  div.container.px-0
+    p 過去のタスクはありません
+div.container-fluid.mb-3
+  div.d-flex.mt-5.border-b
+    h1.page-title.float-left.ml-5 Schedule
+    p.ml-3.d-flex.align-items-center.mt-2.page-title-sub.head-border スケジュール
+  div.container.px-0
+    p スケジュールはありません
+div.container-fluid.mb-3
+  div.d-flex.mt-5.border-b
+    h1.page-title.float-left.ml-5 Task's information
+    p.ml-3.d-flex.align-items-center.mt-2.page-title-sub.head-border タスクの詳細
+

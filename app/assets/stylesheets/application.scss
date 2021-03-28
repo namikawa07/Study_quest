@@ -33,6 +33,7 @@
   font-family: 'SoukouMincho';
 }
 
+
 body {
   background-color: #505050;
   color: #cbcbcb;
@@ -80,8 +81,6 @@ body {
   padding: 0 90px 0 20px;
   margin-bottom: 15px;
   margin-left: 20px;
-
-
 };
 
 .form-field2{
@@ -264,10 +263,17 @@ body {
   width: 30%;
 }
 
+.w-20{
+  width: 20%;
+}
+
 .w-17{
   width: 17%;
 }
 
+.w-15{
+  width: 15%;
+}
 input[type="file"] {
   font-size: 13px;
   display: none;
@@ -284,6 +290,25 @@ input[type="file"] {
   padding: 5px 25px;
 }
 
+.btn-style-md{
+  font-family: 'SoukouMincho';
+  border-radius: none;
+  font-size: 14px;
+  color: #464646;
+  background-color: #d3d3d3;
+  border:none;
+  cursor: pointer;
+  padding: 7px 55px;
+  margin: 0 40px;
+
+  &:focus {
+    background-color: #999999;
+    color: #222222;
+    font-family: 'SoukouMincho';
+    outline: none;
+  }
+}
+
 .btn-style-white{
   font-family: 'SoukouMincho';
   border-radius: none;
@@ -297,7 +322,7 @@ input[type="file"] {
   &:focus {
     background-color: #999999;
     color: #222222;
-    font-family: 'ferrum';
+    font-family: 'SoukouMincho';
     outline: none;
   }
 }
@@ -315,7 +340,7 @@ input[type="file"] {
   &:focus {
     background-color: #999999;
     color: #222222;
-    font-family: 'ferrum';
+    font-family: 'SoukouMincho';
     outline: none;
   }
 }
@@ -386,6 +411,106 @@ input[type="file"] {
 .card-body{
   background-color: #505050;
   border-radius: 0;
-  height:200px;
+  height:100%;
 }
+
+.card-height{
+  height: 200px;
+}
+
+.col-15, .col-sm-15, .col-md-15, .col-lg-15 {
+	position: relative;
+	min-height: 100px;
+	padding-right: 15px;
+	padding-left: 15px;
+	width: 100%;
+}
+
+@media (min-width: 768px) {
+  .col-sm-15 {
+    width: 20%;
+    flex: 0 0 20%;
+  }
+}
+@media (min-width: 992px) {
+  .col-md-15 {
+    width: 20%;
+    flex: 0 0 20%;
+  }
+}
+@media (min-width: 1200px) {
+  .col-lg-15 {
+    width: 20%;
+    flex: 0 0 20%;
+  }
+}
+.col-15{
+  width: 20%;
+  flex: 0 0 20%;
+}
+
+.z-in-1{
+  z-index: 1;
+}
+
+.bass-image{
+  position: relative;
+}
+
+
+.new-task-position{
+  background: rgba(154, 147, 131, 0.7);
+  border: solid 1px #696969;
+  position: absolute;
+  top:0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.task-form-field{
+  font-family: 'SoukouMincho';
+  font-size: 7px;
+  color: #cbcbcb;
+  border-bottom: solid 1px #696969;
+}
+
+.task-form-style{
+  background: rgba(154, 147, 131, 0);
+  font-family: 'SoukouMincho';
+  font-size: 7px;
+  width: 100%;
+  border: solid 1px #696969;
+  height: 20px;
+
+  &:focus {
+    background-color: #505050;
+    color: #cbcbcb;
+    font-family: 'SoukouMincho';
+    outline: none;
+ }
+}
+
+.task-border{
+  border-bottom: solid 1px #696969;
+}
+
+.task-new-btn{
+  font-family: 'SoukouMincho';
+  border-radius: none;
+  font-size: 10px;
+  color: #464646;
+  background-color: #d3d3d3;
+  border:none;
+  cursor: pointer;
+  padding: 0 10px;
+
+  &:focus {
+    background-color: #999999;
+    color: #222222;
+    font-family: 'SoukouMincho';
+    outline: none;
+  }
+}
+
 

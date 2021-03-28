@@ -1,0 +1,11 @@
+div.col-15.mt-5.px-3
+  div.card.card-style
+    div.card-body.px-0.py-0
+      div.border-b.my-2.mx-3
+        h5.font-ferrum.text-center #{task.title}
+      div.card-height
+      = link_to mission_task_path(task.mission, task), method: :delete, data: {confirm: "削除しますか？"} do
+        i.fas.fa-trash
+      a
+        i.fas.fa-pen
+              

@@ -9,7 +9,7 @@ class Mission < ApplicationRecord
   validate :date_cannot_be_end_date
   enum status: [:publish, :complete, :incomplete, :draft]
   enum registration: [:not_registration, :registration]
-  
+  has_many :tasks, dependent: :destroy
   belongs_to :user
   
   def date_cannot_be_start_date
