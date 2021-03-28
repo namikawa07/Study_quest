@@ -7,19 +7,18 @@ div.container
     div.col-md-10.offset-md-1.col-lg-8.offset-lg-2
       = form_with model: @mission, local: true do |f|
         = render 'layouts/error_messages', model: f.object
-        div.form-group.form-group-style2
-          = f.label :title, 'Mission title', {class: 'form-field2 label'}
-          div.text-right
-            = f.text_field :title, class: 'form-style2', id: 'mission_title', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
-          div.border-line
+        div.form-group
+          = f.label :title, 'Mission title', {class: 'form-field'}
+          = f.text_field :title, class: 'form-style', id: 'mission_title', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
         div.form-group
           = f.label :start_date, 'Start date', {class: 'form-field'}
-          = f.date_field :start_date, class: 'form-control', id: 'mission_start_date'
+          = f.date_field :start_date, class: 'form-style', id: 'mission_start_date', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
         div.form-group
           = f.label :end_date, 'End date', {class: 'form-field'}
-          = f.date_field :end_date, class: 'form-control', id: 'mission_end_date'
+          = f.date_field :end_date, class: 'form-style', id: 'mission_end_date', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
         div.form-group
           = f.label :memo, 'Memo', {class: 'form-field'}
-          = f.text_area :memo, class: 'form-control', id: 'mission_memo'
-        = f.submit '下書き', :name => 'draft', class: %w[btn btn-primary]
-        = f.submit '実行', :name => 'publish', class: %w[btn btn-primary]
+          = f.text_area :memo, class: 'form-style', id: 'mission_memo', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+        div.form-group.text-center.form-group-height
+          = f.submit '下書き', :name => 'draft', class: 'btn-style-md'
+          = f.submit '実行', :name => 'publish', class: 'btn-style-md'

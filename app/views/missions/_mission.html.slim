@@ -4,20 +4,22 @@ div.col-md-3.mt-5.px-4
       - if mission.publish?
           p.mb-0.page-title-card.text-center 実行中
       - elsif mission.complete?
-          p 完了済
+          p.mb-0.page-title-card.text-center 完了済
       - elsif mission.incomplete?
-          p 未完了
+          p.mb-0.page-title-card.text-center 未完了
       - else
-          p 下書き
+          p.mb-0.page-title-card.text-center 下書き
     div.card-body.px-0.py-0
       = link_to 'My mission'
       div.d-flex.align-items-end
-        div.row.px-3.d-flex.align-items-end
-          p.card-title.col-md-8 #{mission.title}
-          a.js-modal-open.col-md-2 href="" data-target="modal_mission_trash_#{mission.id}"
-            i.fas.fa-trash
-          a.js-modal-open.col-md-2 href="" data-target="modal_mission_edit_#{mission.id}"
-            i.fas.fa-pen.col-md-2
+        div.px-3.px-0.w-100
+          div.w-100
+            p.card-title #{mission.title}
+          div
+            a.js-modal-open.mr-3 href="" data-target="modal_mission_trash_#{mission.id}"
+              i.fas.fa-trash
+            a.js-modal-open href="" data-target="modal_mission_edit_#{mission.id}"
+              i.fas.fa-pen
     div.card-footer.card-header-footer.text-center.py-2
       p.mb-0.font-ferrum #{l mission.start_date, format: :short}~#{l mission.end_date, format: :short}
       
@@ -25,7 +27,7 @@ div.modal.js-modal id="modal_mission_edit_#{mission.id}"
   div.modal__bg.js-modal-close
   div.modal__content
     div.container-fluid.mb-3.mt-3
-      h1.page-title-modal.w-100.text-center　ミッション編集 #{mission.title}
+      h1.page-title-modal.w-100.text-center　ミッション編集
     div.container
       div.row
         div.container.w-75
@@ -47,4 +49,24 @@ div.modal.js-modal id="modal_mission_edit_#{mission.id}"
               button.js-modal-close.btn-style-modal 戻る
               = f.submit '変更', class: "btn-style-modal"
 
+div.modal.js-modal id="modal_mission_trash_#{mission.id}"
+  div.modal__bg.js-modal-close
+  div.modal__content
+    div.container-fluid.mb-3.mt-3
+      h1.page-title-modal.w-100.text-center　ミッション削除
+    div.container.font-cl
+      div.d-flex.w-75.mx-auto.border-bottom.border-secondary
+        h5.mb-0.mr-5.ml-3.font-ferrum Mission title
+        p.mb-0.text-conter.font-SoukouMincho   #{mission.title}
+      div.row
+        div.d-block.mx-auto.text-center
+          p.font-s-des-modal.text-danger アカウントを削除すると以下のデータが消去されます
+          p.font-s-modal ・ミッションデータ
+          p.font-s-modal ・スケジュールデータ
+          p.font-s-modal ・タスクデータ
+          p.font-s-modal ・ノートデータ
+          div
+            button.js-modal-close.btn-style-modal.float-left 戻る
+            div.float-right
+              = button_to '削除', mission_path(mission.id), method: :delete, class: "btn-size", data: {confirm: "削除しますか？"}
 

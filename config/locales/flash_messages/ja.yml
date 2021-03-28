@@ -24,3 +24,11 @@ ja:
     update:
       Success: "ミッションを編集しました"
       Not_success: "ミッションを編集できませんでした"
+    destroy:
+      Success: "ミッションを削除しました"
+  tasks:
+    create:
+      Success: "タスクを作成しました"
+      Not_success: "タスクを作成できませんでした"
+    destroy:
+      Success: "タスクを削除しました"
