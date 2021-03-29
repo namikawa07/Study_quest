@@ -1,0 +1,5 @@
+h4.font-ferrum.border-b.my-3 #{l sametask[0]}
+   
+- if @pasttasks.present?
+  - sametask[1].each do |task|
+    = render partial: 'past_task', locals: {task: task}
