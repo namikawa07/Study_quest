@@ -1,11 +1,44 @@
 div.col-15.mt-5.px-3
-  div.card.card-style
-    div.card-body.px-0.py-0
-      div.border-b.my-2.mx-3
-        h5.font-ferrum.text-center #{task.title}
-      div.card-height
-      = link_to mission_task_path(task.mission, task), method: :delete, data: {confirm: "削除しますか？"} do
-        i.fas.fa-trash
-      a
-        i.fas.fa-pen
+  - if task.status == "untouch"
+    div.card.card-style
+      div.card-body.px-0.py-0
+        div.border-b.my-2.mx-3
+          h5.font-SoukouMincho.text-center #{task.title}
+        div.card-height
+        = link_to mission_task_path(task.mission, task), method: :delete, data: {confirm: "削除しますか？"} do
+          i.fas.fa-trash
+        a.js-modal-open href="" data-target="modal_task_edit_#{task.id}"
+          i.fas.fa-pen
+  - else
+    div.card.card-style-complete
+      div.card-body.px-0.py-0
+        div.border-b.my-2.mx-3
+          h5.font-ferrum.text-center #{task.title}
+        div.card-height
+        = link_to mission_task_path(task.mission, task), method: :delete, data: {confirm: "削除しますか？"} do
+          i.fas.fa-trash
+        a.js-modal-open href="" data-target="modal_task_edit_#{task.id}"
+          i.fas.fa-pen
+      div.card-overlay
+        h4.complete-text.text-center.font-ferrum complete!
+    
               
+div.modal.js-modal id="modal_task_edit_#{task.id}"
+  div.modal__bg.js-modal-close
+  div.modal__content
+    div.container-fluid.mb-3.mt-3
+      h1.page-title-modal.w-100.text-center　タスク編集
+    div.container
+      div.row
+        div.container.w-75
+          = form_with model: task, url: mission_task_path(task.mission, task), local: true, method: :patch do |f|
+            = render 'layouts/error_messages', model: f.object
+            div.form-group.mb-1
+              = f.label :title, 'Task title', {class: 'form-field-modal mb-2'}
+              = f.text_field :title, class: 'form-style-modal font-weight-lighter', id: 'task_title', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+            div.form-group.mb-1
+              = f.label :detail, 'Task detail', {class: 'form-field-modal mb-2'}
+              = f.text_area :detail, class: 'form-style-modal', id: 'task_detail', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+            div.text-center.mt-3
+              button.js-modal-close.btn-style-modal 戻る
+              = f.submit '変更', class: "btn-style-modal"

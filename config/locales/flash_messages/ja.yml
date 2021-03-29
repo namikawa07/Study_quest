@@ -26,9 +26,20 @@ ja:
       Not_success: "ミッションを編集できませんでした"
     destroy:
       Success: "ミッションを削除しました"
+    registration:
+      Success: "My Missionに登録しました"
+      Not_success: "My Missionに登録できませんでした"
   tasks:
     create:
       Success: "タスクを作成しました"
       Not_success: "タスクを作成できませんでした"
+    update:
+      Success: "タスクを編集しました"
+      Not_success: "タスクを編集できませんでした"
     destroy:
       Success: "タスクを削除しました"
+    attack:
+      Not_success: "タスクを完了できませんでした"
+    remake:
+      Success: "タスクを再作成しました"
+      Not_success: "タスクを再作成できませんでした"

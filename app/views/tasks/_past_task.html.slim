@@ -1,0 +1,21 @@
+- if task.status == "complete"
+  div.container.mb-3
+    div.card.card-style
+      div.card-body.px-0.py-0
+        div.border-b.my-2.mx-3.d-flex.justify-content-between
+          div.d-flex
+            h4.font-ferrum.text-center.mr-3 Mission title
+            h5.font-SoukouMincho.text-center #{task.title}
+          p.font-ferrum Complete
+- elsif task.status == "incomplete"
+  div.container.mb-3
+    div.card.card-style
+      div.card-body.px-0.py-0
+        div.border-b.my-2.mx-3.d-flex.justify-content-between
+          div.d-flex
+            h4.font-ferrum.text-center.mr-3 Mission title
+            h5.font-SoukouMincho.text-center #{task.title}
+          div.d-flex
+            = button_to '再作成', remake_mission_task_path(task.mission.id, task.id)
+            p.font-ferrum Incomplete
+      

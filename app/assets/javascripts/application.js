@@ -17,6 +17,7 @@
 //= require bootstrap
 //= require turbolinks
 
+
 $(function(){
   $('.js-modal-open').each(function(){
       $(this).on('click',function(){

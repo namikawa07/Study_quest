@@ -15,7 +15,9 @@ class MissionsController < ApplicationController
   end
 
   def update
+      binding.pry
     if current_user_mission.update(mission_params)
+        binding.pry
       flash[:success] = t('missions.update.Success')
       redirect_to users_path
     else
@@ -30,19 +32,18 @@ class MissionsController < ApplicationController
     redirect_to users_path
   end
 
-  #def registration
-    #@mission = Mission.find(params[:id])
-    #@missions = current_user.missions
-    #@reg_missions = @missions.find_by(registration: registration)
-    #unless @reg_missions
-      #@mission.registration = :registration
-      #flash[:success] = #{ @mission.title } + t('missions.registration.Success')
-      #redirect_to users_path
-    #else
-      #flash[:danger] = t('missions.registration.Not_success')
-      #redirect_to users_path
-    #end
-  #end
+  def registration
+    @mission = current_user_mission
+    my_mission = current_user.missions.find_by(registration: "registration")
+    @mission.registration = "registration"
+    if my_mission.blank? && @mission.update(mission_params)
+      flash[:success] = t('missions.registration.Success')
+      redirect_to users_path
+    else
+      flash[:danger] = t('missions.registration.Not_success')
+      redirect_to users_path
+    end
+  end
 
   private
   

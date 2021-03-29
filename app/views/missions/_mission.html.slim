@@ -10,7 +10,7 @@ div.col-md-3.mt-5.px-4
       - else
           p.mb-0.page-title-card.text-center 下書き
     div.card-body.px-0.py-0
-      = link_to 'My mission'
+      = link_to 'My mission', registration_mission_path(mission), method: :post
       div.d-flex.align-items-end
         div.px-3.px-0.w-100
           div.w-100

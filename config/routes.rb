@@ -5,7 +5,19 @@ Rails.application.routes.draw do
   delete '/logout',  to: "sessions#destroy"
   resource :users, only: %i[new create show update destroy]
   resources :missions, only: %i[new create update destroy] do
-    resources :tasks, only: %i[index create update destroy]
+    member do
+      post 'registration'
+    end
+    resources :tasks, only: %i[index create update destroy] do
+      member do
+        post 'attack'
+        post 'remake'
+      end
+      collection do
+        post 'finish'
+      end
+    end
+    
   end
   resources :sessions, only: %i[new create destroy]
   

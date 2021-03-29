@@ -127,6 +127,9 @@ body {
     right: 0;
 }
 
+
+
+
 .container-fluid {
   margin-right: auto;
   margin-left: auto;
@@ -259,6 +262,7 @@ body {
 .w-60{
   width: 60%;
 }
+
 .w-30{
   width: 30%;
 }
@@ -274,6 +278,11 @@ body {
 .w-15{
   width: 15%;
 }
+
+.y-6{
+  height: 6%;
+}
+
 input[type="file"] {
   font-size: 13px;
   display: none;
@@ -398,9 +407,33 @@ input[type="file"] {
   }
 }
 
+
 .card-style{
   border-color: #989898;
+  
 }
+
+.card-style-complete{
+  border-color: #6e6e6e;
+  position: relative;
+}
+
+.card-overlay{
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.complete-text{
+  transform: rotate( -45deg );
+};
 
 .card-header-footer{
   background-color: #989898;
@@ -453,6 +486,10 @@ input[type="file"] {
   z-index: 1;
 }
 
+.z-in-2{
+  z-index: 2;
+}
+
 .bass-image{
   position: relative;
 }
@@ -460,8 +497,17 @@ input[type="file"] {
 
 .new-task-position{
   background: rgba(154, 147, 131, 0.7);
-  border: solid 1px #696969;
   position: absolute;
+  top:0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.new-task-form-position{
+  background: rgba(154, 147, 131, 0.7);
+  border-top: none;
+  position: relative;
   top:0;
   left: 0;
   right: 0;
@@ -513,4 +559,66 @@ input[type="file"] {
   }
 }
 
+.btn-task{
+  background: rgba(154, 147, 131, 0);
+  cursor: pointer;
+  display: block;
+}
 
+.task-btn-position{
+  height: 45%;
+  width: 24%;
+  position: absolute;
+  top:8%;
+  right: 1%;
+
+}
+
+.task-btn{
+  height: 14%;
+  width: 24%;
+  justify-content: space-between;
+}
+
+.task-attack{
+  font-size: 90%;
+  
+
+  &:focus {
+    background-color: #999999;
+    color: #222222;
+    font-family: 'SoukouMincho';
+    outline: none;
+  }
+}
+
+.task-name{
+  height: 100%;
+}
+
+
+.mission_info{
+  z-index: 2;
+  position: absolute;
+  top:7%;
+  left: 0%;
+  height: 9%;
+  width: 25%;
+  font-size: 10%;
+}
+
+.chara_img{
+  width: 39%;
+  z-index: 1;
+  position: absolute;
+  top:2%;
+  left: 0%;
+}
+
+.task-graph-complete{
+  background-color: #7e1e1e;
+  width:100%;
+  height: 30px;
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
