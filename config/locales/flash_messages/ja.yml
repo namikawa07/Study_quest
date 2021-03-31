@@ -29,6 +29,9 @@ ja:
     registration:
       Success: "My Missionに登録しました"
       Not_success: "My Missionに登録できませんでした"
+    finish:
+      Success: "Missionを完了しました"
+      Not_success: "Missionを完了できませんでした"
   tasks:
     create:
       Success: "タスクを作成しました"

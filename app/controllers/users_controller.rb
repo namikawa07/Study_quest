@@ -19,17 +19,23 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(current_user.id)
+    incomplete_mission = current_user.missions.where("end_date < ?", Date.today).where(status: "publish")
+    if incomplete_mission.present?
+      incomplete_mission.update_all(status: "incomplete")
+    end
     @missions = @user.missions
   end
 
   def update
+    @missions = current_user.missions
     @user = User.find(current_user.id)
     if @user.update(user_params)
       flash[:success] = t('users.update.Success')
+      redirect_to users_path
     else
       flash[:danger] = t('users.update.Not_success')
+      redirect_to users_path
     end
-    redirect_to users_path
   end
   
   def destroy
@@ -43,4 +49,6 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :icon)
   end
+  
+  
 end

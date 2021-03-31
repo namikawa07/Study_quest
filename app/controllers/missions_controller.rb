@@ -1,4 +1,5 @@
 class MissionsController < ApplicationController
+  before_action :set_mission, only: %i[update destroy registration finish]
   def new
     @mission = Mission.new
   end
@@ -15,25 +16,22 @@ class MissionsController < ApplicationController
   end
 
   def update
-      binding.pry
-    if current_user_mission.update(mission_params)
-        binding.pry
+    if @mission.update(mission_params)
       flash[:success] = t('missions.update.Success')
       redirect_to users_path
     else
-      flash[:danger] = t('missions.update.Not_success')
+      flash.now[:danger] = t('missions.update.Not_success')
       redirect_to users_path
     end
   end
 
   def destroy
-    current_user_mission.destroy!
+    @mission.destroy!
     flash[:success] = t('missions.destroy.Success')
     redirect_to users_path
   end
 
   def registration
-    @mission = current_user_mission
     my_mission = current_user.missions.find_by(registration: "registration")
     @mission.registration = "registration"
     if my_mission.blank? && @mission.update(mission_params)
@@ -41,6 +39,21 @@ class MissionsController < ApplicationController
       redirect_to users_path
     else
       flash[:danger] = t('missions.registration.Not_success')
+      redirect_to users_path
+    end
+  end
+
+  def finish
+    if @mission.status == "incomplete"
+      @mission.status = "complete"
+    elsif @mission.status == "complete"
+      @mission.status = "incomplete"
+    end
+    if @mission.save
+      flash[:success] = t('missions.finish.Success')
+      redirect_to users_path
+    else
+      flash[:danger] = t('missions.finish.Not_success')
       redirect_to users_path
     end
   end
@@ -57,11 +70,11 @@ class MissionsController < ApplicationController
       redirect_to users_path
     else
       flash.now[:danger] = t('missions.create.Not_success_' + status )
-      render :new
+      redirect_to users_path
     end
   end
   
-  def current_user_mission
-    current_user.missions.find(params[:id])
+  def set_mission
+    @mission = current_user.missions.find(params[:id])
   end
 end
