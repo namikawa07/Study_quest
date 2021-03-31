@@ -13,14 +13,10 @@ class Mission < ApplicationRecord
   belongs_to :user
   
   def date_cannot_be_start_date
-    if start_date.present? && start_date < Date.today
-      errors.add(:Startdate, ": 過去の日付は使用できません")
-    end
+    errors.add(:Startdate, ": 過去の日付は使用できません") if start_date.present? && start_date < Date.today
   end
 
   def date_cannot_be_end_date
-    if end_date.present? && end_date < start_date
-      errors.add(:Enddate, ": Start dateより過去の日付は使用できません")
-    end
+    errors.add(:Enddate, ": Start dateより過去の日付は使用できません") if end_date.present? && end_date < start_date
   end
 end

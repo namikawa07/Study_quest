@@ -14,12 +14,18 @@ div.col-md-3.mt-5.px-4
       div.d-flex.align-items-end
         div.px-3.px-0.w-100
           div.w-100
-            p.card-title #{mission.title}
+            = link_to "#{mission.title}", mission_tasks_path(mission), class: "card-title"
           div
             a.js-modal-open.mr-3 href="" data-target="modal_mission_trash_#{mission.id}"
               i.fas.fa-trash
             a.js-modal-open href="" data-target="modal_mission_edit_#{mission.id}"
               i.fas.fa-pen
+          div.w-100
+            - if mission.end_date <= Date.today
+              - if mission.incomplete?
+                = link_to 'Missionを完了する', finish_mission_path(mission), method: :post,class: "w-100 text-center"
+              - elsif mission.complete?
+                = link_to 'Missionを未完了にする', finish_mission_path(mission), method: :post,class: "w-100 text-center"
     div.card-footer.card-header-footer.text-center.py-2
       p.mb-0.font-ferrum #{l mission.start_date, format: :short}~#{l mission.end_date, format: :short}
       

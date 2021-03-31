@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :missions, only: %i[new create update destroy] do
     member do
       post 'registration'
+      post 'finish'
     end
     resources :tasks, only: %i[index create update destroy] do
       member do
@@ -20,5 +21,4 @@ Rails.application.routes.draw do
     
   end
   resources :sessions, only: %i[new create destroy]
-  
 end

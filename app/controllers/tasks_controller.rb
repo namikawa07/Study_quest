@@ -15,8 +15,8 @@ class TasksController < ApplicationController
       flash[:success] = t('tasks.create.Success')
       redirect_to mission_tasks_path(@mission)
     else
-      flash[:danger] = t('tasks.create.Not_success')
-      redirect_to mission_tasks_path(@mission)
+      flash.now[:danger] = t('tasks.create.Not_success')
+      render :index
     end
   end
   
@@ -26,8 +26,8 @@ class TasksController < ApplicationController
       flash[:success] = t('tasks.update.Success')
       redirect_to mission_tasks_path(@mission)
     else
-      flash[:danger] = t('tasks.update.Not_success')
-      redirect_to mission_tasks_path(@mission)
+      flash.now[:danger] = t('tasks.update.Not_success')
+      render :index
     end
   end
   
@@ -41,17 +41,13 @@ class TasksController < ApplicationController
   def finish
     @finish_tasks = @mission.tasks.where(task_date: "today_task")
     @finish_untouch_tasks = @finish_tasks.where(status: "untouch")
-    binding.pry
     @finish_untouch_tasks.update_all(status: "incomplete") if @finish_untouch_tasks.present?
-    binding.pry
     if @finish_tasks.update_all(task_date: "past_task")
-        binding.pry
       flash[:success] = t('tasks.finish.Success')
       redirect_to mission_tasks_path(@mission)
     else
-    binding.pry
-      flash[:danger] = t('tasks.finish.Not_success')
-      redirect_to mission_tasks_path(@mission)
+      flash.now[:danger] = t('tasks.finish.Not_success')
+      render :index
     end
   end
   
@@ -63,7 +59,7 @@ class TasksController < ApplicationController
       task.status = "untouch"
     end
     task.update!(task_params)
-    redirect_to mission_tasks_path(@mission)
+    render :index
   end
 
   def remake
@@ -77,8 +73,8 @@ class TasksController < ApplicationController
       redirect_to mission_tasks_path(@mission)
     else
     binding.pry
-      flash[:danger] = t('tasks.remake.Not_success')
-      redirect_to mission_tasks_path(@mission)
+      flash.now[:danger] = t('tasks.remake.Not_success')
+      render :index
     end
   end
   
