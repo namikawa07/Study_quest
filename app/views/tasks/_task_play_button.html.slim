@@ -2,11 +2,11 @@
   div.z-in-1.task-btn.d-block.mx-auto.d-flex.w-100.margin-b
     div.font-SoukouMincho.task-name.text-white
       p.task-attack #{task.title}
-    = button_to 'Attack', attack_mission_task_path(task.mission.id, task.id)
+    = button_to 'Attack', attack_mission_task_path(task.mission.id, task.id), class: "btn-style-white"
   div.y-6
 -if task.status == "complete"
   div.z-in-1.task-btn.d-block.mx-auto.d-flex.w-100.margin-b
     div.font-SoukouMincho.task-name.text-white
       p.task-attack #{task.title}
-    = button_to 'Back', attack_mission_task_path(task.mission.id, task.id)
+    = button_to 'Back', attack_mission_task_path(task.mission.id, task.id), class: "btn-style-white"
   div.y-6

@@ -1,10 +1,10 @@
-div.container-fluid.mb-3
+#mypage.container-fluid.mb-3
   div.d-flex.mt-5.border-b
     h1.page-title.float-left.ml-5 My page
     p.ml-3.d-flex.align-items-center.mt-2.page-title-sub.head-border マイページ
   div.container.d-flex.mt-4.px-5
     div.d-inline.mt-2
-      = image_tag @user.avatar
+      = image_tag @user.avatar(:icon)
     div.d-inline.w-60.mx-5
       div.d-flex.border-b.my-3
         div.w-30
@@ -22,7 +22,7 @@ div.container-fluid.mb-3
       div.mt-4
         button.js-modal-open.btn-style-white.w-100 href="" data-target="modal02" アカウント削除
         
-div.container-fluid.mb-3
+#missions.container-fluid.mb-3
   div.d-flex.mt-5.border-b.mb-4
     h1.page-title.float-left.ml-5 Missions
     p.ml-3.d-flex.align-items-center.mt-2.page-title-sub.head-border ミッション
@@ -40,6 +40,7 @@ div.container-fluid.mb-3
       = render @missions
 
 
+
 div#modal01.modal.js-modal
   div.modal__bg.js-modal-close
   div.modal__content
@@ -48,8 +49,7 @@ div#modal01.modal.js-modal
     div.container
       div.row
         div.container
-          = form_with model: @user, url: users_path, local: true, method: :patch do |f|
-            = render 'layouts/error_messages', model: f.object
+          = form_with model: @user, url: users_path, remote: true, method: :patch, id: 'profile_form' do |f|
             div.form-inline
               div.w-17.mr-3
                 div.form-group.mb-1
@@ -63,6 +63,7 @@ div#modal01.modal.js-modal
                 div.form-group.mb-1
                   = f.label :email, 'Email', {class: 'form-field-modal mb-2'}
                   = f.text_field :email, class: 'form-style-modal', id: 'user_email', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+                  div#unique_email
                 div.form-group.mb-1
                   = f.label :password, 'Password', {class: 'form-field-modal mb-2'}
                   = f.password_field :password, class: 'form-style-modal', id: 'user_password', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
@@ -92,6 +93,3 @@ div#modal02.modal.js-modal
             div.float-right
               = button_to '削除', users_path, method: :delete, class: "btn-size", data: {confirm: "削除しますか？"}
 
-
-div
-  = link_to('Logout', logout_path, method: :delete)

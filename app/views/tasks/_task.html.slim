@@ -31,7 +31,7 @@ div.modal.js-modal id="modal_task_edit_#{task.id}"
     div.container
       div.row
         div.container.w-75
-          = form_with model: task, url: mission_task_path(task.mission, task), local: true, method: :patch do |f|
+          = form_with model: task, url: mission_task_path(task.mission, task), local: true, method: :patch, class: 'tasks_form' do |f|
             = render 'layouts/error_messages', model: f.object
             div.form-group.mb-1
               = f.label :title, 'Task title', {class: 'form-field-modal mb-2'}

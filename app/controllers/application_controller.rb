@@ -1,5 +1,10 @@
 class ApplicationController < ActionController::Base
   before_action :require_login
+  before_action :my_mission
+  
+  def my_mission
+    @my_mission = current_user.missions.find_by(registration: "registration")
+  end
   
   protected
   

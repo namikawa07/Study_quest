@@ -10,4 +10,10 @@ html
   body
     - if flash.present?
       = render partial: 'shared/flash_message'
+    header
+      - if current_user.present?
+        = render 'shared/login_header'
+      -else
+        = render 'shared/before_login_header'
     = yield
+    

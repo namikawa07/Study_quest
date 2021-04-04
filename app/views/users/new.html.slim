@@ -5,14 +5,14 @@ div.container-fluid.mb-3
 div.container.w-75
   div.row
     div.col-md-10.offset-md-1.col-lg-8.offset-lg-2
-      = form_with model: @user, local: true do |f|
-        = render 'layouts/error_messages', model: f.object
+      = form_with model: @user, remote: true, id: 'signup_form' do |f|
         div.form-group
           = f.label :name, 'User name', {class: 'form-field'}
           = f.text_field :name, class: 'form-style', id: 'user_name', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
         div.form-group
           = f.label :email, 'Email', {class: 'form-field'}
           = f.text_field :email, class: 'form-style', id: 'user_email', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+          div#unique_email
         div.form-group
           = f.label :password, 'Password', {class: 'form-field'}
           = f.password_field :password, class: 'form-style', id: 'user_password', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"

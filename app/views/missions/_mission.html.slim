@@ -37,20 +37,23 @@ div.modal.js-modal id="modal_mission_edit_#{mission.id}"
     div.container
       div.row
         div.container.w-75
-          = form_with model: mission, url: mission_path(mission.id), local: true, method: :patch do |f|
-            = render 'layouts/error_messages', model: f.object
+          = form_with model: mission, url: mission_path(mission.id), remote: true, method: :patch, class: "missions_form" do |f|
             div.form-group.mb-1
               = f.label :title, 'Mission title', {class: 'form-field-modal mb-2'}
               = f.text_field :title, class: 'form-style-modal font-weight-lighter', id: 'mission_title', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+            div#mission_errors_title
             div.form-group.mb-1
               = f.label :start_date, 'Start date', {class: 'form-field-modal mb-2'}
               = f.date_field :start_date, class: 'form-style-modal', id: 'mission_start_date', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+              div#mission_errors_start_date
             div.form-group.mb-1
               = f.label :end_date, 'End date', {class: 'form-field-modal mb-2'}
               = f.date_field :end_date, class: 'form-style-modal', id: 'mission_end_date', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+              div#mission_errors_end_date
             div.form-group.mb-1
               = f.label :memo, 'Memo', {class: 'form-field-modal mb-2'}
               = f.text_field :memo, class: 'form-style-modal', id: 'mission_memo', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+            div#mission_errors_memo
             div.text-center.mt-3
               button.js-modal-close.btn-style-modal 戻る
               = f.submit '変更', class: "btn-style-modal"

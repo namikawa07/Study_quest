@@ -2,6 +2,7 @@
   "name": "Study_quest",
   "private": true,
   "dependencies": {
+    "@innologica/vue-dropdown-menu": "^0.1.4",
     "@rails/webpacker": "5.2.1",
     "vue": "^2.6.12",
     "vue-js-modal": "^2.0.0-rc.6",

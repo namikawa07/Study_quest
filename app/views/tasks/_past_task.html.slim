@@ -16,6 +16,6 @@
             h4.font-ferrum.text-center.mr-3 Mission title
             h5.font-SoukouMincho.text-center #{task.title}
           div.d-flex
-            = button_to '再作成', remake_mission_task_path(task.mission.id, task.id)
+            = button_to '再作成', remake_mission_task_path(task.mission.id, task.id), class: "btn-style-white"
             p.font-ferrum Incomplete
       

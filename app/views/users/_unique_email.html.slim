@@ -1,0 +1,2 @@
+- if @user.errors.full_messages_for(:email).first
+  p.error.mb-0 #{@user.errors.full_messages_for(:email).first}

@@ -15,21 +15,33 @@
 //= require activestorage
 //= require popper
 //= require bootstrap
-//= require turbolinks
+//= require_tree .
 
 
 $(function(){
-  $('.js-modal-open').each(function(){
-      $(this).on('click',function(){
-          var target = $(this).data('target');
-          var modal = document.getElementById(target);
-          $(modal).fadeIn();
-          return false;
-      });
-  });
-  $('.js-modal-close').on('click',function(){
-      $('.js-modal').fadeOut();
-      return false;
-  }); 
+    $('.js-modal-open').each(function(){
+        $(this).on('click',function(){
+            var target = $(this).data('target');
+            var modal = document.getElementById(target);
+            $(modal).fadeIn();
+            return false;
+        });
+    });
+    $('.js-modal-close').on('click',function(){
+        $('.js-modal').fadeOut();
+        return false;
+    }); 
 });
 
+
+$(function() {
+	$('a[href^="#"]').click(function() {
+		 var headerHeight = $('header').outerHeight();
+		 var speed = 400;
+		 var href= $(this).attr("href");
+		 var target = $(href == "#" || href == "" ? 'html' : href);
+		 var position = target.offset().top - headerHeight;
+		 $('body,html').animate({scrollTop:position}, speed, 'swing');
+		 return false;
+	});
+});
