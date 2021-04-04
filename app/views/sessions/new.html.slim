@@ -5,7 +5,7 @@ div.container-fluid.mb-3
 div.container.w-75
   div.row
     div.col-md-10.offset-md-1.col-lg-8.offset-lg-2
-      = form_with url: login_path, local: true do |f|
+      = form_with url: login_path, local: true, id: "login_form" do |f|
         div.form-group
           = f.label :email, 'Email', {class: 'form-field'}
           = f.text_field :email, class: 'form-style', id: 'email', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"

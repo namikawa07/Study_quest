@@ -3,6 +3,7 @@ class TasksController < ApplicationController
   def index
     @task = Task.new
     @all_tasks = Task.all
+    @schedules = @mission.schedules.order(start_date: :desc)
     today_tasks
     past_tasks
     same_created_tasks

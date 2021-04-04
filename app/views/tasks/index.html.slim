@@ -1,14 +1,14 @@
-div.container-fluid.mb-3
+#play_task.container-fluid.mb-3
   div.d-flex.my-5.border-b
     h1.page-title.float-left.ml-5 Task play
     p.ml-3.d-flex.align-items-center.mt-2.page-title-sub.head-border タスクプレイ
   div.bass-image
     = image_tag "/images/chara.jpeg", class: "w-100"
     div.z-in-1.new-task-position.w-20.mx-auto
-      a.btn-task.mx-auto type="button" data-toggle="collapse" data-target="#demo"
+      a.btn-task.mx-auto type="button" data-toggle="collapse" data-target="#taskplay"
         p.text-center.task-border.mx-2.mb-0
           small.font-SoukouMincho タスク作成
-      div#demo.collapse.z-in-1.new-task-form-position.w-100
+      div#taskplay.collapse.z-in-1.new-task-form-position.w-100
         = form_with model: @task, url: mission_tasks_path(@mission.id),class:"w-75 mx-auto", local: true do |f|
           = render 'layouts/error_messages', model: f.object
           div.form-group.mb-0
@@ -33,7 +33,7 @@ div.container-fluid.mb-3
       = @mission.title
           
     
-div.container-fluid.mb-3
+#today_task.container-fluid.mb-3
   div.d-flex.mt-5.border-b
     h1.page-title.float-left.ml-5 Today's task
     p.ml-3.d-flex.align-items-center.mt-2.page-title-sub.head-border 今日のタスク
@@ -46,7 +46,7 @@ div.container-fluid.mb-3
   div.mt-4
     a.js-modal-open href="" data-target="modal_tasks_finish"
       = button_to '今日の作業を終了する', class: "btn-style-white-width w-100"
-div.container-fluid.mb-3
+#past_task.container-fluid.mb-3
   div.d-flex.my-5.border-b
     h1.page-title.float-left.ml-5 Past task
     p.ml-3.d-flex.align-items-center.mt-2.page-title-sub.head-border 過去のタスク
@@ -57,13 +57,17 @@ div.container-fluid.mb-3
     - else
       h3.text-center.font-ferrum No task
 
-div.container-fluid.mb-3
+#schedule.container-fluid.mb-3
   div.d-flex.my-5.border-b
     h1.page-title.float-left.ml-5 Schedule
     p.ml-3.d-flex.align-items-center.mt-2.page-title-sub.head-border スケジュール
-  div.container.px-0
-    h3.text-center.font-ferrum No shedule
-div.container-fluid.mb-3
+  = link_to 'スケジュールを作成する', new_mission_schedule_path(@mission), class: "btn-style-white-width w-100"
+  - if @schedules.present?
+    = render @schedules
+  -else
+    div.container.px-0
+      h3.text-center.font-ferrum No shedule
+#task_information.container-fluid.mb-3
   div.d-flex.my-5.border-b
     h1.page-title.float-left.ml-5 Task's information
     p.ml-3.d-flex.align-items-center.mt-2.page-title-sub.head-border タスクの詳細

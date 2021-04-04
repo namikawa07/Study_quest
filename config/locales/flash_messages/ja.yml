@@ -29,6 +29,9 @@ ja:
     registration:
       Success: "My Missionに登録しました"
       Not_success: "My Missionに登録できませんでした"
+    not_registration:
+      Success: "My Missionを解除しました"
+      Not_success: "My Missionを解除できませんでした"
     finish:
       Success: "Missionを完了しました"
       Not_success: "Missionを完了できませんでした"
@@ -46,3 +49,17 @@ ja:
     remake:
       Success: "タスクを再作成しました"
       Not_success: "タスクを再作成できませんでした"
+    finish:
+      Success: "本日の作業を終了しました"
+      Not_success: "本日の作業を終了できませんでした"
+  schedules:
+    create:
+      Success_publish: "スケジュールを作成しました"
+      Not_success_publish: "スケジュールを作成できませんでした"
+      Success_draft: "スケジュールの下書きを作成しました"
+      Not_success_draft: "スケジュールの下書きを作成できませんでした"
+    update:
+      Success: "スケジュールを編集しました"
+      Not_success: "スケジュールを変更できませんでした"
+    destroy:
+      Success: "スケジュールを削除しました"

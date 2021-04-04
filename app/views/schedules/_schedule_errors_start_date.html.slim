@@ -1,0 +1,3 @@
+-if @schedule.errors.full_messages_for(:Startdate)
+  - @schedule.errors.full_messages_for(:Startdate).each do |msg|
+    p.error.mb-0 #{msg}

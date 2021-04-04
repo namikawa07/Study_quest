@@ -16,12 +16,16 @@ class MissionsController < ApplicationController
   end
 
   def update
-    if @mission.update(mission_params)
-      flash[:success] = t('missions.update.Success')
-      redirect_to users_path
-    else
-      flash.now[:danger] = t('missions.update.Not_success')
-      redirect_to users_path
+    respond_to do |format|
+      if @mission.update(mission_params)
+        flash[:success] = t('missions.update.Success')
+        format.html { redirect_to users_path }
+        format.js { render js: "window.location = '#{users_path}'" }
+      else
+        format.html { redirect_to users_path }
+        format.json { render json: @mission.errors, status: :unprocessable_entity }
+        format.js { @status = "fail" }
+      end
     end
   end
 
@@ -32,14 +36,24 @@ class MissionsController < ApplicationController
   end
 
   def registration
-    my_mission = current_user.missions.find_by(registration: "registration")
-    @mission.registration = "registration"
-    if my_mission.blank? && @mission.update(mission_params)
-      flash[:success] = t('missions.registration.Success')
-      redirect_to users_path
+    if @mission.registration == "not_registration"
+      @mission.registration = "registration"
+      if my_mission.blank? && @mission.update(mission_params)
+        flash[:success] = t('missions.registration.Success')
+        redirect_to users_path
+      else
+        flash[:danger] = t('missions.registration.Not_success')
+        redirect_to users_path
+      end
     else
-      flash[:danger] = t('missions.registration.Not_success')
-      redirect_to users_path
+      @mission.registration = "not_registration"
+      if @mission.update(mission_params)
+        flash[:success] = t('missions.not_registration.Success')
+        redirect_to users_path
+      else
+        flash[:danger] = t('missions.not_registration.Not_success')
+        redirect_to users_path
+      end
     end
   end
 
@@ -70,7 +84,7 @@ class MissionsController < ApplicationController
       redirect_to users_path
     else
       flash.now[:danger] = t('missions.create.Not_success_' + status )
-      redirect_to users_path
+     render :new
     end
   end
   

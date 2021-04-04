@@ -1,0 +1,33 @@
+div.container-fluid.mb-3
+  div.d-flex.mt-5.border-b
+    h1.page-title.float-left.ml-5 New schedule
+    p.ml-3.d-flex.align-items-center.mt-2.page-title-sub.head-border スケジュール作成
+  div.container.border.my-4
+    div.border-b.d-flex.mx-5.mt-3
+      h5.font-ferrum.mx-3 Mission title
+      p.font-ferrum.mx-3 #{@mission.title}
+    div.d-flex.mx-5.my-3.justify-content-between
+      div.border-b.d-flex.mx-5
+        h5.font-ferrum.mx-3 Start date
+        p.font-ferrum.mx-3 #{l @mission.start_date}
+      div.border-b.d-flex.mx-5.text-center
+        h5.font-ferrum.mx-3 End date
+        p.font-ferrum.mx-3 #{l @mission.end_date}
+div.container
+  div.row
+    div.col-md-10.offset-md-1.col-lg-8.offset-lg-2
+      = form_with model: @schedule, url: mission_schedules_path, local: true do |f|
+        = render 'layouts/error_messages', model: f.object
+        div.form-group
+          = f.label :title, 'Schedule title', {class: 'form-field'}
+          = f.text_field :title, class: 'form-style', id: 'schedule_title', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+        div.d-flex.justify-content-between
+          div.form-group.w-30
+            = f.label :start_date, 'Start date', {class: 'form-field'}
+            = f.date_field :start_date, class: 'form-style', id: 'schedule_start_date', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+          div.form-group.w-30
+            = f.label :end_date, 'End date', {class: 'form-field'}
+            = f.date_field :end_date, class: 'form-style', id: 'schedule_end_date', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+        div.form-group.text-center.form-group-height
+          = f.submit '下書き', :name => 'draft', class: 'btn-style-md'
+          = f.submit '実行', :name => 'publish', class: 'btn-style-md'

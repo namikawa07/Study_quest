@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: %i[new create]
+  skip_before_action :my_mission, only: %i[new create]
   
   def new
     @user = User.new
@@ -7,13 +8,17 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.save
-      auto_login(@user)
-      flash[:success] = t('users.create.Success')
-      redirect_to users_path
-    else
-      flash.now[:danger] = t('users.create.Not_success')
-      render :new
+    respond_to do |format|
+      if @user.save
+        auto_login(@user)
+        flash[:success] = t('users.create.Success')
+        format.html { redirect_to users_path }
+        format.js { render js: "window.location = '#{users_path}'" }
+      else
+        flash.now[:danger] = t('users.create.Not_success')
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+        format.js { @status = "fail" }
+      end
     end
   end
 
@@ -29,12 +34,16 @@ class UsersController < ApplicationController
   def update
     @missions = current_user.missions
     @user = User.find(current_user.id)
-    if @user.update(user_params)
-      flash[:success] = t('users.update.Success')
-      redirect_to users_path
-    else
-      flash[:danger] = t('users.update.Not_success')
-      redirect_to users_path
+    respond_to do |format|
+      if @user.update(user_params)
+        flash[:success] = t('users.update.Success')
+        format.html { redirect_to users_path }
+        format.js { render js: "window.location = '#{users_path}'" }
+      else
+        format.html { redirect_to users_path }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+        format.js { @status = "fail" }
+      end
     end
   end
   

@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  */
+ 
  @import "bootstrap";
  @import "font-awesome-sprockets";
  @import "font-awesome";
@@ -25,6 +26,20 @@
   src: font-url('/assets/ferrum.otf');
 }
 
+.error{
+  font-weight: lighter;
+  color:#ea2c2c;
+}
+
+header{
+  padding-top: 8px;
+  z-index: 2;
+  background-color: #505050;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
 .font-ferrum{
   font-family: 'ferrum';
 }
@@ -33,31 +48,57 @@
   font-family: 'SoukouMincho';
 }
 
-
 body {
   background-color: #505050;
   color: #cbcbcb;
 }
 
+
+.header-title-style{
+  color: #cbcbcb;
+  font-size: 30px;
+
+  &:hover{
+    color: #9c9c9c;
+    outline: none;
+    text-decoration: none;
+  }
+}
+
+.header-menu-style{
+  color: #cbcbcb;
+  font-size: 130%;
+  margin-left: 3em;
+  vertical-align: middle;
+ 
+
+  &:hover{
+    color: #9c9c9c;
+    outline: none;
+    text-decoration: none;
+  }
+}
+
+@mixin font($family: 'ferrum', $size: 33px) {
+  font-family: $family;
+  font-size: $size;
+}
+
 .page-title{
-  font-family: 'ferrum';
-  font-size: 33px;
+  @include font;
 };
 
 .page-title-sub{
-  font-family: 'SoukouMincho';
-  font-size: 14px;
+  @include font('SoukouMincho',14px);
   font-weight: lighter; 
 };
 
 .page-title-mini{
-  font-family: 'ferrum';
-  font-size: 22px;
+  @include font('ferrum',22px);
 }
 
 .page-title-card{
-  font-family: 'SoukouMincho';
-  font-size: 16px;
+  @include font('SoukouMincho',16px);
   letter-spacing: 10px;
   color:#dedede
 }
@@ -73,22 +114,24 @@ body {
   padding-bottom:10px; 
 };
 
-.form-field{
+@mixin form {
   font-family: 'ferrum';
   font-size: 21px;
   color: #cbcbcb;
+  margin-left: 20px;
+}
+
+.form-field{
+  @include form;
   border-bottom: solid 1px #cbcbcb;
   padding: 0 90px 0 20px;
   margin-bottom: 15px;
-  margin-left: 20px;
+  
 };
 
 .form-field2{
-  font-family: 'ferrum';
-  font-size: 21px;
-  color: #cbcbcb;
+  @include form;
   position: absolute;
-  margin-left: 20px;
   padding-bottom: 5px;
   padding-right: 150px;
 
@@ -140,53 +183,48 @@ body {
   border-bottom: 1px solid #cbcbcb;
 };
 
-.form-style{
-  background-color: #505050;
-  color: #cbcbcb;
+
+@mixin form-style($bg-color: #505050, $color: #cbcbcb, $width: 100%) {
+  background-color: $bg-color;
+  color: $color;
   font-family: 'SoukouMincho';
-  width: 100%;
-  border: solid 1px #cbcbcb;
+  width: $width;
   padding-bottom: 5px;
   margin-right: auto;
+};
 
-  &:focus {
-    background-color: #505050;
+@mixin form-style-focus{
+  background-color: #505050;
     color: #cbcbcb;
     font-family: 'SoukouMincho';
     outline: none;
+}
+
+.form-style{
+  @include form-style;
+  border: solid 1px #cbcbcb;
+
+  &:focus {
+    @include form-style-focus;
  }
 };
 
 .form-style2{
-  background-color: #505050;
-  color: #cbcbcb;
-  font-family: 'SoukouMincho';
-  width: 70%;
+  @include form-style(#505050, #cbcbcb, 70%);
   border-top: none;
   border-left: none;
   border-right: none;
   border-bottom: none;
-  padding-bottom: 5px;
-  margin-right: auto;
 
   &:focus {
-    background-color: #505050;
-    color: #cbcbcb;
-    font-family: 'SoukouMincho';
-    outline: none;
- }
-
- 
+    @include form-style-focus;
+  }
 }
 
 .form-style-modal{
-  background-color: #d6d6d6;
-  color: #555454;
-  font-family: 'SoukouMincho';
-  width: 100%;
+  @include form-style(#d6d6d6,#555454 ,100% );
   border: solid 1px #555454;
-  padding-bottom: 5px;
-  margin-right: auto;
+  
 
   &:focus {
     background-color: #d6d6d6;
@@ -206,19 +244,7 @@ body {
   border-bottom: solid 1px #cbcbcb;
 }
 
-.btn-style-lg{
-  font-family: 'ferrum';
-  width: 35%;
-  height: 100%;
-  border-radius: none;
-  font-size: 30px;
-  color: #464646;
-  letter-spacing: 6px;
-  background-color: #cbcbcb;
-  border:none;
-  cursor: pointer;
-  position: relative;
-}
+
 
 
 
@@ -255,103 +281,101 @@ body {
   width: 55%;
 }
 
-.w-70{
-  width: 70%;
+//widthの幅を決める
+$i: 1;
+@while $i <= 100 {
+  .w-#{$i} {width: 1% * $i;}
+  $i: $i + 1;
 }
 
-.w-60{
-  width: 60%;
+//heightの幅を決める
+$i: 1;
+@while $i <= 100 {
+  .y-#{$i} {height: 1% * $i;}
+  $i: $i + 1;
 }
 
-.w-30{
-  width: 30%;
-}
 
-.w-20{
-  width: 20%;
-}
 
-.w-17{
-  width: 17%;
-}
-
-.w-15{
-  width: 15%;
-}
-
-.y-6{
-  height: 6%;
-}
 
 input[type="file"] {
   font-size: 13px;
   display: none;
 }
 
-.icon-btn-style{
-  font-family: 'ferrum';
+//各ボタンcss設定
+
+@mixin btn($family: 'ferrum', $size: 10px, $bg-color: #b2b1b1, $padding: 5px 25px) {
+  font-family: $family;
   border-radius: none;
-  font-size: 10px;
+  font-size: $size;
   color: #464646;
-  background-color: #b2b1b1;
+  background-color: $bg-color;
   border:none;
   cursor: pointer;
-  padding: 5px 25px;
+  padding: $padding;
+}
+
+@mixin focus-btn{
+  background-color: #999999;
+  color: #222222;
+  font-family: 'SoukouMincho';
+  outline: none;
+}
+
+.icon-btn-style{
+  @include btn;
 }
 
 .btn-style-md{
-  font-family: 'SoukouMincho';
-  border-radius: none;
-  font-size: 14px;
-  color: #464646;
-  background-color: #d3d3d3;
-  border:none;
-  cursor: pointer;
-  padding: 7px 55px;
+  @include btn('SoukouMincho', 14px , #d3d3d3,7px 55px );
   margin: 0 40px;
 
   &:focus {
-    background-color: #999999;
-    color: #222222;
-    font-family: 'SoukouMincho';
-    outline: none;
+    @include focus-btn;
   }
 }
 
 .btn-style-white{
-  font-family: 'SoukouMincho';
-  border-radius: none;
-  font-size: 10px;
-  color: #464646;
-  background-color: #d3d3d3;
-  border:none;
-  cursor: pointer;
-  padding: 5px 25px;
+  @include btn('SoukouMincho', 10px, #d3d3d3,5px 25px );
 
   &:focus {
-    background-color: #999999;
-    color: #222222;
-    font-family: 'SoukouMincho';
-    outline: none;
+    @include focus-btn;
   }
 }
 
 .btn-style-white-width{
-  font-family: 'SoukouMincho';
-  border-radius: none;
-  font-size: 13px;
-  color: #464646;
-  background-color: #d3d3d3;
-  border:none;
-  cursor: pointer;
-  padding: 5px 25px;
+  @include btn('SoukouMincho', 13px, #d3d3d3,5px 25px );
+  
 
   &:focus {
-    background-color: #999999;
-    color: #222222;
-    font-family: 'SoukouMincho';
-    outline: none;
+    @include focus-btn;
   }
+}
+
+.btn-style-modal{
+  @include btn('ferrum', 14px, #b2b1b1,5px 55px );
+  margin: 0 35px 15px 35px;
+
+  &:focus {
+    @include focus-btn;
+  }
+}
+
+.task-new-btn{
+  @include btn('SoukouMincho', 10px, #d3d3d3,0px 10px );
+
+  &:focus {
+    @include focus-btn;
+  }
+}
+
+.btn-style-lg{
+  @include btn('ferrum', 30px , #cbcbcb,0 );
+  width: 35%;
+  height: 100%;
+  letter-spacing: 6px;
+  position: relative;
 }
 
 
@@ -361,24 +385,6 @@ input[type="file"] {
   margin-top: 5px;
 }
 
-.btn-style-modal{
-  font-family: 'ferrum';
-  border-radius: none;
-  font-size: 14px;
-  color: #464646;
-  background-color: #b2b1b1;
-  border:none;
-  cursor: pointer;
-  padding: 5px 55px;
-  margin: 0 35px 15px 35px;
-
-  &:focus {
-    background-color: #999999;
-    color: #222222;
-    font-family: 'ferrum';
-    outline: none;
-  }
-}
 
 .font-cl{
   color: #585858;
@@ -482,36 +488,52 @@ input[type="file"] {
   flex: 0 0 20%;
 }
 
-.z-in-1{
-  z-index: 1;
+
+$i: 1;
+@while $i <= 3 {
+  .z-in-#{$i} {z-index: $i;}
+  $i: $i + 1;
 }
 
-.z-in-2{
-  z-index: 2;
-}
 
 .bass-image{
   position: relative;
 }
 
-
-.new-task-position{
-  background: rgba(154, 147, 131, 0.7);
+.header-position{
   position: absolute;
+  top:3%;
+  right: 3%;
+}
+
+.header-dropdown-position{
+  border: none;
+  background-color: #dedede;
+  position: relative;
   top:0;
   left: 0;
   right: 0;
   margin: auto;
 }
 
-.new-task-form-position{
+
+@mixin position($position:absolute) {
   background: rgba(154, 147, 131, 0.7);
-  border-top: none;
-  position: relative;
+  position: $position;
   top:0;
   left: 0;
   right: 0;
   margin: auto;
+}
+
+
+.new-task-position{
+  @include position;
+}
+
+.new-task-form-position{
+  border-top: none;
+  @include position(relative);
 }
 
 .task-form-field{
@@ -541,23 +563,7 @@ input[type="file"] {
   border-bottom: solid 1px #696969;
 }
 
-.task-new-btn{
-  font-family: 'SoukouMincho';
-  border-radius: none;
-  font-size: 10px;
-  color: #464646;
-  background-color: #d3d3d3;
-  border:none;
-  cursor: pointer;
-  padding: 0 10px;
 
-  &:focus {
-    background-color: #999999;
-    color: #222222;
-    font-family: 'SoukouMincho';
-    outline: none;
-  }
-}
 
 .btn-task{
   background: rgba(154, 147, 131, 0);
@@ -585,10 +591,7 @@ input[type="file"] {
   
 
   &:focus {
-    background-color: #999999;
-    color: #222222;
-    font-family: 'SoukouMincho';
-    outline: none;
+    @include focus-btn;
   }
 }
 
@@ -622,3 +625,26 @@ input[type="file"] {
   margin-top: 30px;
   margin-bottom: 50px;
 }
+
+.dropdown-style{
+  margin-bottom: 1em;
+  font-size: 110%;
+  text-decoration: none;
+
+  a{
+    color:#5c5c5c;
+  }
+
+  &:hover{
+    
+
+    a{
+      color:#333333;
+      outline: none;
+      text-decoration: none;
+    }
+
+  }
+
+}
+

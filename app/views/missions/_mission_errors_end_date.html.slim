@@ -1,0 +1,3 @@
+-if @mission.errors.full_messages_for(:Enddate)
+  - @mission.errors.full_messages_for(:Enddate).each do |msg|
+    p.error.mb-0 #{msg}
