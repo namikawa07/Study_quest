@@ -201,3 +201,26 @@ $(function(){
   })
   })
 })
+
+$(function(){
+  $('#task_create_form').validate({
+    rules: {
+      "task[title]": {
+        required: true,
+        maxlength: 20,
+      },
+      "task[detail]": {
+        maxlength: 200,
+      },
+    },
+    messages: {
+      "task[title]": {
+        required: 'タイトルを入力して下さい',
+        maxlength: 'task名は最大で20字までです',
+      },
+      "task[detail]": {
+        maxlength: '詳細は最大で200字までです',
+      },
+    },
+  })
+})

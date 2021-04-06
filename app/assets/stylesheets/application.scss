@@ -18,12 +18,12 @@
  @import "font-awesome-sprockets";
  @import "font-awesome";
  @font-face {
-   font-family: 'SoukouMincho';
-   src: font-url('/assets/SonkouMincho.ttf');
+   font-family: 'font-ja';
+   src: font-url('SoukouMincho.ttf')  format('truetype');
  }
  @font-face {
-  font-family: 'ferrum';
-  src: font-url('/assets/ferrum.otf');
+  font-family: 'font-en';
+  src: font-url('ferrum.otf') format('truetype');
 }
 
 .error{
@@ -41,11 +41,11 @@ header{
 }
 
 .font-ferrum{
-  font-family: 'ferrum';
+  font-family: 'font-en';
 }
 
 .font-SoukouMincho{
-  font-family: 'SoukouMincho';
+  font-family: 'font-ja';
 }
 
 body {
@@ -79,7 +79,26 @@ body {
   }
 }
 
-@mixin font($family: 'ferrum', $size: 33px) {
+@mixin icon($size: 40px) {
+ width: $size;
+ height: $size;
+ border-radius: 50%;
+}
+
+.small-icon-size{
+ @include icon;
+};
+
+.edit-icon-size{
+  @include icon(70px);
+};
+
+.icon-size{
+  @include icon(100px);
+};
+
+
+@mixin font($family: 'font-en', $size: 33px) {
   font-family: $family;
   font-size: $size;
 }
@@ -89,22 +108,22 @@ body {
 };
 
 .page-title-sub{
-  @include font('SoukouMincho',14px);
+  @include font('font-ja',14px);
   font-weight: lighter; 
 };
 
 .page-title-mini{
-  @include font('ferrum',22px);
+  @include font('font-en',22px);
 }
 
 .page-title-card{
-  @include font('SoukouMincho',16px);
+  @include font('font-ja',16px);
   letter-spacing: 10px;
   color:#dedede
 }
 
 .page-title-modal{
-  font-family: 'SoukouMincho';
+  font-family: 'font-ja';
   font-size: 20px;
   font-weight: lighter; 
   color: #555454;
@@ -115,7 +134,7 @@ body {
 };
 
 @mixin form {
-  font-family: 'ferrum';
+  font-family: 'font-en';
   font-size: 21px;
   color: #cbcbcb;
   margin-left: 20px;
@@ -138,7 +157,7 @@ body {
 };
 
 .form-field-modal{
-  font-family: 'ferrum';
+  font-family: 'font-en';
   font-size: 20px;
   color: #555454;
   border-bottom: solid 1px #555454;
@@ -187,7 +206,7 @@ body {
 @mixin form-style($bg-color: #505050, $color: #cbcbcb, $width: 100%) {
   background-color: $bg-color;
   color: $color;
-  font-family: 'SoukouMincho';
+  font-family: 'font-ja';
   width: $width;
   padding-bottom: 5px;
   margin-right: auto;
@@ -196,7 +215,7 @@ body {
 @mixin form-style-focus{
   background-color: #505050;
     color: #cbcbcb;
-    font-family: 'SoukouMincho';
+    font-family: 'font-ja';
     outline: none;
 }
 
@@ -229,7 +248,7 @@ body {
   &:focus {
     background-color: #d6d6d6;
     color: #555454;
-    font-family: 'SoukouMincho';
+    font-family: 'font-ja';
     outline: none;
  }
 };
@@ -305,7 +324,7 @@ input[type="file"] {
 
 //各ボタンcss設定
 
-@mixin btn($family: 'ferrum', $size: 10px, $bg-color: #b2b1b1, $padding: 5px 25px) {
+@mixin btn($family: 'font-en', $size: 10px, $bg-color: #b2b1b1, $padding: 5px 25px) {
   font-family: $family;
   border-radius: none;
   font-size: $size;
@@ -319,7 +338,7 @@ input[type="file"] {
 @mixin focus-btn{
   background-color: #999999;
   color: #222222;
-  font-family: 'SoukouMincho';
+  font-family: 'font-ja';
   outline: none;
 }
 
@@ -328,7 +347,7 @@ input[type="file"] {
 }
 
 .btn-style-md{
-  @include btn('SoukouMincho', 14px , #d3d3d3,7px 55px );
+  @include btn('font-ja', 14px , #d3d3d3,7px 55px );
   margin: 0 40px;
 
   &:focus {
@@ -337,7 +356,7 @@ input[type="file"] {
 }
 
 .btn-style-white{
-  @include btn('SoukouMincho', 10px, #d3d3d3,5px 25px );
+  @include btn('font-ja', 10px, #d3d3d3,5px 25px );
 
   &:focus {
     @include focus-btn;
@@ -345,7 +364,7 @@ input[type="file"] {
 }
 
 .btn-style-white-width{
-  @include btn('SoukouMincho', 13px, #d3d3d3,5px 25px );
+  @include btn('font-ja', 13px, #d3d3d3,5px 25px );
   
 
   &:focus {
@@ -354,7 +373,7 @@ input[type="file"] {
 }
 
 .btn-style-modal{
-  @include btn('ferrum', 14px, #b2b1b1,5px 55px );
+  @include btn('font-en', 14px, #b2b1b1,5px 55px );
   margin: 0 35px 15px 35px;
 
   &:focus {
@@ -363,7 +382,7 @@ input[type="file"] {
 }
 
 .task-new-btn{
-  @include btn('SoukouMincho', 10px, #d3d3d3,0px 10px );
+  @include btn('font-ja', 10px, #d3d3d3,0px 10px );
 
   &:focus {
     @include focus-btn;
@@ -371,7 +390,7 @@ input[type="file"] {
 }
 
 .btn-style-lg{
-  @include btn('ferrum', 30px , #cbcbcb,0 );
+  @include btn('font-en', 30px , #cbcbcb,0 );
   width: 35%;
   height: 100%;
   letter-spacing: 6px;
@@ -408,7 +427,7 @@ input[type="file"] {
   &:focus{
     background-color: #b64343;
     color: #cbcbcb;
-    font-family: 'ferrum';
+    font-family: 'font-en';
     outline: none;
   }
 }
@@ -537,7 +556,7 @@ $i: 1;
 }
 
 .task-form-field{
-  font-family: 'SoukouMincho';
+  font-family: 'font-ja';
   font-size: 7px;
   color: #cbcbcb;
   border-bottom: solid 1px #696969;
@@ -545,7 +564,7 @@ $i: 1;
 
 .task-form-style{
   background: rgba(154, 147, 131, 0);
-  font-family: 'SoukouMincho';
+  font-family: 'font-ja';
   font-size: 7px;
   width: 100%;
   border: solid 1px #696969;
@@ -554,7 +573,7 @@ $i: 1;
   &:focus {
     background-color: #505050;
     color: #cbcbcb;
-    font-family: 'SoukouMincho';
+    font-family: 'font-ja';
     outline: none;
  }
 }
