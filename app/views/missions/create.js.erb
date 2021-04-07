@@ -1,0 +1,4 @@
+<% if @status == 'fail' %>
+  $('#create_mission_errors_start_date').html("<%= j(render 'mission_errors_start_date') %>");
+  $('#create_mission_errors_end_date').html("<%= j(render 'mission_errors_end_date') %>");
+<% end %>

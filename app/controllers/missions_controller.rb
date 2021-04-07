@@ -38,7 +38,7 @@ class MissionsController < ApplicationController
   def registration
     if @mission.registration == "not_registration"
       @mission.registration = "registration"
-      if my_mission.blank? && @mission.update(mission_params)
+      if my_mission.blank? && @mission.save
         flash[:success] = t('missions.registration.Success')
         redirect_to users_path
       else
@@ -47,7 +47,7 @@ class MissionsController < ApplicationController
       end
     else
       @mission.registration = "not_registration"
-      if @mission.update(mission_params)
+      if @mission.save
         flash[:success] = t('missions.not_registration.Success')
         redirect_to users_path
       else
@@ -79,12 +79,17 @@ class MissionsController < ApplicationController
   end
   
   def mission_create(status)
-    if @mission.save
-      flash[:success] = t('missions.create.Success_' + status )
-      redirect_to users_path
-    else
-      flash.now[:danger] = t('missions.create.Not_success_' + status )
-     render :new
+    respond_to do |format|
+      if @mission.save
+        flash[:success] = t('missions.create.Success_' + status )
+        format.html { redirect_to users_path }
+        format.js { render js: "window.location = '#{users_path}'" }
+      else
+        flash[:danger] = t('missions.create.Not_success_' + status )
+        format.html { redirect_to users_path }
+        format.json { render json: @mission.errors, status: :unprocessable_entity }
+        format.js { @status = "fail" }
+      end
     end
   end
   

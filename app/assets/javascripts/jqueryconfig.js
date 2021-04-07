@@ -1,29 +1,4 @@
 $(function(){
-  $('#login_form').validate({
-    rules: {
-      "email": {
-        required: true,
-        email: true,
-      },
-      "password": {
-        required: true,
-        minlength: 3,
-      },
-    },
-    messages: {
-      "email": {
-        required: 'メールアドレスを入力して下さい',
-        email: 'メールアドレスの形式で入力してください',
-      },
-      "password": {
-        required: 'パスワードを入力して下さい',
-        minlength: 'パスワードは3文字以上で入力してください',
-      },
-    },
-  })
-})
-
-$(function(){
   $('#signup_form').validate({
     rules: {
       "user[name]": {
@@ -106,13 +81,13 @@ $(function(){
 
 
 
+
 $(function(){
-  $('.missions_form').each(function(){
-  $(this).validate({
+  $('#new_mission_form').validate({
     rules: {
       "mission[title]": {
         required: true,
-        maxlength: 50,
+        maxlength: 40,
       },
       "mission[start_date]": {
         required: true,
@@ -121,13 +96,13 @@ $(function(){
         required: true,
       },
       "mission[memo]": {
-        maxlength: 1000,
+        maxlength: 400,
       },
     },
     messages: {
       "mission[title]": {
         required: 'タイトルを入力して下さい',
-        maxlength: 'Mission名は最大で50字までです'
+        maxlength: 'Mission名は最大で40字までです'
       },
       "mission[start_date]": {
         required: 'Start dateを入力して下さい',
@@ -136,7 +111,44 @@ $(function(){
         required: 'End dateを入力して下さい',
       },
       "mission[memo]": {
-        maxlength: 'メモは最大で1000字までです',
+        maxlength: 'メモは最大で400字までです',
+      },
+    },
+  })
+})
+
+
+$(function(){
+  $('.missions_form').each(function(){
+  $(this).validate({
+    rules: {
+      "mission[title]": {
+        required: true,
+        maxlength: 40,
+      },
+      "mission[start_date]": {
+        required: true,
+      },
+      "mission[end_date]": {
+        required: true,
+      },
+      "mission[memo]": {
+        maxlength: 400,
+      },
+    },
+    messages: {
+      "mission[title]": {
+        required: 'タイトルを入力して下さい',
+        maxlength: 'Mission名は最大で40字までです'
+      },
+      "mission[start_date]": {
+        required: 'Start dateを入力して下さい',
+      },
+      "mission[end_date]": {
+        required: 'End dateを入力して下さい',
+      },
+      "mission[memo]": {
+        maxlength: 'メモは最大で400字までです',
       },
     },
   })

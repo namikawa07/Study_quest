@@ -17,9 +17,10 @@
  @import "bootstrap";
  @import "font-awesome-sprockets";
  @import "font-awesome";
+
  @font-face {
    font-family: 'font-ja';
-   src: font-url('SoukouMincho.ttf')  format('truetype');
+   src: font-url('font_1_honokamin.ttf')  format('truetype');
  }
  @font-face {
   font-family: 'font-en';
@@ -77,6 +78,13 @@ body {
     outline: none;
     text-decoration: none;
   }
+}
+
+.back-image{
+  background-image: url(../images/bgimage.jpg) no-repeat;
+  background-size:contain;
+  height: 1000px;
+
 }
 
 @mixin icon($size: 40px) {
