@@ -1,10 +1,10 @@
 class TasksController < ApplicationController
   before_action :set_mission
+  before_action :today_tasks, only: %i[index create]
   def index
     @task = Task.new
     @all_tasks = Task.all
     @schedules = @mission.schedules.order(start_date: :desc)
-    today_tasks
     past_tasks
     same_created_tasks
   end
@@ -12,12 +12,14 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     @task.mission_id = @mission.id
-    if  @task.save
+    binding.pry
+    if @task.save
       flash[:success] = t('tasks.create.Success')
       redirect_to mission_tasks_path(@mission)
     else
+    binding.pry
       flash.now[:danger] = t('tasks.create.Not_success')
-      render :index
+      redirect_to mission_tasks_path(@mission)
     end
   end
   
@@ -28,7 +30,7 @@ class TasksController < ApplicationController
       redirect_to mission_tasks_path(@mission)
     else
       flash.now[:danger] = t('tasks.update.Not_success')
-      render :index
+      redirect_to mission_tasks_path(@mission)
     end
   end
   

@@ -2,16 +2,20 @@ div.font-ferrum.d-flex.bd-highlight.mt-3.mx-5.border-b
   div.bd-highlight.mr-auto
     = link_to 'Task Quest', root_path, class: 'header-title-style'
   div.bd-highlight.d-flex.mr-4
-    - if current_page?(root_path)
-      = render 'header/root_path_header'
+      
+    
+    - if current_page?(root_path) || current_page?(new_users_path) || current_page?(login_path) || current_page?(privacy_path)
+      = render 'header/header_01'
     - elsif current_page?(users_path)
       = render 'header/users_path_header'
-    - elsif @my_mission.present? && current_page?(mission_tasks_path(@my_mission))
-      = render 'header/mission_tasks_path_header'
+    - elsif current_page?(new_mission_path)
+      = render 'header/new_mission_header'
+    - elsif current_page?(mission_tasks_path(params[:mission_id])) || current_page?(new_mission_schedule_path(params[:mission_id]))
+      = render 'header/task_schedule_note_header'
   div.bd-highlight.w-20
     div.mr-3
-      = image_tag current_user.avatar(:small_icon)
-    div.header-position.w-20.mx-auto
+      = image_tag current_user.avatar(:small_icon), class: 'small-icon-size'
+    div.header-position.w-20.mx-auto.mt-4
       a.btn-task.mx-auto type="button" data-toggle="collapse" data-target="#menu"
         p.text-center.mx-2.mb-0.font-SoukouMincho #{current_user.name}さん
       div#menu.collapse.z-in-1.header-dropdown-position.w-80.text-center

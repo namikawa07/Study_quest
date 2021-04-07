@@ -9,7 +9,7 @@
         p.text-center.task-border.mx-2.mb-0
           small.font-SoukouMincho タスク作成
       div#taskplay.collapse.z-in-1.new-task-form-position.w-100
-        = form_with model: @task, url: mission_tasks_path(@mission.id),class:"w-75 mx-auto", local: true do |f|
+        = form_with model: @task, url: mission_tasks_path(@mission.id),class:"w-75 mx-auto", local: true, id: 'task_create_form' do |f|
           = render 'layouts/error_messages', model: f.object
           div.form-group.mb-0
             = f.label :title, 'タスク名', {class: 'task-form-field'}
@@ -19,7 +19,7 @@
             = f.text_area :detail, class: 'task-form-style', id: 'task_detail', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
           div.form-group.mb-0.d-flex
             div
-              button.js-modal-close.task-new-btn 戻る
+              button.js-modal-close.task-new-btn type="button" data-toggle="collapse" data-target="#taskplay" 戻る
             div
               = f.submit '作成', class: 'task-new-btn'
       

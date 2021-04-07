@@ -14,15 +14,21 @@ class User < ApplicationRecord
     command = case version
               when :icon
                 if !icon.attached? || icon.metadata.blank?
-                  return '/images/runteq_man.jpg'
+                  return '/images/avatar2.png'
                 else
                   return icon.variant(resize:'100x100').processed
                 end
               when :small_icon
                 if !icon.attached? || icon.metadata.blank?
-                  return '/images/runteq_man.jpg'
+                  return '/images/avatar2.png'
                 else
                   return icon.variant(resize:'40x40').processed
+                end
+              when :edit_icon
+                if !icon.attached? || icon.metadata.blank?
+                  return '/images/avatar2.png'
+                else
+                  return icon.variant(resize:'70x70').processed
                 end
               else
                 false
