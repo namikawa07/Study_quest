@@ -19,5 +19,6 @@ div.container.w-75
         div.form-group
           = f.label :password_confirmation, 'Password confirmation', {class: 'form-field'}
           = f.password_field :password_confirmation, class: 'form-style', id: 'user_password_confirmation', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
-        div.form-group.text-center.form-group-height
-          = f.submit "SIGN UP", class: 'btn-style-lg', id: 'SIGNUPbutton'
+        div.btn-style-lg-border.mx-auto.mt-5
+          div.form-group.text-center.form-group-height
+            = f.submit "SIGN UP", class: 'btn-style-lg', id: 'SIGNUPbutton'

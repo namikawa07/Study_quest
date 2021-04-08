@@ -21,6 +21,10 @@ div.container
         div.form-group
           = f.label :memo, 'Memo', {class: 'form-field'}
           = f.text_area :memo, class: 'form-style', id: 'mission_memo', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
-        div.form-group.text-center.form-group-height
-          = f.submit '下書き', :name => 'draft', class: 'btn-style-md'
-          = f.submit '実行', :name => 'publish', class: 'btn-style-md'
+        div.d-flex.mb-5
+          div.btn-style-md-border.mx-auto.mt-2
+            div.form-group.text-center.form-group-height
+              = f.submit '下書き', :name => 'draft', class: 'btn-style-md'
+          div.btn-style-md-border.mx-auto.mt-2
+            div.form-group.text-center.form-group-height
+              = f.submit '実行', :name => 'publish', class: 'btn-style-md'

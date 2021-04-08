@@ -28,9 +28,15 @@
 }
 
 .error{
-  font-weight: lighter;
+  font-family: 'font-ja';
   color:#ea2c2c;
 }
+
+ #task_title-error{
+  font-size:80%;
+  font-family: 'font-ja';
+  color:#ea2c2c;
+ }
 
 header{
   padding-top: 8px;
@@ -276,8 +282,7 @@ body {
 
 
 .form-group-height {
-  margin-top: 30px;
-  height: 50px;
+  height: 100%;
 }
 
 
@@ -354,14 +359,6 @@ input[type="file"] {
   @include btn;
 }
 
-.btn-style-md{
-  @include btn('font-ja', 14px , #d3d3d3,7px 55px );
-  margin: 0 40px;
-
-  &:focus {
-    @include focus-btn;
-  }
-}
 
 .btn-style-white{
   @include btn('font-ja', 10px, #d3d3d3,5px 25px );
@@ -397,14 +394,177 @@ input[type="file"] {
   }
 }
 
-.btn-style-lg{
-  @include btn('font-en', 30px , #cbcbcb,0 );
-  width: 35%;
+.btn-style-md{
+  @include btn('font-ja', 14px , #d3d3d3,0px 0px );
+  width:100%;
   height: 100%;
-  letter-spacing: 6px;
+
+  &:focus {
+    @include focus-btn;
+  }
+}
+
+.btn-style-md-border{
+  width: 25%;
+  height: 40px;
   position: relative;
 }
 
+.btn-style-md-border::before{
+  content: '';
+  position: absolute;
+  z-index: -1;
+  width:100%;
+  height: 100%;
+  top: 12px;
+  left: 12px;
+  background-color: transparent;
+  border: 1px solid #d3d3d3;
+  transition: top 0.7s, left 0.7s;
+}
+
+.btn-style-md-border:hover::before{
+  position: absolute;
+  z-index: -1;
+  width:100%;
+  height: 100%;
+  top: -12px;
+  left: -12px;
+  background-color: transparent;
+  border: 1px solid #d3d3d3;
+  transition: top 0.7s, left 0.7s;
+}
+
+.btn-style-md-border::after{
+  content: '';
+  border: solid 15px transparent;
+  border-left: solid 20px #d3d3d3;
+  position: absolute;
+  z-index: 1;
+  top: 20%;
+  left: -50px;
+  background-color: transparent;
+  
+  display: none;
+}
+
+.btn-style-md-border:hover::after{
+  content: '';
+  border: solid 15px transparent;
+  border-left: solid 20px #d3d3d3;
+  position: absolute;
+  z-index: 1;
+  top: 20%;
+  left: -50px;
+  background-color: transparent;
+  
+  display: block;
+  animation-name: anime1;
+  animation-duration: 0.7s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+}
+
+.btn-style-lg{
+  @include btn('font-en', 30px , #cbcbcb,10px 10px );
+  width: 100%;
+  height: 100%;
+  letter-spacing: 6px;
+  
+}
+
+//ボタンのゲームデザイン
+
+.btn-style-lg-border{
+  width: 35%;
+  height: 50px;
+  position: relative;
+}
+
+.btn-style-lg-border::before{
+  content: '';
+  position: absolute;
+  z-index: -1;
+  width:100%;
+  height: 100%;
+  top: 12px;
+  left: 12px;
+  background-color: transparent;
+  border: 1px solid #d3d3d3;
+  transition: top 0.7s, left 0.7s;
+}
+
+.btn-style-lg-border:hover::before{
+  position: absolute;
+  z-index: -1;
+  width:100%;
+  height: 100%;
+  top: -12px;
+  left: -12px;
+  background-color: transparent;
+  border: 1px solid #d3d3d3;
+  transition: top 0.7s, left 0.7s;
+}
+
+.btn-style-lg-border::after{
+  content: '';
+  border: solid 15px transparent;
+  border-left: solid 20px #d3d3d3;
+  position: absolute;
+  z-index: 1;
+  top: 20%;
+  left: -50px;
+  background-color: transparent;
+  
+  display: none;
+}
+
+.btn-style-lg-border:hover::after{
+  content: '';
+  border: solid 15px transparent;
+  border-left: solid 20px #d3d3d3;
+  position: absolute;
+  z-index: 1;
+  top: 20%;
+  left: -50px;
+  background-color: transparent;
+  
+  display: block;
+  animation-name: anime1;
+  animation-duration: 0.7s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+}
+
+.form-group{
+  position: relative;
+}
+
+.form-group:focus-within::after{
+  content: '';
+  border: solid 15px transparent;
+  border-left: solid 20px #d3d3d3;
+  position: absolute;
+  z-index: 1;
+  top: 60%;
+  left: -50px;
+  background-color: transparent;
+  
+  display: block;
+  animation-name: anime1;
+  animation-duration: 0.7s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+}
+
+
+
+@keyframes anime1 {
+  0% {left: -50px;}
+  100% {left:-35px;}
+  }
+
+  
 
 .no-file{
   font-size: 10px;
@@ -673,5 +833,39 @@ $i: 1;
 
   }
 
+}
+
+.pagination {
+  justify-content: center;
+  font-family: 'font-en';
+
+}
+
+.pagination>li>a {          
+  border: none;     
+  background: rgba(154, 147, 131, 0);
+  color: #c9c9c9;  
+  margin: 0 10px;
+  outline: none !important;
+
+  &:hover {       
+    border: none;     
+    background: rgba(154, 147, 131, 0); 
+    color: #ffffff;   
+    font-size: larger; 
+  }
+
+  &:focus{
+    outline: none !important;
+  }
+}
+
+.pagination>.active>a {   
+  background: rgba(154, 147, 131, 1)!important;
+  font-size: larger;   
+}
+
+*:focus {
+  outline: none;
 }
 

@@ -15,6 +15,7 @@
 //= require activestorage
 //= require popper
 //= require bootstrap
+//= require swiper/swiper-bundle.js
 //= require_tree .
 
 
@@ -68,7 +69,7 @@ $(function(){
           $preview.append($('<img>').attr({
                     src: e.target.result,
                     width: "70px",
-                    class: "icon_preview",
+                    class: "rounded-circle mb-3",
                     title: file.name
                 }));
         };
@@ -76,7 +77,5 @@ $(function(){
   
       reader.readAsDataURL(file);
     });
-  });
+});
 
-  
-  

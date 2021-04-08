@@ -27,18 +27,19 @@
     h1.page-title.float-left.ml-5 Missions
     p.ml-3.d-flex.align-items-center.mt-2.page-title-sub.head-border ミッション
   div.text-center
-    p.page-title-sub ミッション数　#{@missions.count}
+    p.page-title-sub 合計ミッション数　#{@all_missions.count}
   div.d-flex.text-center
-    p.page-title-sub.w-25 実行中のミッション　#{@missions.publish.count}
-    p.page-title-sub.w-25 完了済のミッション　#{@missions.complete.count}
-    p.page-title-sub.w-25 未完了のミッション　#{@missions.incomplete.count}
+    p.page-title-sub.w-25 実行中のミッション　#{@all_missions.publish.count}
+    p.page-title-sub.w-25 完了済のミッション　#{@all_missions.complete.count}
+    p.page-title-sub.w-25 未完了のミッション　#{@all_missions.incomplete.count}
     p.page-title-sub.w-25 下書き　#{@missions.draft.count}
   div
     = link_to 'ミッションを作成', new_mission_path, class: "btn-style-white-width w-100"
   div.container.px-0
     div.row
       = render @missions
-
+    div.mt-5
+      = paginate @missions
 
 
 div#modal01.modal.js-modal
@@ -53,7 +54,7 @@ div#modal01.modal.js-modal
             div.form-inline
               div.w-17.mr-3
                 div.form-group.mb-1
-                  div.icon_preview
+                  div.icon_preview.w-100.text-center
                     = image_tag @user.avatar(:edit_icon), class: 'edit-icon-size mx-auto mb-3'
                   = f.label :icon, '画像を選択', class: "icon-btn-style"
                   = f.file_field :icon, class: "btn-style-image"
