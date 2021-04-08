@@ -28,7 +28,8 @@ class UsersController < ApplicationController
     if incomplete_mission.present?
       incomplete_mission.update_all(status: "incomplete")
     end
-    @missions = @user.missions
+    @missions = @user.missions.page(params[:page]).per(4).order(id: "DESC")
+    @all_missions = @user.missions
   end
 
   def update

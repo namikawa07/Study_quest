@@ -12,5 +12,6 @@ div.container.w-75
         div.form-group
           = f.label :password, 'Password', {class: 'form-field'}
           = f.password_field :password, class: 'form-style', id: 'password', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
-        div.form-group.text-center.form-group-height
-          = f.submit 'LOGIN', class: 'btn-style-lg'
+        div.btn-style-lg-border.mx-auto.mt-5
+          div.form-group.text-center.form-group-height
+            = f.submit 'LOGIN', class: 'btn-style-lg'
