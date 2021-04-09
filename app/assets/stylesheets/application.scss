@@ -703,6 +703,16 @@ $i: 1;
   margin: auto;
 }
 
+.note-dropdown-position{
+  border: none;
+  background: rgba(154, 147, 131, 0.7);
+  position: relative;
+  top:0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
 
 @mixin position($position:absolute) {
   background: rgba(154, 147, 131, 0.7);
@@ -869,3 +879,7 @@ $i: 1;
   outline: none;
 }
 
+.bg-chara{
+    background-image: url("/images/charactor.gif");
+    background-repeat: no-repeat;
+}

@@ -63,3 +63,12 @@ ja:
       Not_success: "スケジュールを変更できませんでした"
     destroy:
       Success: "スケジュールを削除しました"
+  notes:
+    create:
+      Success: "ノートを作成しました"
+      Not_success: "ノートを作成できませんでした"
+    update:
+      Success: "ノートを更新しました"
+      Not_success: "ノートを更新できませんでした"
+    destroy:
+      Success: "ノートを削除しました"

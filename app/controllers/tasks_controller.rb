@@ -100,6 +100,6 @@ class TasksController < ApplicationController
   end
 
   def same_created_tasks
-    @same_created_tasks = @pasttasks.group_by{|task| task.created_at.to_date}
+    @same_created_tasks = @pasttasks.order(created_at: :desc).group_by{|task| task.created_at.to_date}
   end
 end

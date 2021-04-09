@@ -236,3 +236,37 @@ $(function(){
     },
   })
 })
+
+
+$(function(){
+  $('#note_create_form').validate({
+    rules: {
+      "note[title]": {
+        required: true,
+      },
+    },
+    messages: {
+      "note[title]": {
+        required: 'タイトルを入力して下さい',
+      },
+    },
+  })
+})
+
+
+$(function(){
+  $('.notes_form').each(function(){
+  $(this).validate({
+    rules: {
+      "note[title]": {
+        required: true,
+      },
+    },
+    messages: {
+      "note[title]": {
+        required: 'タイトルを入力して下さい',
+      },
+    },
+  })
+  })
+})

@@ -9,6 +9,7 @@ div.col-15.mt-5.px-3
           i.fas.fa-trash
         a.js-modal-open href="" data-target="modal_task_edit_#{task.id}"
           i.fas.fa-pen
+        = link_to 'タスクノート',  mission_task_notes_path(task.mission, task)
   - else
     div.card.card-style-complete
       div.card-body.px-0.py-0
@@ -19,6 +20,7 @@ div.col-15.mt-5.px-3
           i.fas.fa-trash
         a.js-modal-open href="" data-target="modal_task_edit_#{task.id}"
           i.fas.fa-pen
+        = link_to 'タスクノート',  mission_task_notes_path(task.mission, task)
       div.card-overlay
         h4.complete-text.text-center.font-ferrum complete!
     
