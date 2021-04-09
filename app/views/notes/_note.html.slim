@@ -1,0 +1,51 @@
+div.border.my-3.w-80.mx-auto
+  div.border-b.mx-3.my-2.d-flex
+    div
+      p.font-ferrum.mb-0.mx-2 Note title
+    div
+      p.font-SoukouMincho.mb-0.mx-2 #{note.title}
+  div.border-b.mx-3.my-2
+    p.font-SoukouMincho.mb-0.mx-2 #{safe_join(note.body.split("\n"),tag(:br))}
+  div
+    a.js-modal-open.mr-3 href="" data-target="modal_note_trash_#{note.id}"
+      i.fas.fa-trash
+    a.js-modal-open href="" data-target="modal_note_edit_#{note.id}"
+      i.fas.fa-pen
+
+div.modal.js-modal id="modal_note_edit_#{note.id}"
+  div.modal__bg.js-modal-close
+  div.modal__content
+    div.container-fluid.mb-3.mt-3
+      h1.page-title-modal.w-100.text-center　タスクノート編集
+    div.container
+      div.row
+        div.container.w-75
+          = form_with model: note, url:  mission_task_note_path(note.task.mission.id, note.task.id, note.id), remote: true, method: :patch, class: "notes_form" do |f|
+            div.form-group.mb-1
+              = f.label :title, 'Note title', {class: 'form-field-modal mb-2'}
+              = f.text_field :title, class: 'form-style-modal font-weight-lighter', id: 'note_title', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+            div.form-group.mb-1
+              = f.label :body, 'Note body', {class: 'form-field-modal mb-2'}
+              = f.text_area :body, rows: 10, class: 'form-style-modal', id: 'note_body', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+            div.text-center.mt-3
+              button.js-modal-close.btn-style-modal 戻る
+              = f.submit '変更', class: "btn-style-modal"
+
+div.modal.js-modal id="modal_note_trash_#{note.id}"
+  div.modal__bg.js-modal-close
+  div.modal__content
+    div.container-fluid.mb-3.mt-3
+      h1.page-title-modal.w-100.text-center　タスクノート削除
+    div.container.font-cl
+      div.d-flex.w-75.mx-auto.border-bottom.border-secondary
+        h5.mb-0.mr-5.ml-3.font-ferrum Mission title
+        p.mb-0.text-conter.font-SoukouMincho   #{note.title}
+      div.row
+        div.d-block.mx-auto.text-center
+          p.font-s-des-modal.text-danger アカウントを削除すると以下のデータが消去されます
+          p.font-s-modal ・ノートデータ
+          div
+            button.js-modal-close.btn-style-modal.float-left 戻る
+            div.float-right
+              = button_to '削除', mission_task_note_path(note.task.mission.id, note.task.id, note.id), method: :delete, class: "btn-size", data: {confirm: "削除しますか？"}
+

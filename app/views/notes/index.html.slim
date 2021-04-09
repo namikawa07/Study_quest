@@ -1,0 +1,58 @@
+div.container-fluid.mb-3
+  div.d-flex.mt-5.border-b
+    h1.page-title.float-left.ml-5 New Note
+    p.ml-3.d-flex.align-items-center.mt-2.page-title-sub.head-border タスクノート作成
+
+  a.btn-task.mx-auto type="button" data-toggle="collapse" data-target="#task_info"
+    h3.text-center.mx-2.mb-0.mt-3.font-ferrum Task Information
+  div#task_info.collapse.z-in-1.note-dropdown-position.w-80.text-center
+    div.w-90.mx-auto
+      div.dropdown-style.mb-0
+        div.container.w-100.pb-3
+          div.border-b.d-flex.pb-0.pt-4
+            h5.font-ferrum.mx-0.mb-0.w-30 Task title
+            div.w-70
+              p.font-SoukouMincho.mx-3.mb-0 #{@task.title}
+          div.border-b.d-flex.pb-0.pt-4
+            h5.font-ferrum.mx-0.mb-0.w-30 Date
+            div.w-70
+              p.font-ferrum.mx-3.mb-0 #{l @task.created_at}
+          div.border-b.d-flex.pb-0.pt-4
+            h5.font-ferrum.mx-0.mb-0.w-30 Details
+            div.w-70
+              - if @task.detail.blank?
+                p.font-ferrum.mx-3.mb-0 No detail
+              - else
+                p.font-ferrum.mx-3.mb-0 #{@task.detail}
+  a.btn-task.mx-auto type="button" data-toggle="collapse" data-target="#note_create"
+    h3.text-center.mx-2.mb-0.mt-3.font-ferrum Create Note
+  div#note_create.collapse.z-in-1.note-dropdown-position.w-100
+    div.w-90.mx-auto
+      div.dropdown-style.mb-0
+        div.container.w-100.pb-3
+          div
+            = form_with model: @note, url: mission_task_notes_path(@mission.id, @task.id), local: true, id: 'note_create_form' do |f|
+              = render 'layouts/error_messages', model: f.object
+              div.form-group
+                = f.label :title, 'Note title', {class: 'form-field'}
+                = f.text_field :title, class: 'form-style', id: 'note_title', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+              div.form-group
+                = f.label :body, 'Note body', {class: 'form-field'}
+                = f.text_area :body, rows: 10, class: 'form-style', id: 'note_body', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+              div.form-group.text-center.form-group-height
+                = f.submit '作成', class: 'btn-style-md'
+div.container-fluid.mb-3
+  div.d-flex.mt-5.border-b
+    h1.page-title.float-left.ml-5 Notes
+    p.ml-3.d-flex.align-items-center.mt-2.page-title-sub.head-border タスクノート
+  div
+    - if @notes.present?
+      div
+         = render @notes
+      div.mt-5
+        = paginate @notes
+    -else
+      div.container.px-0.mb-5
+        h3.text-center.font-ferrum.mt-3 No notes
+
+

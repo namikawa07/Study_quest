@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     end
     resources :schedules, only: %i[new create update destroy]
     resources :tasks, only: %i[index create update destroy] do
+      resources :notes, only: %i[index new create show update destroy]
       member do
         post 'attack'
         post 'remake'

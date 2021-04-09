@@ -5,6 +5,7 @@ class Task < ApplicationRecord
   validate :limit_today_task_count, on: :create
   enum status: [:untouch, :complete, :incomplete]
   enum task_date: [:today_task, :past_task]
+  has_many :notes
   belongs_to :mission
   
   def limit_today_task_count
