@@ -6,7 +6,24 @@
           div.d-flex
             h4.font-ferrum.text-center.mr-3 Mission title
             h5.font-SoukouMincho.text-center #{task.title}
-          p.font-ferrum Complete
+          div.d-flex
+            a.btn-task.mx-auto type="button" data-toggle="collapse" data-target="#note_dropdown_#{task.id}"
+              h5.text-center.mx-2.mb-0.font-ferrum #{task.notes.count} Notes
+            p.font-ferrum Complete
+        div
+          div.collapse.z-in-1.w-90.mx-auto id= "note_dropdown_#{task.id}"
+            div.w-100
+              div.dropdown-style.mb-0
+                - if task.notes.present?
+                  - task.notes.each do |tasknote|
+                    div
+                      = render partial: 'same_task_note', locals: {tasknote: tasknote}
+                    div.mt-5
+                - else
+                  h3.text-center.font-ferrum No note
+                div
+                  = link_to 'Noteを作成する', mission_task_notes_path(task.mission.id, task.id)
+      
 - elsif task.status == "incomplete"
   div.container.mb-3
     div.card.card-style
@@ -17,5 +34,19 @@
             h5.font-SoukouMincho.text-center #{task.title}
           div.d-flex
             = button_to '再作成', remake_mission_task_path(task.mission.id, task.id), class: "btn-style-white"
+            a.btn-task.mx-auto type="button" data-toggle="collapse" data-target="#note_dropdown_#{task.id}"
+              h5.text-center.mx-2.mb-0.font-ferrum #{task.notes.count} Notes
             p.font-ferrum Incomplete
-      
+        div
+          div.collapse.z-in-1.w-90.mx-auto id= "note_dropdown_#{task.id}"
+            div.w-100
+              div.dropdown-style.mb-0
+                - if task.notes.present?
+                  - task.notes.each do |tasknote|
+                    div
+                      = render partial: 'same_task_note', locals: {tasknote: tasknote}
+                    div.mt-5
+                - else
+                  h3.text-center.font-ferrum No note
+                div
+                  = link_to 'Noteを作成する', mission_task_notes_path(task.mission.id, task.id)

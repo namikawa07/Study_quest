@@ -1,4 +1,7 @@
-div.container.d-flex.mt-5
+div.container.d-flex.mt-2.py-3.position-relative
+  - if schedule.end_date < Date.today
+    div.w-100.h-100.schedule-complete
+    h5.complete-text.font-ferrum.z-in-1.text-white.position-absolute style="top:35%; left:50%;" Complete!
   div.d-flex.w-40
     div.border
       h5.font-ferrum.mx-3.my-2 #{l schedule.start_date}
@@ -14,6 +17,7 @@ div.container.d-flex.mt-5
         p.font-ferrum.text-white-50 編集
       a.js-modal-open href="" data-target="modal_schedule_trash_#{schedule.id}"
         p.font-ferrum.text-white-50 削除
+
 
 div.modal.js-modal id="modal_schedule_edit_#{schedule.id}"
   div.modal__bg.js-modal-close

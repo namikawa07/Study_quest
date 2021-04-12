@@ -1,0 +1,8 @@
+div.border-b.font-SoukouMincho.mt-2
+  div.border-b.d-flex.w-80.mx-auto
+    p.font-ferrum.w-25.mb-0.ml-3 Note title
+    = truncate(tasknote.title, length:25)
+  div.d-flex.my-3
+    p.font-ferrum.w-25.mb-0.ml-3 Note Body
+    = truncate(tasknote.body, length:100)
+

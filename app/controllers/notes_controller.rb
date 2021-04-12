@@ -1,13 +1,12 @@
 class NotesController < ApplicationController
   before_action :set_mission
   before_action :set_task
+  before_action :set_search_notes, only: %i[index]
 
   def index
-    @notes = @task.notes.page(params[:page]).per(10)
+    @notes = @search_note.result.page(params[:page]).per(5)
     @note = Note.new
-  end
-
-  def new
+    
   end
 
   def create
@@ -20,9 +19,6 @@ class NotesController < ApplicationController
       flash.now[:danger] = t('notes.create.Not_success')
       render :index
     end
-  end
-
-  def show
   end
 
   def update
@@ -59,5 +55,11 @@ class NotesController < ApplicationController
 
   def set_task
     @task = @mission.tasks.find(params[:task_id])
+  end
+ 
+  def set_search_notes
+    mission = current_user.missions.find(params[:mission_id])
+    task = mission.tasks.find(params[:task_id])
+    @search_note = task.notes.ransack(params[:q])
   end
 end

@@ -1,11 +1,13 @@
-div.container-fluid.mb-3
+= provide(:title, 'Note')
+- breadcrumb :mission_task_notes,@mission, @task
+#new_note.container-fluid.mb-3
   div.d-flex.mt-5.border-b
     h1.page-title.float-left.ml-5 New Note
     p.ml-3.d-flex.align-items-center.mt-2.page-title-sub.head-border タスクノート作成
 
-  a.btn-task.mx-auto type="button" data-toggle="collapse" data-target="#task_info"
-    h3.text-center.mx-2.mb-0.mt-3.font-ferrum Task Information
-  div#task_info.collapse.z-in-1.note-dropdown-position.w-80.text-center
+  
+  h3.text-center.mx-2.mb-0.mt-3.font-ferrum Task Information
+  div.z-in-1.note-dropdown-position.w-80.text-center
     div.w-90.mx-auto
       div.dropdown-style.mb-0
         div.container.w-100.pb-3
@@ -24,8 +26,9 @@ div.container-fluid.mb-3
                 p.font-ferrum.mx-3.mb-0 No detail
               - else
                 p.font-ferrum.mx-3.mb-0 #{@task.detail}
-  a.btn-task.mx-auto type="button" data-toggle="collapse" data-target="#note_create"
-    h3.text-center.mx-2.mb-0.mt-3.font-ferrum Create Note
+  div.mt-4.btn-style-white-border.w-100
+    a.btn-task.mx-auto type="button" data-toggle="collapse" data-target="#note_create"
+      = button_to 'ノートを作成する', class: "btn-style-white-width"
   div#note_create.collapse.z-in-1.note-dropdown-position.w-100
     div.w-90.mx-auto
       div.dropdown-style.mb-0
@@ -41,11 +44,22 @@ div.container-fluid.mb-3
                 = f.text_area :body, rows: 10, class: 'form-style', id: 'note_body', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
               div.form-group.text-center.form-group-height
                 = f.submit '作成', class: 'btn-style-md'
-div.container-fluid.mb-3
+#notes.container-fluid.mb-3
   div.d-flex.mt-5.border-b
     h1.page-title.float-left.ml-5 Notes
     p.ml-3.d-flex.align-items-center.mt-2.page-title-sub.head-border タスクノート
-  div
+  div.container.px-0
+    div.text-center.border.mt-3.w-60.mx-auto
+      div
+        p.font-SoukouMincho Note検索
+      div
+        = search_form_for@search_note, url: mission_task_notes_path(@mission, @task) do |f|
+          div.search-group
+            = f.label :title, 'Note title', class: 'search-label'
+            = f.search_field :title_cont, class: 'search-form'
+            = f.label :body, 'Note body', class: 'search-label'
+            = f.search_field :body_cont, class: 'search-form'
+            = f.submit "検索", class: 'search-btn-style'
     - if @notes.present?
       div
          = render @notes
