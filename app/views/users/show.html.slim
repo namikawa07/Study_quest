@@ -1,3 +1,5 @@
+= provide(:title, 'My page')
+- breadcrumb :users
 #mypage.container-fluid.mb-3
   div.d-flex.mt-5.border-b
     h1.page-title.float-left.ml-5 My page
@@ -18,9 +20,11 @@
           p.page-title-sub.mb-0.mt-2 = @user.email
     div.d-inline.text-center
       div.mt-3
-        button.js-modal-open.btn-style-white.w-100 href="" data-target="modal01" プロフィール編集
+        div.btn-style-white-border
+          button.js-modal-open.btn-style-white.w-100 href="" data-target="modal01" プロフィール編集
       div.mt-4
-        button.js-modal-open.btn-style-white.w-100 href="" data-target="modal02" アカウント削除
+        div.btn-style-white-border
+          button.js-modal-open.btn-style-white.w-100 href="" data-target="modal02" アカウント削除
         
 #missions.container-fluid.mb-3
   div.d-flex.mt-5.border-b.mb-4
@@ -33,13 +37,25 @@
     p.page-title-sub.w-25 完了済のミッション　#{@all_missions.complete.count}
     p.page-title-sub.w-25 未完了のミッション　#{@all_missions.incomplete.count}
     p.page-title-sub.w-25 下書き　#{@missions.draft.count}
-  div
-    = link_to 'ミッションを作成', new_mission_path, class: "btn-style-white-width w-100"
+  div.btn-style-white-border.w-100
+    = link_to 'ミッションを作成', new_mission_path, class: "btn-style-white-width"
   div.container.px-0
+    div.text-center.border.mt-3.w-60.mx-auto
+      div
+        p.font-SoukouMincho Mission検索
+      div
+        = search_form_for@search_mission, url: users_path do |f|
+          div.search-group
+            = f.label :title, 'Mission title', class: 'search-label'
+            = f.search_field :title_cont, class: 'search-form'
+            = f.submit "検索", class: 'search-btn-style'
     div.row
       = render @missions
     div.mt-5
       = paginate @missions
+
+
+
 
 
 div#modal01.modal.js-modal
@@ -66,7 +82,7 @@ div#modal01.modal.js-modal
                   = f.label :email, 'Email', {class: 'form-field-modal mb-2'}
                   = f.text_field :email, class: 'form-style-modal', id: 'user_email', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
                   div#unique_email
-            div.text-center.mt-3
+            div.text-center.mt-3.w-55.mx-auto
               button.js-modal-close.btn-style-modal 戻る
               = f.submit '変更', class: "btn-style-modal"
 
@@ -84,8 +100,7 @@ div#modal02.modal.js-modal
           p.font-s-modal ・スケジュールデータ
           p.font-s-modal ・タスクデータ
           p.font-s-modal ・ノートデータ
-          div
-            button.js-modal-close.btn-style-modal.float-left 戻る
-            div.float-right
-              = button_to '削除', users_path, method: :delete, class: "btn-size", data: {confirm: "削除しますか？"}
+          div.mt-3.text-center
+            button.js-modal-close.btn-style-modal 戻る
+            = button_to '削除', users_path, method: :delete, class: "btn-size d-inline", data: {confirm: "削除しますか？"}
 

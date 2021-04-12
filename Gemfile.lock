@@ -112,6 +112,9 @@ GEM
       sassc (>= 1.11)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    gretel (4.2.0)
+      actionview (>= 5.1, < 7.0)
+      railties (>= 5.1, < 7.0)
     hpricot (0.8.6)
     html2slim (0.2.0)
       hpricot
@@ -213,6 +216,10 @@ GEM
       thor (>= 0.19.0, < 2.0)
     rainbow (3.0.0)
     rake (13.0.3)
+    ransack (2.4.2)
+      activerecord (>= 5.2.4)
+      activesupport (>= 5.2.4)
+      i18n
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -338,6 +345,7 @@ DEPENDENCIES
   draper
   factory_bot_rails
   font-awesome-sass
+  gretel
   html2slim
   jbuilder (~> 2.5)
   jquery-rails
@@ -349,6 +357,7 @@ DEPENDENCIES
   puma (~> 3.11)
   rails (~> 5.2.4)
   rails-i18n (~> 5.1)
+  ransack
   rspec-rails
   rubocop
   rubocop-rails

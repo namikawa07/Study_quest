@@ -79,3 +79,8 @@ $(function(){
     });
 });
 
+$(function(){
+  $('.task-back-button').click(function(){
+    $('#taskplay').slideToggle();
+  })
+})

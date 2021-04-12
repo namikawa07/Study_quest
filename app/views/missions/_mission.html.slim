@@ -53,7 +53,7 @@ div.modal.js-modal id="modal_mission_edit_#{mission.id}"
             div.form-group.mb-1
               = f.label :memo, 'Memo', {class: 'form-field-modal mb-2'}
               = f.text_field :memo, class: 'form-style-modal', id: 'mission_memo', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
-            div#mission_errors_memo
+              div#mission_errors_memo
             div.text-center.mt-3
               button.js-modal-close.btn-style-modal 戻る
               = f.submit '変更', class: "btn-style-modal"

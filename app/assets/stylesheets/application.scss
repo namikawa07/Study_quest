@@ -355,6 +355,37 @@ input[type="file"] {
   outline: none;
 }
 
+@mixin btn-move-before($top: 6px, $left: 6px){
+  position: absolute;
+  z-index: -1;
+  width:100%;
+  height: 100%;
+  top: $top;
+  left: $left;
+  background-color: transparent;
+  border: 1px solid #d3d3d3;
+  transition: top 0.7s, left 0.7s;
+}
+
+@mixin btn-move-after($border: 15px, $border-left: 20px, $top: 20%, $left: 0px){
+  content: '';
+  border: solid $border transparent;
+  border-left: solid $border-left #d3d3d3;
+  position: absolute;
+  z-index: 1;
+  top: $top;
+  left: $left;
+  background-color: transparent;
+}
+
+@mixin btn-movement{
+  display: block;
+  animation-name: anime1;
+  animation-duration: 0.7s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+}
+
 .icon-btn-style{
   @include btn;
 }
@@ -368,18 +399,85 @@ input[type="file"] {
   }
 }
 
+.btn-style-white-border{
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  input {
+    width: 100%;
+    font-family: 'font-ja';
+    font-size:80%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #d3d3d3;
+  }
+}
+
+.btn-style-white-border::before{
+  content: '';
+  @include btn-move-before;
+}
+
+.btn-style-white-border:hover::before{
+  @include btn-move-before(-6px, -6px);
+}
+
+.btn-style-white-border::after{
+  @include btn-move-after;
+  display: none;
+}
+
+.btn-style-white-border:hover::after{
+  @include btn-move-after(8px, 10px, 20%, 0px);
+  @include btn-movement;
+}
+
 .btn-style-white-width{
   @include btn('font-ja', 13px, #d3d3d3,5px 25px );
-  
+  display: block;
+  width: 100%;
+  text-align: center;
+
+  &:hover{
+    text-decoration: none;
+    color: #2b2b2b;
+  }
 
   &:focus {
     @include focus-btn;
   }
 }
 
+
+.btn-style-white-width-border{
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.btn-style-white-width-border::before{
+  content: '';
+  @include btn-move-before(20px, 20px);
+}
+
+.btn-style-white-width-border:hover::before{
+  @include btn-move-before(-20px, -20px);
+}
+
+.btn-style-white-width-border::after{
+  @include btn-move-after;
+  display: none;
+}
+
+.btn-style-white-width-border:hover::after{
+  @include btn-move-after(8px, 10px, 20%, 0px);
+  @include btn-movement;
+}
+
 .btn-style-modal{
-  @include btn('font-en', 14px, #b2b1b1,5px 55px );
-  margin: 0 35px 15px 35px;
+  @include btn('font-en', 90%, #b2b1b1,1% 15% );
+  margin: 0 20% 15px 20px;
 
   &:focus {
     @include focus-btn;
@@ -412,57 +510,21 @@ input[type="file"] {
 
 .btn-style-md-border::before{
   content: '';
-  position: absolute;
-  z-index: -1;
-  width:100%;
-  height: 100%;
-  top: 12px;
-  left: 12px;
-  background-color: transparent;
-  border: 1px solid #d3d3d3;
-  transition: top 0.7s, left 0.7s;
+  @include btn-move-before(12px, 12px)
 }
 
 .btn-style-md-border:hover::before{
-  position: absolute;
-  z-index: -1;
-  width:100%;
-  height: 100%;
-  top: -12px;
-  left: -12px;
-  background-color: transparent;
-  border: 1px solid #d3d3d3;
-  transition: top 0.7s, left 0.7s;
+  @include btn-move-before(-12px, -12px)
 }
 
 .btn-style-md-border::after{
-  content: '';
-  border: solid 15px transparent;
-  border-left: solid 20px #d3d3d3;
-  position: absolute;
-  z-index: 1;
-  top: 20%;
-  left: -50px;
-  background-color: transparent;
-  
+  @include btn-move-after(15px, 20px, 20%, -50px);
   display: none;
 }
 
 .btn-style-md-border:hover::after{
-  content: '';
-  border: solid 15px transparent;
-  border-left: solid 20px #d3d3d3;
-  position: absolute;
-  z-index: 1;
-  top: 20%;
-  left: -50px;
-  background-color: transparent;
-  
-  display: block;
-  animation-name: anime1;
-  animation-duration: 0.7s;
-  animation-timing-function: ease;
-  animation-iteration-count: infinite;
+  @include btn-move-after(15px, 20px, 20%, -50px);
+  @include btn-movement;
 }
 
 .btn-style-lg{
@@ -483,57 +545,21 @@ input[type="file"] {
 
 .btn-style-lg-border::before{
   content: '';
-  position: absolute;
-  z-index: -1;
-  width:100%;
-  height: 100%;
-  top: 12px;
-  left: 12px;
-  background-color: transparent;
-  border: 1px solid #d3d3d3;
-  transition: top 0.7s, left 0.7s;
+  @include btn-move-before(12px, 12px)
 }
 
 .btn-style-lg-border:hover::before{
-  position: absolute;
-  z-index: -1;
-  width:100%;
-  height: 100%;
-  top: -12px;
-  left: -12px;
-  background-color: transparent;
-  border: 1px solid #d3d3d3;
-  transition: top 0.7s, left 0.7s;
+  @include btn-move-before(-12px, -12px)
 }
 
 .btn-style-lg-border::after{
-  content: '';
-  border: solid 15px transparent;
-  border-left: solid 20px #d3d3d3;
-  position: absolute;
-  z-index: 1;
-  top: 20%;
-  left: -50px;
-  background-color: transparent;
-  
+  @include btn-move-after(15px, 20px, 20%, -50px);
   display: none;
 }
 
 .btn-style-lg-border:hover::after{
-  content: '';
-  border: solid 15px transparent;
-  border-left: solid 20px #d3d3d3;
-  position: absolute;
-  z-index: 1;
-  top: 20%;
-  left: -50px;
-  background-color: transparent;
-  
-  display: block;
-  animation-name: anime1;
-  animation-duration: 0.7s;
-  animation-timing-function: ease;
-  animation-iteration-count: infinite;
+  @include btn-move-after(15px, 20px, 20%, -50px);
+  @include btn-movement;
 }
 
 .form-group{
@@ -541,22 +567,18 @@ input[type="file"] {
 }
 
 .form-group:focus-within::after{
-  content: '';
-  border: solid 15px transparent;
-  border-left: solid 20px #d3d3d3;
-  position: absolute;
-  z-index: 1;
-  top: 60%;
-  left: -50px;
-  background-color: transparent;
-  
-  display: block;
-  animation-name: anime1;
-  animation-duration: 0.7s;
-  animation-timing-function: ease;
-  animation-iteration-count: infinite;
+  @include btn-move-after(15px, 20px, 60%, -50px);
+  @include btn-movement;
 }
 
+.form-group-new-task{
+  position: relative;
+}
+
+.form-group-new-task:focus-within::after{
+  @include btn-move-after(8px, 10px, 60%, 0px);
+  @include btn-movement;
+}
 
 
 @keyframes anime1 {
@@ -726,11 +748,13 @@ $i: 1;
 
 .new-task-position{
   @include position;
+  
 }
 
 .new-task-form-position{
   border-top: none;
   @include position(relative);
+  display:none;
 }
 
 .task-form-field{
@@ -882,4 +906,49 @@ $i: 1;
 .bg-chara{
     background-image: url("/images/charactor.gif");
     background-repeat: no-repeat;
+}
+
+.schedule-complete{
+  position: absolute;
+  top:0%;
+  left: 0%;
+  background-color:rgb(0, 0, 0);
+  opacity: 0.4;
+}
+
+.search-group{
+  width: 90%;
+  margin: 0 auto;
+}
+
+.search-label{
+  font-family: 'font-en';
+}
+
+.search-form{
+  border: none;
+  background: rgba(154, 147, 131, 0.3);
+  color: #cbcbcb;
+  font-family: 'font-ja';
+  margin: 0 10px;
+}
+
+.search-btn-style{
+  @include btn('font-ja', 13px , #cbcbcb,3px 15px );
+}
+
+.button_to{
+  display: inline-block;
+}
+
+.breadcrumbs{
+  font-size: 110%;
+  a{
+    color: #cbcbcb;
+    &:hover{
+      color:white;
+      font-size: 110%;
+      text-decoration: none;
+    }
+  }
 }

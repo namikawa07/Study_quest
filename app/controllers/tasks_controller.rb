@@ -1,12 +1,16 @@
 class TasksController < ApplicationController
   before_action :set_mission
   before_action :today_tasks, only: %i[index create]
+  before_action :set_search_tasks, only: %i[index]
+  
   def index
     @task = Task.new
-    @all_tasks = Task.all
-    @schedules = @mission.schedules.page(params[:page]).per(4).order(start_date: :desc)
+    @all_tasks = @mission.tasks
+    @schedules = @mission.schedules.page(params[:schedule]).per(3).order(start_date: :desc)
     past_tasks
     same_created_tasks
+    @search_tasks = @search_task.result
+    @current_schedules = @mission.schedules.where("end_date >=? and start_date <=?",  Date.today, Date.today)
   end
 
   def create
@@ -100,6 +104,12 @@ class TasksController < ApplicationController
   end
 
   def same_created_tasks
-    @same_created_tasks = @pasttasks.order(created_at: :desc).group_by{|task| task.created_at.to_date}
+    @same_tasks = @pasttasks.order(created_at: :desc).page(params[:same_task]).per(15)
+    @same_created_tasks = @same_tasks.group_by{|task| task.created_at.to_date}
+  end
+
+  def set_search_tasks
+    mission = current_user.missions.find(params[:mission_id])
+    @search_task = mission.tasks.ransack(params[:q])
   end
 end

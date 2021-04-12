@@ -11,6 +11,12 @@
     a.header-menu-style href= "#task_information" Task's information
 -elsif current_page?(new_mission_schedule_path(params[:mission_id]))
   div
-    a.header-menu-style href= "/missions/#{params[:mission_id]}/tasks#task_information" Play task
-
+    a.header-menu-style href= "/missions/#{params[:mission_id]}/tasks#schedule" Play task
+-elsif current_page?(mission_task_notes_path(params[:mission_id], params[:task_id]))
+  div
+    a.header-menu-style href= "#new_note" New note
+  div
+    a.header-menu-style href= "#notes" Notes
+  div
+    a.header-menu-style href= "/missions/#{params[:mission_id]}/tasks" Play task
 

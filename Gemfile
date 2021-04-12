@@ -77,3 +77,5 @@ gem 'pry-rails'
 gem 'rails-i18n', '~> 5.1'
 gem 'draper'
 gem 'kaminari'
+gem 'ransack'
+gem "gretel"

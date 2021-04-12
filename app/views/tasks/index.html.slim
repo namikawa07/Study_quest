@@ -1,3 +1,5 @@
+= provide(:title, 'Tasks')
+- breadcrumb :mission_tasks, @mission
 #play_task.container-fluid.mb-3
   div.d-flex.my-5.border-b
     h1.page-title.float-left.ml-5 Task play
@@ -5,21 +7,21 @@
   div.bass-image
     = image_tag "/images/chara.jpeg", class: "w-100"
     div.z-in-1.new-task-position.w-20.mx-auto
-      a.btn-task.mx-auto type="button" data-toggle="collapse" data-target="#taskplay"
+      a.btn-task.mx-auto.task-back-button
         p.text-center.task-border.mx-2.mb-0
           small.font-SoukouMincho タスク作成
-      div#taskplay.collapse.z-in-1.new-task-form-position.w-100
+      div#taskplay.z-in-1.new-task-form-position.w-100
         = form_with model: @task, url: mission_tasks_path(@mission.id),class:"w-75 mx-auto", local: true, id: 'task_create_form' do |f|
           = render 'layouts/error_messages', model: f.object
-          div.form-group.mb-0
+          div.form-group-new-task.mb-0
             = f.label :title, 'タスク名', {class: 'task-form-field'}
             = f.text_field :title, class: 'task-form-style', id: 'task_title', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
-          div.form-group.mb-0
+          div.form-group-new-task.mb-0
             = f.label :detail, '詳細', {class: 'task-form-field'}
             = f.text_area :detail, class: 'task-form-style', id: 'task_detail', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
-          div.form-group.mb-0.d-flex
+          div.mb-0.d-flex.w-75.mx-auto.justify-content-between
             div
-              button.js-modal-close.task-new-btn type="button" data-toggle="collapse" data-target="#taskplay" 戻る
+              button.task-back-button.js-modal-close.task-new-btn type="button" data-toggle="collapse" data-target="#taskplay" 戻る
             div
               = f.submit '作成', class: 'task-new-btn'
       
@@ -43,9 +45,10 @@
         = render @tasks
       - (5 - @tasks.count).times do
         = render partial: "no_task"
-  div.mt-4
-    a.js-modal-open href="" data-target="modal_tasks_finish"
-      = button_to '今日の作業を終了する', class: "btn-style-white-width w-100"
+  div.mt-4.btn-style-white-border.w-100
+    a.js-modal-open.w-100 href="" data-target="modal_tasks_finish"
+      = button_to '今日の作業を終了する', class: "btn-style-white-width"
+      
 #past_task.container-fluid.mb-3
   div.d-flex.my-5.border-b
     h1.page-title.float-left.ml-5 Past task
@@ -58,20 +61,33 @@
         div.mt-5
     - else
       h3.text-center.font-ferrum No task
+    = paginate @same_tasks, :param_name => 'same_task'
 
 #schedule.container-fluid.mb-3
   div.d-flex.my-5.border-b
     h1.page-title.float-left.ml-5 Schedule
     p.ml-3.d-flex.align-items-center.mt-2.page-title-sub.head-border スケジュール
-  = link_to 'スケジュールを作成する', new_mission_schedule_path(@mission), class: "btn-style-white-width w-100"
+  div.btn-style-white-border.w-100
+    = link_to 'スケジュールを作成する', new_mission_schedule_path(@mission), class: "btn-style-white-width w-100"
+  div.container-sm.mt-5
+    div
+      div.d-flex.border-b.font-ferrum.w-30.mt-3
+        h4.mr-5 Currently schedule
+  - if @current_schedules.present?
+    div
+      - @current_schedules.each do |schedule|
+        = render partial: 'schedules/schedule', locals: {schedule: schedule}
+    div
+      div.d-flex.border-b.font-ferrum.w-25.mt-3
+        h4.mr-5 All schedules
   - if @schedules.present?
     div
       = render @schedules
     div.mt-5
-      = paginate @schedules
+      = paginate @schedules, :param_name => 'schedule'
   -else
     div.container.px-0
-      h3.text-center.font-ferrum No shedule
+      h3.text-center.font-ferrum No schedule
 
 #task_information.container-fluid.mb-3
   div.d-flex.my-5.border-b
@@ -88,6 +104,23 @@
     div
       div.d-flex.border-b.font-ferrum.w-25
         h4.mr-5 Mission schedule
+  div.container
+    div.text-center.border.mt-3.w-60.mx-auto
+      div
+        p.font-SoukouMincho Task検索
+      div
+        = search_form_for@search_task, url: mission_tasks_path(@mission) do |f|
+          div.search-group
+            = f.label :title, 'Mission title', class: 'search-label'
+            = f.search_field :title_cont, class: 'search-form'
+            = f.submit "検索", class: 'search-btn-style'
+-if params[:q].blank? || @search_tasks.blank? || params[:q]['title_cont'] == ""
+  p.font-ferrum No search task
+-else
+  - @search_tasks.each do |task|
+    = task.title
+ 
+  
     
 
 

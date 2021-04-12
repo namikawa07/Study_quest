@@ -3,7 +3,9 @@ class ApplicationController < ActionController::Base
   before_action :my_mission
   
   def my_mission
-    @my_mission = current_user.missions.find_by(registration: "registration")
+    if current_user.present?
+      @my_mission = current_user.missions.find_by(registration: "registration")
+    end
   end
   
   protected

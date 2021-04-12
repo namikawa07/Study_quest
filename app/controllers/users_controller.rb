@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: %i[new create]
-  skip_before_action :my_mission, only: %i[new create]
+  before_action :set_search_missions, only: %i[show]
   
   def new
     @user = User.new
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     if incomplete_mission.present?
       incomplete_mission.update_all(status: "incomplete")
     end
-    @missions = @user.missions.page(params[:page]).per(4).order(id: "DESC")
+    @missions = @search_mission.result.page(params[:page]).per(16).order(id: "DESC")
     @all_missions = @user.missions
   end
 
@@ -53,11 +53,16 @@ class UsersController < ApplicationController
     flash[:success] = t('users.destroy.Success')
     redirect_to root_path
   end
+
   
   private
   
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :icon)
+  end
+
+  def set_search_missions
+    @search_mission = current_user.missions.ransack(params[:q])
   end
   
   
