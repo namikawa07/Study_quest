@@ -56,36 +56,6 @@
 
 
 
-
-
-div#modal01.modal.js-modal
-  div.modal__bg.js-modal-close
-  div.modal__content
-    div.container-fluid.mb-3.mt-3
-      h1.page-title-modal.w-100.text-center　プロフィール編集
-    div.container
-      div.row
-        div.container
-          = form_with model: @user, url: users_path, remote: true, method: :patch, id: 'profile_form' do |f|
-            div.form-inline
-              div.w-17.mr-3
-                div.form-group.mb-1
-                  div.icon_preview.w-100.text-center
-                    = image_tag @user.avatar(:edit_icon), class: 'edit-icon-size mx-auto mb-3'
-                  = f.label :icon, '画像を選択', class: "icon-btn-style"
-                  = f.file_field :icon, class: "btn-style-image"
-              div.w-70
-                div.form-group.mb-1
-                  = f.label :name, 'User name', {class: 'form-field-modal mb-2'}
-                  = f.text_field :name, class: 'form-style-modal font-weight-lighter', id: 'user_name', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
-                div.form-group.mb-1
-                  = f.label :email, 'Email', {class: 'form-field-modal mb-2'}
-                  = f.text_field :email, class: 'form-style-modal', id: 'user_email', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
-                  div#unique_email
-            div.text-center.mt-3.w-55.mx-auto
-              button.js-modal-close.btn-style-modal 戻る
-              = f.submit '変更', class: "btn-style-modal"
-
 div#modal02.modal.js-modal
   div.modal__bg.js-modal-close
   div.modal__content

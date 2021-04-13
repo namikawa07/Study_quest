@@ -1,4 +1,4 @@
-- if task.status == "complete"
+- if task.status == "complete" || task.status == "untouch"
   div.container.mb-3
     div.card.card-style
       div.card-body.px-0.py-0
@@ -6,10 +6,15 @@
           div.d-flex
             h4.font-ferrum.text-center.mr-3 Mission title
             h5.font-SoukouMincho.text-center #{task.title}
+            h4.font-ferrum #{l task.start_date} ~ #{l task.end_date}
           div.d-flex
             a.btn-task.mx-auto type="button" data-toggle="collapse" data-target="#note_dropdown_#{task.id}"
               h5.text-center.mx-2.mb-0.font-ferrum #{task.notes.count} Notes
             p.font-ferrum Complete
+            = link_to mission_task_path(task.mission, task), method: :delete, data: {confirm: "削除しますか？"} do
+              i.fas.fa-trash
+            a.js-modal-open href="" data-target="modal_task_edit_#{task.id}"
+              i.fas.fa-pen
         div
           div.collapse.z-in-1.w-90.mx-auto id= "note_dropdown_#{task.id}"
             div.w-100
@@ -32,11 +37,16 @@
           div.d-flex
             h4.font-ferrum.text-center.mr-3 Mission title
             h5.font-SoukouMincho.text-center #{task.title}
+            h4.font-ferrum #{l task.start_date} ~ #{l task.end_date}
           div.d-flex
             = button_to '再作成', remake_mission_task_path(task.mission.id, task.id), class: "btn-style-white"
             a.btn-task.mx-auto type="button" data-toggle="collapse" data-target="#note_dropdown_#{task.id}"
               h5.text-center.mx-2.mb-0.font-ferrum #{task.notes.count} Notes
             p.font-ferrum Incomplete
+            = link_to mission_task_path(task.mission, task), method: :delete, data: {confirm: "削除しますか？"} do
+              i.fas.fa-trash
+            a.js-modal-open href="" data-target="modal_task_edit_#{task.id}"
+              i.fas.fa-pen
         div
           div.collapse.z-in-1.w-90.mx-auto id= "note_dropdown_#{task.id}"
             div.w-100
@@ -50,3 +60,32 @@
                   h3.text-center.font-ferrum No note
                 div
                   = link_to 'Noteを作成する', mission_task_notes_path(task.mission.id, task.id)
+
+              
+div.modal.js-modal id="modal_task_edit_#{task.id}"
+  div.modal__bg.js-modal-close
+  div.modal__content
+    div.container-fluid.mb-3.mt-3
+      h1.page-title-modal.w-100.text-center　タスク編集
+    div.container
+      div.row
+        div.container.w-75
+          = form_with model: task, url: mission_task_path(task.mission, task), remote: true, method: :patch, class: 'tasks_form' do |f|
+            = render 'layouts/error_messages', model: f.object
+            div.form-group.mb-1
+              = f.label :title, 'Task title', {class: 'form-field-modal mb-2'}
+              = f.text_field :title, class: 'form-style-modal font-weight-lighter', id: 'task_title', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+            div.form-group.mb-1
+              = f.label :start_date, 'Start date', {class: 'form-field-modal mb-2'}
+              = f.datetime_field :start_date, class: 'form-style-modal', id: 'task_start_date', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+              #update_task_errors_start_date
+            div.form-group.mb-1
+              = f.label :end_date, 'End date', {class: 'form-field-modal mb-2'}
+              = f.datetime_field :end_date, class: 'form-style-modal', id: 'task_end_date', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+              #update_task_errors_end_date
+            div.form-group.mb-1
+              = f.label :detail, 'Task detail', {class: 'form-field-modal mb-2'}
+              = f.text_area :detail, class: 'form-style-modal', id: 'task_detail', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+            div.text-center.mt-3
+              button.js-modal-close.btn-style-modal 戻る
+              = f.submit '変更', class: "btn-style-modal"

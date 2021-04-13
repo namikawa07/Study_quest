@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resource :users, only: %i[new create edit show update destroy]
   resources :missions, only: %i[new create update destroy] do
     member do
+      post 'status_change'
       post 'registration'
       post 'finish'
     end

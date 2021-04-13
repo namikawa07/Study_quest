@@ -1,0 +1,4 @@
+<% if @status == 'fail' %>
+  $('#update_task_errors_start_date').html("<%= j(render 'task_errors_start_date') %>");
+  $('#update_task_errors_end_date').html("<%= j(render 'task_errors_end_date') %>");
+<% end %>

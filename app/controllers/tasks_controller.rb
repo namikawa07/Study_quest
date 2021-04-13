@@ -6,35 +6,49 @@ class TasksController < ApplicationController
   def index
     @task = Task.new
     @all_tasks = @mission.tasks
-    @schedules = @mission.schedules.page(params[:schedule]).per(3).order(start_date: :desc)
     past_tasks
     same_created_tasks
     @search_tasks = @search_task.result
-    @current_schedules = @mission.schedules.where("end_date >=? and start_date <=?",  Date.today, Date.today)
   end
 
   def create
     @task = Task.new(task_params)
     @task.mission_id = @mission.id
-    binding.pry
-    if @task.save
-      flash[:success] = t('tasks.create.Success')
-      redirect_to mission_tasks_path(@mission)
-    else
-    binding.pry
-      flash.now[:danger] = t('tasks.create.Not_success')
-      redirect_to mission_tasks_path(@mission)
+    if @task.start_date.to_date > Date.today
+        binding.pry
+      @task.task_date = "future_task"
+    end
+    respond_to do |format|
+      if @task.save
+        flash[:success] = t('tasks.create.Success')
+        format.html { redirect_to mission_tasks_path(@mission) }
+        format.js { render js: "window.location = '#{mission_tasks_path(@mission)}'" }
+      else
+        flash.now[:danger] = t('tasks.create.Not_success')
+        format.html { redirect_to users_path }
+        format.json { render json: @task.errors, status: :unprocessable_entity }
+        format.js { @status = "fail" }
+      end
     end
   end
   
   def update
     @task = @mission.tasks.find(params[:id])
-    if @task.update(task_params)
-      flash[:success] = t('tasks.update.Success')
-      redirect_to mission_tasks_path(@mission)
-    else
-      flash.now[:danger] = t('tasks.update.Not_success')
-      redirect_to mission_tasks_path(@mission)
+    if @task.start_date > Date.today
+      @task.task_date = "future_task"
+    end
+    respond_to do |format|
+      if @task.update(task_params)
+        flash[:success] = t('tasks.update.Success')
+        format.html { redirect_to mission_tasks_path(@mission) }
+        format.js { render js: "window.location = '#{mission_tasks_path(@mission)}'" }
+      else
+      binding.pry
+        flash.now[:danger] = t('tasks.update.Not_success')
+        format.html { redirect_to mission_tasks_path(@mission) }
+        format.json { render json: @task.errors, status: :unprocessable_entity }
+        format.js { @status = "fail" }
+      end
     end
   end
   
@@ -46,10 +60,12 @@ class TasksController < ApplicationController
   end
   
   def finish
-    @finish_tasks = @mission.tasks.where(task_date: "today_task")
-    @finish_untouch_tasks = @finish_tasks.where(status: "untouch")
+    @today_finish_tasks = @mission.tasks.where(task_date: "today_task").where("end_date >= ?", Date.today)
+    @finish_untouch_tasks = @today_finish_tasks.where(status: "untouch")
     @finish_untouch_tasks.update_all(status: "incomplete") if @finish_untouch_tasks.present?
-    if @finish_tasks.update_all(task_date: "past_task")
+    if @today_finish_tasks.update_all(task_date: "past_task")
+      tomorrow_tasks = @mission.tasks.where(task_date: "future_task").where(start_date: Date.today)
+      tomorrow_tasks.update_all(task_date: "today_task") if tomorrow_tasks.present?
       flash[:success] = t('tasks.finish.Success')
       redirect_to mission_tasks_path(@mission)
     else
@@ -88,7 +104,7 @@ class TasksController < ApplicationController
   private
   
   def task_params
-    params.require(:task).permit(:title, :detail, :status, :task_date)
+    params.require(:task).permit(:title, :detail, :status, :task_date, :start_date, :end_date)
   end
   
   def set_mission
@@ -97,6 +113,7 @@ class TasksController < ApplicationController
 
   def today_tasks
     @tasks = @mission.tasks.where(task_date: "today_task")
+    @task_groups = @tasks.each_slice(5).to_a
   end
   
   def past_tasks
@@ -104,8 +121,8 @@ class TasksController < ApplicationController
   end
 
   def same_created_tasks
-    @same_tasks = @pasttasks.order(created_at: :desc).page(params[:same_task]).per(15)
-    @same_created_tasks = @same_tasks.group_by{|task| task.created_at.to_date}
+    @same_tasks = @mission.tasks.order(start_date: :desc).page(params[:same_task]).per(15)
+    @same_created_tasks = @same_tasks.group_by{|task| task.start_date.to_date}
   end
 
   def set_search_tasks

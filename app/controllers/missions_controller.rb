@@ -1,5 +1,5 @@
 class MissionsController < ApplicationController
-  before_action :set_mission, only: %i[update destroy registration finish]
+  before_action :set_mission, only: %i[update destroy registration finish status_change]
   def new
     @mission = Mission.new
   end
@@ -36,23 +36,31 @@ class MissionsController < ApplicationController
   end
 
   def registration
-    if @mission.registration == "not_registration"
-      @mission.registration = "registration"
-      if my_mission.blank? && @mission.save
-        flash[:success] = t('missions.registration.Success')
-        redirect_to users_path
+    respond_to do |format|
+      if @mission.registration == "not_registration"
+        @mission.registration = "registration"
+        if my_mission.blank? && @mission.save
+          flash[:success] = t('missions.registration.Success')
+          format.html { redirect_to users_path }
+          format.js { render js: "window.location = '#{users_path}'" }
+        else
+          flash[:danger] = t('missions.registration.Not_success')
+          format.html { redirect_to users_path }
+          format.json { render json: @mission.errors, status: :unprocessable_entity }
+          format.js { @status = "fail" }
+        end
       else
-        flash[:danger] = t('missions.registration.Not_success')
-        redirect_to users_path
-      end
-    else
-      @mission.registration = "not_registration"
-      if @mission.save
-        flash[:success] = t('missions.not_registration.Success')
-        redirect_to users_path
-      else
-        flash[:danger] = t('missions.not_registration.Not_success')
-        redirect_to users_path
+        @mission.registration = "not_registration"
+        if @mission.save
+          flash[:success] = t('missions.not_registration.Success')
+          format.html { redirect_to users_path }
+          format.js { render js: "window.location = '#{users_path}'" }
+        else
+          flash[:danger] = t('missions.not_registration.Not_success')
+          format.html { redirect_to users_path }
+          format.json { render json: @mission.errors, status: :unprocessable_entity }
+          format.js { @status = "fail" }
+        end
       end
     end
   end
@@ -70,6 +78,20 @@ class MissionsController < ApplicationController
       flash[:danger] = t('missions.finish.Not_success')
       redirect_to users_path
     end
+  end
+
+  def status_change
+    if @mission.status == 'publish'
+      @mission.status = 'draft'
+      @mission.save!
+      flash[:success] = t('missions.update.publishSuccess')
+    elsif @mission.status == 'draft'
+      @mission.status = 'publish'
+      @mission.save!
+      flash[:success] = t('missions.update.draftSuccess')
+    else
+    end
+      redirect_to users_path
   end
 
   private

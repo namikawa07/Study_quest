@@ -24,6 +24,8 @@ ja:
     update:
       Success: "ミッションを編集しました"
       Not_success: "ミッションを編集できませんでした"
+      draftSuccess: "下書きを解除しました"
+      publishSuccess: "ミッションを下書きにしました"
     destroy:
       Success: "ミッションを削除しました"
     registration:

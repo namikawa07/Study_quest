@@ -84,3 +84,38 @@ $(function(){
     $('#taskplay').slideToggle();
   })
 })
+
+jQuery(function ($) {
+  $(".today_task_group").not("#today_task_group_1").css("display", "none");
+  $("#today_task_1").addClass("show");
+  $("#today_task_button_1").addClass("active");
+  
+  // 質問の答えをあらかじめ非表示
+
+  //質問をクリック
+  $(".today_task_btn").click(function () {
+  
+    $(".today_task_btn").not(this).removeClass("open");
+    //クリックしたquestion以外の全てのopenを取る
+    $(".today_task_btn").not(this).next().slideUp(300);
+    //クリックされたquestion以外のanswerを閉じる
+    $(this).toggleClass("open");
+    //thisにopenクラスを付与
+    $(this).next().slideToggle(300);
+    //thisのanswerを展開、開いていれば閉じる
+
+    let today_task_btns = $(".today_task_btn"); // tabのクラスを全て取得し、変数tabsに配列で定義
+    $(".active").removeClass("active"); // activeクラスを消す
+    $(this).addClass("active"); // クリックした箇所にactiveクラスを追加
+    const index = today_task_btns.index(this); // クリックした箇所がタブの何番目か判定し、定数indexとして定義
+    //$(".today_task_groups").removeClass("show").eq(index).toggleClass("show"); // showクラスを消して、contentクラスのindex番目にshowクラスを追加
+    
+    $.when(
+      $(".today_task_groups").animate({width: 'hide'})
+    ).done(function(){ 
+      $(".today_task_groups").eq(index).stop().animate({width: 'toggle'});
+    });    
+
+        
+  });
+});

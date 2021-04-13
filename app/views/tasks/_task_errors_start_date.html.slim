@@ -1,0 +1,3 @@
+-if @task.errors.full_messages_for(:Startdate)
+  - @task.errors.full_messages_for(:Startdate).each do |msg|
+    p.error.mb-0 #{msg}

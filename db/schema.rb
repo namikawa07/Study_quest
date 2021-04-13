@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_08_054203) do
+ActiveRecord::Schema.define(version: 2021_04_12_055414) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -55,17 +55,6 @@ ActiveRecord::Schema.define(version: 2021_04_08_054203) do
     t.index ["task_id"], name: "index_notes_on_task_id"
   end
 
-  create_table "schedules", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "title", null: false
-    t.date "start_date", null: false
-    t.date "end_date", null: false
-    t.integer "status", default: 0, null: false
-    t.bigint "mission_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["mission_id"], name: "index_schedules_on_mission_id"
-  end
-
   create_table "tasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title", null: false
     t.text "detail"
@@ -73,7 +62,9 @@ ActiveRecord::Schema.define(version: 2021_04_08_054203) do
     t.bigint "mission_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "task_date", default: 0, null: false
+    t.integer "task_date", default: 0
+    t.datetime "start_date", null: false
+    t.datetime "end_date", null: false
     t.index ["mission_id"], name: "index_tasks_on_mission_id"
   end
 
@@ -90,6 +81,5 @@ ActiveRecord::Schema.define(version: 2021_04_08_054203) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "missions", "users"
   add_foreign_key "notes", "tasks"
-  add_foreign_key "schedules", "missions"
   add_foreign_key "tasks", "missions"
 end

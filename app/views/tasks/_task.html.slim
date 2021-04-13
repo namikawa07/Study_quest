@@ -5,11 +5,11 @@ div.col-15.mt-5.px-3
         div.border-b.my-2.mx-3
           h5.font-SoukouMincho.text-center #{task.title}
         div.card-height
+        = link_to "#{task.notes.count} Notes", mission_task_notes_path(task.mission.id, task.id), class: 'text-center mx-2 mb-0 font-ferrum'
         = link_to mission_task_path(task.mission, task), method: :delete, data: {confirm: "削除しますか？"} do
           i.fas.fa-trash
         a.js-modal-open href="" data-target="modal_task_edit_#{task.id}"
           i.fas.fa-pen
-        = link_to 'タスクノート',  mission_task_notes_path(task.mission, task)
   - else
     div.card.card-style-complete
       div.card-body.px-0.py-0
@@ -33,11 +33,19 @@ div.modal.js-modal id="modal_task_edit_#{task.id}"
     div.container
       div.row
         div.container.w-75
-          = form_with model: task, url: mission_task_path(task.mission, task), local: true, method: :patch, class: 'tasks_form' do |f|
+          = form_with model: task, url: mission_task_path(task.mission, task), remote: true, method: :patch, class: 'tasks_form' do |f|
             = render 'layouts/error_messages', model: f.object
             div.form-group.mb-1
               = f.label :title, 'Task title', {class: 'form-field-modal mb-2'}
               = f.text_field :title, class: 'form-style-modal font-weight-lighter', id: 'task_title', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+            div.form-group.mb-1
+              = f.label :start_date, 'Start date', {class: 'form-field-modal mb-2'}
+              = f.datetime_field :start_date, class: 'form-style-modal', id: 'task_start_date', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+              #update_task_errors_start_date
+            div.form-group.mb-1
+              = f.label :end_date, 'End date', {class: 'form-field-modal mb-2'}
+              = f.datetime_field :end_date, class: 'form-style-modal', id: 'task_end_date', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+              #update_task_errors_end_date
             div.form-group.mb-1
               = f.label :detail, 'Task detail', {class: 'form-field-modal mb-2'}
               = f.text_area :detail, class: 'form-style-modal', id: 'task_detail', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
