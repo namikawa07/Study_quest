@@ -13,7 +13,8 @@ class Mission < ApplicationRecord
   has_many :tasks, dependent: :destroy
   has_many :schedules, dependent: :destroy
   belongs_to :user
-  
+
+
   def date_cannot_be_start_date
     errors.add(:Startdate, ": 過去の日付は使用できません") if start_date.present? && start_date < Date.today
   end

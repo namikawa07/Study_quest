@@ -1,0 +1,4 @@
+<% if @status == 'fail' %>
+  $('.error_mission_my_mission').html('');
+  $('.error_mission_my_mission_<%=@mission.id%>').html("<%= j(render 'mission_error_my_mission') %>");
+<% end %> 

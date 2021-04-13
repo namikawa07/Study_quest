@@ -165,6 +165,12 @@ $(function(){
         required: true,
         maxlength: 20,
       },
+      "task[start_date]": {
+        required: true,
+      },
+      "task[end_date]": {
+        required: true,
+      },
       "task[detail]": {
         maxlength: 200,
       },
@@ -173,6 +179,12 @@ $(function(){
       "task[title]": {
         required: 'タイトルを入力して下さい',
         maxlength: 'task名は最大で20字までです'
+      },
+      "task[start_date]": {
+        required: '開始日を入力して下さい',
+      },
+      "task[end_date]": {
+        required: '終了日を入力して下さい',
       },
       "task[detail]": {
         maxlength: '詳細は最大で200字までです',
@@ -221,6 +233,12 @@ $(function(){
         required: true,
         maxlength: 20,
       },
+      "task[start_date]": {
+        required: true,
+      },
+      "task[end_date]": {
+        required: true,
+      },
       "task[detail]": {
         maxlength: 200,
       },
@@ -229,6 +247,12 @@ $(function(){
       "task[title]": {
         required: 'タイトルを入力して下さい',
         maxlength: 'task名は最大で20字までです',
+      },
+      "task[start_date]": {
+        required: '開始日を入力して下さい',
+      },
+      "task[end_date]": {
+        required: '終了日を入力して下さい',
       },
       "task[detail]": {
         maxlength: '詳細は最大で200字までです',
