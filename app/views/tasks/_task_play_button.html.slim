@@ -1,12 +1,25 @@
--if task.status == "untouch"
-  div.z-in-1.task-btn.d-block.mx-auto.d-flex.w-100.margin-b
-    div.font-SoukouMincho.task-name.text-white
-      p.task-attack #{task.title}
-    = button_to 'Attack', attack_mission_task_path(task.mission.id, task.id), class: "btn-style-white"
-  div.y-6
--if task.status == "complete"
-  div.z-in-1.task-btn.d-block.mx-auto.d-flex.w-100.margin-b
-    div.font-SoukouMincho.task-name.text-white
-      p.task-attack #{task.title}
-    = button_to 'Back', attack_mission_task_path(task.mission.id, task.id), class: "btn-style-white"
-  div.y-6
+- if task.status == "untouch"
+  div.task-btn.z-in-2.d-block.float-right.d-flex.margin-b.justify-content-between.position-relative
+    div.font-SoukouMincho.task-name-btn-center.text-white.w-70
+      -if task.title.length <= 10
+        p.task-attack.w-100 #{task.title}
+      -elsif task.title.length <= 20
+        p.task-attack.w-100.fontsize-9.lineheight-100 #{task.title}
+      -elsif task.title.length <= 30
+        p.task-attack.w-100.fontsize-7.lineheight-100 #{task.title}
+      -elsif task.title.length <= 40
+        p.task-attack.w-100.fontsize-5.lineheight-100 #{task.title}
+    = button_to 'Attack', attack_mission_task_path(task.mission.id, task.id), class: "btn-style-white task-name-btn-center"
+  
+- elsif task.status == "incomplete"
+  div.task-btn.z-in-2.task-btn.d-block.float-right.d-flex.w-100.margin-b.justify-content-between.position-relative
+    div.font-SoukouMincho.task-name-btn-center.text-white.w-70
+      p.task-attack.w-100 #{task.title}
+    = button_to 'Attack', attack_mission_task_path(task.mission.id, task.id), class: "btn-style-white task-name-btn-center"
+
+- elsif task.status == "complete"
+  div.task-btn.z-in-2.task-btn.d-block.float-right.d-flex.w-100.margin-b.justify-content-between.position-relative
+    div.font-SoukouMincho.task-name-btn-center.text-white.w-70
+      p.task-attack.w-100 #{task.title}
+    = button_to 'Back', attack_mission_task_path(task.mission.id, task.id), class: "btn-style-white task-name-btn-center"
+

@@ -1,54 +1,31 @@
 div.col-15.mt-5.px-3
-  - if task.status == "untouch"
-    div.card.card-style
-      div.card-body.px-0.py-0
-        div.border-b.my-2.mx-3
-          h5.font-SoukouMincho.text-center #{task.title}
-        div.card-height
-        = link_to "#{task.notes.count} Notes", mission_task_notes_path(task.mission.id, task.id), class: 'text-center mx-2 mb-0 font-ferrum'
-        = link_to mission_task_path(task.mission, task), method: :delete, data: {confirm: "削除しますか？"} do
-          i.fas.fa-trash
-        a.js-modal-open href="" data-target="modal_task_edit_#{task.id}"
-          i.fas.fa-pen
-  - else
-    div.card.card-style-complete
-      div.card-body.px-0.py-0
-        div.border-b.my-2.mx-3
-          h5.font-ferrum.text-center #{task.title}
-        div.card-height
-        = link_to mission_task_path(task.mission, task), method: :delete, data: {confirm: "削除しますか？"} do
-          i.fas.fa-trash
-        a.js-modal-open href="" data-target="modal_task_edit_#{task.id}"
-          i.fas.fa-pen
-        = link_to 'タスクノート',  mission_task_notes_path(task.mission, task)
-      div.card-overlay
-        h4.complete-text.text-center.font-ferrum complete!
-    
+  div.card.card-style
+    div.card-body.px-0.py-0
+      div.border-b.my-2.mx-3
+        h5.font-SoukouMincho.text-center #{task.title}
+      div.card-height.position-relative
+      = image_tag "/images/#{task.character}-card.png", class: "card-bg-image"
+      div.card-title.mt-4
+        p.font-ferrum Start date #{l task.start_date}
+        p.font-ferrum End date#{l task.end_date}
+        - if task.detail.blank?
+          div.text-center
+            p.font-ferrum Task detail
+            p.font-ferrum No detail
+        -else
+          div.text-center
+            p.font-ferrum.mb-0 Task detail
+            p.font-SoukouMincho #{task.detail.truncate(35)}
+        div.d-flex.justify-content-around
+          = link_to "#{task.notes.count} Notes", mission_task_notes_path(task.mission.id, task.id), class: 'text-center mb-0 font-ferrum not-link-decoration z-in-2'
+          = link_to '削除',mission_task_path(task.mission, task), method: :delete, data: {confirm: "削除しますか？"}, class: "not-link-decoration font-SoukouMincho z-in-2"
+          a.js-modal-open.z-in-2 href="" data-target="modal_task_edit_#{task.id}"
+            p.not-link-decoration.font-SoukouMincho.z-in-2 編集
+      -if task.status == "complete"
+        div id= "js-card-complete#{task.id}"
+          div.card-overlay
+            h4.complete-text.text-center.font-ferrum complete!
+      div id= "js-card-complete#{task.id}"
               
-div.modal.js-modal id="modal_task_edit_#{task.id}"
-  div.modal__bg.js-modal-close
-  div.modal__content
-    div.container-fluid.mb-3.mt-3
-      h1.page-title-modal.w-100.text-center　タスク編集
-    div.container
-      div.row
-        div.container.w-75
-          = form_with model: task, url: mission_task_path(task.mission, task), remote: true, method: :patch, class: 'tasks_form' do |f|
-            = render 'layouts/error_messages', model: f.object
-            div.form-group.mb-1
-              = f.label :title, 'Task title', {class: 'form-field-modal mb-2'}
-              = f.text_field :title, class: 'form-style-modal font-weight-lighter', id: 'task_title', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
-            div.form-group.mb-1
-              = f.label :start_date, 'Start date', {class: 'form-field-modal mb-2'}
-              = f.datetime_field :start_date, class: 'form-style-modal', id: 'task_start_date', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
-              #update_task_errors_start_date
-            div.form-group.mb-1
-              = f.label :end_date, 'End date', {class: 'form-field-modal mb-2'}
-              = f.datetime_field :end_date, class: 'form-style-modal', id: 'task_end_date', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
-              #update_task_errors_end_date
-            div.form-group.mb-1
-              = f.label :detail, 'Task detail', {class: 'form-field-modal mb-2'}
-              = f.text_area :detail, class: 'form-style-modal', id: 'task_detail', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
-            div.text-center.mt-3
-              button.js-modal-close.btn-style-modal 戻る
-              = f.submit '変更', class: "btn-style-modal"
+
+= render partial: 'task_edit_modal', locals: {task: task}

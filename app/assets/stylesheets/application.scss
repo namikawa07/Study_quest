@@ -27,6 +27,413 @@
   src: font-url('ferrum.otf') format('truetype');
 }
 
+header{
+  z-index: 3;
+}
+
+html{
+  font-size: calc(100vw / 80);
+}
+
+
+//ゲーム画面
+.bg-image-light{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+img.bg-image-chara{
+  position: absolute;
+  top: 61%;
+  left: 6%;
+  width: 19%;
+  height:auto;
+}
+
+.task_characters{
+  position:absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+}
+
+.bg-image-enemy1{
+  position: absolute;
+  top: 44%;
+  right: 40%;
+  width: 22%;
+  height:auto;
+}
+
+.bg-image-enemy2{
+  position: absolute;
+  top: 52%;
+  right: 30%;
+  width: 22%;
+  height:auto;
+  z-index: 2;
+}
+
+.bg-image-enemy3{
+  position: absolute;
+  top: 44%;
+  right: 20%;
+  width: 22%;
+  height:auto;
+}
+
+.bg-image-enemy4{
+  position: absolute;
+  top: 52%;
+  right: 10%;
+  width: 22%;
+  height:auto;
+  z-index: 2;
+}
+
+.bg-image-enemy5{
+  position: absolute;
+  top: 44%;
+  right: 0%;
+  width: 22%;
+  height:auto;
+}
+
+@mixin enemy($top: 50%, $right: 50%){
+  position: absolute;
+  top: $top;
+  right: $right;
+  width: 25%;
+  height:auto;
+}
+.enemy1{
+  @include enemy(40%, 50%)
+}
+
+.enemy2{
+  @include enemy(46%, 45%);
+  z-index:1;
+}
+
+.enemy3{
+  @include enemy(40%, 35%)
+}
+
+.enemy4{
+  @include enemy(45.5%, 33%);
+  z-index:1;
+}
+
+.enemy5{
+  @include enemy(40%, 25%)
+}
+
+.enemy6{
+  @include enemy(42%, 22%);
+  z-index:1;
+}
+
+.enemy7{
+  @include enemy(40%, 15%)
+}
+
+.enemy8{
+  @include enemy(45%, 10%);
+  z-index:1;
+}
+
+.enemy9{
+  @include enemy(40%, 5%)
+}
+
+.enemy10{
+  @include enemy(46%, 0%);
+  z-index:1;
+}
+
+@mixin enemy-title($top: 10%, $left: 50%) {
+  position: absolute;
+  top: $top;
+  left: $left;
+  width: 15%;
+  height:auto;
+}
+.enemy1-title{
+  @include enemy-title(10%, 50%);
+}
+
+.enemy2-title{
+  @include enemy-title(18%, 54%)
+}
+
+.enemy3-title{
+  @include enemy-title(10%, 58%)
+}
+
+.enemy4-title{
+  @include enemy-title(18%, 62%)
+}
+
+.enemy5-title{
+  @include enemy-title(10%, 66%)
+}
+
+.enemy6-title{
+  @include enemy-title(18%, 70%)
+}
+
+.enemy7-title{
+  @include enemy-title(10%, 74%)
+}
+
+.enemy8-title{
+  @include enemy-title(18%, 78%)
+}
+
+.enemy9-title{
+  @include enemy-title(10%, 82%)
+}
+
+.enemy10-title{
+  @include enemy-title(18%, 86%)
+}
+
+.attack-icon{
+  width:10%;
+  height: auto;
+  position:absolute;
+  top: 0;
+  left: 0;
+}
+
+
+.task-title-img{
+  position: absolute;
+  top: 32%;
+  right: 50%;
+  width: 50%;
+  height: auto;
+  opacity: 0;
+  
+}
+
+.enemy-task-title{
+  position: absolute;
+  top: 37%;
+  right: -8%;
+  width: 50%;
+  height: auto;
+  opacity: 0;
+}
+
+.task-title{
+  position: absolute;
+  top: 37%;
+  right: -10%;
+  display: none;
+}
+
+.chara-attack0{
+  position: absolute;
+  top: 47%;
+  left: 0.2%;
+  width: 85%;
+  height: auto;
+  z-index: 3;
+}
+
+.chara-attack1{
+  position: absolute;
+  bottom: 0%;
+  left: 0%;
+  width: 70%;
+  height: auto;
+  z-index: 3;
+}
+
+.chara-attack2{
+  position: absolute;
+  bottom: 0%;
+  left: 0%;
+  width: 70%;
+  height: auto;
+  z-index: 3;
+}
+
+.chara-attack3{
+  position: absolute;
+  bottom: 0%;
+  left: 0.2%;
+  width:90%;
+  height: auto;
+  z-index: 3;
+}
+
+.chara-attack4{
+  position: absolute;
+  bottom: 1.4%;
+  left: 1.1%;
+  width: 65%;
+  height: auto;
+  z-index: 3;
+}
+
+.chara-attack5{
+  position: absolute;
+  bottom: 1.3%;
+  left: 1.1%;
+  width: 69%;
+  height: auto;
+  z-index: 3;
+}
+
+
+
+.attack-action-filter{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+  z-index: 3;
+}
+
+
+
+@mixin enemy-title-motion($top:15%, $left:53.5%){
+  position: absolute;
+  top: $top;
+  left: $left;
+  width: 4%;
+  height: 8%;
+  opacity: 0;
+  font-family: 'font-en';
+  text-decoration: none;
+  border-bottom: none;
+  color: #6e6e6e;
+  transform: rotate(0deg);
+}
+
+@mixin enemy-title-hover{
+  font-family: 'font-en';
+  opacity: 1;
+  text-decoration: none;
+  color: #ffffff;
+  transform: rotate(-35deg);
+  //transition-duration:0.3s;
+  font-size: 130%;
+}
+
+.enemy-title-motion1{
+  @include enemy-title-motion;
+  &:hover{
+    @include enemy-title-hover;
+  }
+}
+
+
+.enemy-title-motion2{
+  @include enemy-title-motion(23%, 57.5%);
+  &:hover{
+    @include enemy-title-hover;
+  }
+}
+
+.enemy-title-motion3{
+  @include enemy-title-motion(15%, 61.5%);
+  &:hover{
+    @include enemy-title-hover;
+  }
+}
+
+.enemy-title-motion4{
+  @include enemy-title-motion(23%, 65.5%);
+  &:hover{
+    @include enemy-title-hover;
+  }
+}
+
+.enemy-title-motion5{
+  @include enemy-title-motion(15%, 69.5%);
+  &:hover{
+    @include enemy-title-hover;
+  }
+}
+
+.enemy-title-motion6{
+  @include enemy-title-motion(23%, 73.5%);
+  &:hover{
+    @include enemy-title-hover;
+  }
+}
+
+.enemy-title-motion7{
+  @include enemy-title-motion(15%, 77.5%);
+  &:hover{
+    @include enemy-title-hover;
+  }
+}
+
+.enemy-title-motion8{
+  @include enemy-title-motion(23%, 81.5%);
+  &:hover{
+    @include enemy-title-hover;
+  }
+}
+
+.enemy-title-motion9{
+  @include enemy-title-motion(15%, 85.5%);
+  &:hover{
+    @include enemy-title-hover;
+  }
+}
+
+.enemy-title-motion10{
+  @include enemy-title-motion(23%, 89.5%);
+  &:hover{
+    @include enemy-title-hover;
+  }
+}
+
+
+
+
+.card-bg-image{
+ 
+  width: 100%;
+  height: auto;
+}
+
+
+.chara_img{
+  width: 39%;
+  z-index: 1;
+  position: absolute;
+  top:2%;
+  left: 0%;
+}
+
+.partner_img{
+  width: 39%;
+  z-index: 1;
+  position: absolute;
+  top:11.3%;
+  left: 0%;
+}
+
+.mission_info{
+  z-index: 3;
+  position: absolute;
+  top:7%;
+  left: 0%;
+  width: 60%;
+  font-size: 80%;
+  margin-top: 5%;
+}
+
+//ゲーム画面終了
+
 .error{
   font-family: 'font-ja';
   color:#ea2c2c;
@@ -94,6 +501,8 @@ body {
     text-decoration: none;
   }
 }
+
+
 
 .header-menu-style{
   color: #cbcbcb;
@@ -301,9 +710,6 @@ body {
 }
 
 
-
-
-
 .form-group-height {
   height: 100%;
 }
@@ -349,6 +755,21 @@ $i: 1;
   .y-#{$i} {height: 1% * $i;}
   $i: $i + 1;
 }
+
+//フォントサイズ
+
+$fontnum: 1;
+@while $fontnum <= 100 {
+  .fontsize-#{$fontnum} {font-size: 0.1rem * $fontnum;}
+  $fontnum: $fontnum + 1;
+}
+
+$num: 1;
+@while $num <= 1000 {
+  .lineheight-#{$num} {line-height: 1% * $num;}
+  $num: $num + 1;
+}
+
 
 
 
@@ -415,7 +836,8 @@ input[type="file"] {
 
 
 .btn-style-white{
-  @include btn('font-ja', 10px, #d3d3d3,5px 25px );
+  @include btn('font-ja', 0.5rem, #d3d3d3,5% 25% );
+  
 
   &:focus {
     @include focus-btn;
@@ -434,6 +856,12 @@ input[type="file"] {
     padding-top: 5px;
     padding-bottom: 5px;
     background-color: #d3d3d3;
+  }
+
+  a{
+    .button_to{
+      width:100%;
+    }
   }
 }
 
@@ -656,6 +1084,26 @@ input[type="file"] {
   position: relative;
 }
 
+.past-card-style-untouch{
+  border-color: #383838;
+  border-radius: 0%;
+  position: relative;
+}
+
+.past-card-style-complete{
+  border-color: #6e6e6e;
+  border-radius: 0%;
+  position: relative;
+}
+
+.past-card-style-incomplete{
+  border-color: #989898;
+  border-radius: 0%;
+  position: relative;
+}
+
+
+
 .draft-overlay{
   background: rgba(0, 0, 0, 0.5);
   z-index: 1;
@@ -708,7 +1156,7 @@ input[type="file"] {
 }
 
 .card-height{
-  height: 200px;
+  height: 100%;
 }
 
 .col-15, .col-sm-15, .col-md-15, .col-lg-15 {
@@ -743,10 +1191,10 @@ input[type="file"] {
 }
 
 
-$i: 1;
-@while $i <= 3 {
-  .z-in-#{$i} {z-index: $i;}
-  $i: $i + 1;
+$z: 1;
+@while $z <= 10 {
+  .z-in-#{$z} {z-index: $z;}
+  $z: $z + 1;
 }
 
 
@@ -838,22 +1286,29 @@ $i: 1;
 }
 
 .task-btn-position{
-  height: 45%;
-  width: 24%;
+  height: 60%;
+  width: 39%;
   position: absolute;
-  top:8%;
-  right: 1%;
+  top:5%;
+  right: 0%;
 
 }
 
 .task-btn{
-  height: 14%;
-  width: 24%;
+  height: 17%;
+  width: 60%;
   justify-content: space-between;
 }
 
+.task_button{
+  height:10%;
+
+}
+
 .task-attack{
-  font-size: 90%;
+  margin-bottom: 0%;
+  display:flex;
+  align-items:center;
   
 
   &:focus {
@@ -861,37 +1316,45 @@ $i: 1;
   }
 }
 
-.task-name{
+
+
+.task-name-btn-center{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+
+.task-graph{
+  height: 30px;
+  margin-top: 2%;
+}
+
+.task-graph-mission{
+  height: 30px;
+  margin-top: 2%;
+  border: 1px solid #cbcbcb;
+  border-top: none;
+}
+
+.task-graph-untouch{
+  background-color: #dddcdc;
+  height: 100%;
+}
+.task-graph-complete{
+  background-color: #acacac;
+  height: 100%;
+}
+.task-graph-incomplete{
+  background-color: #8b8b8b;
   height: 100%;
 }
 
-
-.mission_info{
-  z-index: 2;
-  position: absolute;
-  top:7%;
-  left: 0%;
-  height: 9%;
-  width: 25%;
-  font-size: 10%;
+.task-graph-mission-date{
+  border-right:1px solid #c2c2c2;
+  height: 100%;
+  background-color: #3b3b3b;
 }
-
-.chara_img{
-  width: 39%;
-  z-index: 1;
-  position: absolute;
-  top:2%;
-  left: 0%;
-}
-
-.task-graph-complete{
-  background-color: #7e1e1e;
-  width:100%;
-  height: 30px;
-  margin-top: 30px;
-  margin-bottom: 50px;
-}
-
 .dropdown-style{
   margin-bottom: 1em;
   font-size: 110%;
@@ -984,6 +1447,11 @@ $i: 1;
 
 .button_to{
   display: inline-block;
+  text-align: left;
+  width: 30%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
 .breadcrumbs{
@@ -1002,6 +1470,10 @@ $i: 1;
   display: none;
 }
 
+.today_task_characters{
+  display: none;
+}
+
 .show{
   display: block;
   transform: translate(0);
@@ -1013,4 +1485,15 @@ $i: 1;
   text-align: center;
   background-color: #cf9b9b;
   color: #853030;
+
+}
+
+.not-link-decoration{
+  color: #cbcbcb;
+
+  &:hover{
+    color: #9c9c9c;
+    outline: none;
+    text-decoration: none;
+  }
 }

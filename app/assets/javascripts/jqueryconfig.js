@@ -231,7 +231,7 @@ $(function(){
     rules: {
       "task[title]": {
         required: true,
-        maxlength: 20,
+        maxlength: 40,
       },
       "task[start_date]": {
         required: true,
@@ -246,7 +246,7 @@ $(function(){
     messages: {
       "task[title]": {
         required: 'タイトルを入力して下さい',
-        maxlength: 'task名は最大で20字までです',
+        maxlength: 'task名は最大で40字までです',
       },
       "task[start_date]": {
         required: '開始日を入力して下さい',

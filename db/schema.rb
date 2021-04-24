@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_12_055414) do
+ActiveRecord::Schema.define(version: 2021_04_17_044102) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -63,8 +63,9 @@ ActiveRecord::Schema.define(version: 2021_04_12_055414) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "task_date", default: 0
-    t.datetime "start_date", null: false
-    t.datetime "end_date", null: false
+    t.date "start_date", null: false
+    t.date "end_date", null: false
+    t.integer "character", null: false
     t.index ["mission_id"], name: "index_tasks_on_mission_id"
   end
 

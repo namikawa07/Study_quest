@@ -1,4 +1,34 @@
+<% if @status == 'success' %>
+  document.getElementById('task_title').value = ''
+  document.getElementById('task_start_date').value = ''
+  document.getElementById('task_end_date').value = ''
+  document.getElementById('task_detail').value = ''
+  $('#taskplay').slideUp();
+  var EnemyTitle = document.getElementById('enemy-title');
+  EnemyTitle.insertAdjacentHTML('beforeend', '<div><%= render partial:'enemy_title', locals: {task: @task, task_number: @tasks_last_number} %></div>');
+
+  var Enemy = document.getElementById('enemy');
+  Enemy.insertAdjacentHTML('beforeend', '<div id="enemy-<%=@task.id%>"><img class="enemy<%=@tasks_last_number%>" src="/images/<%=@task.character%>-start.gif"></div>');
+
+  $('#add-card').before('<%= j(render 'tasks/task', task: @task) %>');
+  
+  var cardElement = document.getElementById('enemy-card') ;
+  var lastElementChild = cardElement.lastElementChild ;
+  cardElement.removeChild(lastElementChild );
+  
+  window.setTimeout(function(){
+    var EnemyNumber =  document.getElementById("enemy-<%= @task.id %>");
+    Enemy.insertAdjacentHTML('beforeend', '<div id="enemy-<%=@task.id%>"><div id="js-end-enemy<%=@task.id%>"></div><div id="js-attack-enemy<%=@task.id%>"><img class="enemy<%=@tasks_last_number%>" src="/images/<%=@task.character%>.gif"></div><a class="enemy-title-motion<%=@tasks_last_number%> z-in-1 enemy-title-motion text-center fontsize-8 add-attack-button" id="js-attack-title-number<%=@task.id%>" data-remote="true" rel="nofollow" data-method="post" href="/missions/<%=@task.mission.id%>/tasks/<%=@task.id%>/attack">Attack</a><h5 class="font-SoukouMincho enemy-task-title<%=@tasks_last_number%> enemy-task-title z-in-2"><%=@task.title%></h5></div>');
+    EnemyNumber.innerHTML = "";
+  }, 1600);
+  
+  
+  
+<% end %>
 <% if @status == 'fail' %>
   $('#task_errors_start_date').html("<%= j(render 'task_errors_start_date') %>");
   $('#task_errors_end_date').html("<%= j(render 'task_errors_end_date') %>");
+  <% if @error_dates.present? %>
+    $('#task_count_error').html("<%= j(render 'task_count_error') %>");
+  <% end %>
 <% end %>

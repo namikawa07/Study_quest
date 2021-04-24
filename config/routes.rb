@@ -16,7 +16,6 @@ Rails.application.routes.draw do
       resources :notes, only: %i[index create update destroy]
       member do
         post 'attack'
-        post 'remake'
       end
       collection do
         post 'finish'

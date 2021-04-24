@@ -16,9 +16,13 @@
             div.w-70
               p.font-SoukouMincho.mx-3.mb-0 #{@task.title}
           div.border-b.d-flex.pb-0.pt-4
-            h5.font-ferrum.mx-0.mb-0.w-30 Date
+            h5.font-ferrum.mx-0.mb-0.w-30 Start date
             div.w-70
-              p.font-ferrum.mx-3.mb-0 #{l @task.created_at}
+              p.font-ferrum.mx-3.mb-0 #{l @task.start_date}
+          div.border-b.d-flex.pb-0.pt-4
+            h5.font-ferrum.mx-0.mb-0.w-30 End date
+            div.w-70
+              p.font-ferrum.mx-3.mb-0 #{l @task.end_date}
           div.border-b.d-flex.pb-0.pt-4
             h5.font-ferrum.mx-0.mb-0.w-30 Details
             div.w-70
