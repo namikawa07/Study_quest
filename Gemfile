@@ -79,3 +79,4 @@ gem 'draper'
 gem 'kaminari'
 gem 'ransack'
 gem "gretel"
+gem 'chartkick'

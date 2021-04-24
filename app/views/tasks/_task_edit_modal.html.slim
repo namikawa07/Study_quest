@@ -1,0 +1,28 @@
+div.modal.js-modal id="modal_task_edit_#{task.id}"
+  div.modal__bg.js-modal-close
+  div.modal__content
+    div.container-fluid.mb-3.mt-3
+      h1.page-title-modal.w-100.text-center　タスク編集
+    div.container
+      div.row
+        div.container.w-75
+          = form_with model: task, url: mission_task_path(task.mission, task), remote: true, method: :patch, class: 'tasks_form' do |f|
+            div id= "update_task_count_error_#{task.id}"
+            div.form-group.mb-1
+              = f.label :title, 'Task title', {class: 'form-field-modal mb-2'}
+              = f.text_field :title, class: 'form-style-modal font-weight-lighter', id: 'task_title', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+            div.form-group.mb-1
+              = f.label :start_date, 'Start date', {class: 'form-field-modal mb-2'}
+              = f.date_field :start_date, class: 'form-style-modal', id: 'task_start_date', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+              div id= "update_task_errors_start_date_#{task.id}"
+            div.form-group.mb-1
+              = f.label :end_date, 'End date', {class: 'form-field-modal mb-2'}
+              = f.date_field :end_date, class: 'form-style-modal', id: 'task_end_date', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+              div id="update_task_errors_end_date_#{task.id}"
+            div.form-group.mb-1
+              = f.label :detail, 'Task detail', {class: 'form-field-modal mb-2'}
+              = f.text_area :detail, class: 'form-style-modal', id: 'task_detail', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+            div.text-center.mt-3
+              button.js-modal-close.btn-style-modal 戻る
+              = f.submit '変更', class: "btn-style-modal"
+

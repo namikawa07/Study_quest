@@ -1,0 +1,130 @@
+<% if @status == 'success' %>
+
+  var HeroAttack = document.getElementById('hero-attack');
+  var HeroStandPosition = document.getElementById("hero-stand-position");
+  var PartnerStandPosition = document.getElementById("partner-stand-position");
+  var cardOverlay = document.getElementById("js-card-complete<%=@attack_task.id%>");
+  var addcardOverlay = document.getElementById("js-add-card-complete<%=@attack_task.id%>");
+  var attackEnemy = document.getElementById('js-attack-enemy<%=@attack_task.id%>');
+  var endEnemy = document.getElementById('js-end-enemy<%=@attack_task.id%>');
+  var Enemy = document.getElementById('enemy');
+  var Filter = document.getElementById('js-filter');
+  var date = new Date();
+  var timestamp = date.getTime();
+  var heroimg = document.createElement('img');
+  var enemystartimg = document.createElement('img');
+  var enemyendimg = document.createElement('img');
+  
+
+
+  <% if @attack_task.status == "complete" %>
+
+    function attackFunction() {
+      return new Promise((resolve, reject) => {
+        
+        heroimg.src = '/images/<%=@character_attack%>.gif?' + timestamp;
+        heroimg.classList.add('<%=@character_attack%>');
+        HeroAttack.appendChild(heroimg)
+        Filter.insertAdjacentHTML('afterbegin', '<div class="attack-action-filter" id="js-attack-action-filter"></div>');
+        resolve();
+      })
+      .then(() => {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            <% if @character_attack == "chara-attack4" || @character_attack == "chara-attack5"%>
+              PartnerStandPosition.innerHTML = "";
+            <% else %>
+              HeroStandPosition.innerHTML = "";
+            <% end %>  
+            resolve();
+          }, 100);
+        })
+      })
+      .then(() => {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            enemyendimg.src = '/images/<%=@attack_task.character%>-end.gif?' + timestamp;
+            enemyendimg.classList.add('enemy<%=@tasks.index(@attack_task) + 1 %>');
+            endEnemy.appendChild(enemyendimg)
+            resolve();
+          }, 2900);
+        })
+      })
+      .then(() => {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            attackEnemy.innerHTML = "";
+            resolve();
+          }, 100);
+        })
+      })
+      .then(() => {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            document.getElementById('js-attack-title-number<%=@attack_task.id%>').innerHTML = "Back"
+            HeroAttack.innerHTML = "";
+            <% if @character_attack == "chara-attack4" || @character_attack == "chara-attack5"%>
+              PartnerStandPosition.insertAdjacentHTML('beforeend', '<img class="bg-image-chara" src="/images/partner-motion.gif">');
+            <% else %>
+              HeroStandPosition.insertAdjacentHTML('beforeend', '<img class="bg-image-chara" src="/images/hero-stand.gif">');
+            <% end %> 
+
+            cardOverlay.insertAdjacentHTML('beforeend', '<div class="card-overlay"><h4 class="complete-text text-center font-ferrum">complete!</h4></div>');
+
+            $('#js-attack-action-filter').remove();
+            resolve();
+          }, 1250);
+        })
+      })
+      .catch((reason) => {
+        console.log(reason.messege);
+      });
+    }
+
+    attackFunction();
+  
+
+  <% else %>
+    //敵キャラを復活させる
+    
+
+    //completeをとる
+    
+    
+    //AttackとBackを切り替える
+    
+    function backFunction() {
+      return new Promise((resolve, reject) => {
+        enemystartimg.src = '/images/<%=@attack_task.character%>-start.gif?' + timestamp;
+        enemystartimg.classList.add('enemy<%=@tasks.index(@attack_task) + 1 %>');
+        endEnemy.appendChild(enemystartimg)
+        Filter.insertAdjacentHTML('afterbegin', '<div class="attack-action-filter" id="js-attack-action-filter"></div>');
+        resolve();
+      })
+      .then(() => {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            attackEnemy.insertAdjacentHTML('beforeend', '<img class="enemy<%=@tasks.index(@attack_task) + 1%>" src="/images/<%=@attack_task.character%>.gif">');
+            resolve();
+          }, 1600);
+        })
+      })
+      .then(() => {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            document.getElementById('js-attack-title-number<%=@attack_task.id%>').innerHTML = "Attack"
+            endEnemy.innerHTML = "";
+            cardOverlay.innerHTML = "";
+            $('#js-attack-action-filter').remove();
+            resolve();
+          }, 100);
+        })
+      })
+      .catch((reason) => {
+        console.log(reason.messege);
+      });
+    }
+
+    backFunction();
+  <% end %>
+<% end %>

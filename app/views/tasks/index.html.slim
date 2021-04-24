@@ -4,25 +4,61 @@
   div.d-flex.my-5.border-b
     h1.page-title.float-left.ml-5 Task play
     p.ml-3.d-flex.align-items-center.mt-2.page-title-sub.head-border タスクプレイ
-  div.bass-image
-    = image_tag "/images/chara.jpeg", class: "w-100"
+  div.bass-image.position-relative id="js-filter"
+    = image_tag "/images/背景.png", class: "w-100"
+    = image_tag "/images/背景（ライト）.gif", class: "w-100 bg-image-light"
+    div.chara_img.font-SoukouMincho
+      = image_tag "/images/主人公（メーター）.png", class:"w-100"
+      p.mission_info.z-in-2.d-flex.text-center.mb-0.fontsize-12.ml-1 #{@mission.title}
+    div#hero-attack
+    div.partner_img.font-SoukouMincho
+      = image_tag "/images/partner-meter.png", class:"w-100"
+      div.mission_info.z-in-2.d-flex
+        p.mt-1.font-ferrum.mb-0.fontsize-12.ml-1 #{l Date.today}   Today'task #{@tasks.count}
+    div#partner-stand-position
+      = image_tag "/images/partner-motion.gif", class: "bg-image-chara z-in-2"
+    div#hero-stand-position
+      = image_tag "/images/hero-stand.gif", class: "bg-image-chara z-in-4"
+    - i = 1
+    - @tasks.each do |task|
+      - if task.status == "complete"
+        = link_to "Back", attack_mission_task_path(task.mission.id, task.id), method: :post, remote: true, class: "enemy-title-motion#{i} z-in-1 enemy-title-motion text-center fontsize-8", id: "js-attack-title-number#{task.id}"
+      - else
+        = link_to "Attack", attack_mission_task_path(task.mission.id, task.id), method: :post, remote: true, class: "enemy-title-motion#{i} z-in-1 enemy-title-motion text-center fontsize-8", id: "js-attack-title-number#{task.id}"
+      h5 class="font-SoukouMincho enemy-task-title#{i} enemy-task-title z-in-1" #{task.title}
+      = image_tag "/images/#{task.character}-title.png", class: "enemy#{i}-title"
+      div id= "js-attack-enemy#{task.id}"
+        -if task.status != "complete"
+          = image_tag "/images/#{task.character}.gif", class: "enemy#{i}"
+      div id= "js-end-enemy#{task.id}"
+      - i += 1
+    = image_tag "/images/task-title.png", class: "task-title-img"
+    div#enemy-title
+    div#enemy
+    
+    
+ 
+    
+    
+      
+
     div.z-in-1.new-task-position.w-23.mx-auto
       a.btn-task.mx-auto.task-back-button
-        p.text-center.task-border.mx-2.mb-0
-          small.font-SoukouMincho タスク作成
-      div#taskplay.z-in-1.new-task-form-position.w-100
+        p.text-center.task-border.mx-2.mb-0.font-SoukouMincho.fontsize-8 タスク作成
+      div#taskplay.z-in-3.new-task-form-position.w-100
         = form_with model: @task, url: mission_tasks_path(@mission.id),class:"w-90 mx-auto", remote: true, id: 'task_create_form' do |f|
           = render 'layouts/error_messages', model: f.object
+          div#task_count_error
           div.form-group-new-task.mb-0
             = f.label :title, 'タスク名', {class: 'task-form-field'}
             = f.text_field :title, class: 'task-form-style', id: 'task_title', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
           div.form-group-new-task.mb-0
             = f.label :start_date, 'Task開始日', {class: 'task-form-field'}
-            = f.datetime_field :start_date, class: 'task-form-style', id: 'task_start_date', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+            = f.date_field :start_date, class: 'task-form-style', id: 'task_start_date', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
             #task_errors_start_date
           div.form-group-new-task.mb-0
             = f.label :end_date, 'Task終了日', {class: 'task-form-field'}
-            = f.datetime_field :end_date, class: 'task-form-style', id: 'task_end_date', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+            = f.date_field :end_date, class: 'task-form-style', id: 'task_end_date', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
             #task_errors_end_date
           div.form-group-new-task.mb-0
             = f.label :detail, '詳細', {class: 'task-form-field'}
@@ -32,19 +68,8 @@
               button.task-back-button.js-modal-close.task-new-btn type="button" data-toggle="collapse" data-target="#taskplay" 戻る
             div
               = f.submit '作成', class: 'task-new-btn'
-      
-    -if @tasks.present?
-      div.task-btn-position
-        - i = 1
-        - @task_groups.each do |tasks|
-          div class = "task_button today_task_groups" id = "today_task_#{i}"
-            = render partial: 'task_play_button_groups', locals: {tasks: tasks}
-          - i += 1
+    
           
-    div.chara_img.font-SoukouMincho
-      = image_tag "/images/主人公（メーター）.png", class:"w-100"
-    div.mission_info.z-in-2.d-flex.text-center
-      = @mission.title
           
     
 #today_task.container-fluid.mb-3
@@ -53,16 +78,12 @@
     p.ml-3.d-flex.align-items-center.mt-2.page-title-sub.head-border 今日のタスク
   div.container.px-0.text-center
     -if @tasks.present?
-      - i = 1
-      - @task_groups.each do |tasks|
-        button.today_task_btn id="today_task_button_#{i}"
-          p.font-ferrum.mb-0 Task Page#{i}
-        div.today_task_group id= "today_task_group_#{i}"
-          div.row
-            = render partial: 'task_groups', locals: {tasks: tasks}
-        - i += 1
-      - (5 - @tasks.count).times do
-        = render partial: "no_task"
+      div#enemy-card.row
+        = render @tasks
+        div#add-card
+        - if @tasks.count < 10
+          - (10 - @tasks.count).times do
+            = render partial: "no_task"
   div.mt-4.btn-style-white-border.w-100
     a.js-modal-open.w-100 href="" data-target="modal_tasks_finish"
       = button_to '今日の作業を終了する', class: "btn-style-white-width"
@@ -73,29 +94,90 @@
     p.ml-3.d-flex.align-items-center.mt-2.page-title-sub.head-border スケジュール
   div.container.px-0
     - if @all_tasks.present?
-      - @same_created_tasks.each do |sametask|
-        div
-          = render partial: 'same_created_task', locals: {sametask: sametask}
+      div
+        p 未来のタスク
+      div
+        - @future_page_date.each do |date|
+          div
+            h4.font-ferrum.border-b.my-3 id= "task-date-#{date}" #{l date}
+          - @same_created_tasks.each do |sametask|
+            div
+              = render partial: 'same_created_task', locals: {sametask: sametask, date: date}
+          - @all_tasks.where("start_date < ?", date).where("end_date >= ?", date).each do |task|
+            div
+              = render partial: 'past_task', locals: {task: task}
+          div.mt-5
+      div
+        = paginate @future_page_date, :param_name => 'page_future_date'
+      div
+      
+      
+      div
+        p 今日のタスク
+      div
+        h4.font-ferrum.border-b.my-3 #{l Date.today}
+        - @tasks.each do |task|
+          div
+            = render partial: 'past_task', locals: {task: task}
         div.mt-5
+          
+          
+        p 過去のタスク
+      div
+        - @past_page_date.each do |date|
+          div
+            h4.font-ferrum.border-b.my-3 id= "task-date-#{date}" #{l date}
+          - @same_created_tasks.each do |sametask|
+            div
+              = render partial: 'same_created_task', locals: {sametask: sametask, date: date}
+          - @all_tasks.where("start_date < ?", date).where("end_date >= ?", date).each do |task|
+            div
+              = render partial: 'past_task', locals: {task: task}
+          div.mt-5
+      div
+        = paginate @past_page_date, :param_name => 'page_past_date'
     - else
       h3.text-center.font-ferrum No task
-    = paginate @same_tasks, :param_name => 'same_task'
+
+
 
 #task_information.container-fluid.mb-3
   div.d-flex.my-5.border-b
     h1.page-title.float-left.ml-5 Task's information
     p.ml-3.d-flex.align-items-center.mt-2.page-title-sub.head-border タスクの詳細
   div.container-sm.px-5
-    div
+    div.w-100
       div.d-flex.border-b.font-ferrum.w-25
         h4.mr-5 All task
         h4 #{@all_tasks.count}
-      div.d-flex
-        div.task-graph-complete
-        div.task-graph-incomplete
-    div
+      div.d-flex.font-ferrum.task-graph
+        div.d-flex.w-30
+          div.task-graph-untouch.w-12.mr-2
+          h5 untouch #{@untouch_task_count} (#{@untouch_per}%)
+        div.d-flex.w-30
+          div.task-graph-complete.w-12.mr-2
+          h5 complete #{@complete_task_count} (#{@complete_per}%)
+        div.d-flex.w-30
+          div.task-graph-incomplete.w-12.mr-2
+          h5 incomplete #{@incomplete_task_count} (#{@incomplete_per}%)
+      div.d-flex.task-graph
+        div class= "task-graph-untouch w-#{@untouch_per}"
+        div class= "task-graph-complete w-#{@complete_per}"
+        div class= "task-graph-incomplete w-#{@incomplete_per}"
+    div.w-100.mt-5
       div.d-flex.border-b.font-ferrum.w-25
         h4.mr-5 Mission schedule
+      div.d-flex.justify-content-around
+        p.font-SoukouMincho.mb-0.mt-3.mr-5 Mission期間: #{@due_to_mission_count}日
+        p.font-SoukouMincho.mb-0.mt-3 経過した日数: #{@until_today_mission_count}日目
+      p.font-SoukouMincho.mt-3 進行度
+      div
+        div.d-flex.justify-content-between
+          p.font-ferrum.mb-0 #{l @mission.start_date}
+          p.font-ferrum.mb-0 #{l @mission.end_date}
+        div.d-flex.task-graph-mission
+          div class= "task-graph-mission-date w-#{@mission_date_per}"
+            p.font-ferrum.text-center #{@mission_date_per}%
   div.container
     div.text-center.border.mt-3.w-60.mx-auto
       div
@@ -125,7 +207,7 @@ div.modal.js-modal id="modal_tasks_finish"
       div.row
         div.d-block.mx-auto.text-center
           p 本日の作業を終了しますか？
-          p.font-s-des-modal.text-danger 作業を終了すると変更できなくなります
+          p.font-s-des-modal.text-danger 作業を終了してもタスクは作成できます
           div
             button.js-modal-close.btn-style-modal.float-left 戻る
             div.float-right

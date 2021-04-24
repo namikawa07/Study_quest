@@ -1,4 +1,4 @@
-div.font-ferrum.d-flex.bd-highlight.mt-3.mx-5.border-b
+div.font-ferrum.d-flex.bd-highlight.mt-3.mx-5.border-b.z-in-3
   div.bd-highlight.mr-auto
     = link_to 'Task Quest', root_path, class: 'header-title-style'
   div.bd-highlight.d-flex.mr-4
@@ -11,7 +11,7 @@ div.font-ferrum.d-flex.bd-highlight.mt-3.mx-5.border-b
       a.header-menu-style href= "/missions/new" New mission
     - if @my_mission.present?
       div.header-menu-style.font-SoukouMincho
-        = link_to "#{@my_mission.title}", mission_tasks_path(@my_mission)
+        = link_to "#{@my_mission.title}", mission_tasks_path(@my_mission), class: "not-link-decoration"
     div
       a.header-menu-style href= "/privacy#privacy" Privacy
   

@@ -1,7 +1,3 @@
-h4.font-ferrum.border-b.my-3 #{l sametask[0]}
-   
-- if @all_tasks.present?
+- if sametask[0] == date
   - sametask[1].each do |task|
-    = render partial: 'past_task', locals: {task: task}
-  - @all_tasks.where("start_date < ?", sametask[0]).where("end_date >= ?", sametask[0]).each do |task|
     = render partial: 'past_task', locals: {task: task}
