@@ -8,7 +8,7 @@
     = image_tag "/images/背景.png", class: "w-100"
     = image_tag "/images/背景（ライト）.gif", class: "w-100 bg-image-light"
     div.chara_img.font-SoukouMincho
-      = image_tag "/images/主人公（メーター）.png", class:"w-100"
+      = image_tag "/images/hero-meter.png", class:"w-100"
       p.mission_info.z-in-2.d-flex.text-center.mb-0.fontsize-12.ml-1 #{@mission.title}
     div#hero-attack
     div.partner_img.font-SoukouMincho
@@ -19,29 +19,10 @@
       = image_tag "/images/partner-motion.gif", class: "bg-image-chara z-in-2"
     div#hero-stand-position
       = image_tag "/images/hero-stand.gif", class: "bg-image-chara z-in-4"
-    - i = 1
-    - @tasks.each do |task|
-      - if task.status == "complete"
-        = link_to "Back", attack_mission_task_path(task.mission.id, task.id), method: :post, remote: true, class: "enemy-title-motion#{i} z-in-1 enemy-title-motion text-center fontsize-8", id: "js-attack-title-number#{task.id}"
-      - else
-        = link_to "Attack", attack_mission_task_path(task.mission.id, task.id), method: :post, remote: true, class: "enemy-title-motion#{i} z-in-1 enemy-title-motion text-center fontsize-8", id: "js-attack-title-number#{task.id}"
-      h5 class="font-SoukouMincho enemy-task-title#{i} enemy-task-title z-in-1" #{task.title}
-      = image_tag "/images/#{task.character}-title.png", class: "enemy#{i}-title"
-      div id= "js-attack-enemy#{task.id}"
-        -if task.status != "complete"
-          = image_tag "/images/#{task.character}.gif", class: "enemy#{i}"
-      div id= "js-end-enemy#{task.id}"
-      - i += 1
+    = render partial: 'tasks/task_enemy_images', collection: @tasks, as: :task
     = image_tag "/images/task-title.png", class: "task-title-img"
     div#enemy-title
     div#enemy
-    
-    
- 
-    
-    
-      
-
     div.z-in-1.new-task-position.w-23.mx-auto
       a.btn-task.mx-auto.task-back-button
         p.text-center.task-border.mx-2.mb-0.font-SoukouMincho.fontsize-8 タスク作成
@@ -58,16 +39,16 @@
             #task_errors_start_date
           div.form-group-new-task.mb-0
             = f.label :end_date, 'Task終了日', {class: 'task-form-field'}
-            = f.date_field :end_date, class: 'task-form-style', id: 'task_end_date', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+            = f.date_field :end_date, class: 'task-form-style z-in-2', id: 'task_end_date', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
             #task_errors_end_date
           div.form-group-new-task.mb-0
             = f.label :detail, '詳細', {class: 'task-form-field'}
             = f.text_area :detail, class: 'task-form-style', id: 'task_detail', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
           div.mb-0.d-flex.w-75.mx-auto.justify-content-between
             div
-              button.task-back-button.js-modal-close.task-new-btn type="button" data-toggle="collapse" data-target="#taskplay" 戻る
+              button#js-task-create-back-button.task-back-button.js-modal-close.task-new-btn type="button" data-toggle="collapse" data-target="#taskplay" 戻る
             div
-              = f.submit '作成', class: 'task-new-btn'
+              = f.submit '作成', class: 'task-new-btn', id: 'js-task-create-button'
     
           
           
@@ -77,13 +58,13 @@
     h1.page-title.float-left.ml-5 Today's task
     p.ml-3.d-flex.align-items-center.mt-2.page-title-sub.head-border 今日のタスク
   div.container.px-0.text-center
-    -if @tasks.present?
-      div#enemy-card.row
+    div#enemy-card.row
+      -if @tasks.present?
         = render @tasks
-        div#add-card
-        - if @tasks.count < 10
-          - (10 - @tasks.count).times do
-            = render partial: "no_task"
+      div#add-card
+      - if @tasks.count <= 10
+        - (10 - @tasks.count).times do
+          = render partial: "no_task"
   div.mt-4.btn-style-white-border.w-100
     a.js-modal-open.w-100 href="" data-target="modal_tasks_finish"
       = button_to '今日の作業を終了する', class: "btn-style-white-width"
@@ -94,48 +75,18 @@
     p.ml-3.d-flex.align-items-center.mt-2.page-title-sub.head-border スケジュール
   div.container.px-0
     - if @all_tasks.present?
-      div
+      div#future-tasks.anchor-task
         p 未来のタスク
       div
-        - @future_page_date.each do |date|
-          div
-            h4.font-ferrum.border-b.my-3 id= "task-date-#{date}" #{l date}
-          - @same_created_tasks.each do |sametask|
-            div
-              = render partial: 'same_created_task', locals: {sametask: sametask, date: date}
-          - @all_tasks.where("start_date < ?", date).where("end_date >= ?", date).each do |task|
-            div
-              = render partial: 'past_task', locals: {task: task}
-          div.mt-5
+        = render partial: 'tasks/same_date_tasks', collection: @future_page_date, as: :date
       div
-        = paginate @future_page_date, :param_name => 'page_future_date'
-      div
-      
-      
-      div
-        p 今日のタスク
-      div
-        h4.font-ferrum.border-b.my-3 #{l Date.today}
-        - @tasks.each do |task|
-          div
-            = render partial: 'past_task', locals: {task: task}
-        div.mt-5
-          
-          
+        = paginate @future_page_date, :param_name => 'page_future_date', params: {anchor: 'future-tasks'}
+      div#past-tasks.anchor-task
         p 過去のタスク
       div
-        - @past_page_date.each do |date|
-          div
-            h4.font-ferrum.border-b.my-3 id= "task-date-#{date}" #{l date}
-          - @same_created_tasks.each do |sametask|
-            div
-              = render partial: 'same_created_task', locals: {sametask: sametask, date: date}
-          - @all_tasks.where("start_date < ?", date).where("end_date >= ?", date).each do |task|
-            div
-              = render partial: 'past_task', locals: {task: task}
-          div.mt-5
+        = render partial: 'tasks/same_date_tasks', collection: @past_page_date, as: :date
       div
-        = paginate @past_page_date, :param_name => 'page_past_date'
+        = paginate @past_page_date, :param_name => 'page_past_date', params: {anchor: 'past-tasks'}
     - else
       h3.text-center.font-ferrum No task
 
@@ -180,19 +131,20 @@
             p.font-ferrum.text-center #{@mission_date_per}%
   div.container
     div.text-center.border.mt-3.w-60.mx-auto
-      div
+      div#search-tasks.anchor
         p.font-SoukouMincho Task検索
       div
-        = search_form_for@search_task, url: mission_tasks_path(@mission) do |f|
+        = search_form_for@search_task, url: mission_tasks_path(@mission, anchor: 'search-tasks') do |f|
           div.search-group
             = f.label :title, 'Mission title', class: 'search-label'
             = f.search_field :title_cont, class: 'search-form'
             = f.submit "検索", class: 'search-btn-style'
--if params[:q].blank? || @search_tasks.blank? || params[:q]['title_cont'] == ""
-  p.font-ferrum No search task
--else
-  - @search_tasks.each do |task|
-    = task.title
+  -if params[:q].blank? || @search_tasks.blank? || params[:q]['title_cont'] == ""
+    h4.font-ferrum.text-center.mb-5 No search task
+  -else
+    div.container.px-0.my-5.search-task
+      = render partial: 'tasks/past_task', collection: @search_tasks, as: :task
+ 
  
   
     
@@ -211,5 +163,6 @@ div.modal.js-modal id="modal_tasks_finish"
           div
             button.js-modal-close.btn-style-modal.float-left 戻る
             div.float-right
-              = button_to '終了', finish_mission_tasks_path(@mission), class: "btn-size", data: {confirm: "本日の作業を終了します"}
-
+              = button_to '前日までのタスクを終了', finish_mission_tasks_path(@mission), :name => 'finish_yesterday', class: "btn-size", data: {confirm: "前日までのタスクを終了します"}
+              = button_to '今日までのタスクを終了', finish_mission_tasks_path(@mission), :name => 'finish_today', class: "btn-size", data: {confirm: "本日のタスクを終了します"}
+= render partial: 'tasks/task_edit_modal', collection: @mission.tasks, as: :task

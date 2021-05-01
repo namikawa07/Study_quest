@@ -1,8 +1,8 @@
 = provide(:title, 'Signup')
-- breadcrumb :login
+- breadcrumb :new_users
 #signup.container-fluid.mb-3
   div.d-flex.mt-5.border-b
-    h1.page-title.float-left.ml-5 SIGN UP
+    h1.float-left.ml-5.page-title SIGN UP
     p.ml-3.d-flex.align-items-center.mt-2.page-title-sub.head-border 新規登録
 div.container.w-75
   div.row
@@ -22,5 +22,5 @@ div.container.w-75
           = f.label :password_confirmation, 'Password confirmation', {class: 'form-field'}
           = f.password_field :password_confirmation, class: 'form-style', id: 'user_password_confirmation', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
         div.btn-style-lg-border.mx-auto.mt-5
-          div.form-group.text-center.form-group-height
+          div.text-center.form-group-height
             = f.submit "SIGN UP", class: 'btn-style-lg', id: 'SIGNUPbutton'

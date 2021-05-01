@@ -1,5 +1,5 @@
 class Mission < ApplicationRecord
-  validates :title, presence: true, length: { maximum: 40 }
+  validates :title, presence: true, length: { maximum: 100 }
   validates :start_date, presence: true
   validates :end_date, presence: true
   validates :memo, length: { maximum: 1000 }
@@ -11,7 +11,6 @@ class Mission < ApplicationRecord
   enum status: [:publish, :complete, :incomplete, :draft]
   enum registration: [:not_registration, :registration]
   has_many :tasks, dependent: :destroy
-  has_many :schedules, dependent: :destroy
   belongs_to :user
 
 

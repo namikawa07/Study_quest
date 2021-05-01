@@ -11,79 +11,33 @@ div.col-md-3.mt-5.px-4
           p.mb-0.page-title-card.text-center 下書き
     div.card-body.px-0.py-0
       div class="error_mission_my_mission_#{mission.id} error_mission_my_mission"
-      = link_to 'My mission', registration_mission_path(mission), method: :post, remote: true
-      - if mission.draft?
-        div.draft-overlay
-          = link_to '下書きを解除', status_change_mission_path(mission.id), method: :post
-      - else
-        = link_to '下書きにする', status_change_mission_path(mission.id), method: :post
+      div.border-b.w-80.mx-auto
+        - if mission.registration == "registration"
+          = link_to 'My mission', registration_mission_path(mission), method: :post, remote: true, class: 'my_mission_registration font-ferrum'
+        - else
+          = link_to 'My mission', registration_mission_path(mission), method: :post, remote: true, class: 'my_mission_not_registration font-ferrum'
       div.d-flex.align-items-end
         div.px-3.px-0.w-100
-          div.w-100
-            = link_to "#{mission.title}", mission_tasks_path(mission), class: "card-title"
-          div
+          div.mx-auto.mb-3.text-center.mission-title
+            = link_to "#{mission.title}", mission_tasks_path(mission), class: "card-title w-100 font-SoukouMincho"
+          div.d-flex.justify-content-around
             a.js-modal-open.mr-3 href="" data-target="modal_mission_trash_#{mission.id}"
-              i.fas.fa-trash
-            a.js-modal-open href="" data-target="modal_mission_edit_#{mission.id}" 
-              i.fas.fa-pen
-            = link_to "Mission Start", mission_tasks_path(mission), class: "card-title"
-          div.w-100
+              p.mb-0.card-title-bottom 削除
+            a.js-modal-open href="" data-target="modal_mission_edit_#{mission.id}"
+              p.mb-0.card-title-bottom 編集
+            - if mission.draft?
+              div.draft-overlay
+                = link_to '下書きを解除', status_change_mission_path(mission.id), method: :post, class: "card-title-bottom"
+            - else
+              = link_to '下書きにする', status_change_mission_path(mission.id), method: :post, class: "card-title-bottom"
+          div.w-100.text-center.mb-2
             - if mission.end_date <= Date.today
               - if mission.incomplete?
-                = link_to 'Missionを完了する', finish_mission_path(mission), method: :post,class: "w-100 text-center"
+                = link_to 'Missionを完了する', finish_mission_path(mission), method: :post,class: "w-100 text-center card-title-bottom"
               - elsif mission.complete?
-                = link_to 'Missionを未完了にする', finish_mission_path(mission), method: :post,class: "w-100 text-center"
+                = link_to 'Missionを未完了にする', finish_mission_path(mission), method: :post,class: "w-100 text-center card-title-bottom"
+          
             
     div.card-footer.card-header-footer.text-center.py-2
-      p.mb-0.font-ferrum #{l mission.start_date, format: :short}~#{l mission.end_date, format: :short}
-      
-div.modal.js-modal id="modal_mission_edit_#{mission.id}"
-  div.modal__bg.js-modal-close
-  div.modal__content
-    div.container-fluid.mb-3.mt-3
-      h1.page-title-modal.w-100.text-center　ミッション編集
-    div.container
-      div.row
-        div.container.w-75
-          = form_with model: mission, url: mission_path(mission.id), remote: true, method: :patch, class: "missions_form" do |f|
-            div.form-group.mb-1
-              = f.label :title, 'Mission title', {class: 'form-field-modal mb-2'}
-              = f.text_field :title, class: 'form-style-modal font-weight-lighter', id: 'mission_title', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
-            div#mission_errors_title
-            div.form-group.mb-1
-              = f.label :start_date, 'Start date', {class: 'form-field-modal mb-2'}
-              = f.date_field :start_date, class: 'form-style-modal', id: 'mission_start_date', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
-              div#mission_errors_start_date
-            div.form-group.mb-1
-              = f.label :end_date, 'End date', {class: 'form-field-modal mb-2'}
-              = f.date_field :end_date, class: 'form-style-modal', id: 'mission_end_date', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
-              div#mission_errors_end_date
-            div.form-group.mb-1
-              = f.label :memo, 'Memo', {class: 'form-field-modal mb-2'}
-              = f.text_field :memo, class: 'form-style-modal', id: 'mission_memo', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
-              div#mission_errors_memo
-            div.text-center.mt-3
-              button.js-modal-close.btn-style-modal 戻る
-              = f.submit '変更', class: "btn-style-modal"
-
-div.modal.js-modal id="modal_mission_trash_#{mission.id}"
-  div.modal__bg.js-modal-close
-  div.modal__content
-    div.container-fluid.mb-3.mt-3
-      h1.page-title-modal.w-100.text-center　ミッション削除
-    div.container.font-cl
-      div.d-flex.w-75.mx-auto.border-bottom.border-secondary
-        h5.mb-0.mr-5.ml-3.font-ferrum Mission title
-        p.mb-0.text-conter.font-SoukouMincho   #{mission.title}
-      div.row
-        div.d-block.mx-auto.text-center
-          p.font-s-des-modal.text-danger アカウントを削除すると以下のデータが消去されます
-          p.font-s-modal ・ミッションデータ
-          p.font-s-modal ・スケジュールデータ
-          p.font-s-modal ・タスクデータ
-          p.font-s-modal ・ノートデータ
-          div
-            button.js-modal-close.btn-style-modal.float-left 戻る
-            div.float-right
-              = button_to '削除', mission_path(mission.id), method: :delete, class: "btn-size", data: {confirm: "削除しますか？"}
+      p.mb-0.font-ferrum.card-title #{l mission.start_date, format: :short}~#{l mission.end_date, format: :short}
 

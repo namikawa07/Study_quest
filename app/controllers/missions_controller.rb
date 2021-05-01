@@ -56,7 +56,7 @@ class MissionsController < ApplicationController
           format.html { redirect_to users_path }
           format.js { render js: "window.location = '#{users_path}'" }
         else
-          flash[:danger] = t('missions.not_registration.Not_success')
+          flash.now[:danger] = t('missions.not_registration.Not_success')
           format.html { redirect_to users_path }
           format.json { render json: @mission.errors, status: :unprocessable_entity }
           format.js { @status = "fail" }

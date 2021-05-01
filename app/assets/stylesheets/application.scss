@@ -27,6 +27,7 @@
   src: font-url('ferrum.otf') format('truetype');
 }
 
+
 header{
   z-index: 3;
 }
@@ -35,6 +36,20 @@ html{
   font-size: calc(100vw / 80);
 }
 
+.anchor-mission{
+  margin-top: -5%;
+  padding-top: 5%;
+}
+
+.anchor-task{
+  margin-top: -10%;
+  padding-top: 10%;
+}
+
+.anchor-note{
+  margin-top: -3%;
+  padding-top: 3%;
+}
 
 //ゲーム画面
 .bg-image-light{
@@ -222,9 +237,20 @@ img.bg-image-chara{
 .enemy-task-title{
   position: absolute;
   top: 37%;
-  right: -8%;
+  right: -7%;
   width: 50%;
   height: auto;
+  opacity: 0;
+}
+
+.enemy-task-title-small{
+  font-size: 90%;
+  position: absolute;
+  top: 37%;
+  right: 4%;
+  width: 40%;
+  height: auto;
+  line-height: 100%;
   opacity: 0;
 }
 
@@ -493,7 +519,6 @@ body {
 
 .header-title-style{
   color: #cbcbcb;
-  font-size: 30px;
 
   &:hover{
     color: #9c9c9c;
@@ -506,8 +531,6 @@ body {
 
 .header-menu-style{
   color: #cbcbcb;
-  font-size: 130%;
-  margin-left: 3em;
   vertical-align: middle;
  
 
@@ -525,9 +548,9 @@ body {
 
 }
 
-@mixin icon($size: 40px) {
+@mixin icon($size: 40%) {
  width: $size;
- height: $size;
+ height: auto;
  border-radius: 50%;
 }
 
@@ -540,7 +563,8 @@ body {
 };
 
 .icon-size{
-  @include icon(100px);
+  @include icon(80%);
+  max-width: 100px;
 };
 
 
@@ -554,7 +578,7 @@ body {
 };
 
 .page-title-sub{
-  @include font('font-ja',14px);
+  @include font('font-ja',1rem);
   font-weight: lighter; 
 };
 
@@ -589,7 +613,7 @@ body {
 .form-field{
   @include form;
   border-bottom: solid 1px #cbcbcb;
-  padding: 0 90px 0 20px;
+  width:70%;
   margin-bottom: 15px;
   
 };
@@ -836,7 +860,7 @@ input[type="file"] {
 
 
 .btn-style-white{
-  @include btn('font-ja', 0.5rem, #d3d3d3,5% 25% );
+  @include btn('font-ja', 1rem, #d3d3d3,3% 5% );
   
 
   &:focus {
@@ -846,7 +870,8 @@ input[type="file"] {
 
 .btn-style-white-border{
   width: 100%;
-  height: 100%;
+  height: auto;
+  min-height: 10px;
   position: relative;
 
   input {
@@ -926,9 +951,9 @@ input[type="file"] {
   @include btn-movement;
 }
 
-.btn-style-modal{
+.btn-style-back{
   @include btn('font-en', 90%, #b2b1b1,1% 15% );
-  margin: 0 20% 15px 20px;
+  
 
   &:focus {
     @include focus-btn;
@@ -979,10 +1004,13 @@ input[type="file"] {
 }
 
 .btn-style-lg{
-  @include btn('font-en', 30px , #cbcbcb,10px 10px );
+  @include btn('font-en', 200% , #cbcbcb,2% 2% );
   width: 100%;
   height: 100%;
-  letter-spacing: 6px;
+  max-height:60px;
+  min-height: 35px;
+  letter-spacing: 0.4em;
+  text-align: center;
   
 }
 
@@ -990,17 +1018,17 @@ input[type="file"] {
 
 .btn-style-lg-border{
   width: 35%;
-  height: 50px;
+  height: 50%;
   position: relative;
 }
 
 .btn-style-lg-border::before{
   content: '';
-  @include btn-move-before(12px, 12px)
+  @include btn-move-before(12%, 9%)
 }
 
 .btn-style-lg-border:hover::before{
-  @include btn-move-before(-12px, -12px)
+  @include btn-move-before(-12%, -9%)
 }
 
 .btn-style-lg-border::after{
@@ -1050,6 +1078,12 @@ input[type="file"] {
   color: #585858;
 }
 
+$font: 13;
+@while $fontnum <= 15 {
+  .fontsize-#{$fontnum}px {font-size: 1px * $fontnum;}
+  $font: $font + 1;
+}
+
 .font-s-modal{
   font-size:13px;
 }
@@ -1058,8 +1092,7 @@ input[type="file"] {
   font-size:15px;
 }
 
-.btn-size{
-  padding:5px 55px 2px 55px;
+.red-btn-size{
   background-color: #7e1e1e;
   color: #999999;
   border:none;
@@ -1139,6 +1172,8 @@ input[type="file"] {
   align-items: center;
 }
 
+
+
 .complete-text{
   transform: rotate( -45deg );
 };
@@ -1146,6 +1181,9 @@ input[type="file"] {
 .card-header-footer{
   background-color: #989898;
   border:none;
+  p{
+    color: #d6d6d6;
+  }
 }
 
 
@@ -1204,7 +1242,7 @@ $z: 1;
 
 .header-position{
   position: absolute;
-  top:3%;
+  top:0%;
   right: 3%;
 }
 
@@ -1411,10 +1449,6 @@ $z: 1;
   outline: none;
 }
 
-.bg-chara{
-    background-image: url("/images/charactor.gif");
-    background-repeat: no-repeat;
-}
 
 .schedule-complete{
   position: absolute;
@@ -1429,9 +1463,7 @@ $z: 1;
   margin: 0 auto;
 }
 
-.search-label{
-  font-family: 'font-en';
-}
+
 
 .search-form{
   border: none;
@@ -1445,14 +1477,7 @@ $z: 1;
   @include btn('font-ja', 13px , #cbcbcb,3px 15px );
 }
 
-.button_to{
-  display: inline-block;
-  text-align: left;
-  width: 30%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
+
 
 .breadcrumbs{
   font-size: 110%;

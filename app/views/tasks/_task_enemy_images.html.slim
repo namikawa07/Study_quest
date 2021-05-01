@@ -1,0 +1,14 @@
+- if task.status == "complete"
+  = link_to "Back", attack_mission_task_path(task.mission.id, task.id), method: :post, remote: true, class: "enemy-title-motion#{task_counter + 1} z-in-1 enemy-title-motion text-center fontsize-8", id: "js-attack-title-number#{task.id}"
+- else
+  = link_to "Attack", attack_mission_task_path(task.mission.id, task.id), method: :post, remote: true, class: "enemy-title-motion#{task_counter + 1} z-in-1 enemy-title-motion text-center fontsize-8", id: "js-attack-title-number#{task.id}"
+- if task.title.length <= 20
+  h5 class="font-SoukouMincho enemy-task-title#{task_counter + 1} enemy-task-title z-in-1" #{task.title}
+- else
+  p class="font-SoukouMincho enemy-task-title#{task_counter + 1} enemy-task-title-small z-in-1" #{task.title}
+= image_tag "/images/#{task.character}-title.png", class: "enemy#{task_counter + 1}-title"
+div id= "js-attack-enemy#{task.id}"
+  -if task.status != "complete"
+    = image_tag "/images/#{task.character}.gif", class: "enemy#{task_counter + 1}"
+div id= "js-end-enemy#{task.id}"
+

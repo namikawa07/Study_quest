@@ -6,7 +6,8 @@ class User < ApplicationRecord
   validates :name, presence: true
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
-
+  validates :reset_password_token, uniqueness: true, allow_nil: true
+  validate :validate_icon
   has_many :missions, dependent: :destroy
   has_one_attached :icon
   
@@ -33,5 +34,20 @@ class User < ApplicationRecord
               else
                 false
               end
+  end
+
+  def validate_icon
+    return unless icon.attached?
+    if icon.blob.byte_size > 5.megabytes
+      icon.purge
+      errors.add(:icon, 'アイコンは5MB以下のファイルを選択してください')
+    elsif !image?
+      icon.purge
+      errors.add(:icon, 'アイコンはJPG形式、またはJPEG形式、またはPNG形式のみ選択してください')
+    end
+  end
+
+  def image?
+    %w[image/jpg image/jpeg image/png].include?(icon.blob.content_type)
   end
 end

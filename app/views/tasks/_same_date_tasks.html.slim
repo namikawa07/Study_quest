@@ -1,0 +1,4 @@
+div
+  h4.font-ferrum.border-b.my-3 id= "task-date-#{date}" #{l date}
+= render partial: 'tasks/past_task', collection: @all_tasks.where("start_date <= ?", date).where("end_date >= ?", date), as: :task
+div.mt-5

@@ -86,7 +86,7 @@ RSpec.describe "プロフィールの編集", type: :system do
         page.driver.browser.switch_to.alert.accept
         expect(page).to have_content('アカウントを削除しました')
         'アカウントを削除しましたが表示されていません'
-        expect(page).to have_current_path(root_path)
+        expect(page).to have_current_path root_path
         'トップページが表示されていません'
         
         visit login_path

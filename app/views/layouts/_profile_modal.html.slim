@@ -10,6 +10,7 @@
             p.font-SoukouMincho.text-center.text-black-50 プロフィールの編集ができます
           div.container
             = form_with model: user, url: users_path, remote: true, method: :patch, id: 'profile_form' do |f|
+              div#js-icon-validation
               div.form-inline
                 div.w-17.mr-3
                   div.form-group.mb-1

@@ -4,9 +4,49 @@ div
   #guide.container-fluid.mb-3
     div.d-flex.my-5.border-b
       h1.font-ferrum.mx-auto Guide
+    div.mx-auto.container-fluid
+      div.row
+        div.col-md-3
+        div.col-md-6
+          = image_tag "/images/guide-image1.png", class: 'w-100'
+          div.mx-auto.mt-2
+            p.font-SoukouMincho ログインしたらミッションを作成しましょう。ミッション名・ミッション開始日時・ミッション終了日時を記入したら「実行」を押してプレイスタートです。(Memoは設定しなくても問題ありません)
+          = image_tag "/images/guide-image1.png", class: 'w-100'
+          div.mx-auto.mt-2
+            p.font-SoukouMincho タスク画面から「タスク作成」を押してタスクを作成しましょう。個々のタスクを完了したい場合は敵アイコンをクリックするとタスクが「complete!」になります。タスクの「complete」を解除したい場合はもう一度敵アイコンをクリックするとタスクの「complete」が解除されます
+          = image_tag "/images/guide-image1.png", class: 'w-100'
+          div.mx-auto.mt-2
+            p.font-SoukouMincho その日のタスクは最大10件まで登録できます。またタスクの再編集は「編集」ボタン、タスクの削除は「削除」ボタンを押して下さい
+          = image_tag "/images/guide-image1.png", class: 'w-100'
+          div.mx-auto.mt-2
+            p.font-SoukouMincho 「今日の作業を終了する」をクリックすると「今日のタスク」をリセットし、新しく10件のタスクを作成することができます。また今日のタスクは残し、昨日以降のタスクをリセットしたい場合は「前日までのタスクを終了する」をクリックすると今日のタスクは残り、前日のタスクはリセットされた状態になります
+          = image_tag "/images/guide-image1.png", class: 'w-100'
+          div.w-70.mx-auto.mt-2
+            p.font-SoukouMincho 「Note」ボタンから各タスクのノートを作成することができます。タスクノートはそのタスクについてのメモやアウトプットを書くことができます。
+        div.col-md-3
   #information.container-fluid.mb-3
     div.d-flex.my-5.border-b
       h1.font-ferrum.mx-auto Information
+    div.mx-auto.container-fluid
+      div.row
+        div.col-md-2
+        div.col-md-8
+          div.form-style.my-3
+            div.d-flex.justify-content-start.my-2.ml-2.align-items-center
+              p.font-ferrum.mb-0 TaskQuest
+              p.font-SoukouMincho.mb-0 をプレイするにあたって
+              h2#info-slide1.mb-0.ml-auto.mr-2 −
+            div#info-slide-menu1
+              p.w-90.mx-auto TaskQuestはGuideを確認しながらプレイして下さい。またプレイ前には必ずプライバシーポリシーを確認して下さい。
+          div.form-style.my-3
+            div.d-flex.justify-content-start.my-2.ml-2.align-items-center
+              p.font-ferrum.mb-0 TaskQuest
+              p.font-SoukouMincho.mb-0 へようこそ
+              h2#info-slide2.mb-0.ml-auto.mr-2 −
+            div#info-slide-menu2
+              p.w-90.mx-auto TaskQuestへようこそ！TaskQuestはまるでゲームをプレイするような感覚で普段のタスク管理を行えるアプリです。TaskQuestを使って楽しくタスク管理をしましょう！！
+        div.col-md-2
   #help.container-fluid.mb-3
     div.d-flex.my-5.border-b
       h1.font-ferrum.mx-auto Help
+
