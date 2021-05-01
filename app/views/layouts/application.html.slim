@@ -5,12 +5,10 @@ html
       = full_title(yield(:title))
     = csrf_meta_tags
     = csp_meta_tag
-    = stylesheet_link_tag    'application', media: 'all'
-    = javascript_include_tag 'application'
+    = stylesheet_link_tag 'application', media: 'all'
   body
-    - if flash.present?
-      = render partial: 'shared/flash_message'
-    header.pt-0.z-in-5
+    = render partial: 'shared/flash_message'
+    header.pt-0.z-in-4
       - if current_user.present?
         = render 'shared/login_header'
       -else
@@ -20,4 +18,4 @@ html
         = breadcrumbs separator: " &rsaquo; "
     = yield
     = render partial: 'layouts/profile_modal', locals: { user: current_user }
-    
+    = javascript_include_tag 'application'

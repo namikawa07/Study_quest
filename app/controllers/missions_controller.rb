@@ -81,12 +81,16 @@ class MissionsController < ApplicationController
   end
 
   def status_change
-    if @mission.status == 'publish'
+    if @mission.status == 'publish' || @mission.status == 'incomplete'
       @mission.status = 'draft'
       @mission.save!
       flash[:success] = t('missions.update.publishSuccess')
     elsif @mission.status == 'draft'
-      @mission.status = 'publish'
+      if @mission.end_date >= Date.today
+        @mission.status = 'publish'
+      else
+        @mission.status = 'incomplete'
+      end
       @mission.save!
       flash[:success] = t('missions.update.draftSuccess')
     else

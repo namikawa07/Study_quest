@@ -1,7 +1,7 @@
 = provide(:title, 'Note')
 - breadcrumb :mission_task_notes,@mission, @task
 #new_note.container-fluid.mb-3
-  div.d-flex.mt-5.border-b
+  div.d-flex.mt-5.border-b.w-100
     h1.page-title.float-left.ml-5 New Note
     p.ml-3.d-flex.align-items-center.mt-2.page-title-sub.head-border タスクノート作成
 
@@ -55,15 +55,20 @@
   div.container.px-0
     div.text-center.border.mt-3.w-60.mx-auto
       div#search-notes.anchor
-        p.font-SoukouMincho Note検索
+        p.font-SoukouMincho.mb-0 Note検索
       div
         = search_form_for@search_note, url: mission_task_notes_path(@mission, @task, anchor: 'search-notes') do |f|
           div.search-group
-            = f.label :title, 'Note title', class: 'search-label'
-            = f.search_field :title_cont, class: 'search-form'
-            = f.label :body, 'Note body', class: 'search-label'
-            = f.search_field :body_cont, class: 'search-form'
-            = f.submit "検索", class: 'search-btn-style'
+            div.container
+              div.row
+                div.col-md-5
+                  = f.label :title, 'Note title', class: 'font-ferrum'
+                  = f.search_field :title_cont, class: 'search-form'
+                div.col-md-5
+                  = f.label :body, 'Note body', class: 'font-ferrum'
+                  = f.search_field :body_cont, class: 'search-form'
+                div.col-md-2.d-flex.align-items-center.justify-content-center
+                  = f.submit "検索", class: 'search-btn-style'
     - if @notes.present?
       div
          = render @notes

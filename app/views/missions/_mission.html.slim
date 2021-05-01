@@ -25,6 +25,7 @@ div.col-md-3.mt-5.px-4
               p.mb-0.card-title-bottom 削除
             a.js-modal-open href="" data-target="modal_mission_edit_#{mission.id}"
               p.mb-0.card-title-bottom 編集
+          div.text-center
             - if mission.draft?
               div.draft-overlay
                 = link_to '下書きを解除', status_change_mission_path(mission.id), method: :post, class: "card-title-bottom"

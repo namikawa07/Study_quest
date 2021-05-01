@@ -22,7 +22,14 @@ div.modal.js-modal id="modal_task_edit_#{task.id}"
             div.form-group.mb-1
               = f.label :detail, 'Task detail', {class: 'form-field-modal mb-2'}
               = f.text_area :detail, class: 'form-style-modal', id: 'task_detail', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
-            div.text-center.mt-3
-              button.js-modal-close.btn-style-modal 戻る
-              = f.submit '変更', class: "btn-style-modal"
+            div.text-center.my-3
+              div.container
+                div.row
+                  div.col-md-1
+                  div.col-md-4
+                    button.js-modal-close.btn-style-modal.w-100 戻る
+                  div.col-md-2
+                  div.col-md-4
+                    = f.submit '変更', class: "btn-style-modal w-100"
+                  div.col-md-1
 

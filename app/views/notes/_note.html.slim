@@ -6,11 +6,11 @@ div.border.my-3.w-80.mx-auto
       p.font-SoukouMincho.mb-0.mx-2 #{note.title}
   div.border-b.mx-3.my-2
     p.font-SoukouMincho.mb-0.mx-2 #{safe_join(note.body.split("\n"),tag(:br))}
-  div
+  div.d-flex
     a.js-modal-open.mr-3 href="" data-target="modal_note_trash_#{note.id}"
-      i.fas.fa-trash
+      p.font-SoukouMincho.mb-0.card-title-bottom 削除
     a.js-modal-open href="" data-target="modal_note_edit_#{note.id}"
-      i.fas.fa-pen
+      p.font-SoukouMincho.mb-0.card-title-bottom 編集
 
 div.modal.js-modal id="modal_note_edit_#{note.id}"
   div.modal__bg.js-modal-close
@@ -28,8 +28,15 @@ div.modal.js-modal id="modal_note_edit_#{note.id}"
               = f.label :body, 'Note body', {class: 'form-field-modal mb-2'}
               = f.text_area :body, rows: 10, class: 'form-style-modal', id: 'note_body', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
             div.text-center.mt-3
-              button.js-modal-close.btn-style-modal 戻る
-              = f.submit '変更', class: "btn-style-modal"
+              div.container
+                div.row
+                  div.col-md-1
+                  div.col-md-4
+                    button.js-modal-close.btn-style-modal.w-100 戻る
+                  div.col-md-2
+                  div.col-md-4
+                    = f.submit '変更', class: "btn-style-modal w-100"
+                  div.col-md-1
 
 div.modal.js-modal id="modal_note_trash_#{note.id}"
   div.modal__bg.js-modal-close
@@ -44,8 +51,13 @@ div.modal.js-modal id="modal_note_trash_#{note.id}"
         div.d-block.mx-auto.text-center
           p.font-s-des-modal.text-danger アカウントを削除すると以下のデータが消去されます
           p.font-s-modal ・ノートデータ
-          div
-            button.js-modal-close.btn-style-modal.float-left 戻る
-            div.float-right
-              = button_to '削除', mission_task_note_path(note.task.mission.id, note.task.id, note.id), method: :delete, class: "btn-size", data: {confirm: "削除しますか？"}
+          div.container
+            div.row
+              div.col-md-1.px-0
+              div.col-md-4.px-0
+                button.js-modal-close.btn-style-modal.w-100 戻る
+              div.col-md-2.px-0
+              div.col-md-4.px-0
+                = button_to '削除', mission_task_note_path(note.task.mission.id, note.task.id, note.id), method: :delete, class: "btn-size w-100 border-0", data: {confirm: "削除しますか？"}
+              div.col-md-1.px-0
 

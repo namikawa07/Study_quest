@@ -1,7 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_mission
   before_action :today_tasks, only: %i[index create finish attack]
-  before_action :set_search_tasks, only: %i[index]
   before_action :due_to_task, only: %i[index]
   before_action :due_to_mission, only: %i[index]
   before_action :first_task, only: %i[index]
@@ -10,11 +9,15 @@ class TasksController < ApplicationController
   def index
     @task = Task.new
     @all_tasks = @mission.tasks.includes(:mission).page(params[:all_tasks]).per(15)
+    @search_task = @mission.tasks.includes(:mission).ransack(params[:q])
     @search_tasks = @search_task.result
     past_tasks
     status_task
+    @future_date_tasks = @future_page_date.map { |date| [date,@mission.tasks.where(start_date: date).or(@mission.tasks.where(end_date: date.to_date)).or(@mission.tasks.where("start_date <= ?", date).where("end_date >= ?", date))]}
+    @past_date_tasks = @past_page_date.map { |date| [date,@mission.tasks.where(start_date: date).or(@mission.tasks.where(end_date: date.to_date)).or(@mission.tasks.where("start_date <= ?", date).where("end_date >= ?", date))]}
+
+
     #binding.pry
-   
   end
 
   def create
@@ -149,10 +152,6 @@ class TasksController < ApplicationController
   
   def past_tasks
     @pasttasks = @mission.tasks.includes(:mission).where(task_date: "past_task")
-  end
-
-  def set_search_tasks
-    @search_task = @mission.tasks.includes(:mission).ransack(params[:q])
   end
 
   def due_to_task
