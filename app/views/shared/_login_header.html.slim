@@ -1,24 +1,23 @@
-div.font-ferrum.d-flex.my-1.mx-5.border-b.z-in-4.justify-content-end
+div.font-ferrum.d-flex.my-3.mx-5.border-b.z-in-4.justify-content-end
   div.w-15.d-flex.justify-content-center.align-items-center
     = link_to 'Task Quest', root_path, class: 'header-title-style fontsize-18'
-  div.d-flex.mr-5.justify-content-end.w-60.align-items-center
-    div.w-15.text-center.d-block
+  div.d-flex.mr-5.justify-content-around.w-55.align-items-center
+    div.w-10.text-center.d-block
       a.header-menu-style.fontsize-14 href= "/" Top
     div.w-15.text-center.d-block
       a.header-menu-style.fontsize-14 href= "/users" My page
-    div.w-15.text-center.d-block
+    div.w-20.text-center.d-block
       a.header-menu-style.fontsize-14 href= "/missions/new" New mission
     div.w-15.text-center.d-block
       a.header-menu-style.fontsize-14 href= "/privacy#privacy" Privacy
-    div.w-15.text-center.d-block.fontsize-10
+    div.w-30.text-center.d-block.fontsize-10
       - if @my_mission.present?
-        = link_to "#{@my_mission.title}", mission_tasks_path(@my_mission), class: "not-link-decoration header-menu-style font-SoukouMincho"
+        = link_to "#{@my_mission.title.truncate(15)}", mission_tasks_path(@my_mission), class: "not-link-decoration header-menu-style font-SoukouMincho"
   
-  div.w-25.d-block.d-flex.justify-content-between.position-relative.header-position.align-items-center
-    div.d-block.d-flex.justify-content-center.align-items-center type="button" data-toggle="collapse" data-target="#menu"
-      = image_tag current_user.avatar(:small_icon), class: 'small-icon-size'
-    div.mx-auto.d-block
-      a.btn-task.mx-auto type="button" data-toggle="collapse" data-target="#menu"
+  div.w-25.d-block.d-flex.justify-content-between.position-relative.header-position.align-items-center type="button" data-toggle="collapse" data-target="#menu"
+    = image_tag current_user.avatar(:small_icon), class: 'small-icon-size'
+    div.mx-auto.d-block.w-100
+      a.btn-task.w-100 type="button" data-toggle="collapse" data-target="#menu"
         p.text-center.mx-2.mb-0.font-SoukouMincho.fontsize-14 #{current_user.name}さん
 div#menu.collapse.z-in-1.header-dropdown-position.w-80.text-center
   div.w-80.mx-auto

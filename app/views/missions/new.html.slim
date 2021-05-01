@@ -1,7 +1,7 @@
 = provide(:title, 'New mission')
 - breadcrumb :new_mission
 div.container-fluid.mb-3
-  div.d-flex.mt-5.border-b
+  div.d-flex.mt-5.border-b.w-100
     h1.page-title.float-left.ml-5 New mission
     p.ml-3.d-flex.align-items-center.mt-2.page-title-sub.head-border ミッション作成
 div.container
@@ -25,8 +25,8 @@ div.container
           = f.text_area :memo, class: 'form-style', id: 'mission_memo', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
         div.d-flex.mb-5
           div.btn-style-md-border.mx-auto.mt-2
-            div.form-group.text-center.form-group-height
+            div.text-center.form-group-height
               = f.submit '下書き', :name => 'draft', class: 'btn-style-md'
           div.btn-style-md-border.mx-auto.mt-2
-            div.form-group.text-center.form-group-height
+            div.text-center.form-group-height
               = f.submit '実行', :name => 'publish', class: 'btn-style-md'

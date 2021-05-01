@@ -6,21 +6,21 @@ div.col-15.mt-5.px-3
       div.card-height.position-relative
       = image_tag "/images/#{task.character}-card.png", class: "card-bg-image"
       div.card-title.mt-4
-        p.font-ferrum Start date #{l task.start_date}
-        p.font-ferrum End date #{l task.end_date}
+        p.font-ferrum.today-task-title Start date #{l task.start_date}
+        p.font-ferrum.today-task-title End date #{l task.end_date}
         - if task.detail.blank?
           div.text-center
-            p.font-ferrum Task detail
-            p.font-ferrum No detail
+            p.font-ferrum.today-task-title Task detail
+            p.font-ferrum.today-task-title No detail
         -else
           div.text-center
-            p.font-ferrum.mb-0 Task detail
-            p.font-SoukouMincho #{task.detail.truncate(35)}
+            p.font-ferrum.mb-0.today-task-title Task detail
+            p.font-SoukouMincho.today-task-title #{task.detail.truncate(35)}
         div.d-flex.justify-content-around
-          = link_to "#{task.notes.count} Notes", mission_task_notes_path(task.mission.id, task.id), class: 'text-center mb-0 font-ferrum not-link-decoration z-in-2'
-          = link_to '削除',mission_task_path(task.mission, task), method: :delete, data: {confirm: "削除しますか？"}, class: "not-link-decoration font-SoukouMincho z-in-2"
+          = link_to "#{task.notes.count} Notes", mission_task_notes_path(task.mission.id, task.id), class: 'text-center mb-0 font-ferrum not-link-decoration z-in-2 today-task-title'
+          = link_to '削除',mission_task_path(task.mission, task), method: :delete, data: {confirm: "削除しますか？"}, class: "not-link-decoration font-SoukouMincho z-in-2 today-task-title"
           a.js-modal-open.z-in-2 href="" data-target="modal_task_edit_#{task.id}"
-            p.not-link-decoration.font-SoukouMincho.z-in-2 編集
+            p.not-link-decoration.font-SoukouMincho.z-in-2.today-task-title 編集
       -if task.status == "complete"
         div id= "js-card-complete#{task.id}"
           div.card-overlay

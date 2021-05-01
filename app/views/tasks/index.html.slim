@@ -1,7 +1,7 @@
 = provide(:title, 'Tasks')
 - breadcrumb :mission_tasks, @mission
 #play_task.container-fluid.mb-3
-  div.d-flex.my-5.border-b
+  div.d-flex.my-5.border-b.w-100
     h1.page-title.float-left.ml-5 Task play
     p.ml-3.d-flex.align-items-center.mt-2.page-title-sub.head-border タスクプレイ
   div.bass-image.position-relative id="js-filter"
@@ -9,7 +9,7 @@
     = image_tag "/images/背景（ライト）.gif", class: "w-100 bg-image-light"
     div.chara_img.font-SoukouMincho
       = image_tag "/images/hero-meter.png", class:"w-100"
-      p.mission_info.z-in-2.d-flex.text-center.mb-0.fontsize-12.ml-1 #{@mission.title}
+      p.mission_info.z-in-2.d-flex.text-center.mb-0.fontsize-12.ml-1 #{@mission.title.truncate(15)}
     div#hero-attack
     div.partner_img.font-SoukouMincho
       = image_tag "/images/partner-meter.png", class:"w-100"
@@ -44,12 +44,16 @@
           div.form-group-new-task.mb-0
             = f.label :detail, '詳細', {class: 'task-form-field'}
             = f.text_area :detail, class: 'task-form-style', id: 'task_detail', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
-          div.mb-0.d-flex.w-75.mx-auto.justify-content-between
-            div
-              button#js-task-create-back-button.task-back-button.js-modal-close.task-new-btn type="button" data-toggle="collapse" data-target="#taskplay" 戻る
-            div
-              = f.submit '作成', class: 'task-new-btn', id: 'js-task-create-button'
-    
+          div.mb-0.d-flex.w-75.mx-auto
+            div.container
+              div.row
+                div.col-md-1.px-0
+                div.col-md-4.px-0
+                  button#js-task-create-back-button.task-back-button.js-modal-close.task-new-btn.w-100 type="button" data-toggle="collapse" data-target="#taskplay" 戻る
+                div.col-md-2.px-0
+                div.col-md-4.px-0
+                  = f.submit '作成', class: 'task-new-btn w-100', id: 'js-task-create-button'
+                div.col-md-1.px-0
           
           
     
@@ -78,13 +82,13 @@
       div#future-tasks.anchor-task
         p 未来のタスク
       div
-        = render partial: 'tasks/same_date_tasks', collection: @future_page_date, as: :date
+        = render partial: 'tasks/same_date_tasks', collection: @future_date_tasks, as: :tasks
       div
         = paginate @future_page_date, :param_name => 'page_future_date', params: {anchor: 'future-tasks'}
       div#past-tasks.anchor-task
         p 過去のタスク
       div
-        = render partial: 'tasks/same_date_tasks', collection: @past_page_date, as: :date
+        = render partial: 'tasks/same_date_tasks', collection: @past_date_tasks, as: :tasks
       div
         = paginate @past_page_date, :param_name => 'page_past_date', params: {anchor: 'past-tasks'}
     - else
@@ -130,39 +134,44 @@
           div class= "task-graph-mission-date w-#{@mission_date_per}"
             p.font-ferrum.text-center #{@mission_date_per}%
   div.container
-    div.text-center.border.mt-3.w-60.mx-auto
-      div#search-tasks.anchor
-        p.font-SoukouMincho Task検索
-      div
-        = search_form_for@search_task, url: mission_tasks_path(@mission, anchor: 'search-tasks') do |f|
-          div.search-group
-            = f.label :title, 'Mission title', class: 'search-label'
-            = f.search_field :title_cont, class: 'search-form'
-            = f.submit "検索", class: 'search-btn-style'
+    div.text-center.border.mt-3.w-60.mx-auto.row
+      div.col-md-2
+      div.col-md-8
+        div#search-tasks.anchor
+          p.font-SoukouMincho Task検索
+        div
+          = search_form_for@search_task, url: mission_tasks_path(@mission, anchor: 'search-tasks') do |f|
+            div.search-group
+              = f.label :title, 'Mission title', class: 'font-ferrum'
+              = f.search_field :title_cont, class: 'search-form'
+              = f.submit "検索", class: 'search-btn-style'
+      div.col-md-2
   -if params[:q].blank? || @search_tasks.blank? || params[:q]['title_cont'] == ""
-    h4.font-ferrum.text-center.mb-5 No search task
+    h2.font-ferrum.text-center.my-5 No search task
   -else
     div.container.px-0.my-5.search-task
       = render partial: 'tasks/past_task', collection: @search_tasks, as: :task
- 
- 
-  
-    
 
 
 div.modal.js-modal id="modal_tasks_finish"
   div.modal__bg.js-modal-close
   div.modal__content
-    div.container-fluid.mb-3.mt-3
-      h1.page-title-modal.w-100.text-center　本日の作業の終了
+    div.container-fluid.my-3.text-center
+      h1.page-title-modal.w-100　本日の作業の終了
     div.container.font-cl
       div.row
-        div.d-block.mx-auto.text-center
+        div.d-block.mx-auto.text-center.w-100
           p 本日の作業を終了しますか？
-          p.font-s-des-modal.text-danger 作業を終了してもタスクは作成できます
-          div
-            button.js-modal-close.btn-style-modal.float-left 戻る
-            div.float-right
-              = button_to '前日までのタスクを終了', finish_mission_tasks_path(@mission), :name => 'finish_yesterday', class: "btn-size", data: {confirm: "前日までのタスクを終了します"}
-              = button_to '今日までのタスクを終了', finish_mission_tasks_path(@mission), :name => 'finish_today', class: "btn-size", data: {confirm: "本日のタスクを終了します"}
+          h4.text-danger.font-SoukouMincho 作業を終了してもタスクは作成できます
+        div.col-md-2
+        div.col-md-4.text-center.mt-2
+          = button_to '前日までのタスクを終了', finish_mission_tasks_path(@mission), :name => 'finish_yesterday', class: "border-0 font-SoukouMincho", data: {confirm: "前日までのタスクを終了します"}
+        div.col-md-4.text-center.mt-2
+          = button_to '今日までのタスクを終了', finish_mission_tasks_path(@mission), :name => 'finish_today', class: "border-0 font-SoukouMincho", data: {confirm: "本日のタスクを終了します"}
+        div.col-md-2
+      div.row.mt-2
+        div.col-md-2
+        div.col-md-8
+          button.js-modal-close.btn-style-modal.float-left.w-100 戻る
+
 = render partial: 'tasks/task_edit_modal', collection: @mission.tasks, as: :task

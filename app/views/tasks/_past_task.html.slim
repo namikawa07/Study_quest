@@ -31,7 +31,7 @@
                   = render partial: 'tasks/same_task_note', collection: task.notes, as: :tasknote
                 - else
                   h3.text-center.font-ferrum.my-3 No note
-            div.w-15.mx-auto
+            div.w-30.mx-auto.text-center
               = link_to 'Noteを作成する', mission_task_notes_path(task.mission.id, task.id), class: "font-SoukouMincho text-white text-center text-decoration-none"
         div
           div.collapse.z-in-1.w-90.mx-auto id= "detail_dropdown_#{task.id}"

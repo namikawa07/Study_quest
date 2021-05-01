@@ -19,7 +19,7 @@
 
 
 $(function(){
-    $('.js--open').each(function(){
+    $('.js-modal-open').each(function(){
         $(this).on('click',function(){
             var target = $(this).data('target');
             var modal = document.getElementById(target);
@@ -52,7 +52,6 @@ $(function(){
           reader = new FileReader(),
           $preview = $(".icon_preview");
           t = this;
-  
       if(file.type.indexOf("image") < 0){
         return false;
       }
@@ -88,7 +87,6 @@ $(document).on('mouseenter','.enemy-title-motion',function(){
 $(document).on('mouseleave','.enemy-title-motion',function(){
 	$(".task-title-img").stop().animate({'marginRight':'0px', opacity: 0},400,'swing');
   $(this).next().stop().animate({opacity: 0},300,'swing');
- 
 });
 
 $(function(){

@@ -23,9 +23,14 @@ div.modal.js-modal id="modal_mission_edit_#{mission.id}"
               = f.label :memo, 'Memo', {class: 'form-field-modal mb-2'}
               = f.text_field :memo, class: 'form-style-modal', id: 'mission_memo', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
               div#mission_errors_memo
-            div.text-center.mt-3
-              button.js-modal-close.btn-style-modal 戻る
-              = f.submit '変更', class: "btn-style-modal"
+            div.container
+              div.row.my-3
+                div.col-md-1
+                div.col-md-4.text-center
+                  button.js-modal-close.btn-style-modal.w-100 戻る
+                div.col-md-2
+                div.col-md-4.text-center
+                  = f.submit '変更', class: "btn-style-modal w-100"
 
 div.modal.js-modal id="modal_mission_trash_#{mission.id}"
   div.modal__bg.js-modal-close

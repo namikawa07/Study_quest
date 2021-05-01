@@ -10,1515 +10,1556 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
  *= require_self
+ *= require_tree .
  */
  
  @import "bootstrap";
  @import "font-awesome-sprockets";
  @import "font-awesome";
 
+
  @font-face {
-   font-family: 'font-ja';
-   src: font-url('font_1_honokamin.ttf')  format('truetype');
- }
- @font-face {
-  font-family: 'font-en';
-  src: font-url('ferrum.otf') format('truetype');
+  font-family: 'font-ja';
+  src: font-url('font_1_honokamin.ttf')  format('truetype');
+}
+@font-face {
+ font-family: 'font-en';
+ src: font-url('ferrum.otf') format('truetype');
 }
 
 
 header{
-  z-index: 3;
+ z-index: 3;
 }
 
 html{
-  font-size: calc(100vw / 80);
+ font-size: calc(100vw / 80);
 }
 
 .anchor-mission{
-  margin-top: -5%;
-  padding-top: 5%;
+ margin-top: -5%;
+ padding-top: 5%;
 }
 
 .anchor-task{
-  margin-top: -10%;
-  padding-top: 10%;
+ margin-top: -10%;
+ padding-top: 10%;
 }
 
 .anchor-note{
-  margin-top: -3%;
-  padding-top: 3%;
+ margin-top: -3%;
+ padding-top: 3%;
 }
 
-//ゲーム画面
+
 .bg-image-light{
-  position: absolute;
-  top: 0px;
-  left: 0px;
+ position: absolute;
+ top: 0px;
+ left: 0px;
 }
 
 img.bg-image-chara{
-  position: absolute;
-  top: 61%;
-  left: 6%;
-  width: 19%;
-  height:auto;
+ position: absolute;
+ top: 61%;
+ left: 6%;
+ width: 19%;
+ height:auto;
 }
 
 .task_characters{
-  position:absolute;
-  top: 0%;
-  left: 0%;
-  width: 100%;
-  height: 100%;
+ position:absolute;
+ top: 0%;
+ left: 0%;
+ width: 100%;
+ height: 100%;
 }
 
 .bg-image-enemy1{
-  position: absolute;
-  top: 44%;
-  right: 40%;
-  width: 22%;
-  height:auto;
+ position: absolute;
+ top: 44%;
+ right: 40%;
+ width: 22%;
+ height:auto;
 }
 
 .bg-image-enemy2{
-  position: absolute;
-  top: 52%;
-  right: 30%;
-  width: 22%;
-  height:auto;
-  z-index: 2;
+ position: absolute;
+ top: 52%;
+ right: 30%;
+ width: 22%;
+ height:auto;
+ z-index: 2;
 }
 
 .bg-image-enemy3{
-  position: absolute;
-  top: 44%;
-  right: 20%;
-  width: 22%;
-  height:auto;
+ position: absolute;
+ top: 44%;
+ right: 20%;
+ width: 22%;
+ height:auto;
 }
 
 .bg-image-enemy4{
-  position: absolute;
-  top: 52%;
-  right: 10%;
-  width: 22%;
-  height:auto;
-  z-index: 2;
+ position: absolute;
+ top: 52%;
+ right: 10%;
+ width: 22%;
+ height:auto;
+ z-index: 2;
 }
 
 .bg-image-enemy5{
-  position: absolute;
-  top: 44%;
-  right: 0%;
-  width: 22%;
-  height:auto;
+ position: absolute;
+ top: 44%;
+ right: 0%;
+ width: 22%;
+ height:auto;
 }
 
 @mixin enemy($top: 50%, $right: 50%){
-  position: absolute;
-  top: $top;
-  right: $right;
-  width: 25%;
-  height:auto;
+ position: absolute;
+ top: $top;
+ right: $right;
+ width: 25%;
+ height:auto;
 }
 .enemy1{
-  @include enemy(40%, 50%)
+ @include enemy(40%, 50%)
 }
 
 .enemy2{
-  @include enemy(46%, 45%);
-  z-index:1;
+ @include enemy(46%, 45%);
+ z-index:1;
 }
 
 .enemy3{
-  @include enemy(40%, 35%)
+ @include enemy(40%, 35%)
 }
 
 .enemy4{
-  @include enemy(45.5%, 33%);
-  z-index:1;
+ @include enemy(45.5%, 33%);
+ z-index:1;
 }
 
 .enemy5{
-  @include enemy(40%, 25%)
+ @include enemy(40%, 25%)
 }
 
 .enemy6{
-  @include enemy(42%, 22%);
-  z-index:1;
+ @include enemy(42%, 22%);
+ z-index:1;
 }
 
 .enemy7{
-  @include enemy(40%, 15%)
+ @include enemy(40%, 15%)
 }
 
 .enemy8{
-  @include enemy(45%, 10%);
-  z-index:1;
+ @include enemy(45%, 10%);
+ z-index:1;
 }
 
 .enemy9{
-  @include enemy(40%, 5%)
+ @include enemy(40%, 5%)
 }
 
 .enemy10{
-  @include enemy(46%, 0%);
-  z-index:1;
+ @include enemy(46%, 0%);
+ z-index:1;
 }
 
 @mixin enemy-title($top: 10%, $left: 50%) {
-  position: absolute;
-  top: $top;
-  left: $left;
-  width: 15%;
-  height:auto;
+ position: absolute;
+ top: $top;
+ left: $left;
+ width: 15%;
+ height:auto;
 }
 .enemy1-title{
-  @include enemy-title(10%, 50%);
+ @include enemy-title(10%, 50%);
 }
 
 .enemy2-title{
-  @include enemy-title(18%, 54%)
+ @include enemy-title(18%, 54%)
 }
 
 .enemy3-title{
-  @include enemy-title(10%, 58%)
+ @include enemy-title(10%, 58%)
 }
 
 .enemy4-title{
-  @include enemy-title(18%, 62%)
+ @include enemy-title(18%, 62%)
 }
 
 .enemy5-title{
-  @include enemy-title(10%, 66%)
+ @include enemy-title(10%, 66%)
 }
 
 .enemy6-title{
-  @include enemy-title(18%, 70%)
+ @include enemy-title(18%, 70%)
 }
 
 .enemy7-title{
-  @include enemy-title(10%, 74%)
+ @include enemy-title(10%, 74%)
 }
 
 .enemy8-title{
-  @include enemy-title(18%, 78%)
+ @include enemy-title(18%, 78%)
 }
 
 .enemy9-title{
-  @include enemy-title(10%, 82%)
+ @include enemy-title(10%, 82%)
 }
 
 .enemy10-title{
-  @include enemy-title(18%, 86%)
+ @include enemy-title(18%, 86%)
 }
 
 .attack-icon{
-  width:10%;
-  height: auto;
-  position:absolute;
-  top: 0;
-  left: 0;
+ width:10%;
+ height: auto;
+ position:absolute;
+ top: 0;
+ left: 0;
 }
 
 
 .task-title-img{
-  position: absolute;
-  top: 32%;
-  right: 50%;
-  width: 50%;
-  height: auto;
-  opacity: 0;
-  
+ position: absolute;
+ top: 32%;
+ right: 50%;
+ width: 50%;
+ height: auto;
+ opacity: 0;
+ 
 }
 
 .enemy-task-title{
-  position: absolute;
-  top: 37%;
-  right: -7%;
-  width: 50%;
-  height: auto;
-  opacity: 0;
+ position: absolute;
+ top: 37%;
+ right: -7%;
+ width: 50%;
+ height: auto;
+ opacity: 0;
 }
 
 .enemy-task-title-small{
-  font-size: 90%;
-  position: absolute;
-  top: 37%;
-  right: 4%;
-  width: 40%;
-  height: auto;
-  line-height: 100%;
-  opacity: 0;
+ font-size: 90%;
+ position: absolute;
+ top: 37%;
+ right: 4%;
+ width: 40%;
+ height: auto;
+ line-height: 100%;
+ opacity: 0;
 }
 
 .task-title{
-  position: absolute;
-  top: 37%;
-  right: -10%;
-  display: none;
+ position: absolute;
+ top: 37%;
+ right: -10%;
+ display: none;
 }
 
 .chara-attack0{
-  position: absolute;
-  top: 47%;
-  left: 0.2%;
-  width: 85%;
-  height: auto;
-  z-index: 3;
+ position: absolute;
+ top: 47%;
+ left: 0.2%;
+ width: 85%;
+ height: auto;
+ z-index: 3;
 }
 
 .chara-attack1{
-  position: absolute;
-  bottom: 0%;
-  left: 0%;
-  width: 70%;
-  height: auto;
-  z-index: 3;
+ position: absolute;
+ bottom: 0%;
+ left: 0%;
+ width: 70%;
+ height: auto;
+ z-index: 3;
 }
 
 .chara-attack2{
-  position: absolute;
-  bottom: 0%;
-  left: 0%;
-  width: 70%;
-  height: auto;
-  z-index: 3;
+ position: absolute;
+ bottom: 0%;
+ left: 0%;
+ width: 70%;
+ height: auto;
+ z-index: 3;
 }
 
 .chara-attack3{
-  position: absolute;
-  bottom: 0%;
-  left: 0.2%;
-  width:90%;
-  height: auto;
-  z-index: 3;
+ position: absolute;
+ bottom: 0%;
+ left: 0.2%;
+ width:90%;
+ height: auto;
+ z-index: 3;
 }
 
 .chara-attack4{
-  position: absolute;
-  bottom: 1.4%;
-  left: 1.1%;
-  width: 65%;
-  height: auto;
-  z-index: 3;
+ position: absolute;
+ bottom: 1.4%;
+ left: 1.1%;
+ width: 65%;
+ height: auto;
+ z-index: 3;
 }
 
 .chara-attack5{
-  position: absolute;
-  bottom: 1.3%;
-  left: 1.1%;
-  width: 69%;
-  height: auto;
-  z-index: 3;
+ position: absolute;
+ bottom: 1.3%;
+ left: 1.1%;
+ width: 69%;
+ height: auto;
+ z-index: 3;
 }
 
 
 
 .attack-action-filter{
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0);
-  z-index: 3;
+ position: absolute;
+ width: 100%;
+ height: 100%;
+ background: rgba(0, 0, 0, 0);
+ z-index: 3;
 }
 
 
 
 @mixin enemy-title-motion($top:15%, $left:53.5%){
-  position: absolute;
-  top: $top;
-  left: $left;
-  width: 4%;
-  height: 8%;
-  opacity: 0;
-  font-family: 'font-en';
-  text-decoration: none;
-  border-bottom: none;
-  color: #6e6e6e;
-  transform: rotate(0deg);
+ position: absolute;
+ top: $top;
+ left: $left;
+ width: 4%;
+ height: 8%;
+ opacity: 0;
+ font-family: 'font-en';
+ text-decoration: none;
+ border-bottom: none;
+ color: #6e6e6e;
+ transform: rotate(0deg);
 }
 
 @mixin enemy-title-hover{
-  font-family: 'font-en';
-  opacity: 1;
-  text-decoration: none;
-  color: #ffffff;
-  transform: rotate(-35deg);
-  //transition-duration:0.3s;
-  font-size: 130%;
+ font-family: 'font-en';
+ opacity: 1;
+ text-decoration: none;
+ color: #ffffff;
+ transform: rotate(-35deg);
+ font-size: 130%;
 }
 
 .enemy-title-motion1{
-  @include enemy-title-motion;
-  &:hover{
-    @include enemy-title-hover;
-  }
+ @include enemy-title-motion;
+ &:hover{
+   @include enemy-title-hover;
+ }
 }
 
 
 .enemy-title-motion2{
-  @include enemy-title-motion(23%, 57.5%);
-  &:hover{
-    @include enemy-title-hover;
-  }
+ @include enemy-title-motion(23%, 57.5%);
+ &:hover{
+   @include enemy-title-hover;
+ }
 }
 
 .enemy-title-motion3{
-  @include enemy-title-motion(15%, 61.5%);
-  &:hover{
-    @include enemy-title-hover;
-  }
+ @include enemy-title-motion(15%, 61.5%);
+ &:hover{
+   @include enemy-title-hover;
+ }
 }
 
 .enemy-title-motion4{
-  @include enemy-title-motion(23%, 65.5%);
-  &:hover{
-    @include enemy-title-hover;
-  }
+ @include enemy-title-motion(23%, 65.5%);
+ &:hover{
+   @include enemy-title-hover;
+ }
 }
 
 .enemy-title-motion5{
-  @include enemy-title-motion(15%, 69.5%);
-  &:hover{
-    @include enemy-title-hover;
-  }
+ @include enemy-title-motion(15%, 69.5%);
+ &:hover{
+   @include enemy-title-hover;
+ }
 }
 
 .enemy-title-motion6{
-  @include enemy-title-motion(23%, 73.5%);
-  &:hover{
-    @include enemy-title-hover;
-  }
+ @include enemy-title-motion(23%, 73.5%);
+ &:hover{
+   @include enemy-title-hover;
+ }
 }
 
 .enemy-title-motion7{
-  @include enemy-title-motion(15%, 77.5%);
-  &:hover{
-    @include enemy-title-hover;
-  }
+ @include enemy-title-motion(15%, 77.5%);
+ &:hover{
+   @include enemy-title-hover;
+ }
 }
 
 .enemy-title-motion8{
-  @include enemy-title-motion(23%, 81.5%);
-  &:hover{
-    @include enemy-title-hover;
-  }
+ @include enemy-title-motion(23%, 81.5%);
+ &:hover{
+   @include enemy-title-hover;
+ }
 }
 
 .enemy-title-motion9{
-  @include enemy-title-motion(15%, 85.5%);
-  &:hover{
-    @include enemy-title-hover;
-  }
+ @include enemy-title-motion(15%, 85.5%);
+ &:hover{
+   @include enemy-title-hover;
+ }
 }
 
 .enemy-title-motion10{
-  @include enemy-title-motion(23%, 89.5%);
-  &:hover{
-    @include enemy-title-hover;
-  }
+ @include enemy-title-motion(23%, 89.5%);
+ &:hover{
+   @include enemy-title-hover;
+ }
 }
 
 
-
-
 .card-bg-image{
- 
-  width: 100%;
-  height: auto;
+ width: 100%;
+ height: auto;
 }
 
 
 .chara_img{
-  width: 39%;
-  z-index: 1;
-  position: absolute;
-  top:2%;
-  left: 0%;
+ width: 39%;
+ z-index: 1;
+ position: absolute;
+ top:2%;
+ left: 0%;
 }
 
 .partner_img{
-  width: 39%;
-  z-index: 1;
-  position: absolute;
-  top:11.3%;
-  left: 0%;
+ width: 39%;
+ z-index: 1;
+ position: absolute;
+ top:11.3%;
+ left: 0%;
 }
 
 .mission_info{
-  z-index: 3;
-  position: absolute;
-  top:7%;
-  left: 0%;
-  width: 60%;
-  font-size: 80%;
-  margin-top: 5%;
+ z-index: 3;
+ position: absolute;
+ top:7%;
+ left: 0%;
+ width: 70%;
+ font-size: 80%;
+ margin-top: 5%;
 }
-
-//ゲーム画面終了
 
 .error{
-  font-family: 'font-ja';
-  color:#ea2c2c;
+ font-family: 'font-ja';
+ color:#ea2c2c;
+ font-size: 18px;
 }
 
- #task_title-error{
-  font-size:80%;
-  font-family: 'font-ja';
-  color:#ea2c2c;
- }
+#task_title-error{
+ font-size:80%;
+ font-family: 'font-ja';
+ color:#ea2c2c;
+}
 
- #task_start_date-error{
-  font-size:80%;
-  font-family: 'font-ja';
-  color:#ea2c2c;
- }
- #task_end_date-error{
-  font-size:80%;
-  font-family: 'font-ja';
-  color:#ea2c2c;
- }
+#task_start_date-error{
+ font-size:80%;
+ font-family: 'font-ja';
+ color:#ea2c2c;
+}
+#task_end_date-error{
+ font-size:80%;
+ font-family: 'font-ja';
+ color:#ea2c2c;
+}
 
- #task_errors_end_date{
-   .error{
-     font-size: 80%;
-   }
- }
-
- #task_errors_start_date{
+#task_errors_end_date{
   .error{
     font-size: 80%;
   }
 }
 
+#task_errors_start_date{
+ .error{
+   font-size: 80%;
+ }
+}
+
 header{
-  padding-top: 8px;
-  z-index: 2;
-  background-color: #505050;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
+ padding-top: 8px;
+ z-index: 2;
+ background-color: #505050;
+ position: -webkit-sticky;
+ position: sticky;
+ top: 0;
 }
 
 .font-ferrum{
-  font-family: 'font-en';
+ font-family: 'font-en';
 }
 
 .font-SoukouMincho{
-  font-family: 'font-ja';
+ font-family: 'font-ja';
 }
 
 body {
-  background-color: #505050;
-  color: #cbcbcb;
+ background-color: #505050;
+ color: #cbcbcb;
 }
 
 
 .header-title-style{
-  color: #cbcbcb;
+ color: #cbcbcb;
 
-  &:hover{
-    color: #9c9c9c;
-    outline: none;
-    text-decoration: none;
-  }
+ &:hover{
+   color: #9c9c9c;
+   outline: none;
+   text-decoration: none;
+ }
 }
 
 
 
 .header-menu-style{
-  color: #cbcbcb;
-  vertical-align: middle;
- 
+ color: #cbcbcb;
+ vertical-align: middle;
 
-  &:hover{
-    color: #9c9c9c;
-    outline: none;
-    text-decoration: none;
-  }
+
+ &:hover{
+   color: #9c9c9c;
+   outline: none;
+   text-decoration: none;
+ }
 }
 
 .back-image{
-  background-image: url(../images/bgimage.jpg) no-repeat;
-  background-size:contain;
-  height: 1000px;
+ background-image: url(../images/bgimage.jpg) no-repeat;
+ background-size:contain;
+ height: 1000px;
 
 }
 
-@mixin icon($size: 40%) {
- width: $size;
- height: auto;
- border-radius: 50%;
+@mixin icon($size: 20%) {
+width: $size;
+height: auto;
+border-radius: 50%;
 }
 
 .small-icon-size{
- @include icon;
+@include icon;
 };
 
 .edit-icon-size{
-  @include icon(70px);
+ @include icon(70px);
 };
 
 .icon-size{
-  @include icon(80%);
-  max-width: 100px;
+ @include icon(80%);
+ max-width: 100px;
 };
 
 
 @mixin font($family: 'font-en', $size: 33px) {
-  font-family: $family;
-  font-size: $size;
+ font-family: $family;
+ font-size: $size;
 }
 
 .page-title{
-  @include font;
+ @include font;
 };
 
 .page-title-sub{
-  @include font('font-ja',1rem);
-  font-weight: lighter; 
+ @include font('font-ja',1rem);
+ font-weight: lighter; 
 };
 
 .page-title-mini{
-  @include font('font-en',22px);
+ @include font('font-en',22px);
 }
 
 .page-title-card{
-  @include font('font-ja',16px);
-  letter-spacing: 10px;
-  color:#dedede
+ @include font('font-ja',16px);
+ letter-spacing: 10px;
+ color:#dedede
 }
 
 .page-title-modal{
-  font-family: 'font-ja';
-  font-size: 20px;
-  font-weight: lighter; 
-  color: #555454;
-  border-bottom: solid 1px #555454;
-  width: 70%;
-  text-align: center;
-  padding-bottom:10px; 
+ font-family: 'font-ja';
+ font-size: 20px;
+ font-weight: lighter; 
+ color: #555454;
+ border-bottom: solid 1px #555454;
+ width: 70%;
+ text-align: center;
+ padding-bottom:10px; 
 };
 
 @mixin form {
-  font-family: 'font-en';
-  font-size: 21px;
-  color: #cbcbcb;
-  margin-left: 20px;
+ font-family: 'font-en';
+ font-size: 21px;
+ color: #cbcbcb;
+ margin-left: 20px;
 }
 
 .form-field{
-  @include form;
-  border-bottom: solid 1px #cbcbcb;
-  width:70%;
-  margin-bottom: 15px;
-  
+ @include form;
+ border-bottom: solid 1px #cbcbcb;
+ width:70%;
+ margin-bottom: 15px;
+ 
 };
 
 .form-field2{
-  @include form;
-  position: absolute;
-  padding-bottom: 5px;
-  padding-right: 150px;
+ @include form;
+ position: absolute;
+ padding-bottom: 5px;
+ padding-right: 150px;
 
 };
 
 .form-field-modal{
-  font-family: 'font-en';
-  font-size: 20px;
-  color: #555454;
-  border-bottom: solid 1px #555454;
-  width: 40%;
+ font-family: 'font-en';
+ font-size: 20px;
+ color: #555454;
+ border-bottom: solid 1px #555454;
+ width: 40%;
 };
 
 .head-border{
-  position: relative;
-  display: inline-block;
-  padding: 0 35px;
+ position: relative;
+ display: inline-block;
+ padding: 0 35px;
 }
 
 .head-border:before,
 .head-border:after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    display: inline-block;
-    width: 27px;
-    height: 1px;
-    background-color: #dedede;
+   content: '';
+   position: absolute;
+   top: 50%;
+   display: inline-block;
+   width: 27px;
+   height: 1px;
+   background-color: #dedede;
 }
 
 .head-border:before {
-    left: 0;
+   left: 0;
 }
 
 .head-border:after {
-    right: 0;
+   right: 0;
 }
 
 
 
 
 .container-fluid {
-  margin-right: auto;
-  margin-left: auto;
-  max-width: 950px;
+ margin-right: auto;
+ margin-left: auto;
+ max-width: 950px;
 }
 
 .border-b{
-  border-bottom: 1px solid #cbcbcb;
+ border-bottom: 1px solid #cbcbcb;
 };
 
 
 @mixin form-style($bg-color: #505050, $color: #cbcbcb, $width: 100%) {
-  background-color: $bg-color;
-  color: $color;
-  font-family: 'font-ja';
-  width: $width;
-  padding-bottom: 5px;
-  margin-right: auto;
+ background-color: $bg-color;
+ color: $color;
+ font-family: 'font-ja';
+ width: $width;
+ padding-bottom: 5px;
+ margin-right: auto;
 };
 
 @mixin form-style-focus{
-  background-color: #505050;
-    color: #cbcbcb;
-    font-family: 'font-ja';
-    outline: none;
+ background-color: #505050;
+   color: #cbcbcb;
+   font-family: 'font-ja';
+   outline: none;
 }
 
 .form-style{
-  @include form-style;
-  border: solid 1px #cbcbcb;
+ @include form-style;
+ border: solid 1px #cbcbcb;
 
-  &:focus {
-    @include form-style-focus;
- }
+ &:focus {
+   @include form-style-focus;
+}
 };
 
 .form-style2{
-  @include form-style(#505050, #cbcbcb, 70%);
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom: none;
+ @include form-style(#505050, #cbcbcb, 70%);
+ border-top: none;
+ border-left: none;
+ border-right: none;
+ border-bottom: none;
 
-  &:focus {
-    @include form-style-focus;
-  }
+ &:focus {
+   @include form-style-focus;
+ }
 }
 
 .form-style-modal{
-  @include form-style(#d6d6d6,#555454 ,100% );
-  border: solid 1px #555454;
-  
+ @include form-style(#d6d6d6,#555454 ,100% );
+ border: solid 1px #555454;
+ 
 
-  &:focus {
-    background-color: #d6d6d6;
-    color: #555454;
-    font-family: 'font-ja';
-    outline: none;
- }
+ &:focus {
+   background-color: #d6d6d6;
+   color: #555454;
+   font-family: 'font-ja';
+   outline: none;
+}
 };
 
 .form-group-style2{
-  height: 40px;
-  margin-top: 30px;
-  position: relative;
+ height: 40px;
+ margin-top: 30px;
+ position: relative;
 }
 .border-line{
-  height: 1px;
-  border-bottom: solid 1px #cbcbcb;
+ height: 1px;
+ border-bottom: solid 1px #cbcbcb;
 }
 
 
 .form-group-height {
-  height: 100%;
+ height: 100%;
 }
 
 
 .content{
-  margin: 0 auto;
-  padding: 40px;
+ margin: 0 auto;
+ padding: 40px;
 }
 .modal{
-  display: none;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  width: 100%;
+ display: none;
+ height: 100vh;
+ position: fixed;
+ top: 0;
+ width: 100%;
 }
 .modal__bg{
-  background: rgba(0,0,0,0.8);
-  height: 100vh;
-  position: absolute;
-  width: 100%;
+ background: rgba(0,0,0,0.8);
+ height: 100vh;
+ position: absolute;
+ width: 100%;
 }
 .modal__content{
-  background: #d6d6d6;
-  left: 50%;
-  padding:5px;
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%,-50%);
-  width: 55%;
+ background: #d6d6d6;
+ left: 50%;
+ padding:5px;
+ position: absolute;
+ top: 50%;
+ transform: translate(-50%,-50%);
+ width: 55%;
 }
 
-//widthの幅を決める
+
 $i: 1;
 @while $i <= 100 {
-  .w-#{$i} {width: 1% * $i;}
-  $i: $i + 1;
+ .w-#{$i} {width: 1% * $i;}
+ $i: $i + 1;
 }
 
-//heightの幅を決める
+
 $i: 1;
 @while $i <= 100 {
-  .y-#{$i} {height: 1% * $i;}
-  $i: $i + 1;
+ .y-#{$i} {height: 1% * $i;}
+ $i: $i + 1;
 }
 
-//フォントサイズ
+
 
 $fontnum: 1;
 @while $fontnum <= 100 {
-  .fontsize-#{$fontnum} {font-size: 0.1rem * $fontnum;}
-  $fontnum: $fontnum + 1;
+ .fontsize-#{$fontnum} {font-size: 0.1rem * $fontnum;}
+ $fontnum: $fontnum + 1;
 }
 
 $num: 1;
 @while $num <= 1000 {
-  .lineheight-#{$num} {line-height: 1% * $num;}
-  $num: $num + 1;
+ .lineheight-#{$num} {line-height: 1% * $num;}
+ $num: $num + 1;
 }
-
-
-
 
 
 input[type="file"] {
-  font-size: 13px;
-  display: none;
+ font-size: 13px;
+ display: none;
 }
 
-//各ボタンcss設定
 
 @mixin btn($family: 'font-en', $size: 10px, $bg-color: #b2b1b1, $padding: 5px 25px) {
-  font-family: $family;
-  border-radius: none;
-  font-size: $size;
-  color: #464646;
-  background-color: $bg-color;
-  border:none;
-  cursor: pointer;
-  padding: $padding;
+ font-family: $family;
+ border-radius: none;
+ font-size: $size;
+ color: #464646;
+ background-color: $bg-color;
+ border:none;
+ cursor: pointer;
+ padding: $padding;
 }
 
 @mixin focus-btn{
-  background-color: #999999;
-  color: #222222;
-  font-family: 'font-ja';
-  outline: none;
+ background-color: #999999;
+ color: #222222;
+ font-family: 'font-ja';
+ outline: none;
 }
 
 @mixin btn-move-before($top: 6px, $left: 6px){
-  position: absolute;
-  z-index: -1;
-  width:100%;
-  height: 100%;
-  top: $top;
-  left: $left;
-  background-color: transparent;
-  border: 1px solid #d3d3d3;
-  transition: top 0.7s, left 0.7s;
+ position: absolute;
+ z-index: -1;
+ width:100%;
+ height: 100%;
+ top: $top;
+ left: $left;
+ background-color: transparent;
+ border: 1px solid #d3d3d3;
+ transition: top 0.7s, left 0.7s;
 }
 
 @mixin btn-move-after($border: 15px, $border-left: 20px, $top: 20%, $left: 0px){
-  content: '';
-  border: solid $border transparent;
-  border-left: solid $border-left #d3d3d3;
-  position: absolute;
-  z-index: 1;
-  top: $top;
-  left: $left;
-  background-color: transparent;
+ content: '';
+ border: solid $border transparent;
+ border-left: solid $border-left #d3d3d3;
+ position: absolute;
+ z-index: 1;
+ top: $top;
+ left: $left;
+ background-color: transparent;
 }
 
 @mixin btn-movement{
-  display: block;
-  animation-name: anime1;
-  animation-duration: 0.7s;
-  animation-timing-function: ease;
-  animation-iteration-count: infinite;
+ display: block;
+ animation-name: anime1;
+ animation-duration: 0.7s;
+ animation-timing-function: ease;
+ animation-iteration-count: infinite;
 }
 
 .icon-btn-style{
-  @include btn;
+ @include btn;
 }
 
 
 .btn-style-white{
-  @include btn('font-ja', 1rem, #d3d3d3,3% 5% );
-  
+ @include btn('font-ja', 13px, #d3d3d3,3% 5% );
+ 
 
-  &:focus {
-    @include focus-btn;
-  }
+ &:focus {
+   @include focus-btn;
+ }
 }
 
 .btn-style-white-border{
-  width: 100%;
-  height: auto;
-  min-height: 10px;
-  position: relative;
+ width: 100%;
+ height: auto;
+ min-height: 10px;
+ position: relative;
 
-  input {
-    width: 100%;
-    font-family: 'font-ja';
-    font-size:80%;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    background-color: #d3d3d3;
-  }
+ input {
+   width: 100%;
+   font-family: 'font-ja';
+   font-size:80%;
+   padding-top: 5px;
+   padding-bottom: 5px;
+   background-color: #d3d3d3;
+ }
 
-  a{
-    .button_to{
-      width:100%;
-    }
-  }
+ a{
+   .button_to{
+     width:100%;
+   }
+ }
 }
 
 .btn-style-white-border::before{
-  content: '';
-  @include btn-move-before;
+ content: '';
+ @include btn-move-before;
 }
 
 .btn-style-white-border:hover::before{
-  @include btn-move-before(-6px, -6px);
+ @include btn-move-before(-6px, -6px);
 }
 
 .btn-style-white-border::after{
-  @include btn-move-after;
-  display: none;
+ @include btn-move-after;
+ display: none;
 }
 
 .btn-style-white-border:hover::after{
-  @include btn-move-after(8px, 10px, 20%, 0px);
-  @include btn-movement;
+ @include btn-move-after(8px, 10px, 20%, 0px);
+ @include btn-movement;
 }
 
 .btn-style-white-width{
-  @include btn('font-ja', 13px, #d3d3d3,5px 25px );
-  display: block;
-  width: 100%;
-  text-align: center;
+ @include btn('font-ja', 13px, #d3d3d3,5px 25px );
+ display: block;
+ width: 100%;
+ text-align: center;
 
-  &:hover{
-    text-decoration: none;
-    color: #2b2b2b;
-  }
+ &:hover{
+   text-decoration: none;
+   color: #2b2b2b;
+ }
 
-  &:focus {
-    @include focus-btn;
-  }
+ &:focus {
+   @include focus-btn;
+ }
 }
 
 
 .btn-style-white-width-border{
-  width: 100%;
-  height: 100%;
-  position: relative;
+ width: 100%;
+ height: 100%;
+ position: relative;
 }
 
 .btn-style-white-width-border::before{
-  content: '';
-  @include btn-move-before(20px, 20px);
+ content: '';
+ @include btn-move-before(20px, 20px);
 }
 
 .btn-style-white-width-border:hover::before{
-  @include btn-move-before(-20px, -20px);
+ @include btn-move-before(-20px, -20px);
 }
 
 .btn-style-white-width-border::after{
-  @include btn-move-after;
-  display: none;
+ @include btn-move-after;
+ display: none;
 }
 
 .btn-style-white-width-border:hover::after{
-  @include btn-move-after(8px, 10px, 20%, 0px);
-  @include btn-movement;
+ @include btn-move-after(8px, 10px, 20%, 0px);
+ @include btn-movement;
 }
 
 .btn-style-back{
-  @include btn('font-en', 90%, #b2b1b1,1% 15% );
-  
+ @include btn('font-en', 90%, #b2b1b1,1% 15% );
+ 
 
-  &:focus {
-    @include focus-btn;
-  }
+ &:focus {
+   @include focus-btn;
+ }
 }
 
 .task-new-btn{
-  @include btn('font-ja', 10px, #d3d3d3,0px 10px );
+ @include btn('font-ja', 10px, #d3d3d3,0px 0px );
 
-  &:focus {
-    @include focus-btn;
-  }
+ &:focus {
+   @include focus-btn;
+ }
 }
 
 .btn-style-md{
-  @include btn('font-ja', 14px , #d3d3d3,0px 0px );
-  width:100%;
-  height: 100%;
+ @include btn('font-ja', 14px , #d3d3d3,0px 0px );
+ width:100%;
+ height: 100%;
 
-  &:focus {
-    @include focus-btn;
-  }
+ &:focus {
+   @include focus-btn;
+ }
 }
 
 .btn-style-md-border{
-  width: 25%;
-  height: 40px;
-  position: relative;
+ width: 25%;
+ height: 40px;
+ position: relative;
 }
 
 .btn-style-md-border::before{
-  content: '';
-  @include btn-move-before(12px, 12px)
+ content: '';
+ @include btn-move-before(12px, 12px)
 }
 
 .btn-style-md-border:hover::before{
-  @include btn-move-before(-12px, -12px)
+ @include btn-move-before(-12px, -12px)
 }
 
 .btn-style-md-border::after{
-  @include btn-move-after(15px, 20px, 20%, -50px);
-  display: none;
+ @include btn-move-after(15px, 20px, 20%, -50px);
+ display: none;
 }
 
 .btn-style-md-border:hover::after{
-  @include btn-move-after(15px, 20px, 20%, -50px);
-  @include btn-movement;
+ @include btn-move-after(15px, 20px, 20%, -50px);
+ @include btn-movement;
 }
 
 .btn-style-lg{
-  @include btn('font-en', 200% , #cbcbcb,2% 2% );
-  width: 100%;
-  height: 100%;
-  max-height:60px;
-  min-height: 35px;
-  letter-spacing: 0.4em;
-  text-align: center;
-  
+ @include btn('font-en', 200% , #cbcbcb,2% 2% );
+ width: 100%;
+ height: 100%;
+ max-height:60px;
+ min-height: 35px;
+ letter-spacing: 0.4em;
+ text-align: center;
+ 
 }
 
-//ボタンのゲームデザイン
 
 .btn-style-lg-border{
-  width: 35%;
-  height: 50%;
-  position: relative;
+ width: 35%;
+ height: 50%;
+ position: relative;
 }
 
 .btn-style-lg-border::before{
-  content: '';
-  @include btn-move-before(12%, 9%)
+ content: '';
+ @include btn-move-before(12%, 9%)
 }
 
 .btn-style-lg-border:hover::before{
-  @include btn-move-before(-12%, -9%)
+ @include btn-move-before(-12%, -9%)
 }
 
 .btn-style-lg-border::after{
-  @include btn-move-after(15px, 20px, 20%, -50px);
-  display: none;
+ @include btn-move-after(15px, 20px, 20%, -50px);
+ display: none;
 }
 
 .btn-style-lg-border:hover::after{
-  @include btn-move-after(15px, 20px, 20%, -50px);
-  @include btn-movement;
+ @include btn-move-after(15px, 20px, 20%, -50px);
+ @include btn-movement;
 }
 
 .form-group{
-  position: relative;
+ position: relative;
 }
 
 .form-group:focus-within::after{
-  @include btn-move-after(15px, 20px, 60%, -50px);
-  @include btn-movement;
+ @include btn-move-after(15px, 20px, 60%, -50px);
+ @include btn-movement;
 }
 
 .form-group-new-task{
-  position: relative;
+ position: relative;
 }
 
 .form-group-new-task:focus-within::after{
-  @include btn-move-after(8px, 10px, 60%, 0px);
-  @include btn-movement;
+ @include btn-move-after(8px, 10px, 60%, 0px);
+ @include btn-movement;
 }
 
 
 @keyframes anime1 {
-  0% {left: -50px;}
-  100% {left:-35px;}
-  }
+ 0% {left: -50px;}
+ 100% {left:-35px;}
+ }
 
-  
+ 
 
 .no-file{
-  font-size: 10px;
-  color: #464646;
-  margin-top: 5px;
+ font-size: 10px;
+ color: #464646;
+ margin-top: 5px;
 }
 
 
 .font-cl{
-  color: #585858;
+ color: #585858;
 }
 
 $font: 13;
 @while $fontnum <= 15 {
-  .fontsize-#{$fontnum}px {font-size: 1px * $fontnum;}
-  $font: $font + 1;
+ .fontsize-#{$fontnum}px {font-size: 1px * $fontnum;}
+ $font: $font + 1;
 }
 
 .font-s-modal{
-  font-size:13px;
+ font-size:13px;
 }
 
-.font-s-des-modal{
-  font-size:15px;
-}
 
 .red-btn-size{
-  background-color: #7e1e1e;
-  color: #999999;
-  border:none;
-  cursor: pointer;
+ background-color: #7e1e1e;
+ color: #999999;
+ border:none;
+ cursor: pointer;
 
-  &:focus{
-    background-color: #b64343;
-    color: #cbcbcb;
-    font-family: 'font-en';
-    outline: none;
-  }
+ &:focus{
+   background-color: #b64343;
+   color: #cbcbcb;
+   font-family: 'font-en';
+   outline: none;
+ }
 }
 
 
 .card-style{
-  border-color: #989898;
-  position: relative;
+ border-color: #989898;
+ position: relative;
 }
 
 .card-style-complete{
-  border-color: #6e6e6e;
-  position: relative;
+ border-color: #6e6e6e;
+ position: relative;
 }
 
 .past-card-style-untouch{
-  border-color: #383838;
-  border-radius: 0%;
-  position: relative;
+ border-color: #383838;
+ border-radius: 0%;
+ position: relative;
 }
 
 .past-card-style-complete{
-  border-color: #6e6e6e;
-  border-radius: 0%;
-  position: relative;
+ border-color: #6e6e6e;
+ border-radius: 0%;
+ position: relative;
 }
 
 .past-card-style-incomplete{
-  border-color: #989898;
-  border-radius: 0%;
-  position: relative;
+ border-color: #989898;
+ border-radius: 0%;
+ position: relative;
 }
 
 
 
 .draft-overlay{
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0%;
-  left: 0%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+ background: rgba(0, 0, 0, 0.5);
+ z-index: 1;
+ width: 100%;
+ height: 100%;
+ position: absolute;
+ top: 0%;
+ left: 0%;
+ display: flex;
+ justify-content: center;
+ align-items: center;
 
-  a{
-    z-index: 2;
-    font-family: 'font-ja';
-    text-decoration: none;
-    color:#cfcfcf;
-    
-  }
-  
+ a{
+   z-index: 2;
+   font-family: 'font-ja';
+   text-decoration: none;
+   color:#cfcfcf;
+   
+ }
+ 
 }
 
 .card-overlay{
-  background: rgba(0, 0, 0, 0.3);
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0%;
-  left: 0%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+ background: rgba(0, 0, 0, 0.3);
+ z-index: 1;
+ width: 100%;
+ height: 100%;
+ position: absolute;
+ top: 0%;
+ left: 0%;
+ display: flex;
+ justify-content: center;
+ align-items: center;
 }
 
 
 
 .complete-text{
-  transform: rotate( -45deg );
+ transform: rotate( -45deg );
 };
 
 .card-header-footer{
-  background-color: #989898;
-  border:none;
-  p{
-    color: #d6d6d6;
-  }
+ background-color: #989898;
+ border:none;
+ p{
+   color: #d6d6d6;
+ }
 }
 
 
 .card-body{
-  background-color: #505050;
-  border-radius: 0;
-  height:100%;
+ background-color: #505050;
+ border-radius: 0;
+ height:100%;
 }
 
 .card-height{
-  height: 100%;
+ height: 100%;
 }
 
 .col-15, .col-sm-15, .col-md-15, .col-lg-15 {
-	position: relative;
-	min-height: 100px;
-	padding-right: 15px;
-	padding-left: 15px;
-	width: 100%;
+ position: relative;
+ min-height: 100px;
+ padding-right: 15px;
+ padding-left: 15px;
+ width: 100%;
 }
 
 @media (min-width: 768px) {
-  .col-sm-15 {
-    width: 20%;
-    flex: 0 0 20%;
-  }
+ .col-sm-15 {
+   width: 20%;
+   flex: 0 0 20%;
+ }
 }
 @media (min-width: 992px) {
-  .col-md-15 {
-    width: 20%;
-    flex: 0 0 20%;
-  }
+ .col-md-15 {
+   width: 20%;
+   flex: 0 0 20%;
+ }
 }
 @media (min-width: 1200px) {
-  .col-lg-15 {
-    width: 20%;
-    flex: 0 0 20%;
-  }
+ .col-lg-15 {
+   width: 20%;
+   flex: 0 0 20%;
+ }
 }
 .col-15{
-  width: 20%;
-  flex: 0 0 20%;
+ width: 20%;
+ flex: 0 0 20%;
 }
 
 
 $z: 1;
 @while $z <= 10 {
-  .z-in-#{$z} {z-index: $z;}
-  $z: $z + 1;
+ .z-in-#{$z} {z-index: $z;}
+ $z: $z + 1;
 }
 
 
 .bass-image{
-  position: relative;
+ position: relative;
 }
 
 .header-position{
-  position: absolute;
-  top:0%;
-  right: 3%;
+ position: absolute;
+ top:0%;
+ right: 3%;
 }
 
 .header-dropdown-position{
-  border: none;
-  background-color: #dedede;
-  position: relative;
-  top:0;
-  left: 0;
-  right: 0;
-  margin: auto;
+ border: none;
+ background-color: #dedede;
+ position: relative;
+ top:0;
+ left: 0;
+ right: 0;
+ margin: auto;
 }
 
 .note-dropdown-position{
-  border: none;
-  background: rgba(154, 147, 131, 0.7);
-  position: relative;
-  top:0;
-  left: 0;
-  right: 0;
-  margin: auto;
+ border: none;
+ background: rgba(154, 147, 131, 0.7);
+ position: relative;
+ top:0;
+ left: 0;
+ right: 0;
+ margin: auto;
 }
 
 
 @mixin position($position:absolute) {
-  background: rgba(154, 147, 131, 0.7);
-  position: $position;
-  top:0;
-  left: 0;
-  right: 0;
-  margin: auto;
+ background: rgba(154, 147, 131, 0.7);
+ position: $position;
+ top:0;
+ left: 0;
+ right: 0;
+ margin: auto;
 }
 
 
 .new-task-position{
-  @include position;
-  
+ @include position;
+ 
 }
 
 .new-task-form-position{
-  border-top: none;
-  @include position(relative);
-  display:none;
+ border-top: none;
+ @include position(relative);
+ display:none;
 }
 
 .task-form-field{
-  font-family: 'font-ja';
-  font-size: 7px;
-  color: #cbcbcb;
-  border-bottom: solid 1px #696969;
+ font-family: 'font-ja';
+ font-size: 7px;
+ color: #cbcbcb;
+ border-bottom: solid 1px #696969;
 }
 
 .task-form-style{
-  background: rgba(154, 147, 131, 0);
-  font-family: 'font-ja';
-  font-size: 7px;
-  width: 100%;
-  border: solid 1px #696969;
-  height: 20px;
+ background: rgba(154, 147, 131, 0);
+ font-family: 'font-ja';
+ font-size: 7px;
+ width: 100%;
+ border: solid 1px #696969;
+ height: 20px;
 
-  &:focus {
-    background-color: #505050;
-    color: #cbcbcb;
-    font-family: 'font-ja';
-    outline: none;
- }
+ &:focus {
+   background-color: #505050;
+   color: #cbcbcb;
+   font-family: 'font-ja';
+   outline: none;
+}
 }
 
 .task-border{
-  border-bottom: solid 1px #696969;
+ border-bottom: solid 1px #696969;
 }
 
 
 
 .btn-task{
-  background: rgba(154, 147, 131, 0);
-  cursor: pointer;
-  display: block;
+ background: rgba(154, 147, 131, 0);
+ cursor: pointer;
+ display: block;
 }
 
 .task-btn-position{
-  height: 60%;
-  width: 39%;
-  position: absolute;
-  top:5%;
-  right: 0%;
+ height: 60%;
+ width: 39%;
+ position: absolute;
+ top:5%;
+ right: 0%;
 
 }
 
 .task-btn{
-  height: 17%;
-  width: 60%;
-  justify-content: space-between;
+ height: 17%;
+ width: 60%;
+ justify-content: space-between;
 }
 
 .task_button{
-  height:10%;
+ height:10%;
 
 }
 
 .task-attack{
-  margin-bottom: 0%;
-  display:flex;
-  align-items:center;
-  
+ margin-bottom: 0%;
+ display:flex;
+ align-items:center;
+ 
 
-  &:focus {
-    @include focus-btn;
-  }
+ &:focus {
+   @include focus-btn;
+ }
 }
 
 
 
 .task-name-btn-center{
-  display:flex;
-  align-items:center;
-  justify-content:center;
+ display:flex;
+ align-items:center;
+ justify-content:center;
 }
 
 
 .task-graph{
-  height: 30px;
-  margin-top: 2%;
+ height: 30px;
+ margin-top: 2%;
 }
 
 .task-graph-mission{
-  height: 30px;
-  margin-top: 2%;
-  border: 1px solid #cbcbcb;
-  border-top: none;
+ height: 30px;
+ margin-top: 2%;
+ border: 1px solid #cbcbcb;
+ border-top: none;
 }
 
 .task-graph-untouch{
-  background-color: #dddcdc;
-  height: 100%;
+ background-color: #dddcdc;
+ height: 100%;
 }
 .task-graph-complete{
-  background-color: #acacac;
-  height: 100%;
+ background-color: #acacac;
+ height: 100%;
 }
 .task-graph-incomplete{
-  background-color: #8b8b8b;
-  height: 100%;
+ background-color: #8b8b8b;
+ height: 100%;
 }
 
 .task-graph-mission-date{
-  border-right:1px solid #c2c2c2;
-  height: 100%;
-  background-color: #3b3b3b;
+ border-right:1px solid #c2c2c2;
+ height: 100%;
+ background-color: #3b3b3b;
 }
 .dropdown-style{
-  margin-bottom: 1em;
-  font-size: 110%;
-  text-decoration: none;
+ margin-bottom: 1em;
+ font-size: 110%;
+ text-decoration: none;
 
-  a{
-    color:#5c5c5c;
-  }
+ a{
+   color:#5c5c5c;
+ }
 
-  &:hover{
-    
+ &:hover{
+   
 
-    a{
-      color:#333333;
-      outline: none;
-      text-decoration: none;
-    }
+   a{
+     color:#333333;
+     outline: none;
+     text-decoration: none;
+   }
 
-  }
+ }
 
 }
 
 .pagination {
-  justify-content: center;
-  font-family: 'font-en';
+ justify-content: center;
+ font-family: 'font-en';
 
 }
 
 .pagination>li>a {          
-  border: none;     
-  background: rgba(154, 147, 131, 0);
-  color: #c9c9c9;  
-  margin: 0 10px;
-  outline: none !important;
+ border: none;     
+ background: rgba(154, 147, 131, 0);
+ color: #c9c9c9;  
+ margin: 0 10px;
+ outline: none !important;
 
-  &:hover {       
-    border: none;     
-    background: rgba(154, 147, 131, 0); 
-    color: #ffffff;   
-    font-size: larger; 
-  }
+ &:hover {       
+   border: none;     
+   background: rgba(154, 147, 131, 0); 
+   color: #ffffff;   
+   font-size: larger; 
+ }
 
-  &:focus{
-    outline: none !important;
-  }
+ &:focus{
+   outline: none !important;
+ }
 }
 
 .pagination>.active>a {   
-  background: rgba(154, 147, 131, 1)!important;
-  font-size: larger;   
+ background: rgba(154, 147, 131, 1)!important;
+ font-size: larger;   
 }
 
 *:focus {
-  outline: none;
+ outline: none;
 }
 
 
 .schedule-complete{
-  position: absolute;
-  top:0%;
-  left: 0%;
-  background-color:rgb(0, 0, 0);
-  opacity: 0.4;
+ position: absolute;
+ top:0%;
+ left: 0%;
+ background-color:rgb(0, 0, 0);
+ opacity: 0.4;
 }
 
 .search-group{
-  width: 90%;
-  margin: 0 auto;
+ width: 90%;
+ margin: 0 auto;
 }
 
 
 
 .search-form{
-  border: none;
-  background: rgba(154, 147, 131, 0.3);
-  color: #cbcbcb;
-  font-family: 'font-ja';
-  margin: 0 10px;
+ border: none;
+ background: rgba(154, 147, 131, 0.3);
+ color: #cbcbcb;
+ font-family: 'font-ja';
+ margin: 0 10px;
 }
 
 .search-btn-style{
-  @include btn('font-ja', 13px , #cbcbcb,3px 15px );
+ @include btn('font-ja', 13px , #cbcbcb,3px 15px );
 }
 
 
 
 .breadcrumbs{
-  font-size: 110%;
-  a{
-    color: #cbcbcb;
-    &:hover{
-      color:white;
-      font-size: 110%;
-      text-decoration: none;
-    }
-  }
+ font-size: 110%;
+ a{
+   color: #cbcbcb;
+   &:hover{
+     color:white;
+     font-size: 110%;
+     text-decoration: none;
+   }
+ }
 }
 
 .today_task_groups{
-  display: none;
+ display: none;
 }
 
 .today_task_characters{
-  display: none;
+ display: none;
 }
 
 .show{
-  display: block;
-  transform: translate(0);
+ display: block;
+ transform: translate(0);
 }
 
 .error-my-mission{
-  font-family: 'font-ja';
-  font-size: 90%;
-  text-align: center;
-  background-color: #cf9b9b;
-  color: #853030;
+ font-family: 'font-ja';
+ font-size: 90%;
+ text-align: center;
+ background-color: #cf9b9b;
+ color: #853030;
 
 }
 
 .not-link-decoration{
-  color: #cbcbcb;
+ color: #cbcbcb;
 
-  &:hover{
-    color: #9c9c9c;
-    outline: none;
-    text-decoration: none;
-  }
+ &:hover{
+   color: #9c9c9c;
+   outline: none;
+   text-decoration: none;
+ }
+}
+
+.card-title{
+ color: white;
+ font-size: 18px;
+ &:hover{
+   text-decoration: none;
+   color: #b9b9b9;
+ }
+}
+
+.card-title-bottom{
+ color: white;
+ font-family: 'font-ja';
+ font-size: 14px;
+ &:hover{
+   text-decoration: none;
+   color: #b1b1b1;
+ }
+ 
+}
+
+.my_mission_registration{
+ color: white;
+ font-size: 18px;
+   &:hover{
+     text-decoration: none;
+     color: #bdbdbd;
+   }
+}
+
+.my_mission_not_registration{
+ color: rgb(139, 139, 139);
+ font-size: 20px;
+   &:hover{
+     text-decoration: none;
+     color: #bdbcbc;
+   }
+}
+
+.today-task-title{
+ font-size: 15px;
+}
+
+.btn-style-modal{
+ text-decoration: none;
+ font-family: 'font-ja';
+ border: none;
+}
+
+
+.cursor-pointer{
+ cursor: pointer;
 }
