@@ -7,7 +7,7 @@ div.col-15.mt-5.px-3
       = image_tag "/images/#{task.character}-card.png", class: "card-bg-image"
       div.card-title.mt-4
         p.font-ferrum Start date #{l task.start_date}
-        p.font-ferrum End date#{l task.end_date}
+        p.font-ferrum End date #{l task.end_date}
         - if task.detail.blank?
           div.text-center
             p.font-ferrum Task detail
@@ -26,6 +26,3 @@ div.col-15.mt-5.px-3
           div.card-overlay
             h4.complete-text.text-center.font-ferrum complete!
       div id= "js-card-complete#{task.id}"
-              
-
-= render partial: 'task_edit_modal', locals: {task: task}

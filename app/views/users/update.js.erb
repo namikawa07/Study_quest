@@ -1,4 +1,5 @@
 <% if @status == 'fail' %>
   $('#unique_email').html("<%= j(render 'unique_email') %>");
+  $('#js-icon-validation').html("<%= j(render 'layouts/error_messages', model: @user,class:"z-in-2") %>");
 <% end %>
 

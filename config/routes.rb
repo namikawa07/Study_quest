@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root to: 'home#index'
   get    '/privacy', to: "home#privacy"
   get    '/login', to: "sessions#new"
@@ -24,4 +25,6 @@ Rails.application.routes.draw do
     
   end
   resources :sessions, only: %i[new create destroy]
+  resources :password_resets
+  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 end

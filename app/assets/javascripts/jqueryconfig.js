@@ -87,7 +87,7 @@ $(function(){
     rules: {
       "mission[title]": {
         required: true,
-        maxlength: 40,
+        maxlength: 100,
       },
       "mission[start_date]": {
         required: true,
@@ -102,7 +102,7 @@ $(function(){
     messages: {
       "mission[title]": {
         required: 'タイトルを入力して下さい',
-        maxlength: 'Mission名は最大で40字までです'
+        maxlength: 'Mission名は最大で100字までです'
       },
       "mission[start_date]": {
         required: 'Start dateを入力して下さい',
@@ -163,7 +163,7 @@ $(function(){
     rules: {
       "task[title]": {
         required: true,
-        maxlength: 20,
+        maxlength: 40,
       },
       "task[start_date]": {
         required: true,
@@ -178,7 +178,7 @@ $(function(){
     messages: {
       "task[title]": {
         required: 'タイトルを入力して下さい',
-        maxlength: 'task名は最大で20字までです'
+        maxlength: 'task名は最大で40字までです'
       },
       "task[start_date]": {
         required: '開始日を入力して下さい',
@@ -292,5 +292,38 @@ $(function(){
       },
     },
   })
+  })
+})
+
+$(function(){
+  $('#password_reset_form').validate({
+    rules: {
+      "user[email]": {
+        required: true,
+        email: true,
+      },
+      "user[password]": {
+        required: true,
+        minlength: 3,
+      },
+      "user[password_confirmation]": {
+        required: true,
+        equalTo: "#reset_password",
+      },
+    },
+    messages: {
+      "user[email]": {
+        required: 'メールアドレスを入力して下さい',
+        email: 'メールアドレスの形式で入力してください',
+      },
+      "user[password]": {
+        required: 'パスワードを入力して下さい',
+        minlength: 'パスワードは3文字以上で入力してください',
+      },
+      "user[password_confirmation]": {
+        required: '確認用パスワードを入力して下さい',
+        equalTo: '確認用パスワードがパスワードと一致しません',
+      },
+    },
   })
 })

@@ -15,14 +15,11 @@
 //= require activestorage
 //= require popper
 //= require bootstrap
-//= require swiper/swiper-bundle.js
-//= require chartkick
-//= require Chart.bundle
 //= require_tree .
 
 
 $(function(){
-    $('.js-modal-open').each(function(){
+    $('.js--open').each(function(){
         $(this).on('click',function(){
             var target = $(this).data('target');
             var modal = document.getElementById(target);
@@ -50,24 +47,19 @@ $(function() {
 });
 
 $(function(){
-    //画像ファイルプレビュー表示のイベント追加 fileを選択時に発火するイベントを登録
     $('form').on('change', 'input[type="file"]', function(e) {
       var file = e.target.files[0],
           reader = new FileReader(),
           $preview = $(".icon_preview");
           t = this;
   
-      // 画像ファイル以外の場合は何もしない
       if(file.type.indexOf("image") < 0){
         return false;
       }
   
-      // ファイル読み込みが完了した際のイベント登録
       reader.onload = (function(file) {
         return function(e) {
-          //既存のプレビューを削除
           $preview.empty();
-          // .prevewの領域の中にロードした画像を表示するimageタグを追加
           $preview.append($('<img>').attr({
                     src: e.target.result,
                     width: "70px",
@@ -91,17 +83,53 @@ $(function(){
 $(document).on('mouseenter','.enemy-title-motion',function(){
 	$(".task-title-img").stop().animate({'marginRight':'-50%', opacity: 1},400,'swing');
   $(this).next().stop().animate({opacity: 1},700,'swing');
-  //$(this).next('.add-attack-button').stop().animate({opacity: 1},700,'swing');
-  
-  
-  
-  
 });
 
 $(document).on('mouseleave','.enemy-title-motion',function(){
 	$(".task-title-img").stop().animate({'marginRight':'0px', opacity: 0},400,'swing');
   $(this).next().stop().animate({opacity: 0},300,'swing');
-  //$(this).next('.add-attack-button').stop().animate({opacity: 0},700,'swing');
  
 });
 
+$(function(){
+  $('#js-task-create-back-button').click(function(){
+    document.getElementById('task_count_error').textContent = '';
+    document.getElementById('task_errors_start_date').textContent = '';
+    document.getElementById('task_errors_end_date').textContent = '';
+    document.getElementById('task_title-error').textContent = '';
+    document.getElementById('task_start_date-error').textContent = '';
+    document.getElementById('task_end_date-error').textContent = '';
+    document.getElementById('task_start_date').style.color = '#000'; 
+    document.getElementById('task_end_date').style.color = '#000'; 
+  });
+});
+
+$(function(){
+  $('#js-task-create-button').click(function(){
+    document.getElementById('task_count_error').textContent = '';
+    document.getElementById('task_errors_start_date').textContent = '';
+    document.getElementById('task_errors_end_date').textContent = '';
+  });
+});
+
+
+$(function(){
+  $('#info-slide-menu1').hide();
+  $('#info-slide1').click(function(){
+    $('#info-slide-menu1').slideToggle();
+  });
+});
+
+$(function(){
+  $('#info-slide-menu2').hide();
+  $('#info-slide2').click(function(){
+    $('#info-slide-menu2').slideToggle();
+  });
+});
+
+$(function(){
+  $('#password_reset_slide').hide();
+  $('.password_reset_slide_btn').click(function(){
+    $('#password_reset_slide').slideToggle();
+  });
+});

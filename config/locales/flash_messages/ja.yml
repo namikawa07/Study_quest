@@ -74,3 +74,10 @@ ja:
       Not_success: "ノートを更新できませんでした"
     destroy:
       Success: "ノートを削除しました"
+  password_resets:
+    create:
+      Success: "パスワード変更用のメールを送信しました"
+      Not_success: "パスワード変更用のメールを送信できませんでした。メールアドレスを確認して下さい"
+    update:
+      Success: "パスワードを変更しました"
+      Not_success: "パスワードを変更できませんでした"

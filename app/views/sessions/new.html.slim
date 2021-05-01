@@ -1,5 +1,5 @@
 = provide(:title, 'Login')
-- breadcrumb :new_users
+- breadcrumb :login
 #login.container-fluid.mb-3
   div.d-flex.mt-5.border-b
     h1.page-title.float-left.ml-5 LOGIN
@@ -15,6 +15,26 @@ div.container.w-75
           = f.label :password, 'Password', {class: 'form-field'}
           = f.password_field :password, class: 'form-style', id: 'password', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
         div.btn-style-lg-border.mx-auto.mt-5
-          div.form-group.text-center.form-group-height
+          div.text-center.form-group-height
             = f.submit 'LOGIN', class: 'btn-style-lg'
+    
+div.text-center
+  p.password_reset_slide_btn パスワードを忘れた方
+div#password_reset_slide
+  div.container-fluid.mb-3
+    div.d-flex.mt-5.border-b
+      h1.page-title.float-left.ml-5 Password Reset
+      p.ml-3.d-flex.align-items-center.mt-2.page-title-sub.head-border パスワード再設定
+    div.mt-3
+      h4.font-SoukouMincho.text-center パスワード再設定をするためのメールアドレスを入力して下さい
+  div.container.w-75
+    div.row
+      div.col-md-10.offset-md-1.col-lg-8.offset-lg-2
+        = form_with url:password_resets_path, :method => :post do |f|
+          div.form-group
+            = f.label :email, class: 'form-field'
+            = f.text_field :email, class: 'form-style', id: 'email', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+          div.btn-style-lg-border.mx-auto.mt-5
+            div.form-group.text-center.form-group-height
+              = f.submit 'RESET', class: 'btn-style-lg'
 

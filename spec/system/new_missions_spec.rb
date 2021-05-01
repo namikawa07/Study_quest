@@ -137,7 +137,7 @@ RSpec.describe "ミッションの新規作成", type: :system do
         all(:link_or_button, "My mission")[0].click
         expect(page).to have_content('My Missionに登録しました')
         all(:link_or_button, "My mission")[1].click
-        expect(page).to have_content('My Missionに登録できませんでした')
+        expect(page).to have_content('My Missionに登録できるのは1件までです')
       end
     end
 

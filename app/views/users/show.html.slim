@@ -1,30 +1,31 @@
 = provide(:title, 'My page')
 - breadcrumb :users
 #mypage.container-fluid.mb-3
-  div.d-flex.mt-5.border-b
+  div.d-flex.my-5.border-b
     h1.page-title.float-left.ml-5 My page
     p.ml-3.d-flex.align-items-center.mt-2.page-title-sub.head-border マイページ
-  div.container.d-flex.mt-4.px-5
-    div.d-inline.mt-2
-      = image_tag @user.avatar(:icon), class: 'icon-size'
-    div.d-inline.w-60.mx-5
-      div.d-flex.border-b.my-3
-        div.w-30
-          p.page-title-mini.mb-0 User name
-        div
-          p.page-title-sub.mb-0.mt-2 = @user.name
-      div.d-flex.border-b.my-3
-        div.w-30
-          p.page-title-mini.mb-0 Email
-        div
-          p.page-title-sub.mb-0.mt-2 = @user.email
-    div.d-inline.text-center
-      div.mt-3
-        div.btn-style-white-border
-          button.js-modal-open.btn-style-white.w-100 href="" data-target="modal01" プロフィール編集
-      div.mt-4
-        div.btn-style-white-border
-          button.js-modal-open.btn-style-white.w-100 href="" data-target="modal02" アカウント削除
+  div.container-field.mt-5.mx-3.pt-5
+    div.row
+      div.mt-2.col-md-2.text-center
+        = image_tag @user.avatar(:icon), class: 'icon-size'
+      div.col-md-7.mb-5
+        div.d-flex.border-b.my-3.align-items-center
+          div.w-30
+            p.page-title-mini.mb-0 User name
+          div.h-100.w-70.text-center
+            p.font-SoukouMincho.my-auto.profile-fontsize #{ @user.name }
+        div.d-flex.border-b.my-3.align-items-center
+          div.w-30
+            p.page-title-mini.mb-0 Email
+          div.h-100.w-70.text-center
+            p.font-SoukouMincho.ml-3.my-auto.profile-fontsize #{ @user.email }
+      div.text-center.col-md-3
+        div.mt-3
+          div.btn-style-white-border
+            button.js-modal-open.btn-style-white.w-100 href="" data-target="modal01" プロフィール編集
+        div.mt-4
+          div.btn-style-white-border
+            button.js-modal-open.btn-style-white.w-100 href="" data-target="modal02" アカウント削除
         
 #missions.container-fluid.mb-3
   div.d-flex.mt-5.border-b.mb-4
@@ -32,27 +33,31 @@
     p.ml-3.d-flex.align-items-center.mt-2.page-title-sub.head-border ミッション
   div.text-center
     p.page-title-sub 合計ミッション数　#{@all_missions.count}
-  div.d-flex.text-center
-    p.page-title-sub.w-25 実行中のミッション　#{@all_missions.publish.count}
-    p.page-title-sub.w-25 完了済のミッション　#{@all_missions.complete.count}
-    p.page-title-sub.w-25 未完了のミッション　#{@all_missions.incomplete.count}
-    p.page-title-sub.w-25 下書き　#{@missions.draft.count}
-  div.btn-style-white-border.w-100
-    = link_to 'ミッションを作成', new_mission_path, class: "btn-style-white-width"
-  div.container.px-0
-    div.text-center.border.mt-3.w-60.mx-auto
-      div
-        p.font-SoukouMincho Mission検索
-      div
-        = search_form_for@search_mission, url: users_path do |f|
-          div.search-group
-            = f.label :title, 'Mission title', class: 'search-label'
-            = f.search_field :title_cont, class: 'search-form'
-            = f.submit "検索", class: 'search-btn-style'
+  div.d-flex.text-center.mb-3
+    p.page-title-sub.w-25.px-3 実行中のミッション #{@all_missions.publish.count}
+    p.page-title-sub.w-25.px-3 完了済のミッション #{@all_missions.complete.count}
+    p.page-title-sub.w-25.px-3 未完了のミッション #{@all_missions.incomplete.count}
+    p.page-title-sub.w-25.px-3 下書きのミッション #{@missions.draft.count}
+  div.btn-style-white-border.w-100.mt-5
+    = link_to 'ミッションを作成', new_mission_path, class: "btn-style-white-width fontsize-15"
+  div.container.mt-5
+    div.text-center.border.mt-3.mx-auto.row
+      div.col-md-2
+      div.col-md-8
+        div#search-missions.anchor-mission
+          p.font-SoukouMincho Mission検索
+        div
+          = search_form_for@search_mission, url: users_path(anchor: 'search-missions') do |f|
+            div.search-group
+              = f.label :title, 'Mission title', class: 'font-ferrum fontsize-15'
+              = f.search_field :title_cont, class: 'search-form w-50'
+              = f.submit "検索", class: 'search-btn-style'
+        div.col-md-2
+  div.container
     div.row
       = render @missions
     div.mt-5
-      = paginate @missions
+      = paginate @missions, params: {anchor: 'search-missions'}
 
 
 
@@ -74,3 +79,4 @@ div#modal02.modal.js-modal
             button.js-modal-close.btn-style-modal 戻る
             = button_to '削除', users_path, method: :delete, class: "btn-size d-inline", data: {confirm: "削除しますか？"}
 
+= render partial: 'missions/mission_modal', collection: @missions, as: :mission

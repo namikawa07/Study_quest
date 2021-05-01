@@ -28,7 +28,10 @@
 <% if @status == 'fail' %>
   $('#task_errors_start_date').html("<%= j(render 'task_errors_start_date') %>");
   $('#task_errors_end_date').html("<%= j(render 'task_errors_end_date') %>");
-  <% if @error_dates.present? %>
+  <% if @error_dates.present?%>
     $('#task_count_error').html("<%= j(render 'task_count_error') %>");
   <% end %>
+<% end %>
+<% if @status == 'fail_today_task' %>
+  $('#task_count_error').html("<%= j(render 'today_task_count_error') %>");
 <% end %>

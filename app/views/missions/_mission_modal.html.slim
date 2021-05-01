@@ -1,0 +1,53 @@
+div.modal.js-modal id="modal_mission_edit_#{mission.id}"
+  div.modal__bg.js-modal-close
+  div.modal__content
+    div.container-fluid.mb-3.mt-3
+      h1.page-title-modal.w-100.text-center　ミッション編集
+    div.container
+      div.row
+        div.container.w-75
+          = form_with model: mission, url: mission_path(mission.id), remote: true, method: :patch, class: "missions_form" do |f|
+            div.form-group.mb-1
+              = f.label :title, 'Mission title', {class: 'form-field-modal mb-2'}
+              = f.text_field :title, class: 'form-style-modal font-weight-lighter', id: 'mission_title', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+            div#mission_errors_title
+            div.form-group.mb-1
+              = f.label :start_date, 'Start date', {class: 'form-field-modal mb-2'}
+              = f.date_field :start_date, class: 'form-style-modal', id: 'mission_start_date', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+              div#mission_errors_start_date
+            div.form-group.mb-1
+              = f.label :end_date, 'End date', {class: 'form-field-modal mb-2'}
+              = f.date_field :end_date, class: 'form-style-modal', id: 'mission_end_date', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+              div#mission_errors_end_date
+            div.form-group.mb-1
+              = f.label :memo, 'Memo', {class: 'form-field-modal mb-2'}
+              = f.text_field :memo, class: 'form-style-modal', id: 'mission_memo', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+              div#mission_errors_memo
+            div.text-center.mt-3
+              button.js-modal-close.btn-style-modal 戻る
+              = f.submit '変更', class: "btn-style-modal"
+
+div.modal.js-modal id="modal_mission_trash_#{mission.id}"
+  div.modal__bg.js-modal-close
+  div.modal__content
+    div.container-fluid.mb-3.mt-3
+      h1.page-title-modal.w-100.text-center　ミッション削除
+    div.container.font-cl
+      div.mx-auto.border-bottom.border-secondary.w-90
+        div
+          h5.mb-0.mr-5.ml-3.font-ferrum.mission-delete-title Mission title
+        div
+        h5.mb-0.text-conter.font-SoukouMincho.mission-delete-title  #{mission.title}
+      div.row
+        div.d-block.mx-auto.text-center
+          p.fontsize-15px.text-danger アカウントを削除すると以下のデータが消去されます
+          p.fontsize-13px ・ミッションデータ
+          p.fontsize-13px ・スケジュールデータ
+          p.fontsize-13px ・タスクデータ
+          p.fontsize-13px ・ノートデータ
+          div.row
+            div.col-md-6
+              button.js-modal-close.btn-style-back.w-100.py-1 戻る
+            div.col-md-6
+              = button_to '削除', mission_path(mission.id), method: :delete, class: "w-100 red-btn-size py-1", data: {confirm: "削除しますか？"}
+

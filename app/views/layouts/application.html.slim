@@ -10,7 +10,7 @@ html
   body
     - if flash.present?
       = render partial: 'shared/flash_message'
-    header
+    header.pt-0.z-in-5
       - if current_user.present?
         = render 'shared/login_header'
       -else
