@@ -1,0 +1,41 @@
+!!!
+%html
+  %head
+    %title MailCatcher
+    %link{:rel => "stylesheet", :href => "/stylesheets/application.css"}
+    %script{:src => "/javascripts/jquery.js"}
+    %script{:src => "/javascripts/application.js"}
+    :javascript
+      $(MailCatcher.init);
+  %body
+    #mail
+      %table
+        %thead
+          %th From
+          %th To
+          %th Subject
+          %th Received
+        %tbody
+    #message
+      .metadata
+        .received
+          %label Received
+          %span
+        .from
+          %label From
+          %span
+        .to
+          %label To
+          %span
+        .subject
+          %label Subject
+          %span
+        .attachments
+          %label Attachments
+          %ul
+      .formats
+        %ul
+          %li.selected{'data-message-format' => 'html'} HTML
+          %li{'data-message-format' => 'plain'} Plain Text
+          %li{'data-message-format' => 'source'} Source
+      %iframe

@@ -13,8 +13,10 @@ class TasksController < ApplicationController
     @search_tasks = @search_task.result
     past_tasks
     status_task
-    @future_date_tasks = @future_page_date.map { |date| [date,@mission.tasks.where(start_date: date).or(@mission.tasks.where(end_date: date.to_date)).or(@mission.tasks.where("start_date <= ?", date).where("end_date >= ?", date))]}
-    @past_date_tasks = @past_page_date.map { |date| [date,@mission.tasks.where(start_date: date).or(@mission.tasks.where(end_date: date.to_date)).or(@mission.tasks.where("start_date <= ?", date).where("end_date >= ?", date))]}
+    if @all_tasks.present?
+      @future_date_tasks = @future_page_date.map { |date| [date,@mission.tasks.where(start_date: date).or(@mission.tasks.where(end_date: date.to_date)).or(@mission.tasks.where("start_date <= ?", date).where("end_date >= ?", date))]}
+      @past_date_tasks = @past_page_date.map { |date| [date,@mission.tasks.where(start_date: date).or(@mission.tasks.where(end_date: date.to_date)).or(@mission.tasks.where("start_date <= ?", date).where("end_date >= ?", date))]}
+    end
 
 
     #binding.pry

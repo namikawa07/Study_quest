@@ -1,0 +1,16 @@
+current directory: /Users/nami/Desktop/名称未設定フォルダ 2/Study_quest/名称未設定フォルダ/Study_quest/vendor/bundle/ruby/2.6.0/gems/eventmachine-1.2.7/ext/fastfilereader
+/Users/nami/.rbenv/versions/2.6.4/bin/ruby -I /Users/nami/.rbenv/versions/2.6.4/lib/ruby/2.6.0 -r ./siteconf20210502-79485-101e5b6.rb extconf.rb
+creating Makefile
+
+current directory: /Users/nami/Desktop/名称未設定フォルダ 2/Study_quest/名称未設定フォルダ/Study_quest/vendor/bundle/ruby/2.6.0/gems/eventmachine-1.2.7/ext/fastfilereader
+make "DESTDIR=" clean
+
+current directory: /Users/nami/Desktop/名称未設定フォルダ 2/Study_quest/名称未設定フォルダ/Study_quest/vendor/bundle/ruby/2.6.0/gems/eventmachine-1.2.7/ext/fastfilereader
+make "DESTDIR="
+compiling mapper.cpp
+compiling rubymain.cpp
+linking shared-object fastfilereaderext.bundle
+
+current directory: /Users/nami/Desktop/名称未設定フォルダ 2/Study_quest/名称未設定フォルダ/Study_quest/vendor/bundle/ruby/2.6.0/gems/eventmachine-1.2.7/ext/fastfilereader
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 fastfilereaderext.bundle ./.gem.20210502-79485-179yrmw

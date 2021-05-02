@@ -26,5 +26,6 @@ Rails.application.routes.draw do
   end
   resources :sessions, only: %i[new create destroy]
   resources :password_resets
+  resources :contacts
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 end

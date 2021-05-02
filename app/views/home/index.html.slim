@@ -50,3 +50,25 @@ div
     div.d-flex.my-5.border-b
       h1.font-ferrum.mx-auto Help
 
+    div.container-fluid.mb-3
+      div.d-flex.mt-5.border-b.w-100
+        h1.page-title.float-left.ml-5 Form
+        p.ml-3.d-flex.align-items-center.mt-2.page-title-sub.head-border お問い合わせフォーム
+    div.container
+      div.row
+        div.col-md-10.offset-md-1.col-lg-8.offset-lg-2
+          = form_with model: @contact, local: true do |f|
+            = render 'layouts/error_messages', model: f.object
+            div.form-group
+              = f.label :name, {class: 'font-SoukouMincho border-b w-70'}
+              = f.text_field :name, class: 'form-style', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+            div.form-group
+              = f.label :email, {class: 'font-SoukouMincho border-b w-70'}
+              = f.text_field :email, class: 'form-style', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+            div.form-group
+              = f.label :content, {class: 'font-SoukouMincho border-b w-70'}
+              = f.text_area :content, class: 'form-style', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+            div.d-flex.mb-5
+              div.btn-style-md-border.mx-auto.mt-2
+                div.text-center.form-group-height
+                  = f.submit '送信', class: 'btn-style-md'
