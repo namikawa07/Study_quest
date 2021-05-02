@@ -81,3 +81,7 @@ ja:
     update:
       Success: "パスワードを変更しました"
       Not_success: "パスワードを変更できませんでした"
+  contacts:
+    create:
+      Success: "お問い合わせを送信しました"
+      Not_success: "お問い合わせを送信できませんでした"

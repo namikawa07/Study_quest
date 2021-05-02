@@ -7,8 +7,8 @@ html
     = csp_meta_tag
     = stylesheet_link_tag 'application', media: 'all'
   body
-    = render partial: 'shared/flash_message'
     header.pt-0.z-in-4
+      = render partial: 'shared/flash_message'
       - if current_user.present?
         = render 'shared/login_header'
       -else

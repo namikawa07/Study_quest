@@ -1,0 +1,21 @@
+current directory: /Users/nami/Desktop/名称未設定フォルダ 2/Study_quest/名称未設定フォルダ/Study_quest/vendor/bundle/ruby/2.6.0/gems/thin-1.8.0/ext/thin_parser
+/Users/nami/.rbenv/versions/2.6.4/bin/ruby -I /Users/nami/.rbenv/versions/2.6.4/lib/ruby/2.6.0 -r ./siteconf20210502-79485-jpkzje.rb extconf.rb
+checking for main() in -lc... yes
+creating Makefile
+
+current directory: /Users/nami/Desktop/名称未設定フォルダ 2/Study_quest/名称未設定フォルダ/Study_quest/vendor/bundle/ruby/2.6.0/gems/thin-1.8.0/ext/thin_parser
+make "DESTDIR=" clean
+
+current directory: /Users/nami/Desktop/名称未設定フォルダ 2/Study_quest/名称未設定フォルダ/Study_quest/vendor/bundle/ruby/2.6.0/gems/thin-1.8.0/ext/thin_parser
+make "DESTDIR="
+compiling parser.c
+parser.c:31:18: warning: unused variable 'http_parser_en_main' [-Wunused-const-variable]
+static const int http_parser_en_main = 1;
+                 ^
+1 warning generated.
+compiling thin.c
+linking shared-object thin_parser.bundle
+
+current directory: /Users/nami/Desktop/名称未設定フォルダ 2/Study_quest/名称未設定フォルダ/Study_quest/vendor/bundle/ruby/2.6.0/gems/thin-1.8.0/ext/thin_parser
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 thin_parser.bundle ./.gem.20210502-79485-4i47ff

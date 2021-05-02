@@ -30,7 +30,7 @@ div#password_reset_slide
   div.container.w-75
     div.row
       div.col-md-10.offset-md-1.col-lg-8.offset-lg-2
-        = form_with url:password_resets_path, :method => :post do |f|
+        = form_with url:password_resets_path, :method => :post, local: true do |f|
           div.form-group
             = f.label :email, class: 'form-field'
             = f.text_field :email, class: 'form-style', id: 'email', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"

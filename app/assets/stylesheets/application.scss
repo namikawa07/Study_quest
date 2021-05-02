@@ -29,10 +29,6 @@
 }
 
 
-header{
- z-index: 3;
-}
-
 html{
  font-size: calc(100vw / 80);
 }
@@ -492,7 +488,7 @@ img.bg-image-chara{
 
 header{
  padding-top: 8px;
- z-index: 2;
+ z-index: 3;
  background-color: #505050;
  position: -webkit-sticky;
  position: sticky;

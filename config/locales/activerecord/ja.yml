@@ -9,6 +9,10 @@ ja:
         password: "パスワード"
         password_confirmation: "確認用パスワード"
         icon: "アイコン"
+      contact:
+        name: "お名前"
+        email: "メールアドレス"
+        content: "お問い合わせ内容"
   time:
     formats:
       default: "%Y/%m/%d"
