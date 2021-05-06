@@ -9,6 +9,8 @@ class User < ApplicationRecord
   validates :reset_password_token, uniqueness: true, allow_nil: true
   validate :validate_icon
   has_many :missions, dependent: :destroy
+  has_many :authentications, dependent: :destroy
+  accepts_nested_attributes_for :authentications
   has_one_attached :icon
 
   def avatar(version = :origin)
@@ -23,7 +25,7 @@ class User < ApplicationRecord
                 if !icon.attached? || icon.metadata.blank?
                   return '/images/avatar2.png'
                 else
-                  return icon.variant(resize: '40x40').processed
+                  return icon.variant(resize: '30x30').processed
                 end
               when :edit_icon
                 if !icon.attached? || icon.metadata.blank?

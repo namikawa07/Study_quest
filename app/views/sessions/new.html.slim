@@ -18,6 +18,7 @@ div.container.w-75
           div.text-center.form-group-height
             = f.submit 'LOGIN', class: 'btn-style-lg'
 
+= link_to 'Login with Twitter', auth_at_provider_path(provider: :twitter) 
     
 div.text-center.mt-3
   a.password_reset_slide_btn.cursor-pointer パスワードを忘れた方

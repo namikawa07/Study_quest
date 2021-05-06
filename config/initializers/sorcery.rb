@@ -4,11 +4,19 @@
 # Available submodules are: :user_activation, :http_basic_auth, :remember_me,
 # :reset_password, :session_timeout, :brute_force_protection, :activity_logging,
 # :magic_login, :external
-Rails.application.config.sorcery.submodules = [:reset_password]
+Rails.application.config.sorcery.submodules = [:reset_password, :external]
 
 # Here you can configure each submodule's features.
 Rails.application.config.sorcery.configure do |config|
- 
+    config.external_providers = [:twitter]
+    config.twitter.key = "aJf4NdEkm2ofXDTKbZmzxy4LZ"
+    config.twitter.secret = "HVjDpMnUkR71rtdUqdp0tmGrzjVU6dg2wKczaXewxhdeJQiwKz"
+    config.twitter.callback_url = 'http://localhost:3000/oauth/callback?provider=twitter'
+    config.twitter.user_info_path = "/1.1/account/verify_credentials.json?include_email=true"
+    config.twitter.user_info_mapping = {
+      name: 'name',
+      email: 'email',
+    }
   # -- core --
   # What controller action to call for non-authenticated users. You can also
   # override the 'not_authenticated' method of course.
@@ -245,6 +253,7 @@ Rails.application.config.sorcery.configure do |config|
   # --- user config ---
   config.user_config do |user|
     user.reset_password_mailer = UserMailer
+    user.authentications_class = Authentication
     # -- core --
     # Specify username attributes, for example: [:username, :email].
     # Default: `[:email]`
