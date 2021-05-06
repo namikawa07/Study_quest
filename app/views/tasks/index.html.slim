@@ -71,7 +71,7 @@
           = render partial: "no_task"
   div.mt-4.btn-style-white-border.w-100
     a.js-modal-open.w-100 href="" data-target="modal_tasks_finish"
-      = button_to '今日の作業を終了する', class: "btn-style-white-width"
+      = button_to '作業を終了する', class: "btn-style-white-width"
       
 #past_task.container-fluid.mb-3
   div.d-flex.my-5.border-b
@@ -131,8 +131,12 @@
           p.font-ferrum.mb-0 #{l @mission.start_date}
           p.font-ferrum.mb-0 #{l @mission.end_date}
         div.d-flex.task-graph-mission
-          div class= "task-graph-mission-date w-#{@mission_date_per}"
-            p.font-ferrum.text-center #{@mission_date_per}%
+          - if @mission_date_per <= 100
+            div class= "task-graph-mission-date w-#{@mission_date_per}"
+              p.font-ferrum.text-center #{@mission_date_per}%
+          -else
+            div class= "task-graph-mission-date w-100"
+              p.font-ferrum.text-center #{@mission_date_per}%
   div.container
     div.text-center.border.mt-3.w-60.mx-auto.row
       div.col-md-2

@@ -58,6 +58,6 @@ div.modal.js-modal id="modal_note_trash_#{note.id}"
                 button.js-modal-close.btn-style-modal.w-100 戻る
               div.col-md-2.px-0
               div.col-md-4.px-0
-                = button_to '削除', mission_task_note_path(note.task.mission.id, note.task.id, note.id), method: :delete, class: "btn-size w-100 border-0", data: {confirm: "削除しますか？"}
+                = button_to '削除', mission_task_note_path(note.task.mission.id, note.task.id, note.id), method: :delete, class: "btn-style-modal btn-size w-100 border-0", id: "note_delete", data: {confirm: "削除しますか？"}
               div.col-md-1.px-0
 

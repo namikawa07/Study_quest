@@ -37,12 +37,12 @@ RSpec.describe "ミッションの新規作成", type: :system do
       context 'タイトルを最大文字数以上を記入した場合' do
         it 'エラーが発生する' do
           click_on 'ミッションを作成'
-          fill_in 'mission[title]', with: 'test_mission_test_mission_test_mission_test_mission'
+          fill_in 'mission[title]', with: 'test_mission_test_mission_test_mission_test_mission_test_mission_test_mission_test_mission_test_mission'
           fill_in 'mission[start_date]', with: Date.today
           fill_in 'mission[end_date]', with: Date.tomorrow
           fill_in 'mission[memo]', with: 'test_memo'
           click_button '実行'
-          expect(page).to have_content('Mission名は最大で40字までです')
+          expect(page).to have_content('Mission名は最大で100字までです')
         end
       end
       context '日付設定を間違った場合' do

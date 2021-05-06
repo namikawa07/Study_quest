@@ -295,7 +295,25 @@ RSpec.describe "タスク画面の各操作", type: :system do
       find(".card-title").click_on("編集")
       expect(page).to have_content("タスク編集")
     end
-    xit 'その日にタスクが10件だった場合に名前だけ変えても問題なく編集できる' do
+    it 'その日にタスクが10件だった場合に名前だけ変えても問題なく編集できる' do
+      task_1
+      task_2
+      task_3
+      task_4
+      task_5
+      task_6
+      task_7
+      task_8
+      task_9
+      task_10
+      visit mission_tasks_path(mission.id)
+      expect(page).to have_selector '.card-body', text: task_1.title
+      expect(page).to have_selector '.card-title', text: task_1.start_date.strftime('%Y/%m/%d')
+      click_on '編集', match: :first
+      find(".js-modal").fill_in 'task[title]', with: 'test_task_edit'
+      click_button '変更'
+      expect(page).to have_content('test_task_edit')
+      expect(page).to have_content('タスクを編集しました')
     end
   end
   describe 'タスク削除機能' do
@@ -367,16 +385,16 @@ RSpec.describe "タスク画面の各操作", type: :system do
     end
     context '当日中に「今日のタスクを終了する」を押した場合' do
       it '「今日のタスク」のタスクが全て過去のタスクに移動し、untouchのタスクはincompleteになる' do
-        click_on('今日の作業を終了する')
-        click_on('終了')
+        click_on('作業を終了する')
+        click_button('今日までのタスクを終了')
         page.driver.browser.switch_to.alert.accept
-        expect(page).to have_content('本日の作業を終了しました')
+        expect(page).to have_content('作業を終了しました')
         expect( find('.past-card-style-incomplete', visible: false).text(:all) ).to include 'Incomplete'
       end
       it '次の日のタスクが今日のタスクになる' do
         tomorrow_task_1
-        click_on('今日の作業を終了する')
-        click_on('終了')
+        click_on('作業を終了する')
+        click_button('今日までのタスクを終了')
         page.driver.browser.switch_to.alert.accept
         expect(page).to have_content('過去のタスク')
         expect(page).to have_selector '.past-card-style-incomplete', text: 'test_task'
@@ -388,8 +406,8 @@ RSpec.describe "タスク画面の各操作", type: :system do
           tomorrow_task_1
           travel 1.day do
             visit mission_tasks_path(mission.id)
-            click_on('今日の作業を終了する')
-            click_on('終了')
+            click_on('作業を終了する')
+            click_button('前日までのタスクを終了')
             page.driver.browser.switch_to.alert.accept
             expect(page).to have_selector '.past-card-style-incomplete', text: 'test_task'
             expect(page).to_not have_selector '.past-card-style-incomplete', text: tomorrow_task_1.title
@@ -406,8 +424,8 @@ RSpec.describe "タスク画面の各操作", type: :system do
               fill_in 'task[end_date]', with: Date.today
               click_on("作成")
               visit mission_tasks_path(mission.id)
-              click_on('今日の作業を終了する')
-              click_on('終了')
+              click_on('作業を終了する')
+              click_on('前日までのタスクを終了')
               page.driver.browser.switch_to.alert.accept
               expect(page).to have_selector '.past-card-style-incomplete', text: 'test_task'
               expect(page).to_not have_selector '.past-card-style-incomplete', text: 'test_task_tomorrow'
@@ -447,8 +465,8 @@ RSpec.describe "タスク画面の各操作", type: :system do
     before do
       today_task_1
       visit mission_tasks_path(mission.id)
-      click_on('今日の作業を終了する')
-      click_on('終了')
+      click_on('作業を終了する')
+      click_on('今日までのタスクを終了')
       page.driver.browser.switch_to.alert.accept
     end
     it 'スケジュール内の各タスクでNoteとDetailが表示される' do

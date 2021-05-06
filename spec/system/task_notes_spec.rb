@@ -53,7 +53,7 @@ RSpec.describe "タスクノート機能", type: :system do
     before do
       note
       visit mission_task_notes_path(mission.id, task_1.id)
-      find(".fa-pen").click
+      click_on('編集')
     end
     context '記入値が正常な場合' do
       it 'ノートの編集が成功する' do
@@ -78,8 +78,8 @@ RSpec.describe "タスクノート機能", type: :system do
     it 'ノートが削除できる' do
       note
       visit mission_task_notes_path(mission.id, task_1.id)
-      find(".fa-trash").click
       click_on('削除')
+      find('#note_delete').click
       page.driver.browser.switch_to.alert.accept
       expect(page).to have_content('No notes')
     end
@@ -135,8 +135,8 @@ RSpec.describe "タスクノート機能", type: :system do
   it '作成したノートがタスクに反映されている' do
     note
     visit mission_tasks_path(mission.id)
-    click_on('今日の作業を終了する')
-    click_on('終了')
+    click_on('作業を終了する')
+    click_button('今日までのタスクを終了')
     page.driver.browser.switch_to.alert.accept
     first('h5', text: '1 Notes').click
     expect(page).to have_content(note.title)
