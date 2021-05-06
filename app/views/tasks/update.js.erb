@@ -3,6 +3,5 @@
   $('#update_task_errors_end_date_<%= @task.id %>').html("<%= j(render 'task_errors_end_date') %>");
   <% if @error_dates.present? %>
     $('#update_task_count_error_<%= @task.id %>').html("<%= j(render 'task_count_error') %>");
-    console.log(<%= @task.id %>);
   <% end %>
 <% end %>

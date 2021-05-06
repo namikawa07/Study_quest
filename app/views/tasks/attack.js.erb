@@ -25,7 +25,7 @@
         heroimg.src = '/images/<%=@character_attack%>.gif?' + timestamp;
         heroimg.classList.add('<%=@character_attack%>');
         HeroAttack.appendChild(heroimg)
-        Filter.insertAdjacentHTML('afterbegin', '<div class="attack-action-filter" id="js-attack-action-filter"></div>');
+        Filter.insertAdjacentHTML('afterbegin', '<div class="attack-action-filter z-in-4" id="js-attack-action-filter"></div>');
         resolve();
       })
       .then(() => {
@@ -64,9 +64,9 @@
             document.getElementById('js-attack-title-number<%=@attack_task.id%>').innerHTML = "Back"
             HeroAttack.innerHTML = "";
             <% if @character_attack == "chara-attack4" || @character_attack == "chara-attack5"%>
-              PartnerStandPosition.insertAdjacentHTML('beforeend', '<img class="bg-image-chara" src="/images/partner-motion.gif">');
+              PartnerStandPosition.insertAdjacentHTML('beforeend', '<img class="bg-image-chara z-in-4" src="/images/partner-motion.gif">');
             <% else %>
-              HeroStandPosition.insertAdjacentHTML('beforeend', '<img class="bg-image-chara" src="/images/hero-stand.gif">');
+              HeroStandPosition.insertAdjacentHTML('beforeend', '<img class="bg-image-chara z-in-4" src="/images/hero-stand.gif">');
             <% end %> 
 
             cardOverlay.insertAdjacentHTML('beforeend', '<div class="card-overlay"><h4 class="complete-text text-center font-ferrum">complete!</h4></div>');

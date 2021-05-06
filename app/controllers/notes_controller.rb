@@ -6,7 +6,6 @@ class NotesController < ApplicationController
   def index
     @notes = @search_note.result.page(params[:page]).per(5)
     @note = Note.new
-    
   end
 
   def create
@@ -31,7 +30,7 @@ class NotesController < ApplicationController
       else
         format.html { redirect_to mission_task_notes_path(@mission, @task) }
         format.json { render json: @note.errors, status: :unprocessable_entity }
-        format.js { @status = "fail" }
+        format.js { @status = 'fail' }
       end
     end
   end
@@ -56,7 +55,7 @@ class NotesController < ApplicationController
   def set_task
     @task = @mission.tasks.find(params[:task_id])
   end
- 
+
   def set_search_notes
     mission = current_user.missions.find(params[:mission_id])
     task = mission.tasks.find(params[:task_id])

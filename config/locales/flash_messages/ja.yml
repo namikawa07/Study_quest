@@ -52,8 +52,8 @@ ja:
       Success: "タスクを再作成しました"
       Not_success: "タスクを再作成できませんでした"
     finish:
-      Success: "本日の作業を終了しました"
-      Not_success: "本日の作業を終了できませんでした"
+      Success: "作業を終了しました"
+      Not_success: "作業を終了できませんでした"
   schedules:
     create:
       Success_publish: "スケジュールを作成しました"
