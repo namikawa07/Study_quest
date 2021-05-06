@@ -38,7 +38,7 @@
     p.page-title-sub.w-25.px-3 完了済のミッション #{@all_missions.complete.count}
     p.page-title-sub.w-25.px-3 未完了のミッション #{@all_missions.incomplete.count}
     p.page-title-sub.w-25.px-3 下書きのミッション #{@missions.draft.count}
-  div.btn-style-white-border.w-100.mt-5
+  div.btn-style-white-border.w-100.my-5
     = link_to 'ミッションを作成', new_mission_path, class: "btn-style-white-width fontsize-15"
   div.container.mt-5
     div.text-center.border.mt-3.mx-auto.row
@@ -84,3 +84,5 @@ div#modal02.modal.js-modal
                 = button_to '削除', users_path, method: :delete, class: "red-btn-size w-100", data: {confirm: "削除しますか？"}
 
 = render partial: 'missions/mission_modal', collection: @missions, as: :mission
+
+

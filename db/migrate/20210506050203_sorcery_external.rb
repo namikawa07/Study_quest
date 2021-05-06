@@ -4,9 +4,9 @@ class SorceryExternal < ActiveRecord::Migration[5.2]
       t.integer :user_id, null: false
       t.string :provider, :uid, null: false
 
-      t.timestamps              
+      t.timestamps
     end
 
-    add_index :authentications, [:provider, :uid]
+    add_index :authentications, [:provider, :uid, :user_id]
   end
 end

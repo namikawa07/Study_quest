@@ -84,4 +84,5 @@ gem 'ransack'
 gem "gretel"
 gem 'chartkick'
 gem 'dotenv-rails'
+gem 'omniauth-twitter'
 

@@ -540,7 +540,7 @@ body {
 
 }
 
-@mixin icon($size: 20%) {
+@mixin icon($size: 10%) {
 width: $size;
 height: auto;
 border-radius: 50%;
@@ -1558,4 +1558,8 @@ $z: 1;
 
 .cursor-pointer{
  cursor: pointer;
+}
+
+.red-p{
+  color: red;
 }
