@@ -1,29 +1,73 @@
 = provide(:title, 'Top')
+div.home-title-group
+  div
+    h1.font-ferrum.home-title Task Quest
+  div.d-flex.justify-content-around
+    div.position-relative
+       = link_to 'Sign up', new_users_path, class: 'font-ferrum home-sub-title'
+    div.position-relative
+      = link_to 'Login', login_path, class: 'font-ferrum home-sub-title'
 div
-  = image_tag 'bgimage', class: 'w-100'
+  = image_tag '/images/bgimage.jpg', class: 'w-100'
+  div.container-fluid.mb-3
+    div.d-flex.my-5.border-b.justify-content-center
+      h1.font-ferrum Task Quest
+      h2.font-SoukouMincho へようこそ
+    div.mx-auto.container-fluid
+      div.d-flex
+        div
+          = image_tag "/images/home-image1.png", class: 'w-100'
+        div.position-relative
+          = image_tag "/images/home-info-image1.png", class: 'welcome-info-frame1 float-right'
+          p.font-SoukouMincho.welcome-info1 まるでゲームをプレイするような感覚でタスクをこなせる！毎日のタスクを楽しくこなそう！
+      div.d-flex
+        div.position-relative
+          = image_tag "/images/home-info-image2.png", class: 'welcome-info-frame2'
+          p.font-SoukouMincho.welcome-info2 タスクを目的ごとに分けることができるので、タスク管理が簡単！
+        div
+          = image_tag "/images/home-image2.png", class: 'w-100'
+      div.d-flex
+        div
+          = image_tag "/images/home-image3.png", class: 'w-100'
+        div.position-relative
+          = image_tag "/images/home-info-image3.png", class: 'welcome-info-frame3 float-right'
+          p.font-SoukouMincho.welcome-info3 各タスクにノートを作成可能！メモに使うのもよし！学習ノートに使うのもよし！
   #guide.container-fluid.mb-3
     div.d-flex.my-5.border-b
       h1.font-ferrum.mx-auto Guide
     div.mx-auto.container-fluid
       div.row
-        div.col-md-3
-        div.col-md-6
-          = image_tag "/images/guide-image1.png", class: 'w-100'
-          div.mx-auto.mt-2
-            p.font-SoukouMincho ログインしたらミッションを作成しましょう。ミッション名・ミッション開始日時・ミッション終了日時を記入したら「実行」を押してプレイスタートです。(Memoは設定しなくても問題ありません)
-          = image_tag "/images/guide-image1.png", class: 'w-100'
-          div.mx-auto.mt-2
-            p.font-SoukouMincho タスク画面から「タスク作成」を押してタスクを作成しましょう。個々のタスクを完了したい場合は敵アイコンをクリックするとタスクが「complete!」になります。タスクの「complete」を解除したい場合はもう一度敵アイコンをクリックするとタスクの「complete」が解除されます
-          = image_tag "/images/guide-image1.png", class: 'w-100'
-          div.mx-auto.mt-2
+        div.col-md-10.offset-md-1
+          div.text-center.border-top.border-bottom.border-left.border-right
+            = image_tag "/images/guide-image1.png", class: 'w-100'
+        div.col-md-8.offset-md-2
+          div.mx-auto.mt-2.mb-5
+            p.font-SoukouMincho.fontsize-11 ログインしたらミッションを作成しましょう。ミッション名・ミッション開始日時・ミッション終了日時を記入したら「実行」を押してプレイスタートです。(Memoは設定しなくても問題ありません)
+        div.col-md-10.offset-md-1
+          div.border-top.border-bottom.border-left.border-right
+            = image_tag "/images/guide-image2.png", class: 'w-100'
+        div.col-md-8.offset-md-2
+          div.mx-auto.mt-2.mb-5
+            p.font-SoukouMincho.fontsize-11 タスク画面から「タスク作成」を押してタスクを作成しましょう。個々のタスクを完了したい場合は敵アイコンをクリックするとタスクが「complete!」になります。タスクの「complete」を解除したい場合はもう一度敵アイコンをクリックするとタスクの「complete」が解除されます
+        div.col-md-10.offset-md-1
+          div.border-top.border-bottom.border-left.border-right
+            = image_tag "/images/guide-image3.png", class: 'w-100'
+        div.col-md-8.offset-md-2
+          div.mx-auto.mt-2.mb-5
             p.font-SoukouMincho その日のタスクは最大10件まで登録できます。またタスクの再編集は「編集」ボタン、タスクの削除は「削除」ボタンを押して下さい
-          = image_tag "/images/guide-image1.png", class: 'w-100'
-          div.mx-auto.mt-2
-            p.font-SoukouMincho 「今日の作業を終了する」をクリックすると「今日のタスク」をリセットし、新しく10件のタスクを作成することができます。また今日のタスクは残し、昨日以降のタスクをリセットしたい場合は「前日までのタスクを終了する」をクリックすると今日のタスクは残り、前日のタスクはリセットされた状態になります
-          = image_tag "/images/guide-image1.png", class: 'w-100'
-          div.w-70.mx-auto.mt-2
-            p.font-SoukouMincho 「Note」ボタンから各タスクのノートを作成することができます。タスクノートはそのタスクについてのメモやアウトプットを書くことができます。
-        div.col-md-3
+        div.col-md-10.offset-md-1
+          div.border-top.border-bottom.border-left.border-right
+            = image_tag "/images/guide-image4.png", class: 'w-100'
+        div.col-md-8.offset-md-2
+          div.mx-auto.mt-2.mb-5
+            p.font-SoukouMincho.fontsize-11 「作業を終了する」をクリックすると「今日のタスク」をリセットし、新しく10件のタスクを作成することができます。また今日のタスクは残し、昨日以降のタスクをリセットしたい場合は「前日までのタスクを終了する」をクリックすると今日のタスクは残り、前日のタスクはリセットされた状態になります
+        div.col-md-10.offset-md-1
+          div.border-top.border-bottom.border-left.border-right
+            = image_tag "/images/guide-image5.png", class: 'w-100'
+        div.col-md-8.offset-md-2
+          div.mx-auto.mt-2.mb-5
+            p.font-SoukouMincho.fontsize-11 「Note」ボタンから各タスクのノートを作成することができます。タスクノートはそのタスクについてのメモやアウトプットを書くことができます。
+        div.col-md-2
   #information.container-fluid.mb-3
     div.d-flex.my-5.border-b
       h1.font-ferrum.mx-auto Information
@@ -31,13 +75,6 @@ div
       div.row
         div.col-md-2
         div.col-md-8
-          div.form-style.my-3
-            div.d-flex.justify-content-start.my-2.ml-2.align-items-center
-              p.font-ferrum.mb-0 TaskQuest
-              p.font-SoukouMincho.mb-0 をプレイするにあたって
-              h2#info-slide1.mb-0.ml-auto.mr-2.cursor-pointer −
-            div#info-slide-menu1
-              p.w-90.mx-auto TaskQuestはGuideを確認しながらプレイして下さい。またプレイ前には必ずプライバシーポリシーを確認して下さい。
           div.form-style.my-3
             div.d-flex.justify-content-start.my-2.ml-2.align-items-center
               p.font-ferrum.mb-0 TaskQuest
@@ -69,6 +106,6 @@ div
               = f.label :content, {class: 'font-SoukouMincho border-b w-70'}
               = f.text_area :content, class: 'form-style', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
             div.d-flex.mb-5
-              div.btn-style-md-border.mx-auto.mt-2
+              div.mx-auto.mt-2.btn-style-md-border
                 div.text-center.form-group-height
                   = f.submit '送信', class: 'btn-style-md'

@@ -13,13 +13,13 @@ div.col-md-3.mt-5.px-4
       div class="error_mission_my_mission_#{mission.id} error_mission_my_mission"
       div.border-b.w-80.mx-auto
         - if mission.registration == "registration"
-          = link_to 'My mission', registration_mission_path(mission), method: :post, remote: true, class: 'my_mission_registration font-ferrum'
+          = link_to 'My mission', registration_mission_path(mission), method: :post, remote: true, class: 'my_mission_registration font-ferrum show-info', id: 'my_mission_release_info'
         - else
-          = link_to 'My mission', registration_mission_path(mission), method: :post, remote: true, class: 'my_mission_not_registration font-ferrum'
+          = link_to 'My mission', registration_mission_path(mission), method: :post, remote: true, class: 'my_mission_not_registration font-ferrum show-info', id: 'my_mission_info'
       div.d-flex.align-items-end
         div.px-3.px-0.w-100
           div.mx-auto.mb-3.text-center.mission-title
-            = link_to "#{mission.title}", mission_tasks_path(mission), class: "card-title w-100 font-SoukouMincho"
+            = link_to "#{mission.title}", mission_tasks_path(mission), class: "card-title w-100 font-SoukouMincho show-info", id: 'mission_title_info'
           div.d-flex.justify-content-around
             a.js-modal-open.mr-3 href="" data-target="modal_mission_trash_#{mission.id}"
               p.mb-0.card-title-bottom 削除
@@ -28,9 +28,9 @@ div.col-md-3.mt-5.px-4
           div.text-center
             - if mission.draft?
               div.draft-overlay
-                = link_to '下書きを解除', status_change_mission_path(mission.id), method: :post, class: "card-title-bottom"
+                = link_to '下書きを解除', status_change_mission_path(mission.id), method: :post, class: "card-title-bottom show-info", id: 'draft_end_info'
             - else
-              = link_to '下書きにする', status_change_mission_path(mission.id), method: :post, class: "card-title-bottom"
+              = link_to '下書きにする', status_change_mission_path(mission.id), method: :post, class: "card-title-bottom show-info", id: 'draft_info'
           div.w-100.text-center.mb-2
             - if mission.end_date <= Date.today
               - if mission.incomplete?
