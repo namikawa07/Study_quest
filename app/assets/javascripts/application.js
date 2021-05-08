@@ -131,3 +131,16 @@ $(function(){
     $('#password_reset_slide').slideToggle();
   });
 });
+
+$(function(){
+  $('.hide-text').hide();
+  $('.hide-image').hide();
+  $('.start-info').show();
+  $('.show-info').hover(function(){
+    var showInformation = $(this).attr('id')
+    var changeClass = document.getElementsByClassName(showInformation)
+    $('.hide-text').hide();
+    $('.hide-image').show();
+    $(changeClass).show();
+  });
+});

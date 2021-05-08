@@ -24,9 +24,16 @@ div.container
           = f.label :memo, 'Memo', {class: 'form-field'}
           = f.text_area :memo, class: 'form-style', id: 'mission_memo', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
         div.d-flex.mb-5
-          div.btn-style-md-border.mx-auto.mt-2
+          div.btn-style-md-border.mx-auto.mt-2.position-relative
             div.text-center.form-group-height
               = f.submit '下書き', :name => 'draft', class: 'btn-style-md'
-          div.btn-style-md-border.mx-auto.mt-2
+          div.btn-style-md-border.mx-auto.mt-2.position-relative
             div.text-center.form-group-height
               = f.submit '実行', :name => 'publish', class: 'btn-style-md'
+
+div.container.info-image.mb-5
+  div.d-flex.justify-content-end.hide-image
+    div.balloon1-right
+      p ミッションとは達成したい目標やゴールのことだよ！大きな目標を決めて、そこからタスクで細かなToDoを決めていこう！
+    div
+      = image_tag '/images/partner-info.png', class: 'partner-info'

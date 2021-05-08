@@ -26,7 +26,7 @@
         div.mt-4
           div.btn-style-white-border
             button.js-modal-open.btn-style-white.w-100 href="" data-target="modal02" アカウント削除
-        
+
 #missions.container-fluid.mb-3.pt-5
   div.d-flex.border-b.mb-4
     h1.page-title.float-left.ml-5 Missions
@@ -39,19 +39,22 @@
     p.page-title-sub.w-25.px-3 未完了のミッション #{@all_missions.incomplete.count}
     p.page-title-sub.w-25.px-3 下書きのミッション #{@missions.draft.count}
   div.btn-style-white-border.w-100.my-5
-    = link_to 'ミッションを作成', new_mission_path, class: "btn-style-white-width fontsize-15"
+    = link_to 'ミッションを作成', new_mission_path, class: "btn-style-white-width fontsize-15 show-info", id: 'mission_start_info'
+
+
   div.container.mt-5
-    div.text-center.border.mt-3.mx-auto.row
-      div.col-md-2
-      div.col-md-8
-        div#search-missions.anchor-mission
-          p.font-SoukouMincho Mission検索
-        div
-          = search_form_for@search_mission, url: users_path(anchor: 'search-missions') do |f|
-            div.search-group
-              = f.label :title, 'Mission title', class: 'font-ferrum fontsize-15'
-              = f.search_field :title_cont, class: 'search-form w-50'
-              = f.submit "検索", class: 'search-btn-style'
+    div.text-center.mt-3.mx-auto.w-100
+      div.row.border-bottom.border-top.border-right.border-left
+        div.col-md-2
+        div.col-md-8
+          div#search-missions.anchor-mission
+            p.font-SoukouMincho Mission検索
+          div
+            = search_form_for@search_mission, url: users_path(anchor: 'search-missions') do |f|
+              div.search-group
+                = f.label :title, 'Mission title', class: 'font-ferrum fontsize-15'
+                = f.search_field :title_cont, class: 'search-form w-50 show-info', id: 'search_mission_info'
+                = f.submit "検索", class: 'search-btn-style'
         div.col-md-2
   div.container
     div.row
@@ -85,4 +88,17 @@ div#modal02.modal.js-modal
 
 = render partial: 'missions/mission_modal', collection: @missions, as: :mission
 
+div.container.info-image.mb-5
+  div.d-flex.justify-content-end.hide-image
+    div.balloon1-right
+      p.hide-text.start-info わからないところをボクが説明するよ！
+      p.hide-text.mission_start_info タスクを作成するにはまずはミッションを作成する必要があるよ！【ミッションを開始】を押してミッションを作成しよう！
+      p.hide-text.search_mission_info ミッションの検索ができるよ！ミッションが多くなってきたら使ってみよう！
+      p.hide-text.my_mission_info【My mission】ボタンを押すとMy missionに登録できるよ。My missionに登録するとメニューから直接タスク画面に移動できるよ！
+      p.hide-text.my_mission_release_info My missionの登録を解除できるよ。My missionは1つまでしか登録できないから他のMissionを登録するときは一度解除しよう！
+      p.hide-text.mission_title_info ミッションのタイトルをクリックするとそのミッションのタスク画面に移動するよ！
+      p.hide-text.draft_info ミッションが下書き状態になるよ！
+      p.hide-text.draft_end_info ミッションの下書きを解除できるよ！
+    div
+      = image_tag '/images/partner-info.png', class: 'partner-info'
 

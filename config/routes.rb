@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   get 'oauths/oauth'
   get 'oauths/callback'
   root to: 'home#index'
-  get    '/privacy', to: "home#privacy"
   get    '/login', to: "sessions#new"
   post   '/login',   to: "sessions#create"
   delete '/logout',  to: "sessions#destroy"

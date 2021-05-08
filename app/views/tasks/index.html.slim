@@ -9,7 +9,7 @@
     = image_tag "/images/背景（ライト）.gif", class: "w-100 bg-image-light"
     div.chara_img.font-SoukouMincho
       = image_tag "/images/hero-meter.png", class:"w-100"
-      p.mission_info.z-in-2.d-flex.text-center.mb-0.fontsize-12.ml-1 #{@mission.title.truncate(15)}
+      p.mission_info.z-in-2.d-flex.text-center.mb-0.fontsize-10.ml-1 #{@mission.title.truncate(20)}
     div#hero-attack
     div.partner_img.font-SoukouMincho
       = image_tag "/images/partner-meter.png", class:"w-100"
@@ -25,7 +25,7 @@
     div#enemy
     div.z-in-1.new-task-position.w-23.mx-auto
       a.btn-task.mx-auto.task-back-button
-        p.text-center.task-border.mx-2.mb-0.font-SoukouMincho.fontsize-8 タスク作成
+        p#task_start_info.text-center.task-border.mx-2.mb-0.font-SoukouMincho.fontsize-8.show-info タスク作成
       div#taskplay.z-in-3.new-task-form-position.w-100
         = form_with model: @task, url: mission_tasks_path(@mission.id),class:"w-90 mx-auto", remote: true, id: 'task_create_form' do |f|
           = render 'layouts/error_messages', model: f.object
@@ -57,21 +57,33 @@
           
           
     
-#today_task.container-fluid.mb-3
-  div.d-flex.mt-5.border-b
-    h1.page-title.float-left.ml-5 Today's task
-    p.ml-3.d-flex.align-items-center.mt-2.page-title-sub.head-border 今日のタスク
-  div.container.px-0.text-center
-    div#enemy-card.row
-      -if @tasks.present?
-        = render @tasks
-      div#add-card
-      - if @tasks.count <= 10
-        - (10 - @tasks.count).times do
-          = render partial: "no_task"
-  div.mt-4.btn-style-white-border.w-100
-    a.js-modal-open.w-100 href="" data-target="modal_tasks_finish"
-      = button_to '作業を終了する', class: "btn-style-white-width"
+div#tasks_info.show-info
+  #today_task.container-fluid.mb-3
+    div.d-flex.mt-5.border-b
+      h1.page-title.float-left.ml-5 Today's task
+      p.ml-3.d-flex.align-items-center.mt-2.page-title-sub.head-border 今日のタスク
+    div.container.px-0.text-center
+      div#enemy-card.row
+        -if @tasks.present?
+          = render @tasks
+        div#add-card
+        - if @tasks.count <= 10
+          - (10 - @tasks.count).times do
+            = render partial: "no_task"
+    div.container.info-image.mb-5
+      div.d-flex.justify-content-end.hide-image
+        div.balloon1-right
+          p.hide-text.start-info わからないところをボクが説明するよ！
+          p.hide-text.task_start_info タスクを作成できるよ！1日に作成できるタスクは10件までだから注意してね！
+          p.hide-text.tasks_info 敵(タスク)の詳細が表示されるよ！ここで何をするのか確認しよう！
+          p.hide-text.tasks_finish_info 【作業を終了する】を押すと今日のタスクが【スケジュールの過去のタスク】に送られるよ！
+      
+        div
+          = image_tag '/images/partner-info.png', class: 'partner-info'
+
+    div#tasks_finish_info.mt-4.btn-style-white-border.w-100.show-info
+      a.js-modal-open.w-100 href="" data-target="modal_tasks_finish"
+        = button_to '作業を終了する', class: "btn-style-white-width"
       
 #past_task.container-fluid.mb-3
   div.d-flex.my-5.border-b
@@ -138,7 +150,7 @@
             div class= "task-graph-mission-date w-100"
               p.font-ferrum.text-center #{@mission_date_per}%
   div.container
-    div.text-center.border.mt-3.w-60.mx-auto.row
+    div.text-center.mt-3.w-60.mx-auto.row.border-bottom.border-top.border-right.border-left
       div.col-md-2
       div.col-md-8
         div#search-tasks.anchor
