@@ -490,7 +490,6 @@ img.bg-image-chara{
 
 header{
  padding-top: 8px;
- z-index: 3;
  background-color: #505050;
  position: -webkit-sticky;
  position: sticky;
@@ -1170,7 +1169,7 @@ $font: 13;
  transform: rotate( -45deg );
 };
 
-.card-header-footer{
+.card--footer{
  background-color: #989898;
  border:none;
  p{

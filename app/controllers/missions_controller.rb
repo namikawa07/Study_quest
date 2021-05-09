@@ -19,12 +19,9 @@ class MissionsController < ApplicationController
     respond_to do |format|
       if @mission.update(mission_params)
         flash[:success] = t('missions.update.Success')
-        format.html { redirect_to users_path }
-        format.js { render js: "window.location = '#{users_path}'" }
+        render_json_success(format)
       else
-        format.html { redirect_to users_path }
-        format.json { render json: @mission.errors, status: :unprocessable_entity }
-        format.js { @status = 'fail' }
+        render_json_not_success(format)
       end
     end
   end
@@ -39,28 +36,10 @@ class MissionsController < ApplicationController
     respond_to do |format|
       if @mission.registration == 'not_registration'
         @mission.registration = 'registration'
-        if my_mission.blank? && @mission.save
-          flash[:success] = t('missions.registration.Success')
-          format.html { redirect_to users_path }
-          format.js { render js: "window.location = '#{users_path}'" }
-        else
-          flash[:danger] = t('missions.registration.Not_success')
-          format.html { redirect_to users_path }
-          format.json { render json: @mission.errors, status: :unprocessable_entity }
-          format.js { @status = 'fail' }
-        end
+        not_registration_change_registration(format)
       else
         @mission.registration = 'not_registration'
-        if @mission.save
-          flash[:success] = t('missions.not_registration.Success')
-          format.html { redirect_to users_path }
-          format.js { render js: "window.location = '#{users_path}'" }
-        else
-          flash.now[:danger] = t('missions.not_registration.Not_success')
-          format.html { redirect_to users_path }
-          format.json { render json: @mission.errors, status: :unprocessable_entity }
-          format.js { @status = 'fail' }
-        end
+        registration_change_not_registration
       end
     end
   end
@@ -106,18 +85,46 @@ class MissionsController < ApplicationController
     respond_to do |format|
       if @mission.save
         flash[:success] = t('missions.create.Success_' + status)
-        format.html { redirect_to users_path }
-        format.js { render js: "window.location = '#{users_path}'" }
+        render_json_success(format)
       else
         flash[:danger] = t('missions.create.Not_success_' + status)
-        format.html { redirect_to users_path }
-        format.json { render json: @mission.errors, status: :unprocessable_entity }
-        format.js { @status = 'fail' }
+        render_json_not_success(format)
       end
     end
   end
 
   def set_mission
     @mission = current_user.missions.find(params[:id])
+  end
+
+  def not_registration_change_registration(format)
+    if my_mission.blank? && @mission.save
+      flash[:success] = t('missions.registration.Success')
+      render_json_success(format)
+    else
+      flash[:danger] = t('missions.registration.Not_success')
+      render_json_not_success(format)
+    end
+  end
+
+  def registration_change_not_registration(format)
+    if @mission.save
+      flash[:success] = t('missions.not_registration.Success')
+      render_json_success(format)
+    else
+      flash.now[:danger] = t('missions.not_registration.Not_success')
+      render_json_not_success(format)
+    end
+  end
+
+  def render_json_success(format)
+    format.html { redirect_to users_path }
+    format.js { render js: "window.location = '#{users_path}'" }
+  end
+
+  def render_json_not_success(format)
+    format.html { redirect_to users_path }
+    format.json { render json: @mission.errors, status: :unprocessable_entity }
+    format.js { @status = 'fail' }
   end
 end
