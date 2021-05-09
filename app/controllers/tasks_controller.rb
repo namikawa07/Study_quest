@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_mission
+  before_action :set_task, only: %i[update destroy attack]
   before_action :today_tasks, only: %i[index create finish attack]
   before_action :due_to_task, only: %i[index]
   before_action :due_to_mission, only: %i[index]
@@ -13,66 +14,27 @@ class TasksController < ApplicationController
     @search_tasks = @search_task.result
     past_tasks
     status_task
-    if @all_tasks.present?
-      @future_date_tasks = @future_page_date.map { |date| [date, @mission.tasks.where(start_date: date).or(@mission.tasks.where(end_date: date.to_date)).or(@mission.tasks.where('start_date <= ?', date).where('end_date >= ?', date))] }
-      @past_date_tasks = @past_page_date.map { |date| [date, @mission.tasks.where(start_date: date).or(@mission.tasks.where(end_date: date.to_date)).or(@mission.tasks.where('start_date <= ?', date).where('end_date >= ?', date))] }
-    end
+    task_shedule
   end
 
   def create
     @task = Task.new(task_params)
-    @task.mission_id = @mission.id
-    @task.character = "enemy#{rand(15)}"
-    if @task.start_date > Date.today
-      @task.task_date = 'future_task'
-    end
-    dates = (@task.start_date.to_date)..(@task.end_date.to_date)
-    due_to = dates.to_a
-    same_date_tasks = due_to.map { |date| [date, @mission.tasks.where(start_date: date).or(@mission.tasks.where(end_date: date.to_date)).or(@mission.tasks.where('start_date <= ?', date).where('end_date >= ?', date))] }
+    @task.assign_attributes(mission_id: @mission.id, character: "enemy#{rand(15)}")
+    @task.task_date = 'future_task' if @task.start_date > Date.today
+    due_to = ((@task.start_date.to_date)..(@task.end_date.to_date)).to_a
+    same_date_tasks = same_tasks(due_to)
     error_date_tasks = same_date_tasks.select { |_k, v| v.count >= 10 }
-    if error_date_tasks.present?
-      error_date = error_date_tasks.transpose[0]
-      @error_dates = error_date.map { |date| l date }
-    end
+    @error_dates = error_date_tasks.transpose[0].map { |date| l date } if error_date_tasks.present?
     respond_to do |format|
-      if @task.task_date == 'today_task' && @tasks.count >= 10
-        flash.now[:danger] = t('tasks.create.Not_success')
-        format.html { redirect_to mission_tasks_path(@mission) }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
-        format.js { @status = 'fail_today_task' }
-      else
-        if error_date_tasks.blank? && @task.save
-          @tasks_last_number = @tasks.count
-          flash[:success] = t('tasks.create.Success')
-          format.html { redirect_to mission_tasks_path(@mission) }
-          if @task.task_date == 'today_task'
-            format.js { @status = 'success' }
-          else
-            format.js { render js: "window.location = '#{mission_tasks_path(@mission)}'" }
-          end
-        else
-          flash.now[:danger] = t('tasks.create.Not_success')
-          format.html { redirect_to mission_tasks_path(@mission) }
-          format.json { render json: @task.errors, status: :unprocessable_entity }
-          format.js { @status = 'fail' }
-        end
-      end
+      render_json_create(format, error_date_tasks)
     end
   end
 
   def update
-    @task = @mission.tasks.find(params[:id])
     @task.attributes = task_params
-    @task.task_date = if @task.start_date > Date.today
-                        'future_task'
-                      elsif @task.end_date < Date.today
-                        'past_task'
-                      else
-                        'today_task'
-                      end
-    dates = (@task.start_date.to_date)..(@task.end_date.to_date)
-    due_to = dates.to_a
-    same_date_tasks = due_to.map { |date| [date, @mission.tasks.where(start_date: date).or(@mission.tasks.where(end_date: date.to_date)).or(@mission.tasks.where('start_date <= ?', date).where('end_date >= ?', date))] }
+    update_task_date(@task)
+    due_to = ((@task.start_date.to_date)..(@task.end_date.to_date)).to_a
+    same_date_tasks = same_tasks(due_to)
     error_date_tasks = same_date_tasks.select { |_k, v| v.count >= 10 }
     if error_date_tasks.present?
       update_tasks = error_date_tasks.transpose[1].flatten.select { |a| a[:id] == @task.id }
@@ -81,21 +43,11 @@ class TasksController < ApplicationController
       @update_error_dates = due_to.map { |date| l date }.select { |n| n == @error_dates.join }
     end
     respond_to do |format|
-      if @update_error_dates.blank? && @task.save || update_tasks.present? && @task.save && error_date.count == update_tasks.count
-        flash[:success] = t('tasks.update.Success')
-        format.html { redirect_to mission_tasks_path(@mission) }
-        format.js { render js: "window.location = '#{mission_tasks_path(@mission)}'" }
-      else
-        flash.now[:danger] = t('tasks.update.Not_success')
-        format.html { redirect_to mission_tasks_path(@mission) }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
-        format.js { @status = 'fail' }
-      end
+      render_json_update(format, @update_error_dates, @task, update_tasks, error_date)
     end
   end
 
   def destroy
-    @task = @mission.tasks.find(params[:id])
     @task.destroy!
     flash[:success] = t('tasks.destroy.Success')
     redirect_to mission_tasks_path(@mission)
@@ -122,7 +74,7 @@ class TasksController < ApplicationController
   end
 
   def attack
-    @attack_task = @mission.tasks.find(params[:id])
+    @attack_task = @task
     @character_attack = "chara-attack#{rand(6)}"
     respond_to do |format|
       if @attack_task.status == 'untouch' || @attack_task.status == 'incomplete'
@@ -144,6 +96,10 @@ class TasksController < ApplicationController
 
   def set_mission
     @mission = current_user.missions.find(params[:mission_id])
+  end
+
+  def set_task
+    @task = @mission.tasks.find(params[:id])
   end
 
   def today_tasks
@@ -198,18 +154,77 @@ class TasksController < ApplicationController
   end
 
   def first_task
-    if @first_task.present?
-      @past_date = ((@first_task.start_date.to_date)..Date.today)
-      @past_date_array = @past_date.to_a.reverse
-      @past_page_date = Kaminari.paginate_array(@past_date_array).page(params[:page_past_date]).per(3)
-    end
+    return unless @first_task.present?
+
+    @past_date = ((@first_task.start_date.to_date)..Date.today)
+    @past_date_array = @past_date.to_a.reverse
+    @past_page_date = Kaminari.paginate_array(@past_date_array).page(params[:page_past_date]).per(3)
   end
 
   def last_task
-    if @last_task.present?
-      @future_date = (Date.tomorrow..(@last_task.end_date.to_date))
-      @future_date_array = @future_date.to_a
-      @future_page_date = Kaminari.paginate_array(@future_date_array).page(params[:page_future_date]).per(3)
+    return unless @last_task.present?
+
+    @future_date = (Date.tomorrow..(@last_task.end_date.to_date))
+    @future_date_array = @future_date.to_a
+    @future_page_date = Kaminari.paginate_array(@future_date_array).page(params[:page_future_date]).per(3)
+  end
+
+  def task_shedule
+    return unless @all_tasks.present?
+
+    @future_date_tasks = @future_page_date.map { |date| [date, @mission.tasks.where(start_date: date).or(@mission.tasks.where(end_date: date.to_date)).or(@mission.tasks.where('start_date <= ?', date).where('end_date >= ?', date))] }
+    @past_date_tasks = @past_page_date.map { |date| [date, @mission.tasks.where(start_date: date).or(@mission.tasks.where(end_date: date.to_date)).or(@mission.tasks.where('start_date <= ?', date).where('end_date >= ?', date))] }
+  end
+
+  def render_json_success(format)
+    format.html { redirect_to mission_tasks_path(@mission) }
+    format.js { render js: "window.location = '#{mission_tasks_path(@mission)}'" }
+  end
+
+  def render_json_not_success(format)
+    format.html { redirect_to mission_tasks_path(@mission) }
+    format.json { render json: @task.errors, status: :unprocessable_entity }
+    format.js { @status = 'fail' }
+  end
+
+  def render_json_create(format, error_date_tasks)
+    if @task.task_date == 'today_task' && @tasks.count >= 10
+      flash.now[:danger] = t('tasks.create.Not_success')
+      format.json { render json: @task.errors, status: :unprocessable_entity }
+      format.js { @status = 'fail_today_task' }
+    elsif error_date_tasks.blank? && @task.save
+      @tasks_last_number = @tasks.count
+      flash[:success] = t('tasks.create.Success')
+      format.js { @status = 'success' } if @task.task_date == 'today_task'
+      format.js { render js: "window.location = '#{mission_tasks_path(@mission)}'" }
+    else
+      flash.now[:danger] = t('tasks.create.Not_success')
+      render_json_not_success(format)
     end
+    format.html { redirect_to mission_tasks_path(@mission) }
+  end
+
+  def render_json_update(format, update_error_dates, task, update_tasks, error_date)
+    if update_error_dates.blank? && task.save || update_tasks.present? && task.save && error_date.count == update_tasks.count
+      flash[:success] = t('tasks.update.Success')
+      render_json_success(format)
+    else
+      flash.now[:danger] = t('tasks.update.Not_success')
+      render_json_not_success(format)
+    end
+  end
+
+  def same_tasks(due_to)
+    due_to.map { |date| [date, @mission.tasks.where(start_date: date).or(@mission.tasks.where(end_date: date.to_date)).or(@mission.tasks.where('start_date <= ?', date).where('end_date >= ?', date))] }
+  end
+
+  def update_task_date(task)
+    task.task_date = if task.start_date > Date.today
+                       'future_task'
+                     elsif task.end_date < Date.today
+                       'past_task'
+                     else
+                       'today_task'
+                     end
   end
 end

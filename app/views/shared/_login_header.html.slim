@@ -1,4 +1,4 @@
-div.font-ferrum.d-flex.my-3.mx-5.border-b.z-in-4.justify-content-end
+div.font-ferrum.d-flex.my-3.mx-5.border-b.z-in-5.justify-content-end
   div.w-15.d-flex.justify-content-center.align-items-center
     = link_to 'Task Quest', root_path, class: 'header-title-style fontsize-18'
   div.d-flex.mr-5.justify-content-around.w-55.align-items-center
@@ -13,7 +13,7 @@ div.font-ferrum.d-flex.my-3.mx-5.border-b.z-in-4.justify-content-end
         = link_to "#{@my_mission.title.truncate(15)}", mission_tasks_path(@my_mission), class: "not-link-decoration header-menu-style font-SoukouMincho"
   
   div.w-25.d-block.d-flex.justify-content-between.position-relative.header-position.align-items-center type="button" data-toggle="collapse" data-target="#menu"
-    = image_tag current_user.avatar(:small_icon), class: 'small-icon-size w-15'
+    = image_tag current_user.avatar(:icon), class: 'small-icon-size w-15'
     div.mx-auto.d-block.float-right
       a.btn-task type="button" data-toggle="collapse" data-target="#menu"
         p.text-center.mx-2.mb-0.font-SoukouMincho.fontsize-10 #{current_user.name}さん

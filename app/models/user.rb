@@ -14,28 +14,14 @@ class User < ApplicationRecord
   has_one_attached :icon
 
   def avatar(version = :origin)
-    command = case version
-              when :icon
-                if !icon.attached? || icon.metadata.blank?
-                  return '/images/avatar2.png'
-                else
-                  return icon.variant(resize: '100x100').processed
-                end
-              when :small_icon
-                if !icon.attached? || icon.metadata.blank?
-                  return '/images/avatar2.png'
-                else
-                  return icon.variant(resize: '30x30').processed
-                end
-              when :edit_icon
-                if !icon.attached? || icon.metadata.blank?
-                  return '/images/avatar2.png'
-                else
-                  return icon.variant(resize: '70x70').processed
-                end
-              else
-                false
-              end
+    case version
+    when :icon
+      return '/images/avatar2.png' if !icon.attached? || icon.metadata.blank?
+
+      icon.variant(resize: '1000x1000').processed
+    else
+      false
+    end
   end
 
   def validate_icon
