@@ -83,5 +83,6 @@ gem 'kaminari'
 gem 'ransack'
 gem "gretel"
 gem 'chartkick'
-gem 'dotenv-rails'
+gem 'dotenv-rails', require: 'dotenv/rails-now'
+
 

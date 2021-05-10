@@ -18,10 +18,16 @@ div.container.w-75
           div.text-center.form-group-height
             = f.submit 'LOGIN', class: 'btn-style-lg'
 
-= link_to 'Login with Twitter', auth_at_provider_path(provider: :twitter) 
+
     
-div.text-center.mt-3
-  a.password_reset_slide_btn.cursor-pointer パスワードを忘れた方
+div.container.text-center.mt-3
+  div.row
+    div.col-md-3
+    div.col-md-3
+      = link_to 'ツイッターでのログインの方', auth_at_provider_path(provider: :twitter), class: "text-center text-decoration-none text-white-50"
+    div.col-md-3
+      a.password_reset_slide_btn.cursor-pointer パスワードを忘れた方
+    div.col-md-3
 div#password_reset_slide
   div.container-fluid.mb-3
     div.d-flex.mt-5.border-b

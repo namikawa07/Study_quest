@@ -14,6 +14,6 @@ class OauthsController < ApplicationController
       auto_login(@user)
     end
     flash[:success] = "#{provider.titleize}でログインしました"
-    redirect_to root_path
+    redirect_to users_path
   end
 end
