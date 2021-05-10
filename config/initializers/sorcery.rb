@@ -9,8 +9,8 @@ Rails.application.config.sorcery.submodules = [:reset_password, :external]
 # Here you can configure each submodule's features.
 Rails.application.config.sorcery.configure do |config|
     config.external_providers = [:twitter]
-    config.twitter.key = "aJf4NdEkm2ofXDTKbZmzxy4LZ"
-    config.twitter.secret = "HVjDpMnUkR71rtdUqdp0tmGrzjVU6dg2wKczaXewxhdeJQiwKz"
+    config.twitter.key = ENV["TWITTER_KEY"]
+    config.twitter.secret = ENV["TWITTER_SECRET_KEY"]
     config.twitter.callback_url = 'http://localhost:3000/oauth/callback?provider=twitter'
     config.twitter.user_info_path = "/1.1/account/verify_credentials.json?include_email=true"
     config.twitter.user_info_mapping = {
