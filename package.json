@@ -6,7 +6,6 @@
     "@rails/webpacker": "5.2.1",
     "fitty": "^2.3.3",
     "swiper": "^6.5.4",
-    "vue": "^2.6.12",
     "vue-template-compiler": "^2.6.12",
     "webpack": "^4.0.0"
   },
