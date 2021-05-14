@@ -4,6 +4,7 @@
   "dependencies": {
     "@innologica/vue-dropdown-menu": "^0.1.4",
     "@rails/webpacker": "5.2.1",
+    "css-loader": "*",
     "fitty": "^2.3.3",
     "swiper": "^6.5.4",
     "vue": "^2.6.12",
