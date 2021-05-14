@@ -7,7 +7,6 @@
     "fitty": "^2.3.3",
     "swiper": "^6.5.4",
     "vue": "^2.6.12",
-    "vue-js-modal": "^2.0.0-rc.6",
     "vue-loader": "^15.9.6",
     "vue-template-compiler": "^2.6.12"
   },
