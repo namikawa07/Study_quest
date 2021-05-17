@@ -40,7 +40,7 @@ RSpec.describe "タスクノート機能", type: :system do
       end
     end
     context '記入値が未記入' do
-      it 'エラーが表示される' do
+      fit 'エラーが表示される' do
         click_on('ノートを作成する')
         expect(page).to have_content('Note title')
         fill_in 'note[body]', with: 'test_task_note_body'

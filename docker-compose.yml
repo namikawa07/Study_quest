@@ -22,6 +22,12 @@ services:
       - "3000:3000"
     links:
       - db
+    environment: #以下追記
+      - "SELENIUM_DRIVER_URL=http://selenium_chrome:4444/wd/hub"
+  selenium_chrome:
+    image: selenium/standalone-chrome-debug
+    logging:
+      driver: none
 
 volumes:
   mysql-data:
