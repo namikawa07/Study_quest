@@ -42,6 +42,7 @@ group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem "rspec-rails"
+  gem "rspec_junit_formatter"
   gem "factory_bot_rails"
   gem 'rubocop', require:false
   gem 'rubocop-rails', require:false
