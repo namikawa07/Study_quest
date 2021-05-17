@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "ミッションの新規作成", type: :system do
+RSpec.describe 'ミッションの新規作成', type: :system do
   let(:user) { create(:user) }
   before do
     login(user)
@@ -19,8 +19,8 @@ RSpec.describe "ミッションの新規作成", type: :system do
         expect(page).to have_current_path(users_path)
         expect(page).to have_selector '.card', text: '実行中'
         expect(page).to have_selector '.card', text: 'test_mission'
-        expect(page).to have_selector '.card', text: Date.today.strftime("%m/%d")
-        expect(page).to have_selector '.card', text: Date.tomorrow.strftime("%m/%d")
+        expect(page).to have_selector '.card', text: Date.today.strftime('%m/%d')
+        expect(page).to have_selector '.card', text: Date.tomorrow.strftime('%m/%d')
       end
     end
 
@@ -37,7 +37,8 @@ RSpec.describe "ミッションの新規作成", type: :system do
       context 'タイトルを最大文字数以上を記入した場合' do
         it 'エラーが発生する' do
           click_on 'ミッションを作成'
-          fill_in 'mission[title]', with: 'test_mission_test_mission_test_mission_test_mission_test_mission_test_mission_test_mission_test_mission'
+          fill_in 'mission[title]',
+                  with: 'test_mission_test_mission_test_mission_test_mission_test_mission_test_mission_test_mission_test_mission'
           fill_in 'mission[start_date]', with: Date.today
           fill_in 'mission[end_date]', with: Date.tomorrow
           fill_in 'mission[memo]', with: 'test_memo'
@@ -81,7 +82,7 @@ RSpec.describe "ミッションの新規作成", type: :system do
         end
       end
     end
-    
+
     it 'ミッション作成画面で下書きを押すとそのミッションが下書きと表示される' do
       click_on 'ミッションを作成'
       fill_in 'mission[title]', with: 'test_mission'
@@ -93,11 +94,11 @@ RSpec.describe "ミッションの新規作成", type: :system do
       expect(page).to have_current_path(users_path)
       expect(page).to have_selector '.card', text: '下書き'
       expect(page).to have_selector '.card', text: 'test_mission'
-      expect(page).to have_selector '.card', text: Date.today.strftime("%m/%d")
-      expect(page).to have_selector '.card', text: Date.tomorrow.strftime("%m/%d")
+      expect(page).to have_selector '.card', text: Date.today.strftime('%m/%d')
+      expect(page).to have_selector '.card', text: Date.tomorrow.strftime('%m/%d')
     end
   end
-  
+
   describe 'ミッション編集機能' do
     let(:mission) { create(:mission, user_id: user.id) }
     before do
@@ -105,7 +106,7 @@ RSpec.describe "ミッションの新規作成", type: :system do
     end
     context 'フォームの入力値が正常' do
       it 'ミッションの編集ができる' do
-        page.all("a.js-modal-open")[1].click
+        page.all('a.js-modal-open')[1].click
         fill_in 'mission[title]', with: 'another_test_mission'
         fill_in 'mission[start_date]', with: Date.tomorrow
         fill_in 'mission[end_date]', with: Date.today.days_since(2)
@@ -115,13 +116,13 @@ RSpec.describe "ミッションの新規作成", type: :system do
         expect(page).to have_current_path(users_path)
         expect(page).to have_selector '.card', text: '実行中'
         expect(page).to have_selector '.card', text: 'another_test_mission'
-        expect(page).to have_selector '.card', text: Date.tomorrow.strftime("%m/%d")
-        expect(page).to have_selector '.card', text: Date.today.days_since(2).strftime("%m/%d")
+        expect(page).to have_selector '.card', text: Date.tomorrow.strftime('%m/%d')
+        expect(page).to have_selector '.card', text: Date.today.days_since(2).strftime('%m/%d')
       end
     end
     context 'ミッションの入力に問題がある場合' do
       it 'エラーが発生する' do
-        page.all("a.js-modal-open")[1].click
+        page.all('a.js-modal-open')[1].click
         fill_in 'mission[title]', with: ''
         fill_in 'mission[start_date]', with: Date.yesterday
         fill_in 'mission[end_date]', with: Date.today.days_ago(2)
@@ -130,19 +131,19 @@ RSpec.describe "ミッションの新規作成", type: :system do
         expect(page).to have_content('タイトルを入力して下さい')
       end
     end
-    
+
     context 'My_missionを2つ登録する場合' do
       it 'エラーが発生する' do
         create_mission
-        all(:link_or_button, "My mission")[0].click
+        all(:link_or_button, 'My mission')[0].click
         expect(page).to have_content('My Missionに登録しました')
-        all(:link_or_button, "My mission")[1].click
+        all(:link_or_button, 'My mission')[1].click
         expect(page).to have_content('My Missionに登録できるのは1件までです')
       end
     end
 
     it 'ミッション削除が機能する' do
-      page.all("a.js-modal-open")[0].click
+      page.all('a.js-modal-open')[0].click
       sleep 3
       click_button '削除'
       expect do
@@ -150,20 +151,20 @@ RSpec.describe "ミッションの新規作成", type: :system do
       end.to change { Mission.count }.by(0)
       expect(page).to have_content('ミッションを削除しました')
     end
-  
+
     it '現在時刻がenddateを超えたら未完了になる' do
       expect(page).to have_selector '.card', text: '実行中'
-      travel 2.day do
-        page.all("a.js-modal-open")[1].click
+      travel 2.days do
+        page.all('a.js-modal-open')[1].click
         click_button '変更'
         expect(page).to have_selector '.card', text: '未完了'
       end
     end
-  
+
     it '「Missionを完了する」を押すとミッションが完了済に変わる' do
       expect(page).to have_selector '.card', text: '実行中'
-      travel 2.day do
-        page.all("a.js-modal-open")[1].click
+      travel 2.days do
+        page.all('a.js-modal-open')[1].click
         click_button '変更'
         expect(page).to have_selector '.card', text: '未完了'
         click_link 'Missionを完了する'

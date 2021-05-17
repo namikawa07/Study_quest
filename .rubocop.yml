@@ -1,4 +1,5 @@
 # This file overrides https://github.com/bbatsov/rubocop/blob/master/config/default.yml
+require: rubocop-rails
 
 AllCops:
   Exclude:
@@ -16,8 +17,18 @@ AllCops:
 Rails:
   Enabled: true
 
+Rails/Date: 
+  Enabled: false
+
+Rails/SkipsModelValidations:
+  Whitelist:
+    - update_all
+
+Rails/UniqueValidationWithoutIndex:
+  Enabled: false
+
 Metrics/AbcSize:
-  Max: 30
+  Max: 35
 
 Metrics/ClassLength:
   CountComments: false
@@ -37,10 +48,14 @@ Naming/AccessorMethodName:
   Exclude:
     - "app/controllers/**/*"
 
+
 Style/AsciiComments:
   Enabled: false
 
 Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/CaseLikeIf:
   Enabled: false
 
 Style/Documentation:

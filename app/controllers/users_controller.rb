@@ -25,9 +25,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(current_user.id)
     incomplete_mission = current_user.missions.where('end_date < ?', Date.today).where(status: 'publish')
-    if incomplete_mission.present?
-      incomplete_mission.update_all(status: 'incomplete')
-    end
+    incomplete_mission.update_all(status: 'incomplete') if incomplete_mission.present?
     @missions = @search_mission.result.page(params[:page]).per(16).order(id: 'DESC')
     @all_missions = @user.missions
   end

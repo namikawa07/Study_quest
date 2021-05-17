@@ -1,43 +1,43 @@
 crumb :root do
-  link "Top", root_path
+  link 'Top', root_path
 end
 
 crumb :login do
-  link "Login", login_path
+  link 'Login', login_path
   parent :root
 end
 
 crumb :new_users do
-  link "Signup", new_users_path
+  link 'Signup', new_users_path
   parent :root
 end
 
 crumb :privacy do
-  link "Privacy", privacy_path
+  link 'Privacy', privacy_path
   parent :root
 end
 
 crumb :users do
-  link "My page", users_path
+  link 'My page', users_path
 end
 
 crumb :new_mission do
-  link "New mission", new_mission_path
+  link 'New mission', new_mission_path
   parent :users
 end
 
 crumb :mission_tasks do |mission|
-  link "Task play", mission_tasks_path(mission)
+  link 'Task play', mission_tasks_path(mission)
   parent :users
 end
 
 crumb :new_mission_schedule do |mission|
-  link "New schedule", new_mission_schedule_path(mission)
+  link 'New schedule', new_mission_schedule_path(mission)
   parent :mission_tasks, mission
 end
 
 crumb :mission_task_notes do |mission, task|
-  link "Note", mission_task_notes_path(mission, task)
+  link 'Note', mission_task_notes_path(mission, task)
   parent :mission_tasks, mission
 end
 

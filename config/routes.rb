@@ -2,12 +2,12 @@ Rails.application.routes.draw do
   get 'oauths/oauth'
   get 'oauths/callback'
   root to: 'home#index'
-  get    '/login', to: "sessions#new"
-  post   '/login',   to: "sessions#create"
-  delete '/logout',  to: "sessions#destroy"
-  post "oauth/callback", to: "oauths#callback"
-  get "oauth/callback", to: "oauths#callback"
-  get "oauth/:provider", to: "oauths#oauth", as: :auth_at_provider
+  get    '/login', to: 'sessions#new'
+  post   '/login',   to: 'sessions#create'
+  delete '/logout',  to: 'sessions#destroy'
+  post 'oauth/callback', to: 'oauths#callback'
+  get 'oauth/callback', to: 'oauths#callback'
+  get 'oauth/:provider', to: 'oauths#oauth', as: :auth_at_provider
   resource :users, only: %i[new create edit show update destroy]
   resources :missions, only: %i[new create update destroy] do
     member do
@@ -25,7 +25,6 @@ Rails.application.routes.draw do
         post 'finish'
       end
     end
-    
   end
   resources :sessions, only: %i[new create destroy]
   resources :password_resets

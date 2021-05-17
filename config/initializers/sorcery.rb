@@ -4,19 +4,19 @@
 # Available submodules are: :user_activation, :http_basic_auth, :remember_me,
 # :reset_password, :session_timeout, :brute_force_protection, :activity_logging,
 # :magic_login, :external
-Rails.application.config.sorcery.submodules = [:reset_password, :external]
+Rails.application.config.sorcery.submodules = %i[reset_password external]
 
 # Here you can configure each submodule's features.
 Rails.application.config.sorcery.configure do |config|
-    config.external_providers = [:twitter]
-    config.twitter.key = ENV["TWITTER_KEY"]
-    config.twitter.secret = ENV["TWITTER_SECRET_KEY"]
-    config.twitter.callback_url = 'http://localhost:3000/oauth/callback?provider=twitter'
-    config.twitter.user_info_path = "/1.1/account/verify_credentials.json?include_email=true"
-    config.twitter.user_info_mapping = {
-      name: 'name',
-      email: 'email',
-    }
+  config.external_providers = [:twitter]
+  config.twitter.key = ENV['TWITTER_KEY']
+  config.twitter.secret = ENV['TWITTER_SECRET_KEY']
+  config.twitter.callback_url = 'http://localhost:3000/oauth/callback?provider=twitter'
+  config.twitter.user_info_path = '/1.1/account/verify_credentials.json?include_email=true'
+  config.twitter.user_info_mapping = {
+    name: 'name',
+    email: 'email'
+  }
   # -- core --
   # What controller action to call for non-authenticated users. You can also
   # override the 'not_authenticated' method of course.
@@ -235,7 +235,6 @@ Rails.application.config.sorcery.configure do |config|
   # config.line.bot_prompt = "normal"
   # config.line.user_info_mapping = {name: 'displayName'}
 
-  
   # For information about Discord API
   # https://discordapp.com/developers/docs/topics/oauth2
   # config.discord.key = "xxxxxx"
@@ -564,5 +563,5 @@ Rails.application.config.sorcery.configure do |config|
 
   # This line must come after the 'user config' block.
   # Define which model authenticates with sorcery.
-  config.user_class = "User"
+  config.user_class = 'User'
 end

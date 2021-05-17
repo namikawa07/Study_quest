@@ -8,4 +8,3 @@ module CreateMissionModule
     click_button '実行'
   end
 end
-

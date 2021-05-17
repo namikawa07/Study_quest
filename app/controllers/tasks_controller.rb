@@ -77,9 +77,10 @@ class TasksController < ApplicationController
     @attack_task = @task
     @character_attack = "chara-attack#{rand(6)}"
     respond_to do |format|
-      if @attack_task.status == 'untouch' || @attack_task.status == 'incomplete'
+      case @attack_task.status
+      when 'untouch', 'incomplete'
         @attack_task.status = 'complete'
-      elsif @attack_task.status == 'complete'
+      when 'complete'
         @attack_task.status = 'untouch'
       end
       @attack_task.save!
@@ -154,7 +155,7 @@ class TasksController < ApplicationController
   end
 
   def first_task
-    return unless @first_task.present?
+    return if @first_task.blank?
 
     @past_date = ((@first_task.start_date.to_date)..Date.today)
     @past_date_array = @past_date.to_a.reverse
@@ -162,7 +163,7 @@ class TasksController < ApplicationController
   end
 
   def last_task
-    return unless @last_task.present?
+    return if @last_task.blank?
 
     @future_date = (Date.tomorrow..(@last_task.end_date.to_date))
     @future_date_array = @future_date.to_a
@@ -170,10 +171,20 @@ class TasksController < ApplicationController
   end
 
   def task_shedule
-    return unless @all_tasks.present?
+    return if @all_tasks.blank?
 
-    @future_date_tasks = @future_page_date.map { |date| [date, @mission.tasks.where(start_date: date).or(@mission.tasks.where(end_date: date.to_date)).or(@mission.tasks.where('start_date <= ?', date).where('end_date >= ?', date))] }
-    @past_date_tasks = @past_page_date.map { |date| [date, @mission.tasks.where(start_date: date).or(@mission.tasks.where(end_date: date.to_date)).or(@mission.tasks.where('start_date <= ?', date).where('end_date >= ?', date))] }
+    @future_date_tasks = @future_page_date.map do |date|
+      [date,
+       @mission.tasks.where(start_date: date).or(@mission.tasks.where(end_date: date.to_date)).or(@mission.tasks.where('start_date <= ?', date).where(
+                                                                                                    'end_date >= ?', date
+                                                                                                  ))]
+    end
+    @past_date_tasks = @past_page_date.map do |date|
+      [date,
+       @mission.tasks.where(start_date: date).or(@mission.tasks.where(end_date: date.to_date)).or(@mission.tasks.where('start_date <= ?', date).where(
+                                                                                                    'end_date >= ?', date
+                                                                                                  ))]
+    end
   end
 
   def render_json_success(format)
@@ -215,7 +226,12 @@ class TasksController < ApplicationController
   end
 
   def same_tasks(due_to)
-    due_to.map { |date| [date, @mission.tasks.where(start_date: date).or(@mission.tasks.where(end_date: date.to_date)).or(@mission.tasks.where('start_date <= ?', date).where('end_date >= ?', date))] }
+    due_to.map do |date|
+      [date,
+       @mission.tasks.where(start_date: date).or(@mission.tasks.where(end_date: date.to_date)).or(@mission.tasks.where('start_date <= ?', date).where(
+                                                                                                    'end_date >= ?', date
+                                                                                                  ))]
+    end
   end
 
   def update_task_date(task)

@@ -1,23 +1,22 @@
 require 'rails_helper'
 
-RSpec.describe "プロフィールの編集", type: :system do
+RSpec.describe 'プロフィールの編集', type: :system do
   let(:user) { create(:user) }
   before do
     login(user)
   end
-  
-  
+
   it 'プロフィール画面に名前とアドレスが表示されているか' do
     expect(page).to have_selector '#mypage', text: user.name
     expect(page).to have_selector '#mypage', text: user.email
   end
-  
+
   describe 'フォームの入力が正常' do
     it 'プロフィールの編集が完了する' do
       click_button 'プロフィール編集'
       fill_in 'user[name]', with: 'another_test_name'
       fill_in 'user[email]', with: 'another_test_email@example.com'
-      attach_file "画像を選択", "#{Rails.root}/app/assets/images/test-avatar.png", make_visible: true
+      attach_file '画像を選択', "#{Rails.root}/app/assets/images/test-avatar.png", make_visible: true
       click_button '変更'
       sleep 3
       expect(page).to have_selector '#mypage', text: 'another_test_name'
@@ -51,7 +50,7 @@ RSpec.describe "プロフィールの編集", type: :system do
       end
     end
     context 'メールアドレスが既存のアドレス' do
-      let(:another_user) { create(:user, :another_email)}
+      let(:another_user) { create(:user, :another_email) }
       it 'プロフィール編集が失敗する' do
         click_button 'プロフィール編集'
         fill_in 'user[email]', with: another_user.email
@@ -61,8 +60,7 @@ RSpec.describe "プロフィールの編集", type: :system do
       end
     end
   end
-  
-  
+
   describe 'アイコンについて' do
     context 'アイコン画像を選択しない場合' do
       it '設定していたアイコンがそれぞれの大きさで2つ表示されている' do
@@ -77,7 +75,7 @@ RSpec.describe "プロフィールの編集", type: :system do
       end
     end
   end
-  
+
   describe 'アカウント削除機能' do
     context 'アカウント削除ボタンを押す' do
       it 'アカウントが削除される' do
@@ -88,7 +86,7 @@ RSpec.describe "プロフィールの編集", type: :system do
         'アカウントを削除しましたが表示されていません'
         expect(page).to have_current_path root_path
         'トップページが表示されていません'
-        
+
         visit login_path
         fill_in 'Email', with: user.email
         fill_in 'Password', with: 'test_password'

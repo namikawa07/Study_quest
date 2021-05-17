@@ -45,9 +45,10 @@ class MissionsController < ApplicationController
   end
 
   def finish
-    if @mission.status == 'incomplete'
+    case @mission.status
+    when 'incomplete'
       @mission.status = 'complete'
-    elsif @mission.status == 'complete'
+    when 'complete'
       @mission.status = 'incomplete'
     end
     if @mission.save
@@ -59,11 +60,12 @@ class MissionsController < ApplicationController
   end
 
   def status_change
-    if @mission.status == 'publish' || @mission.status == 'incomplete'
+    case @mission.status
+    when 'publish', 'incomplete'
       @mission.status = 'draft'
       @mission.save!
       flash[:success] = t('missions.update.publishSuccess')
-    elsif @mission.status == 'draft'
+    when 'draft'
       @mission.status = if @mission.end_date >= Date.today
                           'publish'
                         else
@@ -84,10 +86,10 @@ class MissionsController < ApplicationController
   def mission_create(status)
     respond_to do |format|
       if @mission.save
-        flash[:success] = t('missions.create.Success_' + status)
+        flash[:success] = t("missions.create.Success_#{status}")
         render_json_success(format)
       else
-        flash[:danger] = t('missions.create.Not_success_' + status)
+        flash[:danger] = t("missions.create.Not_success_#{status}")
         render_json_not_success(format)
       end
     end

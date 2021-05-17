@@ -3,12 +3,22 @@ services:
   db:
     image: mysql:5.6
     environment:
-      MYSQL_ROOT_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: m5jt|uKP(kV7
       MYSQL_DATABASE: root
     volumes:
       - mysql-data:/var/lib/mysql    #データの永続化のために必要
     ports:
       - "4306:3306"  #両方3306でもok。詳細は下の「番外編：DBをsequel proで可視化したい」へ
+
+  test-db:    #Rspecでのテスト実行用のコンテナ
+    image: mysql:5.6
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+    ports:
+      - '4307:3307'    #開発用とはポート番号を別にする
+    environment:    #接続情報は開発のものと一応分けます
+      MYSQL_DATABASE: mysql_test
+      MYSQL_ROOT_PASSWORD: m5jt|uKP(kV7
+      MYSQL_PASSWORD: m5jt|uKP(kV7
 
   app:
     tty: true          #コンテナ上でbinding.pryするために必要
@@ -28,6 +38,10 @@ services:
     image: selenium/standalone-chrome-debug
     logging:
       driver: none
+  chrome:    #Chromeでのテスト実行用コンテナ
+    image: selenium/standalone-chrome    #Chromeがインストールされたイメージ
+    ports:
+      - '4444:4444'
 
 volumes:
   mysql-data:

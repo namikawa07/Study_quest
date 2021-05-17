@@ -8,8 +8,8 @@ class Mission < ApplicationRecord
   validate :date_cannot_be_start_date, on: :create
   validate :date_cannot_be_end_date
   validate :end_date_cannot_be_now, on: :create
-  enum status: %i[publish complete incomplete draft]
-  enum registration: %i[not_registration registration]
+  enum status: { publish: 0, complete: 1, incomplete: 2, draft: 3 }
+  enum registration: { not_registration: 0, registration: 1 }
   has_many :tasks, dependent: :destroy
   belongs_to :user
 
