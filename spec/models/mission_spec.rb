@@ -43,7 +43,7 @@ RSpec.describe Mission, type: :model do
     mission.valid?
     expect(mission.errors[:memo]).to include('は1000文字以内で入力してください')
   end
-  it '開始日が現在より過去の場合、無効である' do
+  fit '開始日が現在より過去の場合、無効である' do
     mission = Mission.new(title: 'test_title',
                           start_date: Date.yesterday,
                           end_date: Date.today,

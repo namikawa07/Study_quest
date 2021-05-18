@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'ミッションの新規作成', type: :system do
+RSpec.describe 'ミッションの新規作成', type: :system, js: true  do
   let(:user) { create(:user) }
   before do
     login(user)
@@ -54,7 +54,7 @@ RSpec.describe 'ミッションの新規作成', type: :system do
             fill_in 'mission[start_date]', with: Date.yesterday
             fill_in 'mission[end_date]', with: Date.tomorrow
             fill_in 'mission[memo]', with: 'test_memo'
-            click_button '実行'
+            #click_button '実行'
             expect(page).to have_content('Startdate: 過去の日付は使用できません')
           end
         end
@@ -154,7 +154,8 @@ RSpec.describe 'ミッションの新規作成', type: :system do
 
     it '現在時刻がenddateを超えたら未完了になる' do
       expect(page).to have_selector '.card', text: '実行中'
-      travel 2.days do
+      travel 3.days do
+        visit users_path
         page.all('a.js-modal-open')[1].click
         click_button '変更'
         expect(page).to have_selector '.card', text: '未完了'
@@ -163,7 +164,7 @@ RSpec.describe 'ミッションの新規作成', type: :system do
 
     it '「Missionを完了する」を押すとミッションが完了済に変わる' do
       expect(page).to have_selector '.card', text: '実行中'
-      travel 2.days do
+      travel 3.days do
         page.all('a.js-modal-open')[1].click
         click_button '変更'
         expect(page).to have_selector '.card', text: '未完了'

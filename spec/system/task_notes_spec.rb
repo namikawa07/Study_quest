@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'タスクノート機能', type: :system do
+RSpec.describe 'タスクノート機能', type: :system, js: true  do
   let(:mission) { create(:mission) }
   let(:task_1) { create(:task, mission_id: mission.id) }
   let(:note) { create(:note, task_id: task_1.id) }

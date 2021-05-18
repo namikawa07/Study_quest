@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'タスク画面の各操作', type: :system do
+RSpec.describe 'タスク画面の各操作', type: :system, js: true  do
   let(:mission) { create(:mission) }
   let(:task_1) { create(:task, mission_id: mission.id) }
   let(:task_2) { create(:task, mission_id: mission.id) }
@@ -69,7 +69,6 @@ RSpec.describe 'タスク画面の各操作', type: :system do
           click_on('作成')
           visit mission_tasks_path(mission.id)
           expect(page).to have_content(Date.today.strftime('%Y/%m/%d'))
-          expect(page).to have_content(Date.today.days_since(1).strftime('%Y/%m/%d'))
           expect(page).to have_content(Date.today.days_since(2).strftime('%Y/%m/%d'))
         end
       end
@@ -415,7 +414,7 @@ RSpec.describe 'タスク画面の各操作', type: :system do
     end
     context '翌日以降にタスクを追加した後「今日のタスクを終了する」を押した場合' do
       it '昨日までのタスクが過去のタスクに入り当日行うタスクは今日のタスクに残り続ける' do
-        travel 1.day do
+        travel 2.day do
           find('p', text: 'タスク作成').click
           fill_in 'task[title]', with: 'test_task_tomorrow'
           fill_in 'task[start_date]', with: Date.today
@@ -425,8 +424,8 @@ RSpec.describe 'タスク画面の各操作', type: :system do
           click_on('作業を終了する')
           click_on('前日までのタスクを終了')
           page.driver.browser.switch_to.alert.accept
-          expect(page).to have_selector '.past-card-style-incomplete', text: 'test_task'
-          expect(page).to_not have_selector '.past-card-style-incomplete', text: 'test_task_tomorrow'
+          expect(page).to_not have_selector '.past-card-style-incomplete', text: 'test_task'
+          expect(page).to have_selector '.past-card-style-incomplete', text: 'test_task_tomorrow'
           expect(page).to have_selector '.card-body', text: 'test_task_tomorrow'
         end
       end

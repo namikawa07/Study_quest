@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'ログイン機能', type: :system do
+RSpec.describe 'ログイン機能', type: :system, js: true  do
   let(:user) { create(:user) }
   before do
     visit login_path
