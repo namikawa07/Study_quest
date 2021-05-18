@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'プロフィールの編集', type: :system do
+RSpec.describe 'プロフィールの編集', type: :system, js: true do
   let(:user) { create(:user) }
   before do
     login(user)
@@ -32,7 +32,7 @@ RSpec.describe 'プロフィールの編集', type: :system do
 
   describe 'フォームの入力が正しくない場合' do
     context '名前が未記入' do
-      it 'プロフィール編集が失敗する' do
+      it 'プロフィール編集が失敗する'  do
         click_button 'プロフィール編集'
         fill_in 'user[name]', with: ''
         click_button '変更'
