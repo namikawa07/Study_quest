@@ -424,8 +424,8 @@ RSpec.describe 'タスク画面の各操作', type: :system, js: true  do
           click_on('作業を終了する')
           click_on('前日までのタスクを終了')
           page.driver.browser.switch_to.alert.accept
-          expect(page).to_not have_selector '.past-card-style-incomplete', text: 'test_task'
-          expect(page).to have_selector '.past-card-style-incomplete', text: 'test_task_tomorrow'
+          expect(page).to have_selector '.past-card-style-incomplete', text: 'test_task'
+          expect(page).to_not have_selector '.past-card-style-incomplete', text: 'test_task_tomorrow'
           expect(page).to have_selector '.card-body', text: 'test_task_tomorrow'
         end
       end

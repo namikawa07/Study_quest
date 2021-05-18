@@ -54,7 +54,7 @@ RSpec.describe 'ミッションの新規作成', type: :system, js: true  do
             fill_in 'mission[start_date]', with: Date.yesterday
             fill_in 'mission[end_date]', with: Date.tomorrow
             fill_in 'mission[memo]', with: 'test_memo'
-            #click_button '実行'
+            click_button '実行'
             expect(page).to have_content('Startdate: 過去の日付は使用できません')
           end
         end

@@ -3,8 +3,8 @@ services:
   db:
     image: mysql:5.6
     environment:
-      MYSQL_ROOT_PASSWORD: m5jt|uKP(kV7
-      MYSQL_PASSWORD: m5jt|uKP(kV7
+      MYSQL_ROOT_PASSWORD: "m5jt|uKP(kV7"
+      MYSQL_PASSWORD: "m5jt|uKP(kV7"
       MYSQL_DATABASE: root
     volumes:
       - mysql-data:/var/lib/mysql    #データの永続化のために必要
@@ -18,8 +18,8 @@ services:
       - '4307:3307'    #開発用とはポート番号を別にする
     environment:    #接続情報は開発のものと一応分けます
       MYSQL_DATABASE: mysql_test
-      MYSQL_ROOT_PASSWORD: m5jt|uKP(kV7
-      MYSQL_PASSWORD: m5jt|uKP(kV7
+      MYSQL_ROOT_PASSWORD: "m5jt|uKP(kV7"
+      MYSQL_PASSWORD: "m5jt|uKP(kV7"
 
   app:
     tty: true          #コンテナ上でbinding.pryするために必要
