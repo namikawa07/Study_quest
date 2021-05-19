@@ -6,6 +6,7 @@ jobs:
       environment:
         - BUNDLER_VERSION: 2.2.15
         - RAILS_ENV: 'test'
+        - SELENIUM_DRIVER_URL: http://selenium_chrome:4444/wd/hub
     - image: circleci/mysql:5.6
       environment:
         - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
