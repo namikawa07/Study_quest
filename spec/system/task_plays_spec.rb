@@ -309,6 +309,7 @@ RSpec.describe 'タスク画面の各操作', type: :system, js: true  do
       click_on '編集', match: :first
       find('.js-modal').fill_in 'task[title]', with: 'test_task_edit'
       click_button '変更'
+      sleep 0.5
       expect(page).to have_content('test_task_edit')
       expect(page).to have_content('タスクを編集しました')
     end
@@ -385,6 +386,7 @@ RSpec.describe 'タスク画面の各操作', type: :system, js: true  do
         click_on('作業を終了する')
         click_button('今日までのタスクを終了')
         page.driver.browser.switch_to.alert.accept
+        sleep 0.5
         expect(page).to have_content('作業を終了しました')
         expect(find('.past-card-style-incomplete', visible: false).text(:all)).to include 'Incomplete'
       end
