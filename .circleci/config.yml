@@ -11,7 +11,7 @@ jobs:
         - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
         - MYSQL_ROOT_HOST: '127.0.0.1'
     - image: selenium/standalone-chrome-debug:latest
-        name: chrome
+      name: chrome
 
     working_directory: ~/Study_quest  #自身のアプリディレクトリ名を設定  
 
