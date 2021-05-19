@@ -28,24 +28,21 @@ RSpec.describe 'タスクノート機能', type: :system, js: true  do
     end
     describe 'タスクノート作成' do
       context '記入値が未記入' do
-        fit 'エラーが表示される' do
+        it 'エラーが表示される' do
           click_on('ノートを作成する')
           expect(page).to have_content('Note title')
           fill_in 'note[body]', with: 'test_task_note_body'
           click_on('作成')
-          puts page.html
           expect(page).to have_content('タイトルを入力して下さい')
         end
       end
       context '記入値が正常な場合' do
-        fit 'ノートの作成が成功する' do
+        it 'ノートの作成が成功する' do
           click_on('ノートを作成する')
           expect(page).to have_content('Note title')
           fill_in 'note[title]', with: 'test_task_note'
           fill_in 'note[body]', with: 'test_task_note_body'
-          puts page.html
           click_on('作成')
-          puts page.html
           expect(page).to have_content('ノートを作成しました')
           expect(page).to have_selector '#notes', text: 'test_task_note'
           expect(page).to have_selector '#notes', text: 'test_task_note_body'
