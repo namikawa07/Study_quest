@@ -45,7 +45,7 @@ RSpec.describe 'タスクノート機能', type: :system, js: true  do
           expect(page).to have_content('Note title')
           fill_in 'note[body]', with: 'test_task_note_body'
           click_on('作成')
-          puts page.html
+          sleep 5
           expect(page).to have_content('タイトルを入力して下さい')
         end
       end
