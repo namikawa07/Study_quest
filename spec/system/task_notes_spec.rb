@@ -31,9 +31,7 @@ RSpec.describe 'タスクノート機能', type: :system, js: true  do
         fit 'エラーが表示される' do
           click_on('ノートを作成する')
           expect(page).to have_content('Note title')
-          puts page.html
           fill_in 'note[body]', with: 'test_task_note_body'
-          puts page.html
           click_on('作成')
           puts page.html
           expect(page).to have_content('タイトルを入力して下さい')
@@ -45,7 +43,9 @@ RSpec.describe 'タスクノート機能', type: :system, js: true  do
           expect(page).to have_content('Note title')
           fill_in 'note[title]', with: 'test_task_note'
           fill_in 'note[body]', with: 'test_task_note_body'
+          puts page.html
           click_on('作成')
+          puts page.html
           expect(page).to have_content('ノートを作成しました')
           expect(page).to have_selector '#notes', text: 'test_task_note'
           expect(page).to have_selector '#notes', text: 'test_task_note_body'
