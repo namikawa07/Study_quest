@@ -37,7 +37,7 @@ RSpec.describe 'タスクノート機能', type: :system, js: true  do
         end
       end
       context '記入値が正常な場合' do
-        fit 'ノートの作成が成功する' do
+        it 'ノートの作成が成功する' do
           click_on('ノートを作成する')
           expect(page).to have_content('Note title')
           fill_in 'note[title]', with: 'test_task_note'
