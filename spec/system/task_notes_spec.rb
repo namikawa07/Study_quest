@@ -31,14 +31,16 @@ RSpec.describe 'タスクノート機能', type: :system, js: true  do
         fit 'エラーが表示される' do
           click_on('ノートを作成する')
           expect(page).to have_content('Note title')
+          puts page.html
           fill_in 'note[body]', with: 'test_task_note_body'
           puts page.html
           click_on('作成')
+          puts page.html
           expect(page).to have_content('タイトルを入力して下さい')
         end
       end
       context '記入値が正常な場合' do
-        it 'ノートの作成が成功する' do
+        fit 'ノートの作成が成功する' do
           click_on('ノートを作成する')
           expect(page).to have_content('Note title')
           fill_in 'note[title]', with: 'test_task_note'
