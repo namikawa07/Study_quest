@@ -15,7 +15,10 @@
                   div.col-md-3
                     div.form-group.mb-1.text-center
                       div.icon_preview.w-100.text-center
-                        = image_tag user.avatar(:icon), class: 'edit-icon-size mx-auto mb-3'
+                        - if user.avatar.present?
+                          = image_tag user.avatar(:icon), class: 'edit-icon-size mx-auto mb-3'
+                        - else
+                          = image_tag '/images/avatar2.png', class: 'edit-icon-size mx-auto mb-3'
                       = f.label :icon, '画像を選択', class: "icon-btn-style"
                       = f.file_field :icon, class: "btn-style-image"
                   div.col-md-9
