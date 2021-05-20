@@ -7,12 +7,14 @@ class OauthsController < ApplicationController
 
   def callback
     provider = params[:provider]
-    unless (@user = login_from(provider))
+    if (@user = login_from(provider))
+      flash[:success] = "#{provider.titleize}でログインしました"
+    else
       @user = create_from(provider)
       reset_session
       auto_login(@user)
+      flash[:success] = "#{provider.titleize}でログインしました"
     end
-    flash[:success] = "#{provider.titleize}でログインしました"
     redirect_to users_path
   end
 end

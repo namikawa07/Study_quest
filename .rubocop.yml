@@ -67,6 +67,9 @@ Style/FrozenStringLiteralComment:
 Style/IfUnlessModifier:
   Enabled: false
 
+Style/IdenticalConditionalBranches:
+  Enabled: false
+
 Style/WhileUntilModifier:
   Enabled: false
 
