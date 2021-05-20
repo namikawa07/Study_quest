@@ -7,7 +7,7 @@ class OauthsController < ApplicationController
 
   def callback
     provider = params[:provider]
-    if (@user = login_from(provider))
+    if @user = login_from(provider)
       flash[:success] = "#{provider.titleize}でログインしました"
     else
       @user = create_from(provider)
