@@ -24,3 +24,9 @@ div.container.w-75
         div.btn-style-lg-border.mx-auto.mt-5
           div.text-center.form-group-height
             = f.submit "SIGN UP", class: 'btn-style-lg', id: 'SIGNUPbutton'
+div.container.text-center.my-5
+  div.row
+    div.col-md-4
+    div.col-md-4
+      = link_to 'ツイッターでの新規登録の方', auth_at_provider_path(provider: :twitter), class: "text-center text-decoration-none text-white-50"
+    div.col-md-4

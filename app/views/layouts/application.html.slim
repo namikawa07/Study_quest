@@ -17,5 +17,5 @@ html
       div.font-ferrum.breadcrumbs.float-right.text-white
         = breadcrumbs separator: " &rsaquo; "
     = yield
-    = render partial: 'layouts/profile_modal', locals: { user: current_user }
+    = render partial: 'layouts/profile_modal', locals: { user: current_user } 
     = javascript_include_tag 'application'
