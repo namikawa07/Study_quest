@@ -36,9 +36,9 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update(user_params)
         if @user.icon.present?
-          icon = params[:icon]
-          @user.image_name = "#{@user.id}.jpg"
-          File.binwrite("public/user_images/#{@user.image_name}", icon.read)
+          image_icon = params[:icon]
+          @user.icon = "#{@user.id}.jpg"
+          File.binwrite("public/user_images/#{@user.icon}", image_icon.read)
         end
         flash[:success] = t('users.update.Success')
         format.html { redirect_to users_path }
