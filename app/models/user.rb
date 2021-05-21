@@ -7,7 +7,6 @@ class User < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
   validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
   validates :reset_password_token, uniqueness: true, allow_nil: true
-  validates :icon, presence: true
   validate :validate_icon
   has_many :missions, dependent: :destroy
   has_many :authentications, dependent: :destroy
