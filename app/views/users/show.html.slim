@@ -7,7 +7,7 @@
   div.container-field.mt-5.mx-3.pt-5
     div.row
       div.mt-2.col-md-2.text-center
-        - if @user.avatar.present?
+        - if @user.icon.present?
           = image_tag @user.avatar(:icon), class: 'icon-size'
         - else
           = image_tag '/images/avatar2.png', class: 'icon-size'
