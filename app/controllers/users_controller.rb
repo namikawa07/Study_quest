@@ -35,11 +35,6 @@ class UsersController < ApplicationController
     @user = User.find(current_user.id)
     respond_to do |format|
       if @user.update(user_params)
-        if @user.icon.present?
-          image_icon = params[:icon]
-          @user.icon = "#{@user.id}.jpg"
-          File.binwrite("public/user_images/#{@user.icon}", image_icon.read)
-        end
         flash[:success] = t('users.update.Success')
         format.html { redirect_to users_path }
         format.js { render js: "window.location = '#{users_path}'" }
