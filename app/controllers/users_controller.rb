@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.icon = '/images/avatar2.png'
     respond_to do |format|
       if @user.save
         auto_login(@user)
