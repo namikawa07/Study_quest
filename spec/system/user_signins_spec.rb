@@ -5,7 +5,7 @@ RSpec.describe 'ユーザーの新規登録', type: :system, js: true  do
     visit new_users_path
   end
   context 'フォームの入力値が正常' do
-    fit 'ユーザーの新規登録が成功する' do
+    it 'ユーザーの新規登録が成功する' do
       fill_in 'User name', with: 'test_name'
       fill_in 'Email', with: 'test_email@example.com'
       fill_in 'Password', with: 'test_password'
