@@ -96,3 +96,4 @@ gem 'ransack'
 gem 'slim-rails'
 gem 'sorcery'
 gem 'webpacker'
+gem "aws-sdk-s3", require: false
