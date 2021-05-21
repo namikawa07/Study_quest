@@ -14,7 +14,7 @@ div.font-ferrum.d-flex.my-3.mx-5.border-b.z-in-5.justify-content-end
   
   div.w-25.d-block.d-flex.justify-content-between.position-relative.header-position.align-items-center type="button" data-toggle="collapse" data-target="#menu"
     - if current_user.icon.present?
-      = image_tag current_user.avatar(:icon), class: 'small-icon-size w-15'
+      = image_tag current_user.icon, class: 'small-icon-size w-15'
     - else
       = image_tag '/images/avatar2.png', class: 'small-icon-size w-15'
     div.mx-auto.d-block.float-right

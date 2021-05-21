@@ -16,7 +16,7 @@
                     div.form-group.mb-1.text-center
                       div.icon_preview.w-100.text-center
                         - if user.icon.present?
-                          = image_tag user.avatar(:icon), class: 'edit-icon-size mx-auto mb-3'
+                          = image_tag user.icon, class: 'edit-icon-size mx-auto mb-3'
                         - else
                           = image_tag '/images/avatar2.png', class: 'edit-icon-size mx-auto mb-3'
                       = f.label :icon, '画像を選択', class: "icon-btn-style"
