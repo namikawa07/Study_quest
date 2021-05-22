@@ -403,7 +403,7 @@ RSpec.describe 'タスク画面の各操作', type: :system, js: true  do
     context '翌日以降に「今日のタスクを終了する」を押した場合' do
       it '昨日までのタスクが過去のタスクに入り当日行うタスクは今日のタスクに残り続ける' do
         tomorrow_task_1
-        travel 1.day do
+        travel 2.day do
           visit mission_tasks_path(mission.id)
           click_on('作業を終了する')
           click_button('前日までのタスクを終了')
