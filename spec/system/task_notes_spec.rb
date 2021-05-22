@@ -28,7 +28,7 @@ RSpec.describe 'タスクノート機能', type: :system, js: true  do
     end
     describe 'タスクノート作成' do
       context '記入値が未記入' do
-        fit 'エラーが表示される' do
+        it 'エラーが表示される' , js: true do
           click_on('ノートを作成する')
           expect(page).to have_content('Note title')
           fill_in 'note[body]', with: 'test_task_note_body'
@@ -44,6 +44,7 @@ RSpec.describe 'タスクノート機能', type: :system, js: true  do
           fill_in 'note[title]', with: 'test_task_note'
           fill_in 'note[body]', with: 'test_task_note_body'
           click_on('作成')
+          sleep 2
           expect(page).to have_content('ノートを作成しました')
           expect(page).to have_selector '#notes', text: 'test_task_note'
           expect(page).to have_selector '#notes', text: 'test_task_note_body'
@@ -67,7 +68,7 @@ RSpec.describe 'タスクノート機能', type: :system, js: true  do
         end
       end
       context '記入値が未記入' do
-        it 'エラーが表示される' , js: true do
+        it 'エラーが表示される' do
           fill_in 'note[title]', with: ''
           fill_in 'note[body]', with: 'edit_test_task_note_body'
           click_on('変更')
