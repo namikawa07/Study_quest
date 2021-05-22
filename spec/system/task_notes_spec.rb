@@ -67,7 +67,7 @@ RSpec.describe 'タスクノート機能', type: :system, js: true  do
         end
       end
       context '記入値が未記入' do
-        it 'エラーが表示される' do
+        it 'エラーが表示される' , js: true do
           fill_in 'note[title]', with: ''
           fill_in 'note[body]', with: 'edit_test_task_note_body'
           click_on('変更')
