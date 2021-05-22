@@ -1,4 +1,4 @@
-div.border.my-3.w-80.mx-auto
+div.border-bottom.border-top.border-left.border-right.my-3.w-80.mx-auto
   div.border-b.mx-3.my-2.d-flex
     div
       p.font-ferrum.mb-0.mx-2 Note title
@@ -6,7 +6,7 @@ div.border.my-3.w-80.mx-auto
       p.font-SoukouMincho.mb-0.mx-2 #{note.title}
   div.border-b.mx-3.my-2
     p.font-SoukouMincho.mb-0.mx-2 #{safe_join(note.body.split("\n"),tag(:br))}
-  div.d-flex
+  div.d-flex.ml-2
     a.js-modal-open.mr-3 href="" data-target="modal_note_trash_#{note.id}"
       p.font-SoukouMincho.mb-0.card-title-bottom 削除
     a.js-modal-open href="" data-target="modal_note_edit_#{note.id}"
@@ -16,7 +16,7 @@ div.modal.js-modal id="modal_note_edit_#{note.id}"
   div.modal__bg.js-modal-close
   div.modal__content
     div.container-fluid.mb-3.mt-3
-      h1.page-title-modal.w-100.text-center　タスクノート編集
+      h1.page-title-modal.w-100.text-center タスクノート編集
     div.container
       div.row
         div.container.w-75
@@ -42,7 +42,7 @@ div.modal.js-modal id="modal_note_trash_#{note.id}"
   div.modal__bg.js-modal-close
   div.modal__content
     div.container-fluid.mb-3.mt-3
-      h1.page-title-modal.w-100.text-center　タスクノート削除
+      h1.page-title-modal.w-100.text-center タスクノート削除
     div.container.font-cl
       div.d-flex.w-75.mx-auto.border-bottom.border-secondary
         h5.mb-0.mr-5.ml-3.font-ferrum Mission title
