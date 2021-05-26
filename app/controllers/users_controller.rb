@@ -24,11 +24,11 @@ class UsersController < ApplicationController
   end
 
   def testlogin
-    @testuser = User.new(name: 'テストユーザー', email: "#{@test_email}@example.com", password: 'TaskQuest_test_user', password_confirmation: 'TaskQuest_test_user')
-    @testuser.icon.attach('/images/partner-info.png')
+    @testuser = User.new(name: '体験版テストユーザー', email: "#{@test_email}@example.com", password: 'TaskQuest_test_user', password_confirmation: 'TaskQuest_test_user')
+    @testuser.icon.attach(io: File.open('#{Rails.root}/public/images/partner-info.png'), filename: 'partner-info.png', content_type: 'image/png')
     @testuser.save!
     auto_login(@testuser)
-    @testmission = Mission.new(title: 'テストミッション', start_date: Date.today, end_date: Date.tomorrow, user_id: @testuser.id)
+    @testmission = Mission.new(title: '体験版テストミッション', start_date: Date.today, end_date: Date.tomorrow, user_id: @testuser.id)
     @testmission.save!
     flash[:success] = t('users.testlogin.Success')
     redirect_to mission_tasks_path(@testmission.id)

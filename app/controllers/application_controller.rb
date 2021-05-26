@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   end
 
   def test_login_limit
-    return unless current_user.present? && current_user.name == 'テストユーザー'
+    return unless current_user.present? && current_user.name == '体験版テストユーザー'
 
     @mission = current_user.missions.first
     flash[:danger] = t('application.test_login_limit.require_login')
