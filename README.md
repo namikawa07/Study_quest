@@ -141,6 +141,8 @@ https://drive.google.com/file/d/1cBd3F05dgtk3CXOrZmcywasDac0TIn5c/view?usp=shari
   - ACM
   
 #### インフラ構成図
+[![Image from Gyazo](https://i.gyazo.com/db1caf06d3db92bff28b21b52b482efc.png)](https://gyazo.com/db1caf06d3db92bff28b21b52b482efc)
+https://drive.google.com/file/d/1ZX9_EyG2YOIaAue0YUSvlEbBslPFWBGK/view?usp=sharing
 
 ## 環境構築手順
 
