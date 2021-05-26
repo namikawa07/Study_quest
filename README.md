@@ -115,7 +115,7 @@
 - Action Mailer（メール送受信）
 
 #### ER図
-スクショは後で挿入
+<img src="https://i.gyazo.com/4c375e535f41804be54ee55ebab5114c.png">
 https://drive.google.com/file/d/1cBd3F05dgtk3CXOrZmcywasDac0TIn5c/view?usp=sharing
 
 ### フロントエンド
