@@ -11,14 +11,14 @@ div.container
         = render 'layouts/error_messages', model: f.object
         div.form-group
           = f.label :title, 'Mission title', {class: 'form-field'}
-          = f.text_field :title, class: 'form-style', id: 'mission_title', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+          = f.text_field :title, class: 'form-style', id: 'mission_title', placeholder: "例) 日々のタスク", style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
         div.form-group
           = f.label :start_date, 'Start date', {class: 'form-field'}
-          = f.date_field :start_date, class: 'form-style', id: 'mission_start_date', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+          = f.date_field :start_date, class: 'form-style', id: 'mission_start_date', value: Date.today, style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
           div#create_mission_errors_start_date
         div.form-group
           = f.label :end_date, 'End date', {class: 'form-field'}
-          = f.date_field :end_date, class: 'form-style', id: 'mission_end_date', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+          = f.date_field :end_date, class: 'form-style', id: 'mission_end_date', value: Date.today.next_month, style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
           div#create_mission_errors_end_date
         div.form-group
           = f.label :memo, 'Memo', {class: 'form-field'}

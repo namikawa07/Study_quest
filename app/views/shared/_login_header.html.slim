@@ -19,7 +19,8 @@ div.font-ferrum.d-flex.my-3.mx-5.border-b.z-in-5.justify-content-end
         p.text-center.mx-2.mb-0.font-SoukouMincho.fontsize-10 #{current_user.name}さん
 div#menu.collapse.z-in-1.header-dropdown-position.w-80.text-center
   div.w-80.mx-auto
-    div.dropdown-style
-      a.js-modal-open.font-SoukouMincho href="" data-target="modal01" プロフィール編集
+    - if current_user.name != "テストユーザー"
+      div.dropdown-style
+        a.js-modal-open.font-SoukouMincho href="" data-target="modal01" プロフィール編集
     div.dropdown-style.font-SoukouMincho
       = link_to('ログアウト', logout_path, method: :delete)

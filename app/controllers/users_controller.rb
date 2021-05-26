@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  skip_before_action :require_login, only: %i[new create]
+  skip_before_action :require_login, only: %i[new create testlogin]
+  skip_before_action :test_login_limit, only: %i[new create testlogin]
   before_action :set_search_missions, only: %i[show]
 
   def new
@@ -20,6 +21,16 @@ class UsersController < ApplicationController
         format.js { @status = 'fail' }
       end
     end
+  end
+
+  def testlogin
+    @testuser = User.new(name: "テストユーザー", email: "#{@test_email}@example.com", password: "TaskQuest_test_user", password_confirmation: "TaskQuest_test_user")
+    @testuser.save!
+    auto_login(@testuser)
+    @testmission = Mission.new(title: "テストミッション", start_date: Date.today, end_date: Date.tomorrow, user_id: @testuser.id)
+    @testmission.save!
+    flash[:success] = t('users.testlogin.Success')
+    redirect_to mission_tasks_path(@testmission.id)
   end
 
   def show

@@ -32,14 +32,14 @@
           div#task_count_error
           div.form-group-new-task.mb-0
             = f.label :title, 'タスク名', {class: 'task-form-field'}
-            = f.text_field :title, class: 'task-form-style', id: 'task_title', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+            = f.text_field :title, class: 'task-form-style', id: 'task_title', placeholder: "例) 読書をする", style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
           div.form-group-new-task.mb-0
             = f.label :start_date, 'Task開始日', {class: 'task-form-field'}
-            = f.date_field :start_date, class: 'task-form-style', id: 'task_start_date', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+            = f.date_field :start_date, class: 'task-form-style', id: 'task_start_date', value: Date.today, style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
             #task_errors_start_date
           div.form-group-new-task.mb-0
             = f.label :end_date, 'Task終了日', {class: 'task-form-field'}
-            = f.date_field :end_date, class: 'task-form-style z-in-2', id: 'task_end_date', style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
+            = f.date_field :end_date, class: 'task-form-style z-in-2', id: 'task_end_date', value: Date.today, style: "border-radius: 0!important; -webkit-appearance:none;",autocomplete: "off"
             #task_errors_end_date
           div.form-group-new-task.mb-0
             = f.label :detail, '詳細', {class: 'task-form-field'}

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: 'home#index'
   get    '/login', to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
+  get '/testlogin', to: 'users#testlogin'
   delete '/logout',  to: 'sessions#destroy'
   post 'oauth/callback', to: 'oauths#callback'
   get 'oauth/callback', to: 'oauths#callback'
