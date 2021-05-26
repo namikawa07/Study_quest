@@ -118,12 +118,6 @@ $(function(){
   });
 });
 
-$(function(){
-  $('#info-slide-menu2').hide();
-  $('#info-slide2').click(function(){
-    $('#info-slide-menu2').slideToggle();
-  });
-});
 
 $(function(){
   $('#password_reset_slide').hide();
