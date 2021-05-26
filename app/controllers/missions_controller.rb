@@ -39,7 +39,7 @@ class MissionsController < ApplicationController
         not_registration_change_registration(format)
       else
         @mission.registration = 'not_registration'
-        registration_change_not_registration
+        registration_change_not_registration(format)
       end
     end
   end
