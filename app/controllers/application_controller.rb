@@ -14,9 +14,10 @@ class ApplicationController < ActionController::Base
 
   def test_login_limit
     return unless current_user.present? && current_user.name == 'テストユーザー'
+
     @mission = current_user.missions.first
     flash[:danger] = t('application.test_login_limit.require_login')
-    redirect_to mission_tasks_path( @mission.id, current_user.id ) 
+    redirect_to mission_tasks_path(@mission.id, current_user.id)
   end
 
   protected
