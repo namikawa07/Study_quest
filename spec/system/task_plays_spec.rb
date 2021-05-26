@@ -91,6 +91,8 @@ RSpec.describe 'タスク画面の各操作', type: :system, js: true  do
     context 'タスクの記入値が正常ではなかった場合' do
       context '全て未記入だった場合' do
         it 'エラーが発生する' do
+          fill_in 'task[start_date]', with: ''
+          fill_in 'task[end_date]', with: ''
           find('p', text: 'タスク作成').click
           click_button '作成'
           expect(page).to have_content('タイトルを入力して下さい')
@@ -151,6 +153,8 @@ RSpec.describe 'タスク画面の各操作', type: :system, js: true  do
       end
       context 'エラーが表示された後' do
         it '戻るを押すとエラーが消える' do
+          fill_in 'task[start_date]', with: ''
+          fill_in 'task[end_date]', with: ''
           find('p', text: 'タスク作成').click
           click_button '作成'
           expect(page).to have_content('タイトルを入力して下さい')

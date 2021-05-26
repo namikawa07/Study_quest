@@ -27,6 +27,8 @@ RSpec.describe 'ミッションの新規作成', type: :system, js: true  do
     describe 'フォーム入力に問題がある場合' do
       context '全て未記入の場合' do
         it 'エラーが発生する' do
+          fill_in 'mission[start_date]', with: ''
+          fill_in 'mission[end_date]', with: ''
           click_on 'ミッションを作成'
           click_on '実行'
           expect(page).to have_content('タイトルを入力して下さい')
