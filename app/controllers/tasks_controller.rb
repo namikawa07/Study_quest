@@ -6,6 +6,7 @@ class TasksController < ApplicationController
   before_action :due_to_mission, only: %i[index]
   before_action :first_task, only: %i[index]
   before_action :last_task, only: %i[index]
+  skip_before_action :test_login_limit
 
   def index
     @task = Task.new

@@ -2,10 +2,14 @@ ja:
   application:
     not_authenticated:
       require_login: "ログインを行ってください"
+    test_login_limit:
+      require_login: "テストユーザーではタスク画面のみアクセスできます"
   users:
     create:
       Success: "新規登録が完了しました"
       Not_success: "新規登録できませんでした"
+    testlogin:
+        Success: "テストログインが完了しました"
     update:
       Success: "ユーザー情報を更新しました"
       Not_success: "ユーザー情報を更新できませんでした"
