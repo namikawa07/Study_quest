@@ -15,3 +15,6 @@ RUN gem install bundler
 RUN bundle install
 
 ADD . /myproject
+
+ENV TZ="Asia/Tokyo"
+RUN echo $TZ > /etc/timezone

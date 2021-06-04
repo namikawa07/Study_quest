@@ -90,7 +90,7 @@ div#tasks_info.show-info
     h1.page-title.float-left.ml-5 Schedule
     p.ml-3.d-flex.align-items-center.mt-2.page-title-sub.head-border スケジュール
   div.container.px-0
-    - if @all_tasks.present?
+    - if @my_tasks.present?
       div#future-tasks.anchor-task
         p 未来のタスク
       div
@@ -116,17 +116,17 @@ div#tasks_info.show-info
     div.w-100
       div.d-flex.border-b.font-ferrum.w-25
         h4.mr-5 All task
-        h4 #{@all_tasks.count}
+        h4 #{@my_tasks.count}
       div.d-flex.font-ferrum.task-graph
         div.d-flex.w-30
           div.task-graph-untouch.w-12.mr-2
-          h5 untouch #{@untouch_task_count} (#{@untouch_per}%)
+          h5 untouch #{@my_tasks.task_status('untouch').count} (#{@untouch_per}%)
         div.d-flex.w-30
           div.task-graph-complete.w-12.mr-2
-          h5 complete #{@complete_task_count} (#{@complete_per}%)
+          h5 complete #{@my_tasks.task_status('complete').count} (#{@complete_per}%)
         div.d-flex.w-30
           div.task-graph-incomplete.w-12.mr-2
-          h5 incomplete #{@incomplete_task_count} (#{@incomplete_per}%)
+          h5 incomplete #{@my_tasks.task_status('incomplete').count} (#{@incomplete_per}%)
       div.d-flex.task-graph
         div class= "task-graph-untouch w-#{@untouch_per}"
         div class= "task-graph-complete w-#{@complete_per}"
@@ -135,20 +135,20 @@ div#tasks_info.show-info
       div.d-flex.border-b.font-ferrum.w-25
         h4.mr-5 Mission schedule
       div.d-flex.justify-content-around
-        p.font-SoukouMincho.mb-0.mt-3.mr-5 Mission期間: #{@due_to_mission_count}日
-        p.font-SoukouMincho.mb-0.mt-3 経過した日数: #{@until_today_mission_count}日目
+        p.font-SoukouMincho.mb-0.mt-3.mr-5 Mission期間: #{@mission.due_to_mission_count}日
+        p.font-SoukouMincho.mb-0.mt-3 経過した日数: #{@mission.until_today_mission_count}日目
       p.font-SoukouMincho.mt-3 進行度
       div
         div.d-flex.justify-content-between
           p.font-ferrum.mb-0 #{l @mission.start_date}
           p.font-ferrum.mb-0 #{l @mission.end_date}
         div.d-flex.task-graph-mission
-          - if @mission_date_per <= 100
-            div class= "task-graph-mission-date w-#{@mission_date_per}"
-              p.font-ferrum.text-center #{@mission_date_per}%
+          - if @mission.due_to_percent <= 100
+            div class= "task-graph-mission-date w-#{@mission.due_to_percent}"
+              p.font-ferrum.text-center #{@mission.due_to_percent}%
           -else
             div class= "task-graph-mission-date w-100"
-              p.font-ferrum.text-center #{@mission_date_per}%
+              p.font-ferrum.text-center #{@mission.due_to_percent}%
   div.container
     div.text-center.mt-3.w-60.mx-auto.row.border-bottom.border-top.border-right.border-left
       div.col-md-2
@@ -181,9 +181,9 @@ div.modal.js-modal id="modal_tasks_finish"
           h4.text-danger.font-SoukouMincho 作業を終了してもタスクは作成できます
         div.col-md-2
         div.col-md-4.text-center.mt-2
-          = button_to '前日までのタスクを終了', finish_mission_tasks_path(@mission), :name => 'finish_yesterday', class: "border-0 font-SoukouMincho", data: {confirm: "前日までのタスクを終了します"}
+          = button_to '前日までのタスクを終了', finish_mission_tasks_path(@mission, finish: 'Date.yesterday'), :name => 'finish_yesterday', class: "border-0 font-SoukouMincho", data: {confirm: "前日までのタスクを終了します"}
         div.col-md-4.text-center.mt-2
-          = button_to '今日までのタスクを終了', finish_mission_tasks_path(@mission), :name => 'finish_today', class: "border-0 font-SoukouMincho", data: {confirm: "本日のタスクを終了します"}
+          = button_to '今日までのタスクを終了', finish_mission_tasks_path(@mission, finish: 'Date.today'), :name => 'finish_today', class: "border-0 font-SoukouMincho", data: {confirm: "本日のタスクを終了します"}
         div.col-md-2
       div.row.mt-2
         div.col-md-2
