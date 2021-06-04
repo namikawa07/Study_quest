@@ -24,4 +24,16 @@ class Mission < ApplicationRecord
   def end_date_cannot_be_now
     errors.add(:Enddate, ': End dateは現在の日付以降に設定してください') if end_date.present? && end_date < Date.today
   end
+
+  def until_today_mission_count
+    (start_date..Date.today).to_a.count
+  end
+
+  def due_to_mission_count
+    (start_date..end_date).to_a.count
+  end
+
+  def due_to_percent
+    ((start_date..Date.today).to_a.count * 100.0 / (start_date..end_date).to_a.count).round
+  end
 end

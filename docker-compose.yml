@@ -34,7 +34,7 @@ services:
     links:
       - db
     environment: #以下追記
-      - "SELENIUM_DRIVER_URL=http://selenium_chrome:4444/wd/hub"
+      - "SELENIUM_DRIVER_URL=http://chrome:4444/wd/hub"
       
   
   chrome:    #Chromeでのテスト実行用コンテナ

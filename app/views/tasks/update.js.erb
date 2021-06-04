@@ -1,7 +1,3 @@
-<% if @status == 'fail' %>
-  $('#update_task_errors_start_date_<%= @task.id %>').html("<%= j(render 'task_errors_start_date') %>");
-  $('#update_task_errors_end_date_<%= @task.id %>').html("<%= j(render 'task_errors_end_date') %>");
-  <% if @error_dates.present? %>
-    $('#update_task_count_error_<%= @task.id %>').html("<%= j(render 'task_count_error') %>");
-  <% end %>
+<% if @status == 'fail' && @task.errors.present? %>
+  $("#update_task_count_error_<%= @task.id %>").html("<%= j(render 'task_count_error') %>");
 <% end %>

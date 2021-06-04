@@ -19,7 +19,7 @@ RSpec.describe Task, type: :model do
     task.valid?
     expect(task.errors[:title]).to include('を入力してください')
   end
-  it '開始日、終了日がない場合、無効である' do
+  xit '開始日、終了日がない場合、無効である' do
     task = Task.new(title: 'test_title',
                     start_date: nil,
                     end_date: nil,

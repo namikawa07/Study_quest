@@ -48,6 +48,8 @@ Naming/AccessorMethodName:
   Exclude:
     - "app/controllers/**/*"
 
+Security/Eval:
+  Enabled: false
 
 Style/AsciiComments:
   Enabled: false
