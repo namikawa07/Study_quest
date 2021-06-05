@@ -22,16 +22,11 @@ class NotesController < ApplicationController
 
   def update
     @note = @task.notes.find(params[:id])
-    respond_to do |format|
-      if @note.update(note_params)
-        flash[:success] = t('notes.update.Success')
-        format.html { redirect_to mission_task_notes_path(@mission, @task) }
-        format.js { render js: "window.location = '#{mission_task_notes_path(@mission, @task)}'" }
-      else
-        format.html { redirect_to mission_task_notes_path(@mission, @task) }
-        format.json { render json: @note.errors, status: :unprocessable_entity }
-        format.js { @status = 'fail' }
-      end
+    if @note.update(note_params)
+      flash[:success] = t('notes.update.Success')
+      render js: "window.location = '#{mission_task_notes_path(@mission, @task)}'"
+    else
+      @status = 'fail'
     end
   end
 

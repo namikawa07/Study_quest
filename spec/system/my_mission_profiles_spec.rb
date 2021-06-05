@@ -55,7 +55,7 @@ RSpec.describe 'プロフィールの編集', type: :system, js: true do
         click_button 'プロフィール編集'
         fill_in 'user[email]', with: another_user.email
         click_button '変更'
-        expect(page).to have_content('メールアドレスはすでに存在します')
+        expect( find('#unique_email', visible: false) ).to have_content("メールアドレスはすでに存在します")
         'エラーメッセージ「メールアドレスはすでに存在します」が表示されていません'
       end
     end

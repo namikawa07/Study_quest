@@ -6,23 +6,21 @@ class MissionsController < ApplicationController
 
   def create
     @mission = Mission.new(mission_params)
-    @mission.user_id = current_user.id
-    if params[:publish]
-      mission_create('publish')
+    @mission.status = :draft if params[:draft]
+    if @mission.save
+      flash[:success] = t("missions.create.Success")
+      render js: "window.location = '#{users_path}'"
     else
-      @mission.status = :draft
-      mission_create('draft')
+      @status = 'fail'
     end
   end
 
   def update
-    respond_to do |format|
-      if @mission.update(mission_params)
-        flash[:success] = t('missions.update.Success')
-        render_json_success(format)
-      else
-        render_json_not_success(format)
-      end
+    if @mission.update(mission_params)
+      flash[:success] = t('missions.update.Success')
+      render js: "window.location = '#{users_path}'"
+    else
+      @status = 'fail'
     end
   end
 
@@ -33,45 +31,32 @@ class MissionsController < ApplicationController
   end
 
   def registration
-    respond_to do |format|
-      if @mission.registration == 'not_registration'
-        @mission.registration = 'registration'
-        not_registration_change_registration(format)
-      else
-        @mission.registration = 'not_registration'
-        registration_change_not_registration(format)
-      end
+    @mission.change_registration
+    if @mission.save
+      flash[:success] = t('missions.registration.Success') if @mission.registration == 'registration'
+      flash[:success] = t('missions.not_registration.Success') if @mission.registration == 'not_registration'
+      render js: "window.location = '#{users_path}'"
+    else
+      @status = 'fail'
     end
   end
 
   def finish
-    case @mission.status
-    when 'incomplete'
-      @mission.status = 'complete'
-    when 'complete'
-      @mission.status = 'incomplete'
-    end
+    @mission.change_finish_mission
     if @mission.save
-      flash[:success] = t('missions.finish.Success')
+      flash[:success] = t("missions.#{@mission.status}.Success")
     else
-      flash[:danger] = t('missions.finish.Not_success')
+      flash[:danger] = t("missions.#{@mission.status}.Not_success")
     end
     redirect_to users_path
   end
 
   def status_change
-    case @mission.status
-    when 'publish', 'incomplete'
-      @mission.status = 'draft'
-      @mission.save!
+    @mission.change_draft_or_publish
+    @mission.save!
+    if @mission.status == 'draft'
       flash[:success] = t('missions.update.publishSuccess')
-    when 'draft'
-      @mission.status = if @mission.end_date >= Date.today
-                          'publish'
-                        else
-                          'incomplete'
-                        end
-      @mission.save!
+    else
       flash[:success] = t('missions.update.draftSuccess')
     end
     redirect_to users_path
@@ -80,53 +65,10 @@ class MissionsController < ApplicationController
   private
 
   def mission_params
-    params.require(:mission).permit(:title, :start_date, :end_date, :memo, :status, :registration)
-  end
-
-  def mission_create(status)
-    respond_to do |format|
-      if @mission.save
-        flash[:success] = t("missions.create.Success_#{status}")
-        render_json_success(format)
-      else
-        flash[:danger] = t("missions.create.Not_success_#{status}")
-        render_json_not_success(format)
-      end
-    end
+    params.require(:mission).permit(:title, :start_date, :end_date, :memo, :status, :registration).merge(user_id: current_user.id)
   end
 
   def set_mission
     @mission = current_user.missions.find(params[:id])
-  end
-
-  def not_registration_change_registration(format)
-    if my_mission.blank? && @mission.save
-      flash[:success] = t('missions.registration.Success')
-      render_json_success(format)
-    else
-      flash[:danger] = t('missions.registration.Not_success')
-      render_json_not_success(format)
-    end
-  end
-
-  def registration_change_not_registration(format)
-    if @mission.save
-      flash[:success] = t('missions.not_registration.Success')
-      render_json_success(format)
-    else
-      flash.now[:danger] = t('missions.not_registration.Not_success')
-      render_json_not_success(format)
-    end
-  end
-
-  def render_json_success(format)
-    format.html { redirect_to users_path }
-    format.js { render js: "window.location = '#{users_path}'" }
-  end
-
-  def render_json_not_success(format)
-    format.html { redirect_to users_path }
-    format.json { render json: @mission.errors, status: :unprocessable_entity }
-    format.js { @status = 'fail' }
   end
 end
