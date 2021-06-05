@@ -29,14 +29,15 @@ div.col-md-3.mt-5.px-4
             - if mission.draft?
               div.draft-overlay
                 = link_to '下書きを解除', status_change_mission_path(mission.id), method: :post, class: "card-title-bottom show-info", id: 'draft_end_info'
-            - else
+            - elsif mission.publish? || mission.incomplete?
               = link_to '下書きにする', status_change_mission_path(mission.id), method: :post, class: "card-title-bottom show-info", id: 'draft_info'
+            - else
           div.w-100.text-center.mb-2
             - if mission.end_date <= Date.today
               - if mission.incomplete?
-                = link_to 'Missionを完了する', finish_mission_path(mission), method: :post,class: "w-100 text-center card-title-bottom"
+                = link_to 'Missionを完了する', finish_mission_path(mission), method: :post, class: "w-100 text-center card-title-bottom"
               - elsif mission.complete?
-                = link_to 'Missionを未完了にする', finish_mission_path(mission), method: :post,class: "w-100 text-center card-title-bottom"
+                = link_to 'Missionを未完了にする', finish_mission_path(mission), method: :post, class: "w-100 text-center card-title-bottom"
           
             
     div.card-footer.card-header-footer.text-center.py-2

@@ -21,10 +21,7 @@ ja:
       Not_success: "ログインに失敗しました"
   missions:
     create:
-      Success_publish: "ミッションを作成しました"
-      Not_success_publish: "ミッションを作成できませんでした"
-      Success_draft: "ミッションの下書きを作成しました"
-      Not_success_draft: "ミッションの下書きを作成できませんでした"
+      Success: "ミッションを作成しました"
     update:
       Success: "ミッションを編集しました"
       Not_success: "ミッションを編集できませんでした"
@@ -38,9 +35,12 @@ ja:
     not_registration:
       Success: "My Missionを解除しました"
       Not_success: "My Missionを解除できませんでした"
-    finish:
+    complete:
       Success: "Missionを完了しました"
       Not_success: "Missionを完了できませんでした"
+    incomplete:
+      Success: "Missionを未完了にしました"
+      Not_success: "Missionを未完了にできませんでした"
   tasks:
     create:
       Success: "タスクを作成しました"

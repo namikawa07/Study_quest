@@ -9,17 +9,13 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    respond_to do |format|
-      if @user.save
-        auto_login(@user)
-        flash[:success] = t('users.create.Success')
-        format.html { redirect_to users_path }
-        format.js { render js: "window.location = '#{users_path}'" }
-      else
-        flash.now[:danger] = t('users.create.Not_success')
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-        format.js { @status = 'fail' }
-      end
+    if @user.save
+      auto_login(@user)
+      flash[:success] = t('users.create.Success')
+      render js: "window.location = '#{users_path}'"
+    else
+      flash.now[:danger] = t('users.create.Not_success')
+      @status = 'fail'
     end
   end
 
@@ -44,16 +40,11 @@ class UsersController < ApplicationController
   def update
     @missions = current_user.missions
     @user = User.find(current_user.id)
-    respond_to do |format|
-      if @user.update(user_params)
-        flash[:success] = t('users.update.Success')
-        format.html { redirect_to users_path }
-        format.js { render js: "window.location = '#{users_path}'" }
-      else
-        format.html { redirect_to users_path }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-        format.js { @status = 'fail' }
-      end
+    if @user.update(user_params)
+      flash[:success] = t('users.update.Success')
+      render js: "window.location = '#{users_path}'"
+    else
+      @status = 'fail'
     end
   end
 
