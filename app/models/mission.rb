@@ -1,11 +1,12 @@
 class LimitRegistrationValidator < ActiveModel::Validator
   def validate(record)
     registration_mission = record.user.missions.where(registration: 'registration')
-    if record.registration == 'registration' && registration_mission.count >= 1
-      record.errors.add :base, "MyMissionに登録できるのは1件までです"
-    end
+    return unless record.registration == 'registration' && registration_mission.count >= 1
+
+    record.errors.add :base, 'MyMissionに登録できるのは1件までです'
   end
 end
+
 class Mission < ApplicationRecord
   validates :title, presence: true, length: { maximum: 100 }
   validates :start_date, presence: true
@@ -36,25 +37,25 @@ class Mission < ApplicationRecord
   end
 
   def change_registration
-    self.registration = if self.registration == 'not_registration'
-                     'registration'
-                   else
-                     'not_registration'
-                   end
+    self.registration = if registration == 'not_registration'
+                          'registration'
+                        else
+                          'not_registration'
+                        end
   end
 
   def change_finish_mission
-    self.status = if self.status == 'incomplete'
+    self.status = if status == 'incomplete'
                     'complete'
-                   else
+                  else
                     'incomplete'
-                   end
+                  end
   end
 
   def change_draft_or_publish
-    self.status = if self.status == 'incomplete' || self.status == 'publish'
+    self.status = if status == 'incomplete' || status == 'publish'
                     'draft'
-                  elsif self.status == 'draft' || self.end_date >= Date.today
+                  elsif status == 'draft' || end_date >= Date.today
                     'publish'
                   else
                     'incomplete'

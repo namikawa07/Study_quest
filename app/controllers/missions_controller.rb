@@ -8,7 +8,7 @@ class MissionsController < ApplicationController
     @mission = Mission.new(mission_params)
     @mission.status = :draft if params[:draft]
     if @mission.save
-      flash[:success] = t("missions.create.Success")
+      flash[:success] = t('missions.create.Success')
       render js: "window.location = '#{users_path}'"
     else
       @status = 'fail'
@@ -54,11 +54,11 @@ class MissionsController < ApplicationController
   def status_change
     @mission.change_draft_or_publish
     @mission.save!
-    if @mission.status == 'draft'
-      flash[:success] = t('missions.update.publishSuccess')
-    else
-      flash[:success] = t('missions.update.draftSuccess')
-    end
+    flash[:success] = if @mission.status == 'draft'
+                        t('missions.update.publishSuccess')
+                      else
+                        t('missions.update.draftSuccess')
+                      end
     redirect_to users_path
   end
 
