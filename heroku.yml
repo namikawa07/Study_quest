@@ -2,4 +2,4 @@ build:
   docker:
     web: Dockerfile
 run:
-  web: bundle exec puma -C config/puma.rb
+  web: mkdir -p tmp/pids && mkdir -p tmp/sockets && bundle exec puma -C config/puma.rb
