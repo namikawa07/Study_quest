@@ -17,7 +17,7 @@ set :linked_dirs,
                                  'public/uploads')
 
 set :rbenv_type, :user
-set :rbenv_ruby, '2.6.4' # カリキュラム通りに進めた場合、2.5.1か2.3.1です
+set :rbenv_ruby, '2.6.9' # カリキュラム通りに進めた場合、2.5.1か2.3.1です
 
 # どの公開鍵を利用してデプロイするか
 set :ssh_options, auth_methods: ['publickey'],

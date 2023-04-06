@@ -1,4 +1,4 @@
-FROM ruby:2.6.4
+FROM ruby:2.6.9
 
 RUN apt-get update && \
     apt-get install -y mariadb-client nodejs vim --no-install-recommends && \
