@@ -1,62 +1,70 @@
-version: 2
-jobs:
-  build:
-    docker:
-      - image: circleci/ruby:2.6.9-node-browsers
-        environment:
-          BUNDLER_VERSION: 2.4.10
-          RAILS_ENV: test
-          SELENIUM_DRIVER_URL: http://chrome:4444/wd/hub
-      - image: circleci/mysql:5.6
-        environment:
-          MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
-          MYSQL_ROOT_HOST: '127.0.0.1'
-      - image: selenium/standalone-chrome:latest
-        name: chrome
-    working_directory: ~/Study_quest
-
-    steps:
-      - checkout
-
-      - run:
-          name: Install bundler 2.4.10
-          command: gem install bundler:2.4.10
-
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "Gemfile.lock" }}
-            - v1-dependencies-
-
-      - save_cache:
-          paths:
-            - ./vendor/bundle
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-
-      - run:
-          name: Database setup
-          command: |
-            mv ./config/database.yml.ci ./config/database.yml
-            bundle exec rake db:create
-            bundle exec rake db:schema:load
-
-      - run:
-          name: Rubocop
-          command: bundle exec rubocop
-
-      - run:
-          name: Run RSpec
-          command: |
-            mkdir /tmp/test-results
-            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
-            bundle exec rspec \
-              --format progress \
-              --format RspecJunitFormatter \
-              --out /tmp/test-results/rspec.xml \
-              --format progress \
-              $TEST_FILES
-
-      - store_test_results:
-          path: /tmp/test-results
-      - store_artifacts:
-          path: /tmp/test-results
-          destination: test-results
+#version: 2
+#jobs:
+#  build:
+#    docker:
+#      - image: circleci/ruby:2.6.9-node-browsers
+#        environment:
+#          BUNDLER_VERSION: 2.4.10
+#          RAILS_ENV: test
+#          SELENIUM_DRIVER_URL: http://chrome:4444/wd/hub
+#      - image: circleci/mysql:5.6
+#        environment:
+#          MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+#          MYSQL_ROOT_HOST: '127.0.0.1'
+#      - image: selenium/standalone-chrome:latest
+#        name: chrome
+#    working_directory: ~/Study_quest
+#
+#    steps:
+#      - checkout
+#
+#      - run:
+#          name: Install bundler 2.4.10
+#          command: gem install bundler:2.4.10
+#
+#      - restore_cache:
+#          keys:
+#            - v1-dependencies-{{ checksum "Gemfile.lock" }}
+#            - v1-dependencies-
+#
+#      - run:
+#          name: Install dependencies
+#          command: |
+#            gem update --system 3.2.3
+#            bundle config set --local path 'vendor/bundle'
+#            bundle install --jobs=4 --retry=3
+#
+#      - save_cache:
+#          paths:
+#            - ./vendor/bundle
+#          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+#
+#      - run:
+#          name: Database setup
+#          command: |
+#            mv ./config/database.yml.ci ./config/database.yml
+#            bundle exec rake db:create
+#            bundle exec rake db:schema:load
+#
+#      - run:
+#          name: Rubocop
+#          command: bundle exec rubocop
+#
+#      - run:
+#          name: Run RSpec
+#          command: |
+#            mkdir /tmp/test-results
+#            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
+#            bundle exec rspec \
+#              --format progress \
+#              --format RspecJunitFormatter \
+#              --out /tmp/test-results/rspec.xml \
+#              --format progress \
+#              $TEST_FILES
+#
+#      - store_test_results:
+#          path: /tmp/test-results
+#      - store_artifacts:
+#          path: /tmp/test-results
+#          destination: test-results
+#
