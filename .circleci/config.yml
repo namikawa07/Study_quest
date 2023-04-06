@@ -18,6 +18,10 @@ jobs:
     steps:
       - checkout
 
+      - run:
+          name: Install bundler 2.4.10
+          command: gem install bundler:2.4.10
+
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "Gemfile.lock" }}
