@@ -220,6 +220,7 @@ GEM
       rake
     mini_magick (4.11.0)
     mini_mime (1.0.2)
+    mini_portile2 (2.5.3)
     minitest (5.14.4)
     msgpack (1.4.2)
     multi_json (1.15.0)
@@ -232,6 +233,9 @@ GEM
       net-ssh (>= 2.6.5, < 7.0.0)
     net-ssh (6.1.0)
     nio4r (2.5.7)
+    nokogiri (1.11.2)
+      mini_portile2 (~> 2.5.0)
+      racc (~> 1.4)
     nokogiri (1.11.2-x86_64-darwin)
       racc (~> 1.4)
     nokogiri (1.11.2-x86_64-linux)
@@ -431,6 +435,7 @@ GEM
       nokogiri (~> 1.8)
 
 PLATFORMS
+  aarch64-linux
   x86_64-darwin-19
   x86_64-linux
 
@@ -490,4 +495,4 @@ RUBY VERSION
    ruby 2.6.4p104
 
 BUNDLED WITH
-   2.2.15
+   2.4.10

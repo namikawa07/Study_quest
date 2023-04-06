@@ -2,18 +2,22 @@ version: '2'
 services:
   db:
     image: mysql:5.6
+    platform: linux/amd64
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_PASSWORD: password
       MYSQL_DATABASE: Study_quest_development
+      MYSQL_CHARSET: utf8mb4
+      MYSQL_COLLATION: utf8mb4_general_ci
     volumes:
       - mysql-data:/var/lib/mysql    #データの永続化のために必要
+      - ./my.cnf:/etc/mysql/conf.d/my.cnf
     ports:
       - "4306:3306"  #両方3306でもok。詳細は下の「番外編：DBをsequel proで可視化したい」へ
 
   test-db:    #Rspecでのテスト実行用のコンテナ
     image: mysql:5.6
-    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+    platform: linux/amd64
     ports:
       - '4307:3307'    #開発用とはポート番号を別にする
     environment:    #接続情報は開発のものと一応分けます
@@ -35,8 +39,8 @@ services:
       - db
     environment: #以下追記
       - "SELENIUM_DRIVER_URL=http://chrome:4444/wd/hub"
-      
-  
+
+
   chrome:    #Chromeでのテスト実行用コンテナ
     image: selenium/standalone-chrome    #Chromeがインストールされたイメージ
     ports:

@@ -20,8 +20,7 @@ class UsersController < ApplicationController
   end
 
   def testlogin
-    @testuser = User.new(name: '体験版テストユーザー', email: "#{@test_email}@example.com", password: 'TaskQuest_test_user', password_confirmation: 'TaskQuest_test_user')
-    @testuser.save!
+    @testuser = User.create!(name: '体験版テストユーザー', email: "#{@test_email}@example.com", password: 'TaskQuest_test_user', password_confirmation: 'TaskQuest_test_user')
     auto_login(@testuser)
     @testmission = Mission.new(title: '体験版テストミッション', start_date: Date.today, end_date: Date.tomorrow, user_id: @testuser.id)
     @testmission.save!
