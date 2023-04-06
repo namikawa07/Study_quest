@@ -19,3 +19,4 @@ ADD . /myproject
 
 ENV TZ="Asia/Tokyo"
 RUN echo $TZ > /etc/timezone
+

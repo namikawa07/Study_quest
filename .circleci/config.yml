@@ -27,13 +27,6 @@ jobs:
             - v1-dependencies-{{ checksum "Gemfile.lock" }}
             - v1-dependencies-
 
-      - run:
-          name: Install dependencies
-          command: |
-            gem update --system 3.2.3
-            bundle config set --local path 'vendor/bundle'
-            bundle install --jobs=4 --retry=3
-
       - save_cache:
           paths:
             - ./vendor/bundle
