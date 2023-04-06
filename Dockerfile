@@ -1,5 +1,6 @@
-FROM ruby:2.6.9
+FROM ruby:2.7.8
 
+RUN gem update --system
 RUN apt-get update && \
     apt-get install -y mariadb-client nodejs vim --no-install-recommends && \
     rm -rf /var/lib/apt/lists/*
@@ -18,3 +19,4 @@ ADD . /myproject
 
 ENV TZ="Asia/Tokyo"
 RUN echo $TZ > /etc/timezone
+
