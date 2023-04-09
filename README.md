@@ -5,7 +5,7 @@
 [![CircleCI](https://circleci.com/gh/namikawa07/Study_quest.svg?style=shield)](https://circleci.com/gh/namikawa07/Study_quest)
 
 
-### **https://www.taskquest-app.com**
+### **https://task-quest.herokuapp.com/**
 
 ## サービス概要
 
